@@ -5,6 +5,21 @@ TextureImporter:
   - first:
       213: -9014270703759190325
     second: OptionIcon
+  - first:
+      213: -7143350737838849576
+    second: option
+  - first:
+      213: -3511996535513146776
+    second: optionclose
+  - first:
+      213: -1824632319524168523
+    second: optionselect
+  - first:
+      213: 2486886168178889018
+    second: pausementbg
+  - first:
+      213: -519549443294488672
+    second: inputnamebar
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -114,7 +129,7 @@ TextureImporter:
         width: 45
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -122,6 +137,111 @@ TextureImporter:
       bones: []
       spriteID: bc61939fd80e6e280800000000000000
       internalID: -9014270703759190325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: option
+      rect:
+        serializedVersion: 2
+        x: 603
+        y: 270
+        width: 58
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 20, y: 10, z: 20, w: 20}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d1471dd958bddc90800000000000000
+      internalID: -7143350737838849576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: optionclose
+      rect:
+        serializedVersion: 2
+        x: 814
+        y: 202
+        width: 152
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 20, y: 20, z: 20, w: 20}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86a165022c1e24fc0800000000000000
+      internalID: -3511996535513146776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: optionselect
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 122
+        width: 292
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bc901d929a9da6e0800000000000000
+      internalID: -1824632319524168523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pausementbg
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 168
+        width: 423
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a31922b3bc1338220800000000000000
+      internalID: 2486886168178889018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: inputnamebar
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 327
+        width: 110
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a71e25b8803ac8f0800000000000000
+      internalID: -519549443294488672
       vertices: []
       indices: 
       edges: []
