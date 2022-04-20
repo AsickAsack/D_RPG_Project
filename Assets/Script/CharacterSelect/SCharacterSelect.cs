@@ -10,10 +10,11 @@ public class SCharacterSelect : MonoBehaviour
     public GameObject button;
     public Vector3 Dir;
     float Rot;
+    bool Move = false;
 
     public void ChangeWomen()
     {
-        
+        Move = true;
     }
     // Start is called before the first frame update
     void Start()
@@ -25,18 +26,11 @@ public class SCharacterSelect : MonoBehaviour
         // Update is called once per frame
      void Update()
      {
-         transform.localPosition = Vector3.Lerp(transform.localPosition, new Vector3(0.0f, transform.localPosition.y, transform.localPosition.z), Time.deltaTime * 1.0f);
-            if (Rot > Mathf.Epsilon)
-             {
-                float delta = Time.deltaTime * 180.0f;
-                if (delta > Rot)
-                 {
-                    delta = Rot;
-                 }
-                Rot -= delta;
-                transform.Rotate(Vector3.up * delta);
-             }
-           
+        if (Move == true)
+        {
+            transform.localPosition = Vector3.Lerp(transform.localPosition, new Vector3(0.0f, transform.localPosition.y, transform.localPosition.z), Time.deltaTime * 1.0f);
+            transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0, 170, 0), Time.deltaTime * 5.0f);
+        } 
      }
    
 
