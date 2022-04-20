@@ -8,7 +8,7 @@ public class JMain : MonoBehaviour
 
     public GameObject Click;
     public GameObject ClickTarget;
-    public UnityEngine.UI.Image light;
+    public UnityEngine.UI.Image Battlebtn_light;
    
     // Start is called before the first frame update
     void Start()
@@ -20,7 +20,7 @@ public class JMain : MonoBehaviour
     void Update()
     {
 
-        light.gameObject.transform.Rotate(-Vector3.forward * Time.deltaTime * 90.0f);
+        Battlebtn_light.gameObject.transform.Rotate(-Vector3.forward * Time.deltaTime * 90.0f);
        
             if (Input.GetMouseButtonUp(0))
             {

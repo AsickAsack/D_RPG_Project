@@ -11,8 +11,11 @@ public class JPopUpCanvas : MonoBehaviour
     public Canvas BackGround_Canvas;
     public Canvas Inventory_Canvas;
     public Canvas Option_Canvas;
+    public Canvas Equip_Canvas;
     public bool IsUIopen = false; // ui가 현재 열려있는지 아닌지 확인하는 불값
 
+    public Slider UI_Move_Slider;
+    public GameObject Right_Button;
 
     [Header("equip_select_image")]
     public Image[] equip_image; // 클릭했을때 활성화 시킬 장비 이미지 배열
@@ -57,6 +60,9 @@ public class JPopUpCanvas : MonoBehaviour
                 }
                 break;
             case Popup.Equip_Popup:
+                {
+                    Equip_Canvas.enabled = false;
+                }
                 break;
             case Popup.Option_Popup:
                 {
@@ -95,6 +101,17 @@ public class JPopUpCanvas : MonoBehaviour
 
     }
 
+    public void Open_Equip_Pppup()
+    {
+        popup = Popup.Equip_Popup;
+        audioSource.PlayOneShot(Ui_Click);
+        IsUIopen = true;
+        BackGround_Canvas.enabled = true;
+        mainCamera.enabled = false;
+        Equip_Canvas.enabled = true;
+    }
+
+
 
 
     public void EnterDunGeon() // 던전선택 아이콘 눌렀을때 함수
@@ -128,9 +145,16 @@ public class JPopUpCanvas : MonoBehaviour
         {
          option_image[i].enabled = (i == index);
             audioSource.PlayOneShot(Ui_Click);
-
         }
+    }
 
+    public void Ui_Move()
+    {
+
+
+        //Right_Button.transform.position = 
+        // new Vector3(Right_Button.transform.position.x, Right_Button.transform.position.y, Right_Button.transform.position.z); 
+      // UI_Move_Slider.value
     }
 
 }
