@@ -12,7 +12,6 @@ public class cCharacter : cCharacteristic, BattleSystem
     public STATE myState = STATE.CREAT;
 
     public Stats myStats;
-    public CPlayerMove myPlayerMove;
         
     public void OnDamage(float damage)
     {
@@ -63,23 +62,21 @@ public class cCharacter : cCharacteristic, BattleSystem
             case STATE.CREAT:
                 break;
             case STATE.PLAY:
-                myPlayerMove.OnPlayerMoveControl(); // 플레이 상태일 때만 움직일 수 있게함
-                FindMonster(); // 공격범위내에 들어오면 캐릭터가 몬스터를 바라보록 함
+                this.GetComponentInParent<CPlayerMove>().OnPlayerMoveControl(); // 플레이 상태일 때만 움직일 수 있게함                
                 break;
             case STATE.DEAD:
                 break;
         }
     }
 
-    void FindMonster()
-    {
-        Vector3 dir = Vector3.zero;
+    //void FindMonster()
+    //{
+    //    Vector3 dir = Vector3.zero;
 
-        if (myDetection.Target == null) return;
+    //    if (myDetection.Target == null) return;
 
-        print("a");
-        // 매번 타겟의 위치를 갱신 -> 플레이어의 움직임을 받아옴 
-        dir = myDetection.Target.transform.position - this.transform.position; // 이동 방향
-        LookingTarget(myAnim.transform, dir);
-    }
+    //    // 매번 타겟의 위치를 갱신 -> 플레이어의 움직임을 받아옴 
+    //    dir = myDetection.Target.transform.position - this.transform.position; // 이동 방향
+    //    LookingTarget(myAnim.transform, dir);
+    //}
 }

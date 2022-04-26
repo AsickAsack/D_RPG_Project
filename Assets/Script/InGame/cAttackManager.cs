@@ -11,6 +11,8 @@ public class cAttackManager : cCharacteristic
     public int Combo = 0;
     public float ComboLimitTime = 1.5f;
 
+    Coroutine myCoroutine = null;
+
     float playTime = 0.0f;
     float curTime = 0.0f;   
 
@@ -42,6 +44,8 @@ public class cAttackManager : cCharacteristic
 
     public void BasicAttack()
     {
+        FindMonster();
+
         float ComboDurationTime = playTime - curTime; // 콤보지속시간
         curTime = playTime;
 
@@ -72,7 +76,12 @@ public class cAttackManager : cCharacteristic
                 Combo = (Combo + 1) % 3;
                 OnAttack();
             }
-        }        
+        }
+
+        //if (myCoroutine != null)
+        //{
+        //    StopCoroutine(myCoroutine);
+        //}
     }
 
     public void Skill_1()
@@ -81,6 +90,37 @@ public class cAttackManager : cCharacteristic
         {
             myAnim.SetTrigger("Skill");
             OnAttack();
+        }
+    }
+
+    void FindMonster()
+    {
+        Vector3 dir = Vector3.zero;
+
+        if (myDetection.Target == null) return;
+
+        // 몬스터의 움직임을 받아옴 
+        dir = myDetection.Target.transform.position - this.transform.position; // 몬스터를 바라보는 방향
+        
+        if (myCoroutine != null)
+        {
+            StopCoroutine(myCoroutine);
+        }
+        myCoroutine =  StartCoroutine(LookingTarget2(myAnim.transform, dir)); // 몬스터를 바라보도록 함
+        //StartCoroutine(LookingTarget(myAnim.transform, dir));
+    }
+
+    IEnumerator LookingTarget2(Transform myTrans, Vector3 myDir)
+    {
+        while (true)
+        {
+            CalculateAngle(myTrans.forward, myDir, myTrans.right, out ROTDATA myRotData); // 각도 계산 -> 매번 해주어야 함
+
+            Quaternion dirQuat = Quaternion.LookRotation(myDir * 360.0f * Time.deltaTime); // 회전해야하는 값을 저장
+            Quaternion moveQuat = Quaternion.Slerp(myRigid.rotation, dirQuat, 360.0f); // 현재 회전값과 바뀔 회전값을 보간
+            myRigid.MoveRotation(moveQuat);
+
+            yield return null;
         }
     }
 

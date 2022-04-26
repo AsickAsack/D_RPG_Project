@@ -87,11 +87,6 @@ public class cCharacteristic : MonoBehaviour
         {
             CalculateAngle(myTrans.forward, myDir, myTrans.right, out ROTDATA myRotData); // 각도 계산 -> 매번 해주어야 함
 
-            if (Vector3.Dot(myTrans.right, myDir) < 0.0f)
-            {
-                myRotData.rotDir = -1.0f; // 왼쪽방향
-            }
-
             if (!Mathf.Approximately(myRotData.angle, 0.0f))
             {
                 float delta = 360.0f * Time.deltaTime;
