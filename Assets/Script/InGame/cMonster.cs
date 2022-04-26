@@ -39,15 +39,23 @@ public class cMonster : cCharacteristic, BattleSystem
 
     public void OnDamage(float damage)
     {
+        if (myState == STATE.BATTLE || myState == STATE.ROAMING)
+        {
+            myStats.HP -= damage;
 
-    }
+            if (myStats.HP <= 0.0f)
+            {
+                ChangeState(STATE.DEAD); // HP가 0이되면 사망
+            }
+        }
+    }    
 
     void Start()
     {
         ChangeState(STATE.ROAMING); // 로밍상태로 변경
     }
 
-    void Update()
+    void FixedUpdate()
     {
         StateProcess();
     }

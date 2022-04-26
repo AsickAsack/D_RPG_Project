@@ -14,14 +14,9 @@ public class CPlayerMove : cCharacteristic
     public float MoveSpeed = 5.0f;
     public float SmoothRotSpeed = 360.0f;
 
-    // Update is called once per frame
-    void Update()
+    public void OnPlayerMoveControl()
     {
         JoystickMove();
-    }
-
-    private void LateUpdate()
-    {
         myAnim.SetFloat("x", joystick.Horizontal);
         myAnim.SetFloat("y", joystick.Vertical);
     }
