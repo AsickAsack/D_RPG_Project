@@ -3,13 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public struct ROTDATA
-{
-    // 회전 데이터
-    public float angle;
-    public float rotDir;
-}
-
 public class cMonster : cCharacteristic, BattleSystem
 {
     public enum STATE
@@ -20,7 +13,7 @@ public class cMonster : cCharacteristic, BattleSystem
     public STATE myState = STATE.CREAT;
 
     public Stats myStats;
-    public ROTDATA myRotData;
+    //public ROTDATA myRotData;
 
     Coroutine moveRoutine = null;
     Coroutine rotRoutine = null;
@@ -37,15 +30,22 @@ public class cMonster : cCharacteristic, BattleSystem
     public float ATK_Range; // 공격범위
     public float ATK_WaitingTime; // 공격 대기시간
 
+    public bool isdying = false; // 몬스터의 죽는 애니메이션이 끝났는지 여부
+
     public void OnDamage(float damage)
     {
         if (myState == STATE.BATTLE || myState == STATE.ROAMING)
         {
             myStats.HP -= damage;
+            print("A");
 
             if (myStats.HP <= 0.0f)
             {
                 ChangeState(STATE.DEAD); // HP가 0이되면 사망
+            }
+            else
+            {
+                myAnim.SetTrigger("OnDamage");
             }
         }
     }    
@@ -77,6 +77,7 @@ public class cMonster : cCharacteristic, BattleSystem
                 DetectMove();
                 break;
             case STATE.DEAD:
+                OnDie();
                 break;
         }
     }
@@ -92,8 +93,41 @@ public class cMonster : cCharacteristic, BattleSystem
             case STATE.BATTLE:
                 break;
             case STATE.DEAD:
+                if (isdying)
+                {
+                    OnDisappear();
+                }
                 break;
         }
+    }
+    void OnDie()
+    {
+        StopAllCoroutines();
+        myAnim.SetTrigger("Die"); // 죽는 애니메이션 실행
+    }
+
+    void OnDisappear()
+    {
+        StartCoroutine(Disappearing()); // 아래로 가라앉음
+    }
+
+    IEnumerator Disappearing()
+    {
+        float dist = 2.0f; // 떨어질 거리
+
+        while (!Mathf.Approximately(dist, 0.0f))
+        {
+            float delta = Time.deltaTime * 0.5f;
+
+            delta = delta > dist ? dist : delta;
+
+            this.transform.Translate(Vector3.down * delta);
+            dist -= delta;
+
+            yield return null;
+        }
+
+        Destroy(this.gameObject); // 게임 오브젝트 삭제
     }
 
     public void OnBattle()
@@ -116,7 +150,7 @@ public class cMonster : cCharacteristic, BattleSystem
         {
             StopCoroutine(rotRoutine);
         }
-        rotRoutine = StartCoroutine(LookingTarget());
+        rotRoutine = StartCoroutine(LookingTarget(myAnim.transform, dir));
 
     }
 
@@ -167,29 +201,30 @@ public class cMonster : cCharacteristic, BattleSystem
         }
     }
 
-    IEnumerator LookingTarget()
-    {
-        while (true)
-        {
-            CalculateAngle(); // 각도 계산 -> 매번 해주어야 함
+    // cCharacteristic으로 이동
+    //IEnumerator LookingTarget()
+    //{
+    //    while (true)
+    //    {
+    //        CalculateAngle(myAnim.transform.forward, dir, myAnim.transform.right, out ROTDATA myRotData); // 각도 계산 -> 매번 해주어야 함
 
-            if (Vector3.Dot(myAnim.transform.right, dir) < 0.0f)
-            {
-                myRotData.rotDir = -1.0f; // 왼쪽방향
-            }
+    //        if (Vector3.Dot(myAnim.transform.right, dir) < 0.0f)
+    //        {
+    //            myRotData.rotDir = -1.0f; // 왼쪽방향
+    //        }
 
-            if (!Mathf.Approximately(myRotData.angle, 0.0f))
-            {
-                float delta = RotSpeed * Time.deltaTime;
+    //        if (!Mathf.Approximately(myRotData.angle, 0.0f))
+    //        {
+    //            float delta = RotSpeed * Time.deltaTime;
 
-                delta = delta > myRotData.angle ? myRotData.angle : delta;
+    //            delta = delta > myRotData.angle ? myRotData.angle : delta;
 
-                myAnim.transform.Rotate(Vector3.up * delta * myRotData.rotDir);
-            }
+    //            myAnim.transform.Rotate(Vector3.up * delta * myRotData.rotDir);
+    //        }
 
-            yield return null;
-        }
-    }
+    //        yield return null;
+    //    }
+    //}
 
     void MonsterMove()
     {
@@ -252,7 +287,7 @@ public class cMonster : cCharacteristic, BattleSystem
 
     IEnumerator Rotate()
     {
-        CalculateAngle(); // 각도 계산
+        CalculateAngle(myAnim.transform.forward, dir, myAnim.transform.right, out ROTDATA myRotData); // 각도 계산
 
         while (!Mathf.Approximately(myRotData.angle, 0.0f))
         {
@@ -267,16 +302,17 @@ public class cMonster : cCharacteristic, BattleSystem
         }
     }
 
-    void CalculateAngle()
-    {
-        // 각도 계산
-        float rad = Mathf.Acos(Vector3.Dot(myAnim.transform.forward, dir)); // 이동할 지점까지의 각도를 구함
-        myRotData.angle = 180 * (rad / Mathf.PI); // degree 각도로 바꿈
-        myRotData.rotDir = 1.0f; // 회전 방향값 => 오른쪽
+    // cCharacteristic으로 이동
+    //void CalculateAngle()
+    //{
+    //    // 각도 계산
+    //    float rad = Mathf.Acos(Vector3.Dot(myAnim.transform.forward, dir)); // 이동할 지점까지의 각도를 구함
+    //    myRotData.angle = 180 * (rad / Mathf.PI); // degree 각도로 바꿈
+    //    myRotData.rotDir = 1.0f; // 회전 방향값 => 오른쪽
 
-        if (Vector3.Dot(myAnim.transform.right, dir) < 0.0f)
-        {
-            myRotData.rotDir = -1.0f; // 왼쪽방향
-        }
-    }
+    //    if (Vector3.Dot(myAnim.transform.right, dir) < 0.0f)
+    //    {
+    //        myRotData.rotDir = -1.0f; // 왼쪽방향
+    //    }
+    //}
 }

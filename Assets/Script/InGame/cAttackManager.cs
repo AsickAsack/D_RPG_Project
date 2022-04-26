@@ -75,19 +75,6 @@ public class cAttackManager : cCharacteristic
         }        
     }
 
-    //IEnumerator ComboReset()
-    //{
-    //    while (isCombo)
-    //    {
-    //        if (!isCombo) break; // 공격버튼을 누르면 콤보 계속 진행
-
-    //        // 일정 시간 안에 콤보가 갱신되지 않으면 콤보 리셋
-    //        yield return new WaitForSeconds(1.5f);
-    //        Combo = 0;
-    //        isCombo = false;
-    //    }
-    //}
-
     public void Skill_1()
     {
         if (!myAnim.GetBool("IsDoing")) // 스킬이나 공격이나 구르기 중에 스킬x
@@ -96,4 +83,5 @@ public class cAttackManager : cCharacteristic
             OnAttack();
         }
     }
+
 }
