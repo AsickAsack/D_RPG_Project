@@ -4,7 +4,7 @@ using UnityEngine;
 using Newtonsoft.Json;
 using System.IO;
 
-public class GameData : MonoBehaviour
+public partial class GameData : MonoBehaviour
 {
     #region Singleton Pattern / awake함수
     private static GameData instance = null; //스태틱은 1개 // 모든 싱글톤 개체들이 공유됨 // 외부에서 수정X 유일성확보
