@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 
@@ -7,10 +8,6 @@ public class JMain : MonoBehaviour
 {
     [Header("[클릭 이미지 게임오브젝트]")]
     public GameObject Click;
-    RectTransform click_rect;
-    public Camera uicamera;
-    Vector2 screenPoint;
-    public RectTransform pannel;
 
     [Header("[던전진입버튼 불빛 회전 이미지]")]
     public UnityEngine.UI.Image Battlebtn_light;
@@ -21,11 +18,14 @@ public class JMain : MonoBehaviour
     public TMPro.TMP_Text Level;
     public TMPro.TMP_Text Gold;
     public TMPro.TMP_Text Emerald;
+  
    
     void Start()
     {
         //Click.GetComponent<ParticleSystem>().Stop();
         //click_rect = Click.GetComponent<RectTransform>();
+
+       
     }
 
     // Update is called once per frame
@@ -36,30 +36,25 @@ public class JMain : MonoBehaviour
         Rotate_light();
         _Click();
 
+        
+
     }
 
     void _Click()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonUp(0))
         {
-             Click.SetActive(true);
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(pannel, Input.mousePosition, uicamera, out screenPoint);
-            Click.GetComponent<ParticleSystem>().Play();
-            click_rect.localPosition = screenPoint;
+            Click.transform.position = Input.mousePosition;
+            Click.SetActive(true);
+            StartCoroutine(Click_Delay(0.25f));
+
         }
-        //else
-        //{
-        //    Click.SetActive(false);
-        //    Click.GetComponent<ParticleSystem>().Stop();
-        //}
-
     }   
-
 
     IEnumerator Click_Delay(float t)
     {
         yield return new WaitForSeconds(t);
-        Click.SetActive(false); 
+            Click.SetActive(false);
     }
 
     void Change_BlackBar() // 상단바 text 바꾸는 함수
