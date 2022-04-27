@@ -46,7 +46,58 @@ TextureImporter:
     second: alarm_icon
   - first:
       213: -6680068534884010614
-    second: home
+    second: ui_icon_button_01_14
+  - first:
+      213: 4479674443967347988
+    second: ui_icon_button_01_15
+  - first:
+      213: -3548262754241111678
+    second: ui_icon_button_01_16
+  - first:
+      213: 3859116898982710995
+    second: ui_icon_button_01_17
+  - first:
+      213: 6209385228128295296
+    second: ui_icon_button_01_18
+  - first:
+      213: -6194369584630249840
+    second: ui_icon_button_01_19
+  - first:
+      213: 1239406735163474311
+    second: ui_icon_button_01_20
+  - first:
+      213: -3510691377974965654
+    second: ui_icon_button_01_21
+  - first:
+      213: -3628689732053680345
+    second: ui_icon_button_01_22
+  - first:
+      213: 2338628967702723220
+    second: ui_icon_button_01_23
+  - first:
+      213: -1118928415463386239
+    second: ui_icon_button_01_24
+  - first:
+      213: 2370717153369139320
+    second: ui_icon_button_01_25
+  - first:
+      213: 1313160970225303704
+    second: ui_icon_button_01_26
+  - first:
+      213: 2056539183511587388
+    second: ui_icon_button_01_27
+  - first:
+      213: -5591341654596442325
+    second: ui_icon_button_01_28
+  - first:
+      213: -7725530876017382838
+    second: ui_icon_button_01_29
+  - first:
+      213: 7022864242503185518
+    second: ui_icon_button_01_30
+  - first:
+      213: 8848354279022534004
+    second: ui_icon_button_01_31
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -152,7 +203,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 72
-        y: 543
+        y: 544
         width: 65
         height: 63
       alignment: 0
@@ -278,9 +329,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 392
-        y: 137
-        width: 131
-        height: 127
+        y: 134
+        width: 130
+        height: 130
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -298,10 +349,10 @@ TextureImporter:
       name: special_icon
       rect:
         serializedVersion: 2
-        x: 137
-        y: 192
-        width: 127
-        height: 128
+        x: 135
+        y: 189
+        width: 130
+        height: 131
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -442,13 +493,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: home
+      name: ui_icon_button_01_14
       rect:
         serializedVersion: 2
-        x: 849
-        y: 541
-        width: 40
-        height: 38
+        x: 912
+        y: 584
+        width: 4
+        height: 440
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -458,6 +509,363 @@ TextureImporter:
       bones: []
       spriteID: a8579fe5f01ab43a0800000000000000
       internalID: -6680068534884010614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_icon_button_01_15
+      rect:
+        serializedVersion: 2
+        x: 699
+        y: 316
+        width: 189
+        height: 232
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41db1162c200b2e30800000000000000
+      internalID: 4479674443967347988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_icon_button_01_16
+      rect:
+        serializedVersion: 2
+        x: 936
+        y: 540
+        width: 49
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28995b313d902cec0800000000000000
+      internalID: -3548262754241111678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_icon_button_01_17
+      rect:
+        serializedVersion: 2
+        x: 944
+        y: 490
+        width: 80
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3de42968f565e8530800000000000000
+      internalID: 3859116898982710995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_icon_button_01_18
+      rect:
+        serializedVersion: 2
+        x: 986
+        y: 532
+        width: 35
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 089152c57fa2c2650800000000000000
+      internalID: 6209385228128295296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_icon_button_01_19
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 433
+        width: 47
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09641a49ead290aa0800000000000000
+      internalID: -6194369584630249840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_icon_button_01_20
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 433
+        width: 43
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78145a5ebd1433110800000000000000
+      internalID: 1239406735163474311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_icon_button_01_21
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 432
+        width: 32
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6a86cbcac4874fc0800000000000000
+      internalID: -3510691377974965654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_icon_button_01_22
+      rect:
+        serializedVersion: 2
+        x: 636
+        y: 384
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72f35d01aed44adc0800000000000000
+      internalID: -3628689732053680345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_icon_button_01_23
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 0
+        width: 191
+        height: 190
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49afb51d7aa747020800000000000000
+      internalID: 2338628967702723220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_icon_button_01_24
+      rect:
+        serializedVersion: 2
+        x: 904
+        y: 435
+        width: 44
+        height: 56
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 183d633d884c870f0800000000000000
+      internalID: -1118928415463386239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_icon_button_01_25
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 433
+        width: 36
+        height: 56
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8782e7db0ba76e020800000000000000
+      internalID: 2370717153369139320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_icon_button_01_26
+      rect:
+        serializedVersion: 2
+        x: 976
+        y: 324
+        width: 46
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 890cf2be1f8493210800000000000000
+      internalID: 1313160970225303704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_icon_button_01_27
+      rect:
+        serializedVersion: 2
+        x: 827
+        y: 240
+        width: 75
+        height: 76
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3a41ebcd7b4a8c10800000000000000
+      internalID: 2056539183511587388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_icon_button_01_28
+      rect:
+        serializedVersion: 2
+        x: 916
+        y: 168
+        width: 80
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b272feba3609762b0800000000000000
+      internalID: -5591341654596442325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_icon_button_01_29
+      rect:
+        serializedVersion: 2
+        x: 997
+        y: 175
+        width: 26
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4aeba1999669c490800000000000000
+      internalID: -7725530876017382838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_icon_button_01_30
+      rect:
+        serializedVersion: 2
+        x: 1008
+        y: 156
+        width: 16
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e64f130e1d9367160800000000000000
+      internalID: 7022864242503185518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_icon_button_01_31
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 0
+        width: 126
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47d12ff065babca70800000000000000
+      internalID: 8848354279022534004
       vertices: []
       indices: 
       edges: []
