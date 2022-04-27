@@ -9,12 +9,17 @@ public class cAttackManager : cCharacteristic
     public Collider[] colPoints; // 부딫힌 지점
 
     public int Combo = 0;
-    public float ComboLimitTime = 1.5f;
+    public float ComboLimitTime = 2.5f;
 
-    Coroutine myCoroutine = null;
+    public Coroutine myCoroutine = null;
 
     float playTime = 0.0f;
-    float curTime = 0.0f;   
+    float curTime = 0.0f;
+
+    private void Start()
+    {
+        this.GetComponentInChildren<cAnimEvent>().Attack += OnAttack;
+    }
 
     private void Update()
     {
@@ -23,73 +28,79 @@ public class cAttackManager : cCharacteristic
 
     void OnAttack()
     {
-        // 부딫힌 지점을 기준으로 그 콜라이더에 부딫힌 콜라이더들을 담음
-        foreach (Transform trans in myAttackPoints)
+        if (this.GetComponent<cCharacter>().myState == cCharacter.STATE.PLAY)
         {
-            colPoints = Physics.OverlapSphere(trans.position, 1.0f, AttackMask);
-        }
+            colPoints = null; // 타격 후 다시 비움
 
-        //Collider[] list = Physics.OverlapSphere(myAttackPoints[0].position, 1.0f, AttackMask); 
-
-        foreach (Collider col in colPoints)
-        {
-            BattleSystem bs = col.gameObject.GetComponent<BattleSystem>();
-
-            if (bs != null)
+            // 타격 지점을 기준으로 그 콜라이더에 부딫힌 콜라이더들을 담음
+            foreach (Transform trans in myAttackPoints)
             {
-                bs.OnDamage(35.0f);
+                colPoints = Physics.OverlapSphere(trans.position, 1.0f, AttackMask);
+            }
+
+            //Collider[] list = Physics.OverlapSphere(myAttackPoints[0].position, 1.0f, AttackMask); 
+
+            foreach (Collider col in colPoints)
+            {
+                BattleSystem bs = col.gameObject.GetComponent<BattleSystem>();
+
+                if (bs != null)
+                {
+                    bs.OnDamage(35.0f);
+                }
             }
         }
+
     }
 
     public void BasicAttack()
     {
-        FindMonster();
-
-        float ComboDurationTime = playTime - curTime; // 콤보지속시간
-        curTime = playTime;
-
-        if (ComboDurationTime > ComboLimitTime)
+        if (this.GetComponent<cCharacter>().myState == cCharacter.STATE.PLAY)
         {
-            Combo = 0; // 콤보 초기화
+            FindMonster();
 
-            // 처음 콤보 사용
-            if (!myAnim.GetBool("IsDoing")) // 스킬이나 공격 구르기 중에 공격x
+            float ComboDurationTime = playTime - curTime; // 콤보지속시간
+            curTime = playTime;
+
+            if (ComboDurationTime > ComboLimitTime)
             {
-                myAnim.SetFloat("Combo", Combo);
-                myAnim.SetTrigger("Attack");
-                Combo = (Combo++) % 3;
-                OnAttack();
-            }
+                Combo = 0; // 콤보 초기화
 
-            // 시간 초기화
-            playTime = 0.0f; 
-            curTime = 0.0f;
-        }
-        else
-        {
-            // 다음 콤보 사용
-            if (!myAnim.GetBool("IsDoing")) // 스킬이나 공격 구르기 중에 공격x
+                // 처음 콤보 사용
+                if (!myAnim.GetBool("IsDoing")) // 스킬이나 공격 구르기 중에 공격x
+                {
+                    myAnim.SetFloat("Combo", Combo);
+                    myAnim.SetTrigger("Attack");
+                    Combo = (Combo++) % 3;
+                }
+
+                // 시간 초기화
+                playTime = 0.0f;
+                curTime = 0.0f;
+            }
+            else
             {
-                myAnim.SetFloat("Combo", Combo);
-                myAnim.SetTrigger("Attack");
-                Combo = (Combo + 1) % 3;
-                OnAttack();
+                // 다음 콤보 사용
+                if (!myAnim.GetBool("IsDoing")) // 스킬이나 공격 구르기 중에 공격x
+                {
+                    myAnim.SetFloat("Combo", Combo);
+                    myAnim.SetTrigger("Attack");
+                    Combo = (Combo + 1) % 3;
+                }
             }
         }
-
-        //if (myCoroutine != null)
-        //{
-        //    StopCoroutine(myCoroutine);
-        //}
     }
 
     public void Skill_1()
     {
-        if (!myAnim.GetBool("IsDoing")) // 스킬이나 공격이나 구르기 중에 스킬x
+        if (this.GetComponent<cCharacter>().myState == cCharacter.STATE.PLAY)
         {
-            myAnim.SetTrigger("Skill");
-            OnAttack();
+            //FindMonster(); // 스킬은 아예 논타겟?
+
+            if (!myAnim.GetBool("IsDoing")) // 스킬이나 공격이나 구르기 중에 스킬x
+            {
+                myAnim.SetTrigger("Skill");
+            }
         }
     }
 
@@ -101,16 +112,17 @@ public class cAttackManager : cCharacteristic
 
         // 몬스터의 움직임을 받아옴 
         dir = myDetection.Target.transform.position - this.transform.position; // 몬스터를 바라보는 방향
-        
+
         if (myCoroutine != null)
         {
             StopCoroutine(myCoroutine);
         }
-        myCoroutine =  StartCoroutine(LookingTarget2(myAnim.transform, dir)); // 몬스터를 바라보도록 함
-        //StartCoroutine(LookingTarget(myAnim.transform, dir));
+        myCoroutine = StartCoroutine(Targeting(myAnim.transform, dir)); // 몬스터를 바라보도록 함
+        //myCoroutine = StartCoroutine(LookingTarget(myAnim.transform, dir));
+
     }
 
-    IEnumerator LookingTarget2(Transform myTrans, Vector3 myDir)
+    IEnumerator Targeting(Transform myTrans, Vector3 myDir)
     {
         while (true)
         {
@@ -120,8 +132,9 @@ public class cAttackManager : cCharacteristic
             Quaternion moveQuat = Quaternion.Slerp(myRigid.rotation, dirQuat, 360.0f); // 현재 회전값과 바뀔 회전값을 보간
             myRigid.MoveRotation(moveQuat);
 
+            if (this.GetComponent<CPlayerMove>().isMove == true) break; // 플레이어 이동시 반복문 빠져나감
+
             yield return null;
         }
     }
-
 }

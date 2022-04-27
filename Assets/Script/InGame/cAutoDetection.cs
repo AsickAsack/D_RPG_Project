@@ -19,7 +19,7 @@ public class cAutoDetection : MonoBehaviour
             }
         }
         // 몬스터 감지
-        else if ((DetectLayer & (1 << other.gameObject.layer)) == 256) 
+        else if ((DetectLayer & (1 << other.gameObject.layer)) == 256)
         {
             if (this.transform.parent.GetComponent<cCharacter>().myState == cCharacter.STATE.PLAY)
             {

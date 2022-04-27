@@ -24,7 +24,17 @@ public class cCharacter : cCharacteristic, BattleSystem
             {
                 ChangeState(STATE.DEAD); // HP가 0이되면 사망
             }
+            else
+            {
+                myAnim.SetTrigger("OnDamage");
+            }
         }
+    }
+
+    void OnDie()
+    {
+        StopAllCoroutines();
+        myAnim.SetTrigger("Die"); // 죽는 애니메이션 실행
     }
 
     // Start is called before the first frame update
@@ -51,6 +61,7 @@ public class cCharacter : cCharacteristic, BattleSystem
             case STATE.PLAY:
                 break;
             case STATE.DEAD:
+                OnDie();
                 break;
         }
     }
@@ -68,15 +79,4 @@ public class cCharacter : cCharacteristic, BattleSystem
                 break;
         }
     }
-
-    //void FindMonster()
-    //{
-    //    Vector3 dir = Vector3.zero;
-
-    //    if (myDetection.Target == null) return;
-
-    //    // 매번 타겟의 위치를 갱신 -> 플레이어의 움직임을 받아옴 
-    //    dir = myDetection.Target.transform.position - this.transform.position; // 이동 방향
-    //    LookingTarget(myAnim.transform, dir);
-    //}
 }

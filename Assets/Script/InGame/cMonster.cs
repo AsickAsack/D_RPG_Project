@@ -15,6 +15,9 @@ public class cMonster : cCharacteristic, BattleSystem
     public Stats myStats;
     //public ROTDATA myRotData;
 
+    public LayerMask AttackMask; // 공격목표
+    public Transform mySword; // 검
+
     Coroutine moveRoutine = null;
     Coroutine rotRoutine = null;
 
@@ -48,11 +51,27 @@ public class cMonster : cCharacteristic, BattleSystem
                 myAnim.SetTrigger("OnDamage");
             }
         }
-    }    
+    }
+
+    public void OnAttack()
+    {
+        Collider[] list = Physics.OverlapSphere(mySword.position, 1.0f, AttackMask);
+
+        foreach (Collider col in list)
+        {
+            BattleSystem bs = col.gameObject.GetComponent<BattleSystem>();
+
+            if (bs != null)
+            {
+                bs.OnDamage(35.0f);
+            }
+        }
+    }
 
     void Start()
     {
         ChangeState(STATE.ROAMING); // 로밍상태로 변경
+        this.GetComponentInChildren<cAnimEvent>().Attack += OnAttack;
     }
 
     void FixedUpdate()
@@ -81,7 +100,7 @@ public class cMonster : cCharacteristic, BattleSystem
                 break;
         }
     }
-
+       
     void StateProcess()
     {
         switch (myState)
@@ -91,12 +110,17 @@ public class cMonster : cCharacteristic, BattleSystem
             case STATE.ROAMING:
                 break;
             case STATE.BATTLE:
+                if (myDetection.Target.GetComponent<cCharacter>().myState != cCharacter.STATE.PLAY)
+                {
+                    // 캐릭터가 죽으면 로밍상태로 바꿔줌
+                    ChangeState(STATE.ROAMING);
+                }
                 break;
             case STATE.DEAD:
-                if (isdying)
-                {
-                    OnDisappear();
-                }
+                //if (isdying)
+                //{
+                //    OnDisappear();
+                //}
                 break;
         }
     }
@@ -108,7 +132,7 @@ public class cMonster : cCharacteristic, BattleSystem
 
     void OnDisappear()
     {
-        StartCoroutine(Disappearing()); // 아래로 가라앉음
+        //StartCoroutine(Disappearing()); // 아래로 가라앉음
     }
 
     IEnumerator Disappearing()
