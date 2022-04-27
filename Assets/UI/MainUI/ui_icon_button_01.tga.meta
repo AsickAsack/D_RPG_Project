@@ -329,9 +329,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 392
-        y: 137
+        y: 134
         width: 130
-        height: 127
+        height: 130
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -349,10 +349,10 @@ TextureImporter:
       name: special_icon
       rect:
         serializedVersion: 2
-        x: 134
-        y: 191
-        width: 133
-        height: 129
+        x: 135
+        y: 189
+        width: 130
+        height: 131
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -685,10 +685,10 @@ TextureImporter:
       name: ui_icon_button_01_23
       rect:
         serializedVersion: 2
-        x: 788
-        y: 252
-        width: 228
-        height: 196
+        x: 3
+        y: 0
+        width: 191
+        height: 190
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
