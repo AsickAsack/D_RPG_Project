@@ -57,6 +57,8 @@ public class JPopUpCanvas : MonoBehaviour
             leftIcon_orginpos[i] = sliderMoveObjectLeft[i].anchoredPosition;
 
         }
+
+       
     }
 
     private void Start()
@@ -217,6 +219,8 @@ public class JPopUpCanvas : MonoBehaviour
 
         Slider_text[0].text = Mathf.RoundToInt(OptionSlider[0].value * 100).ToString();
         Slider_text[1].text = Mathf.RoundToInt(OptionSlider[1].value * 100).ToString();
+
+        
 
     }
 

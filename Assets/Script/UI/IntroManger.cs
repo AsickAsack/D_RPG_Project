@@ -8,7 +8,7 @@ public class IntroManger : MonoBehaviour
     public GameObject StartPanel;
     public GameObject IntroPanel;
     
-    // Start is called before the first frame update
+ 
     void Start()
     {
         StartCoroutine(DeLayTime(3));
@@ -29,7 +29,8 @@ public class IntroManger : MonoBehaviour
     }
     public void GoSelectScene()
     {
-
+        if(StartPanel.activeSelf)
+        { 
         if (GameData.Instance.itemdata.FirstGame)
         {
             SceneManager.LoadScene("CharacterSelectScene");
@@ -37,6 +38,6 @@ public class IntroManger : MonoBehaviour
         }
         else
             SceneManager.LoadScene("MainScene");
-
+        }
     }
 }

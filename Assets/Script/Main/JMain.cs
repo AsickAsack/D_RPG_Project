@@ -18,16 +18,14 @@ public class JMain : MonoBehaviour
     
     [Header("[상단 바]")]
     public TMPro.TMP_Text nick;
+    public TMPro.TMP_Text Level;
     public TMPro.TMP_Text Gold;
     public TMPro.TMP_Text Emerald;
    
-
-
-
     void Start()
     {
-        Click.GetComponent<ParticleSystem>().Stop();
-        click_rect = Click.GetComponent<RectTransform>();
+        //Click.GetComponent<ParticleSystem>().Stop();
+        //click_rect = Click.GetComponent<RectTransform>();
     }
 
     // Update is called once per frame
@@ -69,6 +67,7 @@ public class JMain : MonoBehaviour
         nick.text = GameData.Instance.itemdata.Nickname;
         Gold.text = GameData.Instance.itemdata.Gold.ToString("N0");
         Emerald.text = GameData.Instance.itemdata.Emerald.ToString("N0");
+        Level.text = "Lv. " + GameData.Instance.itemdata.Level.ToString();
     }
 
     void Rotate_light() // 던전입장 버튼 주위에 빛 돌게하는 함수

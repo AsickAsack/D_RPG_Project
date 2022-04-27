@@ -21,6 +21,10 @@ public class GameData : MonoBehaviour
                     GameObject obj = Instantiate(Resources.Load("GameData")) as GameObject;
                     obj.name = typeof(GameData).ToString();
                     instance = obj.GetComponent<GameData>();
+
+                    if (File.Exists(Application.persistentDataPath + "/GameData.json"))
+                     instance._Load();
+                  
                     DontDestroyOnLoad(obj);
                 }
             }
@@ -82,11 +86,11 @@ public class GameData : MonoBehaviour
     public class ItemData
     {
         public string Nickname = "Taki";
+        public int Level = 1;
         public int Gold = 0;
         public int Emerald = 0;
         public bool FirstGame = true;
 
-       
     }
 
     public ItemData itemdata;
