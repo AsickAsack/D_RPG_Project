@@ -7,7 +7,7 @@ public class IntroManger : MonoBehaviour
 {
     public GameObject StartPanel;
     public GameObject IntroPanel;
-    public bool IntroScene=true;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +20,7 @@ public class IntroManger : MonoBehaviour
         yield return new WaitForSeconds(time);
         IntroPanel.SetActive(false);
         StartPanel.SetActive(true);
-        IntroScene = false;
+    
     }
     // Update is called once per frame
     void Update()
@@ -29,11 +29,14 @@ public class IntroManger : MonoBehaviour
     }
     public void GoSelectScene()
     {
-        if (IntroScene == false)
+
+        if (GameData.Instance.itemdata.FirstGame)
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene("CharacterSelectScene");
+            GameData.Instance.itemdata.FirstGame = false;
         }
-       
-       
+        else
+            SceneManager.LoadScene("MainScene");
+
     }
 }

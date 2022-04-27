@@ -6,33 +6,39 @@ using UnityEngine.UI;
 
 public class JPopUpCanvas : MonoBehaviour
 {
-
+    [Header("[UI 캔버스들]")]
     public Camera mainCamera;
     public Canvas BackGround_Canvas;
     public Canvas Inventory_Canvas;
     public Canvas Option_Canvas;
     public Canvas Equip_Canvas;
+
+    [Header("[UI open 확인 변수]")]
     public bool IsUIopen = false; // ui가 현재 열려있는지 아닌지 확인하는 불값
 
-    public Slider UI_Move_Slider;
-    public GameObject Right_Button;
+    //public GameObject Right_Button;
 
-    [Header("equip_select_image")]
+    [Header("[장비 클릭 이미지 배열]")]
     public Image[] equip_image; // 클릭했을때 활성화 시킬 장비 이미지 배열
 
-    [Header("Option_select_image")]
+    [Header("[옵션 클릭 이미지 배열]")]
     public Image[] option_image; // 클릭했을때 활성화 시킬 옵션 이미지 배열
 
+    [Header("[옵션 시간 텍스트]")]
+    public TMPro.TMP_Text Time_Text;
 
-    //[Header("Option_Button")]
-    //public int[] option_Button;
+    [Header("[옵션 아이콘 이동기능]")]
+    public Slider[] OptionSlider;
+    public TMPro.TMP_Text[] Slider_text;
+    public RectTransform[] sliderMoveObjectLeft;
+    public RectTransform[] sliderMoveObjectRight;
+    public GameObject[] option_UIpanel;
 
-    [SerializeField]
-    private AudioClip Ui_Click; // UI클릭했을때 재생할 효과음
-    [SerializeField]
-    private AudioClip DunGeon_Click; // 던전 선택 클릭했을때 재생할 효과음
-    
+    [Header("[오디오 소스,클립]")]
+    public AudioClip Ui_Click; // UI클릭했을때 재생할 효과음
+    public AudioClip DunGeon_Click; // 던전 선택 클릭했을때 재생할 효과음
     AudioSource audioSource; // 효과음 재생할 오디오클립
+
 
     public enum Popup //어떤 팝업인지 알려줄 열거자 
     {
@@ -44,6 +50,23 @@ public class JPopUpCanvas : MonoBehaviour
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+
+        for(int i=0;i<sliderMoveObjectLeft.Length;i++)
+        {
+            rightIcon_orginpos[i] = sliderMoveObjectRight[i].anchoredPosition;
+            leftIcon_orginpos[i] = sliderMoveObjectLeft[i].anchoredPosition;
+
+        }
+    }
+
+    private void Start()
+    {
+        
+    }
+
+    private void Update()
+    {
+        
     }
 
 
@@ -67,6 +90,7 @@ public class JPopUpCanvas : MonoBehaviour
             case Popup.Option_Popup:
                 {
                     Option_Canvas.enabled = false;
+                    StopCoroutine(TimeText());
                 }
                 break;
         }
@@ -94,11 +118,21 @@ public class JPopUpCanvas : MonoBehaviour
         popup = Popup.Option_Popup;
         audioSource.PlayOneShot(Ui_Click);
         IsUIopen = true;
-        BackGround_Canvas.enabled = true; 
-        mainCamera.enabled = false; 
+        //BackGround_Canvas.enabled = true; 
+        //mainCamera.enabled = false; 
         Option_Canvas.enabled = true;
         option_image[0].enabled = true; // 옵션창을 켰을때 가장 첫번째 버튼을 활성화 시키기 위함
+        StartCoroutine(TimeText());
+    }
 
+    IEnumerator TimeText()
+    {
+        while (true)
+        {
+            Time_Text.text = System.DateTime.Now.ToString("yyyy-MM-dd tt hh:mm:ss");
+
+            yield return null;
+        }
     }
 
     public void Open_Equip_Pppup()
@@ -131,30 +165,60 @@ public class JPopUpCanvas : MonoBehaviour
     {
         for(int i=0; i<equip_image.Length; i++)
         {
+
             equip_image[i].enabled = (i == index); // 버튼 onclick()에 함수를 넣고 써놓은 index와 같은 배열 이미지만 켜지고 나머진 다 꺼짐
-            audioSource.PlayOneShot(Ui_Click);
 
         }
-
+        audioSource.PlayOneShot(Ui_Click);
     }
 
+    
 
     public void hilight_option(int index) //옵션 상단 메뉴들 눌렀을때
     {
         for (int i = 0; i < option_image.Length; i++)
         {
-         option_image[i].enabled = (i == index);
-            audioSource.PlayOneShot(Ui_Click);
+
+            option_image[i].enabled = (i == index);
+
+            if (index == 0)
+            {
+                option_UIpanel[0].SetActive(true);
+                option_UIpanel[1].SetActive(false);
+            }
+            else
+            {
+                option_UIpanel[0].SetActive(false);
+                option_UIpanel[1].SetActive(true);
+            }
         }
+        audioSource.PlayOneShot(Ui_Click);
     }
 
-    public void Ui_Move()
+
+
+    Vector2[] leftIcon_orginpos = new Vector2[2];
+    Vector2[] rightIcon_orginpos = new Vector2[2];
+    
+    public void OptionUi_Move()
     {
 
+        float[] x = new float[4];
 
-        //Right_Button.transform.position = 
-        // new Vector3(Right_Button.transform.position.x, Right_Button.transform.position.y, Right_Button.transform.position.z); 
-      // UI_Move_Slider.value
+        x[0] = leftIcon_orginpos[0].x + OptionSlider[0].value * 100;
+        x[1] = leftIcon_orginpos[1].x + OptionSlider[0].value * 100;
+        x[2] = rightIcon_orginpos[0].x - OptionSlider[1].value * 100;
+        x[3] = rightIcon_orginpos[1].x - OptionSlider[1].value * 100;
+
+        sliderMoveObjectLeft[0].anchoredPosition = new Vector2(x[0], sliderMoveObjectLeft[0].anchoredPosition.y);
+        sliderMoveObjectLeft[1].anchoredPosition = new Vector2(x[1], sliderMoveObjectLeft[1].anchoredPosition.y);
+        sliderMoveObjectRight[0].anchoredPosition = new Vector2(x[2], sliderMoveObjectRight[0].anchoredPosition.y);
+        sliderMoveObjectRight[1].anchoredPosition = new Vector2(x[3], sliderMoveObjectRight[1].anchoredPosition.y);
+
+        Slider_text[0].text = Mathf.RoundToInt(OptionSlider[0].value * 100).ToString();
+        Slider_text[1].text = Mathf.RoundToInt(OptionSlider[1].value * 100).ToString();
+
     }
+
 
 }
