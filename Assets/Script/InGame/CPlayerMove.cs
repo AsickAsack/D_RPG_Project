@@ -14,14 +14,11 @@ public class CPlayerMove : cCharacteristic
     public float MoveSpeed = 5.0f;
     public float SmoothRotSpeed = 360.0f;
 
-    // Update is called once per frame
-    void Update()
+    public bool isMove = false;
+
+    public void OnPlayerMoveControl()
     {
         JoystickMove();
-    }
-
-    private void LateUpdate()
-    {
         myAnim.SetFloat("x", joystick.Horizontal);
         myAnim.SetFloat("y", joystick.Vertical);
     }
@@ -31,7 +28,7 @@ public class CPlayerMove : cCharacteristic
         // 조이스틱 입력값
         Vector2 moveInput = new Vector2(joystick.Horizontal, joystick.Vertical);
 
-        bool isMove = moveInput.magnitude != 0; // 입력이 들어왔는지를 판단
+        isMove = moveInput.magnitude != 0; // 입력이 들어왔는지를 판단
 
         if (isMove)
         {
@@ -63,7 +60,7 @@ public class CPlayerMove : cCharacteristic
 
     public void Roll()
     {
-        if (!myAnim.GetBool("IsDoing")) // 스킬이나 공격 구르기 중에 구르기x
+        if (!myAnim.GetBool("IsDoing") && this.GetComponent<cCharacter>().myState == cCharacter.STATE.PLAY) // 스킬이나 공격 구르기 중에 구르기x
         {
             myAnim.SetTrigger("Roll");
         }
