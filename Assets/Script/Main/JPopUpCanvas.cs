@@ -90,7 +90,7 @@ public class JPopUpCanvas : MonoBehaviour
                 break;
             case Popup.Iventory_Popup:
                 { 
-                Inventory_Canvas.enabled = false;
+                    Inventory_Canvas.enabled = false;
                     Home.SetActive(false);
                     Ar.SetActive(true);
                     Character_Icon.SetActive(true);
@@ -115,7 +115,7 @@ public class JPopUpCanvas : MonoBehaviour
 
         audioSource.PlayOneShot(Ui_Click);
         IsUIopen = false;
-        mainCamera.enabled = true;
+       // mainCamera.enabled = true;
         BackGround_Canvas.enabled = false;
 
     }
@@ -126,7 +126,7 @@ public class JPopUpCanvas : MonoBehaviour
         audioSource.PlayOneShot(Ui_Click); 
         IsUIopen = true;
         BackGround_Canvas.enabled = true; // 화면을 가리기위해 백그라운드 캔버스 켜줌(검은화면)
-        mainCamera.enabled = false; // 메인카메라 꺼줌(ui가 켜지면 볼 필요없는 카메라를 꺼줘서 자원을 아낌)
+        //mainCamera.enabled = false; // 메인카메라 꺼줌(ui가 켜지면 볼 필요없는 카메라를 꺼줘서 자원을 아낌)
         Inventory_Canvas.enabled = true; // 인벤토리 캔버스 켜줌
         Home.SetActive(true);
         Ar.SetActive(false);
@@ -165,7 +165,7 @@ public class JPopUpCanvas : MonoBehaviour
         audioSource.PlayOneShot(Ui_Click);
         IsUIopen = true;
         BackGround_Canvas.enabled = true;
-        mainCamera.enabled = false;
+       // mainCamera.enabled = false;
         Equip_Canvas.enabled = true;
     }
 

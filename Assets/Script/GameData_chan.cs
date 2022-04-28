@@ -5,19 +5,30 @@ using UnityEngine;
 public partial class GameData //Chan
 {
 
-    //예시
-    //[System.Serializable]
-    //public class ItemData2
-    //{
-    //    public string Nickname = "Taki";
-    //    public int Level = 1;
-    //    public int Gold = 0;
-    //    public int Emerald = 0;
-    //    public bool FirstGame = true;
 
+    //예시입니다
+    //public partial class playerdata
+    //{
+    //    public int HP = 0;
+    //    public int MP = 0;
+    //    public Player player;
+    //    public Monster monster;
     //}
 
-    //public ItemData2 itemdata2;
-
-
 }
+
+//public struct Player
+//{
+
+//    public string name;
+//    public int dex;
+
+//}
+
+//public struct Monster
+//{
+
+//    public string name;
+//    public int dex;
+
+//}
