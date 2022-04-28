@@ -11,6 +11,7 @@ public class IntroManger : MonoBehaviour
  
     void Start()
     {
+       
         StartCoroutine(DeLayTime(3));
     }
 
@@ -31,13 +32,15 @@ public class IntroManger : MonoBehaviour
     {
         if(StartPanel.activeSelf)
         { 
-        if (GameData.Instance.itemdata.FirstGame)
+        if (GameData.Instance.playerdata.FirstGame)
         {
             SceneManager.LoadScene("CharacterSelectScene");
-            GameData.Instance.itemdata.FirstGame = false;
+            GameData.Instance.playerdata.FirstGame = false;
         }
         else
             SceneManager.LoadScene("MainScene");
         }
     }
+
+    
 }

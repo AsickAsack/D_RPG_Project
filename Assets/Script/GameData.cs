@@ -4,15 +4,18 @@ using UnityEngine;
 using Newtonsoft.Json;
 using System.IO;
 
-public class GameData : MonoBehaviour
+[System.Serializable]
+public partial class GameData : MonoBehaviour
 {
+
+  
     #region Singleton Pattern / awake함수
     private static GameData instance = null; //스태틱은 1개 // 모든 싱글톤 개체들이 공유됨 // 외부에서 수정X 유일성확보
 
     public static GameData Instance
     {
         get
-        {
+        { 
             if (instance == null)
             {
                 instance = FindObjectOfType<GameData>();
@@ -76,6 +79,7 @@ public class GameData : MonoBehaviour
     //}
     #endregion
 
+
     private void Start()
     {
         
@@ -83,9 +87,9 @@ public class GameData : MonoBehaviour
    
 
   [System.Serializable]
-    public class ItemData
+    public partial class PlayerData
     {
-        public string Nickname = "Taki";
+        public string Nickname = "";
         public int Level = 1;
         public int Gold = 0;
         public int Emerald = 0;
@@ -93,17 +97,18 @@ public class GameData : MonoBehaviour
 
     }
 
-    public ItemData itemdata;
-    
+    public PlayerData playerdata;
+
+ 
 
     #region save and load
     public void _save() //저장 함수
     {
-        string jdata = JsonConvert.SerializeObject(itemdata);
+        string jdata = JsonConvert.SerializeObject(playerdata);
         byte[] bytes = System.Text.Encoding.UTF8.GetBytes(jdata);
         string format = System.Convert.ToBase64String(bytes);
 
-        //File.WriteAllText(Application.dataPath + "/GameData.json", format); 에디터 경로에 저장할때
+       // File.WriteAllText(Application.dataPath + "/GameData.json", jdata); //에디터 경로에 저장할때
         File.WriteAllText(Application.persistentDataPath + "/GameData.json", format);  // 모바일에 저장할때
     }
 
@@ -116,7 +121,7 @@ public class GameData : MonoBehaviour
             byte[] bytes = System.Convert.FromBase64String(jdata);
             string reformat = System.Text.Encoding.UTF8.GetString(bytes);
 
-            itemdata = JsonConvert.DeserializeObject<ItemData>(reformat);
+        playerdata = JsonConvert.DeserializeObject<PlayerData>(reformat);
         
 
 

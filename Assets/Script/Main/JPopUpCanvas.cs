@@ -18,8 +18,11 @@ public class JPopUpCanvas : MonoBehaviour
 
     //public GameObject Right_Button;
 
-    [Header("[장비 클릭 이미지 배열]")]
+    [Header("[인벤토리 장비 클릭 이미지 배열]")]
     public Image[] equip_image; // 클릭했을때 활성화 시킬 장비 이미지 배열
+
+    [Header("[인벤토리 왼쪽 메뉴 이미지 배열]")]
+    public GameObject[] Inventory_Menu; // 클릭했을때 활성화 시킬 옵션 이미지 배열
 
     [Header("[옵션 클릭 이미지 배열]")]
     public Image[] option_image; // 클릭했을때 활성화 시킬 옵션 이미지 배열
@@ -33,6 +36,12 @@ public class JPopUpCanvas : MonoBehaviour
     public RectTransform[] sliderMoveObjectLeft;
     public RectTransform[] sliderMoveObjectRight;
     public GameObject[] option_UIpanel;
+
+    [Header("[인벤토리 관련]")]
+    public GameObject Home;
+    public GameObject Character_Icon;
+    public GameObject Ar;
+    public GameObject InventoryBackButton;
 
     [Header("[오디오 소스,클립]")]
     public AudioClip Ui_Click; // UI클릭했을때 재생할 효과음
@@ -81,7 +90,12 @@ public class JPopUpCanvas : MonoBehaviour
                 break;
             case Popup.Iventory_Popup:
                 { 
-                Inventory_Canvas.enabled = false; 
+                    Inventory_Canvas.enabled = false;
+                    Home.SetActive(false);
+                    Ar.SetActive(true);
+                    Character_Icon.SetActive(true);
+                    InventoryBackButton.SetActive(false);
+                    Inventory_Menu[0].SetActive(true);
                 }
                 break;
             case Popup.Equip_Popup:
@@ -93,13 +107,15 @@ public class JPopUpCanvas : MonoBehaviour
                 {
                     Option_Canvas.enabled = false;
                     StopCoroutine(TimeText());
+                  
+
                 }
                 break;
         }
 
         audioSource.PlayOneShot(Ui_Click);
         IsUIopen = false;
-        mainCamera.enabled = true;
+       // mainCamera.enabled = true;
         BackGround_Canvas.enabled = false;
 
     }
@@ -110,8 +126,12 @@ public class JPopUpCanvas : MonoBehaviour
         audioSource.PlayOneShot(Ui_Click); 
         IsUIopen = true;
         BackGround_Canvas.enabled = true; // 화면을 가리기위해 백그라운드 캔버스 켜줌(검은화면)
-        mainCamera.enabled = false; // 메인카메라 꺼줌(ui가 켜지면 볼 필요없는 카메라를 꺼줘서 자원을 아낌)
+        //mainCamera.enabled = false; // 메인카메라 꺼줌(ui가 켜지면 볼 필요없는 카메라를 꺼줘서 자원을 아낌)
         Inventory_Canvas.enabled = true; // 인벤토리 캔버스 켜줌
+        Home.SetActive(true);
+        Ar.SetActive(false);
+        Character_Icon.SetActive(false);
+        InventoryBackButton.SetActive(true);
 
     }
 
@@ -125,6 +145,8 @@ public class JPopUpCanvas : MonoBehaviour
         Option_Canvas.enabled = true;
         option_image[0].enabled = true; // 옵션창을 켰을때 가장 첫번째 버튼을 활성화 시키기 위함
         StartCoroutine(TimeText());
+      
+
     }
 
     IEnumerator TimeText()
@@ -143,7 +165,7 @@ public class JPopUpCanvas : MonoBehaviour
         audioSource.PlayOneShot(Ui_Click);
         IsUIopen = true;
         BackGround_Canvas.enabled = true;
-        mainCamera.enabled = false;
+       // mainCamera.enabled = false;
         Equip_Canvas.enabled = true;
     }
 
@@ -174,7 +196,18 @@ public class JPopUpCanvas : MonoBehaviour
         audioSource.PlayOneShot(Ui_Click);
     }
 
-    
+    public void hilight_InventoryMenu(int index) //장비창 아이템 아이콘 눌렀을때 활성화 시키는 함수 (왼쪽 메뉴들은 아직 구현x)
+    {
+        for (int i = 0; i < Inventory_Menu.Length; i++)
+        {
+
+            Inventory_Menu[i].SetActive(i == index); // 버튼 onclick()에 함수를 넣고 써놓은 index와 같은 배열 이미지만 켜지고 나머진 다 꺼짐
+
+        }
+        audioSource.PlayOneShot(Ui_Click);
+    }
+
+
 
     public void hilight_option(int index) //옵션 상단 메뉴들 눌렀을때
     {
