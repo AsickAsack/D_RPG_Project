@@ -30,7 +30,10 @@ public class cAutoDetection : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        Target = null; // 鸥百 秦力
+        if((DetectLayer & (1 << other.gameObject.layer)) > 0)
+        {
+            Target = null; // 鸥百 秦力
+        }
     }
 }
 

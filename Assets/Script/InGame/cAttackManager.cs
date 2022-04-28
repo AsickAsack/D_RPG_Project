@@ -72,6 +72,7 @@ public class cAttackManager : cCharacteristic
                     myAnim.SetFloat("Combo", Combo);
                     myAnim.SetTrigger("Attack");
                     Combo = (Combo++) % 3;
+                    StopAllCoroutines();
                 }
 
                 // 시간 초기화
@@ -119,13 +120,11 @@ public class cAttackManager : cCharacteristic
             StopCoroutine(myCoroutine);
         }
         myCoroutine = StartCoroutine(Targeting(myAnim.transform, dir)); // 몬스터를 바라보도록 함
-        //myCoroutine = StartCoroutine(LookingTarget(myAnim.transform, dir));
-        
-        print(dist);        
 
-        if (dist > 2.5f)
+        print(dist);
+        if (dist > 1.5f)
         {
-            OnDash(dir,dist); // 공격 사정거리 내의 몬스터가 일정거리 밖에 멀리 있을경우 대쉬로 몬스터 앞으로 이동 후 공격
+            OnDash(myDetection.Target.transform.position); // 공격 사정거리 내의 몬스터가 일정거리 밖에 멀리 있을경우 대쉬로 몬스터 앞으로 이동 후 공격
         }
     }
 
@@ -136,8 +135,8 @@ public class cAttackManager : cCharacteristic
             CalculateAngle(myTrans.forward, myDir, myTrans.right, out ROTDATA myRotData); // 각도 계산 -> 매번 해주어야 함
 
             Quaternion dirQuat = Quaternion.LookRotation(myDir * 360.0f * Time.deltaTime); // 회전해야하는 값을 저장
-            Quaternion moveQuat = Quaternion.Slerp(myRigid.rotation, dirQuat, 360.0f); // 현재 회전값과 바뀔 회전값을 보간
-            myRigid.MoveRotation(moveQuat);
+            Quaternion moveQuat = Quaternion.Slerp(myRigid.rotation, dirQuat, 1.0f); // 현재 회전값과 바뀔 회전값을 보간
+            myRigid.MoveRotation(moveQuat); // 회전
 
             if (this.GetComponent<CPlayerMove>().isMove == true) break; // 플레이어 이동시 반복문 빠져나감
 
@@ -145,26 +144,18 @@ public class cAttackManager : cCharacteristic
         }
     }
 
-    public void OnDash(Vector3 dir,float dist)
+    public void OnDash(Vector3 MonsterPos)
     {
         // 플레이어의 일정 범위내에 몬스터가 있으면 대쉬공격
-        StartCoroutine(Dash(dir, dist));
+        StartCoroutine(Dash(MonsterPos));
     }
 
-    IEnumerator Dash(Vector3 dir, float dist)
+    IEnumerator Dash(Vector3 MonsterPos)
     {
-        print("aq");
-        float minDist = 1.0f;
-
-        // 플레이어가 몬스터 앞 1.0 거리까지 오게 함
-        while (!Mathf.Approximately(dist, minDist))
+        while (true)
         {
-            float delta = Time.deltaTime * 10.0f;
-
-            delta = delta > dist ? dist : delta;
-
-            this.transform.Translate(dir * delta);
-            dist -= delta;
+            this.transform.position = Vector3.Lerp(this.transform.position, MonsterPos, 0.1f);
+            if ((this.transform.position - MonsterPos).magnitude < 0.5f) break;
             yield return null;
         }
     }

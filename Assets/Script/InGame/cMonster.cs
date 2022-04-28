@@ -40,7 +40,6 @@ public class cMonster : cCharacteristic, BattleSystem
         if (myState == STATE.BATTLE || myState == STATE.ROAMING)
         {
             myStats.HP -= damage;
-            print("A");
 
             if (myStats.HP <= 0.0f)
             {
@@ -169,12 +168,12 @@ public class cMonster : cCharacteristic, BattleSystem
         }
         moveRoutine = StartCoroutine(Attacking());
 
-        // 회전
-        if (rotRoutine != null)
-        {
-            StopCoroutine(rotRoutine);
-        }
-        rotRoutine = StartCoroutine(LookingTarget(myAnim.transform, dir));
+        // 회전 -> 공격에서 같이 구현
+        //if (rotRoutine != null)
+        //{
+        //    StopCoroutine(rotRoutine);
+        //}
+        //rotRoutine = StartCoroutine(LookingTarget(myAnim.transform, dir));
 
     }
 
@@ -194,6 +193,23 @@ public class cMonster : cCharacteristic, BattleSystem
             dir = myDetection.Target.transform.position - this.transform.position; // 이동 방향
             dist = dir.magnitude; // 목표지점까지의 거리
             dir.Normalize();
+
+            CalculateAngle(myAnim.transform.forward, dir, myAnim.transform.right, out ROTDATA myRotData); // 각도 계산 -> 매번 해주어야 함
+
+            if (Vector3.Dot(myAnim.transform.right, dir) < 0.0f)
+            {
+                myRotData.rotDir = -1.0f; // 왼쪽방향
+            }
+
+            // 회전
+            if (!Mathf.Approximately(myRotData.angle, 0.0f))
+            {
+                float delta = RotSpeed * Time.deltaTime;
+
+                delta = delta > myRotData.angle ? myRotData.angle : delta;
+
+                myAnim.transform.Rotate(Vector3.up * delta * myRotData.rotDir);
+            }
 
             if (dist > ATK_Range) // 공격범위 밖에 있을 경우 따라감
             {

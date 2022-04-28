@@ -18,7 +18,6 @@ public class cCharacter : cCharacteristic, BattleSystem
         if (myState == STATE.PLAY)
         {
             myStats.HP -= damage;
-            print("A");
 
             if (myStats.HP <= 0.0f)
             {
