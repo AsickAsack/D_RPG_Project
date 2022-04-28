@@ -112,6 +112,7 @@ public class cAttackManager : cCharacteristic
 
         // 몬스터의 움직임을 받아옴 
         dir = myDetection.Target.transform.position - this.transform.position; // 몬스터를 바라보는 방향
+        float dist = dir.magnitude; // 몬스터와 플레이어 사이의 거리
 
         if (myCoroutine != null)
         {
@@ -119,7 +120,13 @@ public class cAttackManager : cCharacteristic
         }
         myCoroutine = StartCoroutine(Targeting(myAnim.transform, dir)); // 몬스터를 바라보도록 함
         //myCoroutine = StartCoroutine(LookingTarget(myAnim.transform, dir));
+        
+        print(dist);        
 
+        if (dist > 2.5f)
+        {
+            OnDash(dir,dist); // 공격 사정거리 내의 몬스터가 일정거리 밖에 멀리 있을경우 대쉬로 몬스터 앞으로 이동 후 공격
+        }
     }
 
     IEnumerator Targeting(Transform myTrans, Vector3 myDir)
@@ -134,6 +141,30 @@ public class cAttackManager : cCharacteristic
 
             if (this.GetComponent<CPlayerMove>().isMove == true) break; // 플레이어 이동시 반복문 빠져나감
 
+            yield return null;
+        }
+    }
+
+    public void OnDash(Vector3 dir,float dist)
+    {
+        // 플레이어의 일정 범위내에 몬스터가 있으면 대쉬공격
+        StartCoroutine(Dash(dir, dist));
+    }
+
+    IEnumerator Dash(Vector3 dir, float dist)
+    {
+        print("aq");
+        float minDist = 1.0f;
+
+        // 플레이어가 몬스터 앞 1.0 거리까지 오게 함
+        while (!Mathf.Approximately(dist, minDist))
+        {
+            float delta = Time.deltaTime * 10.0f;
+
+            delta = delta > dist ? dist : delta;
+
+            this.transform.Translate(dir * delta);
+            dist -= delta;
             yield return null;
         }
     }
