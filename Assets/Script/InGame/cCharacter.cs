@@ -11,7 +11,7 @@ public class cCharacter : cCharacteristic, BattleSystem
 
     public STATE myState = STATE.CREAT;
 
-    public Stats myStats;
+    public GameData.PlayerData.Stats myStats;
         
     public void OnDamage(float damage)
     {

@@ -12,7 +12,7 @@ public class cMonster : cCharacteristic, BattleSystem
 
     public STATE myState = STATE.CREAT;
 
-    public Stats myStats;
+    public GameData.PlayerData.Stats myStats;
     //public ROTDATA myRotData;
 
     public LayerMask AttackMask; // 공격목표

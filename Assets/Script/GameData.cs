@@ -80,12 +80,6 @@ public partial class GameData : MonoBehaviour
     #endregion
 
 
-    private void Start()
-    {
-        
-    }
-   
-
   [System.Serializable]
     public partial class PlayerData
     {
