@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json;
 using System.IO;
+using UnityEngine.UI;
+
 
 [System.Serializable]
 public partial class GameData : MonoBehaviour
 {
 
   
-    #region Singleton Pattern / awake함수
+    #region Singleton Pattern 
     private static GameData instance = null; //스태틱은 1개 // 모든 싱글톤 개체들이 공유됨 // 외부에서 수정X 유일성확보
 
     public static GameData Instance
@@ -24,16 +26,20 @@ public partial class GameData : MonoBehaviour
                     GameObject obj = Instantiate(Resources.Load("GameData")) as GameObject;
                     obj.name = typeof(GameData).ToString();
                     instance = obj.GetComponent<GameData>();
+                    
 
-                    if (File.Exists(Application.persistentDataPath + "/GameData.json"))
+                    if(File.Exists(Application.dataPath + "/GameData.json"))
+                    { 
                      instance._Load();
-                  
+                    }
+                   
                     DontDestroyOnLoad(obj);
                 }
             }
             return instance;
         }
     }
+
 
     //public static GameData Instance
     //{
@@ -79,37 +85,46 @@ public partial class GameData : MonoBehaviour
     //}
     #endregion
 
+    private void Awake()
+    {
+
+        if(!File.Exists(Application.dataPath + "/GameData.json"))
+        {
+            playerdata.Itemdata_Initialize();
+        }
+        
+        
+
+       
+
+    }
 
     private void Start()
-    {
+    {  
+     
+
         
     }
-   
 
-  [System.Serializable]
-    public partial class PlayerData
+    private void Update()
     {
-        public string Nickname = "";
-        public int Level = 1;
-        public int Gold = 0;
-        public int Emerald = 0;
-        public bool FirstGame = true;
 
     }
 
-    public PlayerData playerdata;
 
+    public PlayerData playerdata;
+    
  
 
     #region save and load
     public void _save() //저장 함수
     {
         string jdata = JsonConvert.SerializeObject(playerdata);
-        byte[] bytes = System.Text.Encoding.UTF8.GetBytes(jdata);
-        string format = System.Convert.ToBase64String(bytes);
+        //byte[] bytes = System.Text.Encoding.UTF8.GetBytes(jdata);
+        //string format = System.Convert.ToBase64String(bytes);
 
-       // File.WriteAllText(Application.dataPath + "/GameData.json", jdata); //에디터 경로에 저장할때
-        File.WriteAllText(Application.persistentDataPath + "/GameData.json", format);  // 모바일에 저장할때
+       File.WriteAllText(Application.dataPath + "/GameData.json", jdata); //에디터 경로에 저장할때 //암호화 할거면 format
+        //File.WriteAllText(Application.persistentDataPath + "/GameData.json", jdata);  // 모바일에 저장할때
     }
 
     public void _Load() // 불러오기 함수
@@ -117,11 +132,12 @@ public partial class GameData : MonoBehaviour
         
         
         
-            string jdata = File.ReadAllText(Application.persistentDataPath + "/GameData.json"); // 모바일에서 불러올때
-            byte[] bytes = System.Convert.FromBase64String(jdata);
-            string reformat = System.Text.Encoding.UTF8.GetString(bytes);
+            //string jdata = File.ReadAllText(Application.persistentDataPath + "/GameData.json"); // 모바일에서 불러올때
+            string jdata = File.ReadAllText(Application.dataPath + "/GameData.json"); // 모바일에서 불러올때
+            //byte[] bytes = System.Convert.FromBase64String(jdata);
+            //string reformat = System.Text.Encoding.UTF8.GetString(bytes);
 
-        playerdata = JsonConvert.DeserializeObject<PlayerData>(reformat);
+             playerdata = JsonConvert.DeserializeObject<PlayerData>(jdata);
         
 
 
@@ -139,4 +155,124 @@ public partial class GameData : MonoBehaviour
     #endregion
 
 
+}
+
+[System.Serializable]
+public partial class PlayerData
+{
+    public string Nickname = "";
+    public int Level = 1;
+    public int Gold = 0;
+    public int Emerald = 0;
+    public bool FirstGame = true;
+    public UnityEngine.U2D.SpriteAtlas ItemImage;
+
+    public List<itemdata> Player_inventory = new List<itemdata>();
+    public itemdata[] Itemdata = new itemdata[4];
+
+
+    public void Itemdata_Initialize()
+    {
+
+
+        Itemdata[0] = new itemdata
+        {
+            ItemCode = 000,
+            itemType = ItemType.Weapon,
+            ItemName = "강철 건틀릿",
+            ATK = 35,
+            DEF = 0,
+            Upgrade = 0,
+            HP = 0,
+            Critical = 3,
+            Description = "수련자용 싸구려 건틀릿",
+            Equipped = false,
+            grade = Grade.common,
+            Mysprite = ItemImage.GetSprite("Iron Gauntlet")
+        };
+
+        Itemdata[1] = new itemdata
+        {
+            ItemCode = 001,
+            itemType = ItemType.Weapon,
+            ItemName = "토끼 건틀릿",
+            ATK = 1075,
+            DEF = 0,
+            Upgrade = 0,
+            HP = 0,
+            Critical = 25,
+            Description = "귀여워지고 싶은가요?",
+            Equipped = false,
+            grade = Grade.rare,
+            Mysprite = ItemImage.GetSprite("BunnyGauntlet")
+        };
+
+        Itemdata[2] = new itemdata
+        {
+            ItemCode = 002,
+            itemType = ItemType.Armor,
+            ItemName = "사자털 사파이어 갑옷",
+            ATK = 0,
+            DEF = 365,
+            Upgrade = 0,
+            HP = 550,
+            Critical = 0,
+            Description = "사자 털에 에메랄드를 박은 지갑전사의 필수품",
+            Equipped = false,
+            grade = Grade.legendary,
+            Mysprite = ItemImage.GetSprite("Armor1")
+        };
+
+        Itemdata[3] = new itemdata
+        {
+            ItemCode = 003,
+            itemType = ItemType.Armor,
+            ItemName = "찢어진 가죽옷",
+            ATK = 0,
+            DEF = 120,
+            Upgrade = 0,
+            HP = 350,
+            Critical = 0,
+            Description = "여행을 하느라 좀 찢어져있다.",
+            Equipped = false,
+            grade = Grade.common,
+            Mysprite = ItemImage.GetSprite("Armor3")
+        };
+
+
+
+
+    }
+
+ }
+
+
+[System.Serializable]
+public struct itemdata
+{
+    public int ItemCode;
+    public ItemType itemType;
+    public string ItemName;
+    public int ATK;
+    public int DEF;
+    public int Upgrade;
+    public int HP;
+    public int Critical;
+    public string Description;
+    public bool Equipped;
+    public Grade grade;
+    public Sprite Mysprite;
+}
+
+[System.Serializable]
+public enum ItemType
+{
+    Weapon = 0, Armor, etc,none
+}
+
+
+[System.Serializable]
+public enum Grade
+{
+    common = 0, rare, epic, legendary
 }

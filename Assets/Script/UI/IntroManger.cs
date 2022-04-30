@@ -30,16 +30,16 @@ public class IntroManger : MonoBehaviour
     }
     public void GoSelectScene()
     {
-        if(StartPanel.activeSelf)
-        { 
-        if (GameData.Instance.playerdata.FirstGame)
-        {
-            SceneManager.LoadScene("CharacterSelectScene");
-            GameData.Instance.playerdata.FirstGame = false;
-        }
-        else
+        //if(StartPanel.activeSelf)
+        //{ 
+        //if (GameData.Instance.playerdata.FirstGame)
+        //{
+        //    SceneManager.LoadScene("CharacterSelectScene");
+        //    GameData.Instance.playerdata.FirstGame = false;
+        //}
+        //else
             SceneManager.LoadScene("MainScene");
-        }
+        //}
     }
 
     

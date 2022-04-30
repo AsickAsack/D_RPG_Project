@@ -20,18 +20,23 @@ public class JMain : MonoBehaviour
     public TMPro.TMP_Text Emerald;
 
 
+    private void Awake()
+    {
+        
+
+    }
+
+
 
     void Start()
     {
-        //Click.GetComponent<ParticleSystem>().Stop();
-        //click_rect = Click.GetComponent<RectTransform>();
-      
-        
-    } 
         
 
+    }
 
-    
+
+
+
 
     // Update is called once per frame
     void Update()
@@ -41,7 +46,41 @@ public class JMain : MonoBehaviour
         Rotate_light();
         _Click();
 
-        
+
+        if(Input.GetKeyDown(KeyCode.F1))
+        {
+            GameData.Instance.playerdata.Player_inventory.Add(GameData.Instance.playerdata.Itemdata[0]);
+           foreach(itemdata a in GameData.Instance.playerdata.Player_inventory)
+            {
+                Debug.Log(a.ItemName);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            GameData.Instance.playerdata.Player_inventory.Add(GameData.Instance.playerdata.Itemdata[1]);
+            foreach (itemdata a in GameData.Instance.playerdata.Player_inventory)
+            {
+                Debug.Log(a.ItemName);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.F3))
+        {
+            GameData.Instance.playerdata.Player_inventory.Add(GameData.Instance.playerdata.Itemdata[2]);
+            for (int i = 0; i < GameData.Instance.playerdata.Player_inventory.Count; i++)
+            {
+                Debug.Log(GameData.Instance.playerdata.Player_inventory[i].ItemName);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.F4))
+        {
+            GameData.Instance.playerdata.Player_inventory.Add(GameData.Instance.playerdata.Itemdata[3]);
+            for (int i = 0; i < GameData.Instance.playerdata.Player_inventory.Count; i++)
+            {
+                Debug.Log(GameData.Instance.playerdata.Player_inventory[i].ItemName);
+            }
+        }
+
+
 
     }
 

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5811884185933897442}
-  - component: {fileID: 8785569280395593128}
+  - component: {fileID: 8068184301539156670}
   m_Layer: 0
   m_Name: GameData
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8785569280395593128
+--- !u!114 &8068184301539156670
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,8 +43,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2268527e17bab14b92c3c61bd2a20c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemdata:
-    Nickname: Taki
+  playerdata:
+    Nickname: 
+    Level: 1
     Gold: 0
     Emerald: 0
-    First: 1
+    FirstGame: 1
+    ItemImage: {fileID: 4343727234628468602, guid: 78198b0358b01d547b34e9defb1b2a50, type: 2}
+    Player_inventory: []
+    Itemdata:
+    - ItemCode: 0
+      itemType: 0
+      ItemName: 
+      ATK: 0
+      DEF: 0
+      Upgrade: 0
+      HP: 0
+      Critical: 0
+      Description: 
+      Equipped: 0
+      grade: 0
+      sprite: {fileID: 0}
+    - ItemCode: 0
+      itemType: 0
+      ItemName: 
+      ATK: 0
+      DEF: 0
+      Upgrade: 0
+      HP: 0
+      Critical: 0
+      Description: 
+      Equipped: 0
+      grade: 0
+      sprite: {fileID: 0}
+    - ItemCode: 0
+      itemType: 0
+      ItemName: 
+      ATK: 0
+      DEF: 0
+      Upgrade: 0
+      HP: 0
+      Critical: 0
+      Description: 
+      Equipped: 0
+      grade: 0
+      sprite: {fileID: 0}
+    - ItemCode: 0
+      itemType: 0
+      ItemName: 
+      ATK: 0
+      DEF: 0
+      Upgrade: 0
+      HP: 0
+      Critical: 0
+      Description: 
+      Equipped: 0
+      grade: 0
+      sprite: {fileID: 0}
