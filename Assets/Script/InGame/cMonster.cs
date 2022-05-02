@@ -69,7 +69,7 @@ public class cMonster : cCharacteristic, BattleSystem
 
     void Start()
     {
-        ChangeState(STATE.ROAMING); // 로밍상태로 변경
+        //ChangeState(STATE.ROAMING); // 로밍상태로 변경
         this.GetComponentInChildren<cAnimEvent>().Attack += OnAttack;
     }
 
@@ -123,35 +123,41 @@ public class cMonster : cCharacteristic, BattleSystem
                 break;
         }
     }
+
+    public void StartRoaming()
+    {
+        ChangeState(STATE.ROAMING);
+    }
+
     void OnDie()
     {
         StopAllCoroutines();
         myAnim.SetTrigger("Die"); // 죽는 애니메이션 실행
     }
 
-    void OnDisappear()
-    {
-        //StartCoroutine(Disappearing()); // 아래로 가라앉음
-    }
+    //void OnDisappear()
+    //{
+    //    StartCoroutine(Disappearing()); // 아래로 가라앉음
+    //}
 
-    IEnumerator Disappearing()
-    {
-        float dist = 2.0f; // 떨어질 거리
+    //IEnumerator Disappearing()
+    //{
+    //    float dist = 2.0f; // 떨어질 거리
 
-        while (!Mathf.Approximately(dist, 0.0f))
-        {
-            float delta = Time.deltaTime * 0.5f;
+    //    while (!Mathf.Approximately(dist, 0.0f))
+    //    {
+    //        float delta = Time.deltaTime * 0.5f;
 
-            delta = delta > dist ? dist : delta;
+    //        delta = delta > dist ? dist : delta;
 
-            this.transform.Translate(Vector3.down * delta);
-            dist -= delta;
+    //        this.transform.Translate(Vector3.down * delta);
+    //        dist -= delta;
 
-            yield return null;
-        }
+    //        yield return null;
+    //    }
 
-        Destroy(this.gameObject); // 게임 오브젝트 삭제
-    }
+    //    Destroy(this.gameObject); // 게임 오브젝트 삭제
+    //}
 
     public void OnBattle()
     {
@@ -213,7 +219,7 @@ public class cMonster : cCharacteristic, BattleSystem
 
             if (dist > ATK_Range) // 공격범위 밖에 있을 경우 따라감
             {
-                myAnim.SetBool("IsWalk", true); // idle -> walk_front 
+                myAnim.SetTrigger("IsWalk"); // idle -> walk_front 
 
                 float delta = MoveSpeed * Time.deltaTime; // 이동 거리
 
@@ -229,10 +235,11 @@ public class cMonster : cCharacteristic, BattleSystem
                 {                    
                     AttackTime += Time.deltaTime;
 
-                    if(AttackTime >= ATK_WaitingTime)
+                    if (AttackTime >= ATK_WaitingTime)
                     {
                         // 공격
                         myAnim.SetTrigger("Attack");
+                        myAnim.SetFloat("skill_num", Random.Range(0, 6));
                         AttackTime = 0.0f;
                     }
                 }
@@ -321,8 +328,7 @@ public class cMonster : cCharacteristic, BattleSystem
             yield return null;
         }
 
-        StartCoroutine(RoamingWait(RoamingWaitTime, () => MonsterMove())); // 다시 다른곳으로 로밍시작
-        
+        StartCoroutine(RoamingWait(RoamingWaitTime, () => MonsterMove())); // 다시 다른곳으로 로밍시작        
     }
 
     IEnumerator Rotate()
