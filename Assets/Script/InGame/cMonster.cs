@@ -32,6 +32,7 @@ public class cMonster : cCharacteristic, BattleSystem
 
     public float ATK_Range; // 공격범위
     public float ATK_WaitingTime; // 공격 대기시간
+    public float convertDamage = 0.1f; // 데미지 환산 비율 => 데미지 = 공격력(ATK) * 데미지비율(convertDamage)
 
     public bool isdying = false; // 몬스터의 죽는 애니메이션이 끝났는지 여부
 
@@ -62,7 +63,7 @@ public class cMonster : cCharacteristic, BattleSystem
 
             if (bs != null)
             {
-                bs.OnDamage(35.0f);
+                bs.OnDamage(myStats.ATK * convertDamage);
             }
         }
     }
