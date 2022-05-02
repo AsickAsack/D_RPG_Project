@@ -89,9 +89,11 @@ public class cMonster : cCharacteristic, BattleSystem
                 startPos = this.transform.position; // 초기 위치 저장
                 break;
             case STATE.ROAMING:
+                StopAllCoroutines();
                 MonsterMove();
                 break;
             case STATE.BATTLE:
+                StopAllCoroutines();
                 DetectMove();
                 break;
             case STATE.DEAD:
@@ -109,6 +111,7 @@ public class cMonster : cCharacteristic, BattleSystem
             case STATE.ROAMING:
                 break;
             case STATE.BATTLE:
+                //DetectMove();
                 if (myDetection.Target.GetComponent<cCharacter>().myState != cCharacter.STATE.PLAY)
                 {
                     // 캐릭터가 죽으면 로밍상태로 바꿔줌
@@ -166,7 +169,7 @@ public class cMonster : cCharacteristic, BattleSystem
     }
 
     void DetectMove()
-    {               
+    {
         // 이동 - 대상을 따라다니도록
         if (moveRoutine != null)
         {
@@ -181,7 +184,70 @@ public class cMonster : cCharacteristic, BattleSystem
         //}
         //rotRoutine = StartCoroutine(LookingTarget(myAnim.transform, dir));
 
+        //Attacking();
+
     }
+
+    //void Attacking()
+    //{
+    //    float AttackTime = ATK_WaitingTime; // 첫 공격시 딜레이 없이 바로 공격
+
+    //    if (myDetection.Target == null)
+    //    {
+    //        ChangeState(STATE.ROAMING);
+    //        return;
+    //    }
+
+    //    // 매번 타겟의 위치를 갱신 -> 플레이어의 움직임을 받아옴 
+    //    dir = myDetection.Target.transform.position - this.transform.position; // 이동 방향
+    //    dist = dir.magnitude; // 목표지점까지의 거리
+    //    dir.Normalize();
+
+    //    CalculateAngle(myAnim.transform.forward, dir, myAnim.transform.right, out ROTDATA myRotData); // 각도 계산 -> 매번 해주어야 함
+
+    //    if (Vector3.Dot(myAnim.transform.right, dir) < 0.0f)
+    //    {
+    //        myRotData.rotDir = -1.0f; // 왼쪽방향
+    //    }
+
+    //    // 회전
+    //    if (!Mathf.Approximately(myRotData.angle, 0.0f))
+    //    {
+    //        float delta = RotSpeed * Time.deltaTime;
+
+    //        delta = delta > myRotData.angle ? myRotData.angle : delta;
+
+    //        myAnim.transform.Rotate(Vector3.up * delta * myRotData.rotDir);
+    //    }
+
+    //    if (dist > ATK_Range) // 공격범위 밖에 있을 경우 따라감
+    //    {
+    //        myAnim.SetTrigger("IsWalk"); // idle -> walk_front 
+
+    //        float delta = MoveSpeed * Time.deltaTime; // 이동 거리
+
+    //        delta = delta > dist ? dist : delta; // 이동 거리가 남은 거리보다 클 경우 남은 거리 만큼만 이동
+
+    //        this.transform.Translate(dir * delta);
+    //    }
+    //    else // 공격범위 내에 있을 경우 공격
+    //    {
+    //        myAnim.SetBool("IsWalk", false); // walk_front -> idle
+
+    //        if (myAnim.GetBool("IsAttack") == false)
+    //        {
+    //            AttackTime += Time.deltaTime;
+
+    //            if (AttackTime >= ATK_WaitingTime)
+    //            {
+    //                // 공격
+    //                myAnim.SetTrigger("Attack");
+    //                myAnim.SetFloat("skill_num", Random.Range(0, 6));
+    //                AttackTime = 0.0f;
+    //            }
+    //        }
+    //    }
+    //}
 
     IEnumerator Attacking()
     {
@@ -232,19 +298,21 @@ public class cMonster : cCharacteristic, BattleSystem
                 myAnim.SetBool("IsWalk", false); // walk_front -> idle
 
                 if (myAnim.GetBool("IsAttack") == false)
-                {                    
+                {
                     AttackTime += Time.deltaTime;
 
                     if (AttackTime >= ATK_WaitingTime)
                     {
                         // 공격
+                        int RandomSkill_num = Random.Range(0, 3);
+                        //int RandomSkill_num = 2;
+                        myAnim.SetInteger("Skill", RandomSkill_num);
                         myAnim.SetTrigger("Attack");
-                        myAnim.SetFloat("skill_num", Random.Range(0, 6));
                         AttackTime = 0.0f;
                     }
                 }
             }
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
     }
 

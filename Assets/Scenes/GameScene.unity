@@ -191,7 +191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myState: 0
   myStats:
-    HP: 0
+    HP: 1000
     ATK: 0
     DEF: 0
   AttackMask:
@@ -199,10 +199,10 @@ MonoBehaviour:
     m_Bits: 64
   mySword: {fileID: 651493646}
   MoveSpeed: 3
-  RotSpeed: 360
+  RotSpeed: 180
   RoamingWaitTime: 3
   ATK_Range: 1.5
-  ATK_WaitingTime: 3
+  ATK_WaitingTime: 2
   isdying: 0
 --- !u!54 &133793782
 Rigidbody:
