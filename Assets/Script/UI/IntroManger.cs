@@ -11,7 +11,7 @@ public class IntroManger : MonoBehaviour
  
     void Start()
     {
-       
+        Debug.Log(ClickCanvas.Instance);
         StartCoroutine(DeLayTime(3));
     }
 

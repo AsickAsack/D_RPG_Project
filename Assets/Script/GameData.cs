@@ -26,20 +26,21 @@ public partial class GameData : MonoBehaviour
                     GameObject obj = Instantiate(Resources.Load("GameData")) as GameObject;
                     obj.name = typeof(GameData).ToString();
                     instance = obj.GetComponent<GameData>();
-                    
-
-                    if(File.Exists(Application.dataPath + "/GameData.json"))
-                    { 
-                     instance._Load();
-                    }
-                   
                     DontDestroyOnLoad(obj);
+
+                    //if (File.Exists(Application.dataPath + "/GameData.json"))
+                    //{ 
+                    //    instance._Load();
+                    //}
+
+                    
+                    
                 }
             }
             return instance;
         }
     }
-
+    
 
     //public static GameData Instance
     //{
@@ -87,34 +88,28 @@ public partial class GameData : MonoBehaviour
 
     private void Awake()
     {
-
-        if(!File.Exists(Application.dataPath + "/GameData.json"))
-        {
-            playerdata.Itemdata_Initialize();
-        }
-        
-        
-
-       
+        playerdata.Itemdata_Initialize();
 
     }
 
     private void Start()
-    {  
-     
+    {
 
-        
+      
+
     }
 
     private void Update()
     {
-
+        
     }
+
+    public int Upgrade_Money = 10000;
+    public int Upgrade_chance = 80;
 
 
     public PlayerData playerdata;
-    
- 
+
 
     #region save and load
     public void _save() //저장 함수
@@ -157,6 +152,8 @@ public partial class GameData : MonoBehaviour
 
 }
 
+
+
 [System.Serializable]
 public partial class PlayerData
 {
@@ -170,10 +167,31 @@ public partial class PlayerData
     public List<itemdata> Player_inventory = new List<itemdata>();
     public itemdata[] Itemdata = new itemdata[4];
 
+    public void chanegeUpgrade(List<itemdata> itemdatas, int index, int value)
+    {
+        itemdata temp = itemdatas[index];
+        temp.Upgrade += value;
+        itemdatas[index] = temp;
+    }
+
+    public void UpgradeWeapon(List<itemdata> itemdatas, int index, int value1, int value2)
+    {
+        itemdata temp = itemdatas[index];
+        temp.ATK += value1;
+        temp.Critical += value2;
+        itemdatas[index] = temp;
+    }
+
+    public void UpgradeArmor(List<itemdata> itemdatas, int index, int value1, int value2)
+    {
+        itemdata temp = itemdatas[index];
+        temp.DEF += value1;
+        temp.HP += value2;
+        itemdatas[index] = temp;
+    }
 
     public void Itemdata_Initialize()
     {
-
 
         Itemdata[0] = new itemdata
         {
@@ -201,7 +219,7 @@ public partial class PlayerData
             Upgrade = 0,
             HP = 0,
             Critical = 25,
-            Description = "귀여워지고 싶은가요?",
+            Description = "<#FFC0CB>귀여워지고 싶은가요?</color>",
             Equipped = false,
             grade = Grade.rare,
             Mysprite = ItemImage.GetSprite("BunnyGauntlet")
@@ -217,7 +235,7 @@ public partial class PlayerData
             Upgrade = 0,
             HP = 550,
             Critical = 0,
-            Description = "사자 털에 에메랄드를 박은 지갑전사의 필수품",
+            Description = "사자털과 <#489CF8>사파이어</color>를 박은 지갑전사의 필수품",
             Equipped = false,
             grade = Grade.legendary,
             Mysprite = ItemImage.GetSprite("Armor1")
@@ -240,11 +258,10 @@ public partial class PlayerData
         };
 
 
-
-
     }
 
- }
+}
+
 
 
 [System.Serializable]
