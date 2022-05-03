@@ -74,7 +74,7 @@ public class cMonster : cCharacteristic, BattleSystem
         this.GetComponentInChildren<cAnimEvent>().Attack += OnAttack;
     }
 
-    void FixedUpdate()
+    void Update()
     {
         StateProcess();
     }
@@ -269,22 +269,22 @@ public class cMonster : cCharacteristic, BattleSystem
 
             CalculateAngle(myAnim.transform.forward, dir, myAnim.transform.right, out ROTDATA myRotData); // 각도 계산 -> 매번 해주어야 함
 
-            if (Vector3.Dot(myAnim.transform.right, dir) < 0.0f)
-            {
-                myRotData.rotDir = -1.0f; // 왼쪽방향
-            }
+            //if (Vector3.Dot(myAnim.transform.right, dir) < 0.0f)
+            //{
+            //    myRotData.rotDir = -1.0f; // 왼쪽방향
+            //}
 
             // 회전
-            if (!Mathf.Approximately(myRotData.angle, 0.0f))
+            if (myRotData.angle > Mathf.Epsilon && myAnim.GetBool("IsWalk") == true) // 이동중일 경우에만 회전
             {
                 float delta = RotSpeed * Time.deltaTime;
 
                 delta = delta > myRotData.angle ? myRotData.angle : delta;
 
-                myAnim.transform.Rotate(Vector3.up * delta * myRotData.rotDir);
+                myAnim.transform.Rotate(Vector3.up * delta * myRotData.rotDir, Space.World);
             }
 
-            if (dist > ATK_Range) // 공격범위 밖에 있을 경우 따라감
+            if (dist > ATK_Range && myAnim.GetBool("IsAttack") == false) // 공격범위 밖에 있을 경우 따라감, 공격중일 경우 따라가지 않도록
             {
                 myAnim.SetTrigger("IsWalk"); // idle -> walk_front 
 

@@ -9,6 +9,11 @@ public class cAutoDetection : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
         // 플레이어 감지
         if ((DetectLayer & (1 << other.gameObject.layer)) == 64)
         {
