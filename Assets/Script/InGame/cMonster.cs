@@ -275,6 +275,8 @@ public class cMonster : cCharacteristic, BattleSystem
             //}
 
             // 회전
+            myAnim.transform.rotation = Quaternion.Slerp(myAnim.transform.rotation, Quaternion.LookRotation(dir),Time.deltaTime * 10.0f);
+            /*
             if (myRotData.angle > Mathf.Epsilon && myAnim.GetBool("IsWalk") == true) // 이동중일 경우에만 회전
             {
                 float delta = RotSpeed * Time.deltaTime;
@@ -283,6 +285,7 @@ public class cMonster : cCharacteristic, BattleSystem
 
                 myAnim.transform.Rotate(Vector3.up * delta * myRotData.rotDir, Space.World);
             }
+            */
 
             if (dist > ATK_Range && myAnim.GetBool("IsAttack") == false) // 공격범위 밖에 있을 경우 따라감, 공격중일 경우 따라가지 않도록
             {
