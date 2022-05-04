@@ -2,27 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.U2D;
+using UnityEngine.EventSystems;
 
 public class JPopUpCanvas : MonoBehaviour
 {
+
     [Header("[UI 캔버스들]")]
     public Camera mainCamera;
+    public Canvas Main_Canvas;
     public Canvas BackGround_Canvas;
-    public Canvas Inventory_Canvas;
-    public Canvas Option_Canvas;
     public Canvas Equip_Canvas;
+    public Canvas Scroll_Canvas;
+    public Canvas Equip_DetailCanvas;
+    public Canvas Detail_GameObjectCanvas;
+    public Canvas Option_Canvas;
+    public Canvas ShopCanvas;
+    public Canvas Inventory_Canvas;
+    //public Canvas Equip_Canvas;
 
     [Header("[UI open 확인 변수]")]
     public bool IsUIopen = false; // ui가 현재 열려있는지 아닌지 확인하는 불값
 
-    //public GameObject Right_Button;
 
-    [Header("[인벤토리 장비 클릭 이미지 배열]")]
-    public Image[] equip_image; // 클릭했을때 활성화 시킬 장비 이미지 배열
+    //[Header("[장비창 장비 클릭 이미지 배열]")]
+    //public Image[] equip_image; // 클릭했을때 활성화 시킬 장비 이미지 배열
 
-    [Header("[인벤토리 왼쪽 메뉴 이미지 배열]")]
-    public GameObject[] Inventory_Menu; // 클릭했을때 활성화 시킬 옵션 이미지 배열
+    [Header("[장비창 왼쪽 메뉴 이미지 배열]")]
+    public GameObject[] Equip_Menu; // 클릭했을때 활성화 시킬 옵션 이미지 배열
 
     [Header("[옵션 클릭 이미지 배열]")]
     public Image[] option_image; // 클릭했을때 활성화 시킬 옵션 이미지 배열
@@ -37,25 +44,39 @@ public class JPopUpCanvas : MonoBehaviour
     public RectTransform[] sliderMoveObjectRight;
     public GameObject[] option_UIpanel;
 
-    [Header("[인벤토리 관련]")]
+    [Header("[장비창]")]
+    public TMPro.TMP_Text[] EquipOption_Text;
+
+
+
+    [Header("[장비창 관련]")]
     public GameObject Home;
     public GameObject Character_Icon;
-    public GameObject Ar;
-    public GameObject InventoryBackButton;
+    public GameObject Message_Icon;
+    public GameObject Equip_Backbutton;
+    public JEquipScroll Scroll_script;
+
 
     [Header("[오디오 소스,클립]")]
     public AudioClip Ui_Click; // UI클릭했을때 재생할 효과음
     public AudioClip DunGeon_Click; // 던전 선택 클릭했을때 재생할 효과음
     AudioSource audioSource; // 효과음 재생할 오디오클립
+    public AudioClip Moneyclip;
+    public AudioClip Hammer;
+    public AudioClip Teemo;
 
-
+    #region 옵션창 enum
     public enum Popup //어떤 팝업인지 알려줄 열거자 
     {
-        None=0,Iventory_Popup,Equip_Popup,Option_Popup
+        None=0,Iventory_Popup,Equip_Popup,Equip_detail,Shop_Popup
     }
 
-    Popup popup=Popup.None;
+    public Popup popup=Popup.None;
+    
+    #endregion
 
+
+    #region 어웨이크 함수
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -67,48 +88,74 @@ public class JPopUpCanvas : MonoBehaviour
 
         }
 
+      
        
     }
+    #endregion
 
-    private void Start()
+    #region 팝업창 끌때 함수
+
+    void set_icon(bool check1,bool check2)
     {
-        
+        Equip_Backbutton.SetActive(check1);
+        Home.SetActive(check1);
+        Message_Icon.SetActive(check2);
+        Character_Icon.SetActive(check2);
     }
 
-    private void Update()
-    {
-        
-    }
-
-
-
-    public void ExitPopUp() // 팝업창 끌때 함수
+    public void ExitPopUp()
     {
         switch(popup)
         {
             case Popup.None:
                 break;
             case Popup.Iventory_Popup:
-                { 
+                {
+                    popup = Popup.None;
                     Inventory_Canvas.enabled = false;
-                    Home.SetActive(false);
-                    Ar.SetActive(true);
-                    Character_Icon.SetActive(true);
-                    InventoryBackButton.SetActive(false);
-                    Inventory_Menu[0].SetActive(true);
+                    set_icon(false, true);
                 }
                 break;
             case Popup.Equip_Popup:
                 {
                     Equip_Canvas.enabled = false;
+                    Scroll_Canvas.enabled = false;
+                    set_icon(false, true);
+                    popup = Popup.None;
                 }
                 break;
-            case Popup.Option_Popup:
+            case Popup.Equip_detail:
                 {
-                    Option_Canvas.enabled = false;
-                    StopCoroutine(TimeText());
-                  
+                    popup = Popup.Equip_Popup;
+                    Main_Canvas.enabled = true;
+                    Equip_DetailCanvas.enabled = false;
+                    Detail_GameObjectCanvas.enabled = false;
+                    //Main_Canvas.enabled = true;
+                    EquipMenu_Setting();
+                    Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = "장비";
+                    switch(GameData.Instance.playerdata.Player_inventory[CurNum].ItemCode)
+                    {
+                        case 000:
+                            Detail_GameObjectCanvas.transform.GetChild(1).GetComponent<RectTransform>().gameObject.SetActive(false);
+                            break;
+                        case 001:
+                            Detail_GameObjectCanvas.transform.GetChild(2).GetComponent<RectTransform>().gameObject.SetActive(false);
+                            break;
+                        case 002:
+                            Detail_GameObjectCanvas.transform.GetChild(3).GetComponent<RectTransform>().gameObject.SetActive(false);
+                            break;
+                        case 003:
+                            Detail_GameObjectCanvas.transform.GetChild(4).GetComponent<RectTransform>().gameObject.SetActive(false);
+                            break;
+                    }
+                }
+                break;
+            case Popup.Shop_Popup:
+                {
 
+                    popup = Popup.None;
+                    ShopCanvas.enabled = false;
+                    set_icon(false, true);
                 }
                 break;
         }
@@ -117,27 +164,330 @@ public class JPopUpCanvas : MonoBehaviour
         IsUIopen = false;
        // mainCamera.enabled = true;
         BackGround_Canvas.enabled = false;
+       
+        
+    }
+    #endregion
+
+    public void ShopPopup_Open()
+    {
+        popup = Popup.Shop_Popup;
+        ShopCanvas.enabled = true;
+        //열때 백버튼 수정
+        BackGround_Canvas.enabled = true;
+        Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = "상점";
+        set_icon(true, false);
+        audioSource.PlayOneShot(Ui_Click);
+
 
     }
 
+
+    #region 인벤토리창 함수들
+
     public void Open_Inventory()
     {
-        popup = Popup.Iventory_Popup;  // popup enum을 인벤토리 팝업으로 설정
+        popup = Popup.Iventory_Popup;
+        Inventory_Canvas.enabled = true;
+        BackGround_Canvas.enabled = true;
+        Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = "소지품";
+        set_icon(true, false);
+        audioSource.PlayOneShot(Ui_Click);
+    }
+
+
+    #endregion
+
+
+    #region 장비창 함수들
+
+    [SerializeField]
+    EquipType equipType;
+    
+    
+    enum EquipType
+    {
+        Total = 0,Weapon,Armor
+    }
+
+    private int CurNum = 0;
+
+    public void ClickEquipItem()
+    {
+        GameObject clickObject = EventSystem.current.currentSelectedGameObject;
+        popup = Popup.Equip_detail;
+        //Main_Canvas.enabled = false;
+        Equip_DetailCanvas.enabled = true;
+        Detail_GameObjectCanvas.enabled = true;
+        Main_Canvas.enabled = false;
+        Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = "    장비 정보";
+        jSetItemDetail.setItem(clickObject.GetComponent<JSetItemDetail>().num);
+        CurNum = clickObject.GetComponent<JSetItemDetail>().num;
+    }
+
+    public GameObject[] upgradepannel;
+    private bool upgrade_Check;
+
+    public void Upgrade()
+    {
+        upgrade_Check = false;
+
+        if (7 > GameData.Instance.playerdata.Player_inventory[CurNum].Upgrade)
+        {
+            upgradepannel[0].SetActive(true);
+            upgradepannel[1].SetActive(true);
+
+            upgradepannel[1].transform.GetChild(3).GetComponent<TMPro.TMP_Text>().text = "<color=grey>업그레이드</color> " + GameData.Instance.playerdata.Player_inventory[CurNum].Upgrade +
+           "  →  " + (GameData.Instance.playerdata.Player_inventory[CurNum].Upgrade + 1).ToString();
+
+
+            upgradepannel[1].transform.GetChild(4).GetComponent<TMPro.TMP_Text>().text =
+                 "<color=grey>확률</color>  " + (GameData.Instance.Upgrade_chance - (GameData.Instance.playerdata.Player_inventory[CurNum].Upgrade * 10)) + "%";
+            upgradepannel[1].transform.GetChild(5).GetComponent<TMPro.TMP_Text>().text =
+                 "<color=grey>필요 골드</color>  " + (GameData.Instance.Upgrade_Money * (GameData.Instance.playerdata.Player_inventory[CurNum].Upgrade + 1)).ToString("N0");
+        }
+        else
+        {
+
+            upgradenotice[0].SetActive(true);
+            upgradenotice[1].SetActive(true);
+            upgradenotice[1].GetComponentInChildren<TMPro.TMP_Text>().text = "+7 이상 강화 불가!";
+            upgradenotice[1].transform.GetChild(1).GetComponent<RectTransform>().gameObject.SetActive(true);
+        }
+        
+
+    }
+
+    public GameObject[] upgradenotice;
+
+    public void reloading()
+    {
+        if(upgrade_Check)
+        jSetItemDetail.setItem(CurNum);
+    }
+
+
+    public void Upgrade_Yes()
+    {
+       
+        if (GameData.Instance.playerdata.Gold < GameData.Instance.Upgrade_Money * (GameData.Instance.playerdata.Player_inventory[CurNum].Upgrade + 1))
+        {
+            upgradenotice[0].SetActive(true);
+            upgradenotice[1].SetActive(true);
+            upgradenotice[1].GetComponentInChildren<TMPro.TMP_Text>().text = "돈이 부족합니다.";
+            upgradenotice[1].transform.GetChild(1).GetComponent<RectTransform>().gameObject.SetActive(true);
+        }
+        else
+        {
+            StartCoroutine(UpgradeProcess());
+        }
+    }
+    
+    IEnumerator UpgradeProcess()
+    {
+        int random = Random.Range(1, 101);
+        GameData.Instance.playerdata.Gold -= GameData.Instance.Upgrade_Money * (GameData.Instance.playerdata.Player_inventory[CurNum].Upgrade + 1);
+        if (random <= GameData.Instance.Upgrade_chance - (GameData.Instance.playerdata.Player_inventory[CurNum].Upgrade * 10))
+        {
+            upgradenotice[0].SetActive(true);
+            upgradenotice[1].SetActive(true);
+            upgradenotice[1].GetComponentInChildren<TMPro.TMP_Text>().text = "강화중...";
+            audioSource.PlayOneShot(Hammer);
+            yield return new WaitForSeconds(1.5f);
+            switch(GameData.Instance.playerdata.Player_inventory[CurNum].itemType)
+            {
+                case ItemType.Weapon:
+                    {
+                        GameData.Instance.playerdata.UpgradeWeapon(GameData.Instance.playerdata.Player_inventory, CurNum, 50, 30);
+                    }
+                    break;
+                case ItemType.Armor:
+                    {
+                        GameData.Instance.playerdata.UpgradeArmor(GameData.Instance.playerdata.Player_inventory, CurNum, 50, 100);
+                    }
+                    break;
+
+            }
+            GameData.Instance.playerdata.chanegeUpgrade(GameData.Instance.playerdata.Player_inventory, CurNum, 1);
+            upgradenotice[1].GetComponentInChildren<TMPro.TMP_Text>().text = "강화 성공!";
+            upgrade_Check = true;
+            upgradenotice[1].transform.GetChild(1).GetComponent<RectTransform>().gameObject.SetActive(true);
+        }
+        else
+        {
+            upgradenotice[0].SetActive(true);
+            upgradenotice[1].SetActive(true);
+            upgradenotice[1].GetComponentInChildren<TMPro.TMP_Text>().text = "잠시만 기다려 주세요...";
+            audioSource.PlayOneShot(Hammer);
+            yield return new WaitForSeconds(1.5f);
+
+            upgradenotice[1].GetComponentInChildren<TMPro.TMP_Text>().text = "강화 실패!";
+            audioSource.PlayOneShot(Teemo);
+            upgradenotice[1].transform.GetChild(1).GetComponent<RectTransform>().gameObject.SetActive(true);
+        }
+
+        yield return null;
+    }
+
+
+    public void Open_Equip_Popup()
+    {
+        popup = Popup.Equip_Popup; 
         audioSource.PlayOneShot(Ui_Click); 
         IsUIopen = true;
         BackGround_Canvas.enabled = true; // 화면을 가리기위해 백그라운드 캔버스 켜줌(검은화면)
         //mainCamera.enabled = false; // 메인카메라 꺼줌(ui가 켜지면 볼 필요없는 카메라를 꺼줘서 자원을 아낌)
-        Inventory_Canvas.enabled = true; // 인벤토리 캔버스 켜줌
-        Home.SetActive(true);
-        Ar.SetActive(false);
-        Character_Icon.SetActive(false);
-        InventoryBackButton.SetActive(true);
+        Equip_Canvas.enabled = true; // 인벤토리 캔버스 켜줌
+        Scroll_Canvas.enabled = true;
+        set_icon(true, false);
+        equipType = EquipType.Total;
+        //Scroll_script.Scrolling();
+        EquipMenu_Setting();
 
     }
 
+
+
+    public void hilight_Equip_Menu(int index) //장비창 아이템 아이콘 눌렀을때 활성화 시키는 함수 
+    {
+        
+        for (int i = 0; i < Equip_Menu.Length; i++)
+        {
+
+            Equip_Menu[i].SetActive(i == index); // 버튼 onclick()에 함수를 넣고 써놓은 index와 같은 배열 이미지만 켜지고 나머진 다 꺼짐
+
+            switch (index)
+            {
+                case 0: 
+                    equipType = EquipType.Total;
+                    break;
+                case 1:
+                    equipType = EquipType.Weapon;
+                    break;
+                case 2:
+                    equipType = EquipType.Armor;
+                    break;
+            }
+        }
+
+        EquipMenu_Setting();
+        audioSource.PlayOneShot(Ui_Click);
+    }
+
+    [Header("[장비창 기능 구현 변수들]")]
+    public GameObject[] ITemUI_Panel;
+    
+
+    public void EquipMenu_Setting()
+    {
+        for (int j = 0; j < ITemUI_Panel.Length; j++)
+        {
+            ITemUI_Panel[j].SetActive(false);
+            ITemUI_Panel[j].transform.GetChild(4).gameObject.SetActive(false);
+            ITemUI_Panel[j].transform.GetChild(2).GetComponent<Image>().color = Color.white;
+        }
+        switch (equipType)
+        {
+            case EquipType.Total:
+                equip_initialize(ItemType.Weapon, ItemType.Armor);
+                break;
+            case EquipType.Weapon:
+                equip_initialize(ItemType.Weapon, ItemType.none);
+                break;
+            case EquipType.Armor:
+                equip_initialize(ItemType.Armor,ItemType.none);
+                break;
+        }
+    }
+    public JSetItemDetail jSetItemDetail;
+
+    void equip_initialize(ItemType a,ItemType b)
+    {
+        for (int i = 0; i < GameData.Instance.playerdata.Player_inventory.Count; i++)
+        {
+            if (GameData.Instance.playerdata.Player_inventory[i].itemType == a || GameData.Instance.playerdata.Player_inventory[i].itemType == b)
+            {
+
+                for (int j = 0; j < GameData.Instance.playerdata.Player_inventory.Count; j++)
+                {
+                    if (ITemUI_Panel[j].activeSelf == false)
+                    {
+                        ITemUI_Panel[j].SetActive(true);
+
+                        switch (GameData.Instance.playerdata.Player_inventory[i].grade)
+                        {
+                            case Grade.rare:
+                                ITemUI_Panel[j].transform.GetChild(0).GetComponent<TMPro.TMP_Text>().color = Color.green;
+                                ITemUI_Panel[j].transform.GetChild(2).GetComponent<Image>().color = Color.green;
+                                break;
+                            case Grade.epic:
+                                ITemUI_Panel[j].transform.GetChild(0).GetComponent<TMPro.TMP_Text>().color = Color.blue;
+                                ITemUI_Panel[j].transform.GetChild(2).GetComponent<Image>().color = Color.blue;
+                                break;
+                            case Grade.legendary:
+                                ITemUI_Panel[j].transform.GetChild(0).GetComponent<TMPro.TMP_Text>().color = Color.yellow;
+                                ITemUI_Panel[j].transform.GetChild(2).GetComponent<Image>().color = Color.yellow;
+                                break;
+                        }
+
+                        if (GameData.Instance.playerdata.Player_inventory[i].Upgrade > 0)
+                        { 
+                            ITemUI_Panel[j].transform.GetChild(0).GetComponent<TMPro.TMP_Text>().text = 
+                            GameData.Instance.playerdata.Player_inventory[i].ItemName + " <color=white>+" + GameData.Instance.playerdata.Player_inventory[i].Upgrade+"</color>";
+                        }
+                        else
+                        { 
+                            ITemUI_Panel[j].transform.GetChild(0).GetComponent<TMPro.TMP_Text>().text = GameData.Instance.playerdata.Player_inventory[i].ItemName;
+                        }
+
+                        if (GameData.Instance.playerdata.Player_inventory[i].itemType == ItemType.Weapon)
+                        {
+                            ITemUI_Panel[j].transform.GetChild(1).GetComponent<TMPro.TMP_Text>().text =
+                                    "<color=grey>공격력</color> " + GameData.Instance.playerdata.Player_inventory[i].ATK +
+                                    "\n<color=grey>크리티컬</color> " + +GameData.Instance.playerdata.Player_inventory[i].Critical;
+                        }
+                        else if (GameData.Instance.playerdata.Player_inventory[i].itemType == ItemType.Armor)
+                        {
+                            ITemUI_Panel[j].transform.GetChild(1).GetComponent<TMPro.TMP_Text>().text =
+                                     "<color=grey>방어력</color> " + GameData.Instance.playerdata.Player_inventory[i].DEF +
+                                     "\n<color=grey>체력</color> " + +GameData.Instance.playerdata.Player_inventory[i].HP;
+                        }
+
+                        ITemUI_Panel[j].transform.GetChild(3).GetComponent<Image>().sprite = GameData.Instance.playerdata.Player_inventory[i].Mysprite;
+
+                        if (GameData.Instance.playerdata.Player_inventory[i].Equipped)
+                        {
+                            ITemUI_Panel[j].transform.GetChild(4).gameObject.SetActive(true);
+                        }
+
+                        ITemUI_Panel[j].GetComponent<JSetItemDetail>().number(i);
+
+                        ITemUI_Panel[j].GetComponent<Button>().onClick.AddListener(() => ClickEquipItem());
+                        break;
+                    }
+                    
+                }
+            }
+        }
+    }
+
+
+    #endregion
+
+    #region 옵션창 기능들
+    public void Exit_Option()
+    {
+       Option_Canvas.enabled = false;
+       StopCoroutine(TimeText());
+        audioSource.PlayOneShot(Ui_Click);
+        IsUIopen = false;
+
+    }
+
+
     public void Open_Option()
     {
-        popup = Popup.Option_Popup;
+       
         audioSource.PlayOneShot(Ui_Click);
         IsUIopen = true;
         //BackGround_Canvas.enabled = true; 
@@ -146,7 +496,6 @@ public class JPopUpCanvas : MonoBehaviour
         option_image[0].enabled = true; // 옵션창을 켰을때 가장 첫번째 버튼을 활성화 시키기 위함
         StartCoroutine(TimeText());
       
-
     }
 
     IEnumerator TimeText()
@@ -159,21 +508,41 @@ public class JPopUpCanvas : MonoBehaviour
         }
     }
 
-    public void Open_Equip_Pppup()
+    
+    Vector2[] leftIcon_orginpos = new Vector2[2];
+    Vector2[] rightIcon_orginpos = new Vector2[2];
+
+    public void OptionUi_Move()
     {
-        popup = Popup.Equip_Popup;
-        audioSource.PlayOneShot(Ui_Click);
-        IsUIopen = true;
-        BackGround_Canvas.enabled = true;
-       // mainCamera.enabled = false;
-        Equip_Canvas.enabled = true;
+
+        float[] x = new float[4];
+
+        x[0] = leftIcon_orginpos[0].x + OptionSlider[0].value * 100;
+        x[1] = leftIcon_orginpos[1].x + OptionSlider[0].value * 100;
+        x[2] = rightIcon_orginpos[0].x - OptionSlider[1].value * 100;
+        x[3] = rightIcon_orginpos[1].x - OptionSlider[1].value * 100;
+
+        sliderMoveObjectLeft[0].anchoredPosition = new Vector2(x[0], sliderMoveObjectLeft[0].anchoredPosition.y);
+        sliderMoveObjectLeft[1].anchoredPosition = new Vector2(x[1], sliderMoveObjectLeft[1].anchoredPosition.y);
+        sliderMoveObjectRight[0].anchoredPosition = new Vector2(x[2], sliderMoveObjectRight[0].anchoredPosition.y);
+        sliderMoveObjectRight[1].anchoredPosition = new Vector2(x[3], sliderMoveObjectRight[1].anchoredPosition.y);
+
+        Slider_text[0].text = Mathf.RoundToInt(OptionSlider[0].value * 100).ToString();
+        Slider_text[1].text = Mathf.RoundToInt(OptionSlider[1].value * 100).ToString();
+
+
+
     }
+    #endregion
 
 
-
+    #region 던전선택창 이동 함수
 
     public void EnterDunGeon() // 던전선택 아이콘 눌렀을때 함수
     {
+        Home.SetActive(true);
+        Message_Icon.SetActive(false);
+        Character_Icon.SetActive(false);
         audioSource.PlayOneShot(DunGeon_Click);
         StartCoroutine(Delay(1)); // 효과음 재생을 위한 1초 딜레이 코루틴 (안하면 효과음 소리가 안나고 씬이동함)
     }
@@ -183,29 +552,11 @@ public class JPopUpCanvas : MonoBehaviour
         yield return new WaitForSeconds(t);
         UnityEngine.SceneManagement.SceneManager.LoadScene("SelecteDungeon");
     }
+    #endregion
 
-    
-    public void hilight_equiped(int index) //장비창 아이템 아이콘 눌렀을때 활성화 시키는 함수 (왼쪽 메뉴들은 아직 구현x)
-    {
-        for(int i=0; i<equip_image.Length; i++)
-        {
 
-            equip_image[i].enabled = (i == index); // 버튼 onclick()에 함수를 넣고 써놓은 index와 같은 배열 이미지만 켜지고 나머진 다 꺼짐
-
-        }
-        audioSource.PlayOneShot(Ui_Click);
-    }
-
-    public void hilight_InventoryMenu(int index) //장비창 아이템 아이콘 눌렀을때 활성화 시키는 함수 (왼쪽 메뉴들은 아직 구현x)
-    {
-        for (int i = 0; i < Inventory_Menu.Length; i++)
-        {
-
-            Inventory_Menu[i].SetActive(i == index); // 버튼 onclick()에 함수를 넣고 써놓은 index와 같은 배열 이미지만 켜지고 나머진 다 꺼짐
-
-        }
-        audioSource.PlayOneShot(Ui_Click);
-    }
+    #region 각종 메뉴들 눌렀을때 하이라이트 되는 함수들
+  
 
 
 
@@ -229,33 +580,8 @@ public class JPopUpCanvas : MonoBehaviour
         }
         audioSource.PlayOneShot(Ui_Click);
     }
+    #endregion
 
-
-
-    Vector2[] leftIcon_orginpos = new Vector2[2];
-    Vector2[] rightIcon_orginpos = new Vector2[2];
     
-    public void OptionUi_Move()
-    {
-
-        float[] x = new float[4];
-
-        x[0] = leftIcon_orginpos[0].x + OptionSlider[0].value * 100;
-        x[1] = leftIcon_orginpos[1].x + OptionSlider[0].value * 100;
-        x[2] = rightIcon_orginpos[0].x - OptionSlider[1].value * 100;
-        x[3] = rightIcon_orginpos[1].x - OptionSlider[1].value * 100;
-
-        sliderMoveObjectLeft[0].anchoredPosition = new Vector2(x[0], sliderMoveObjectLeft[0].anchoredPosition.y);
-        sliderMoveObjectLeft[1].anchoredPosition = new Vector2(x[1], sliderMoveObjectLeft[1].anchoredPosition.y);
-        sliderMoveObjectRight[0].anchoredPosition = new Vector2(x[2], sliderMoveObjectRight[0].anchoredPosition.y);
-        sliderMoveObjectRight[1].anchoredPosition = new Vector2(x[3], sliderMoveObjectRight[1].anchoredPosition.y);
-
-        Slider_text[0].text = Mathf.RoundToInt(OptionSlider[0].value * 100).ToString();
-        Slider_text[1].text = Mathf.RoundToInt(OptionSlider[1].value * 100).ToString();
-
-        
-
-    }
-
 
 }

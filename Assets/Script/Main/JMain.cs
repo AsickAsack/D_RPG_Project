@@ -6,8 +6,7 @@ using UnityEngine;
 
 public class JMain : MonoBehaviour
 {
-    [Header("[클릭 이미지 게임오브젝트]")]
-    public GameObject Click;
+
 
     [Header("[던전진입버튼 불빛 회전 이미지]")]
     public UnityEngine.UI.Image Battlebtn_light;
@@ -19,19 +18,27 @@ public class JMain : MonoBehaviour
     public TMPro.TMP_Text Gold;
     public TMPro.TMP_Text Emerald;
 
+    [Header("[메인 BGM]")]
+    public AudioClip mainBGM;
+
+    private void Awake()
+    {
+
+        Debug.Log(ClickCanvas.Instance);
+
+    }
+
 
 
     void Start()
     {
-        //Click.GetComponent<ParticleSystem>().Stop();
-        //click_rect = Click.GetComponent<RectTransform>();
-      
-        
-    } 
-        
+        Sound.Instance.PlayBGM(mainBGM);
+
+    }
 
 
-    
+
+
 
     // Update is called once per frame
     void Update()
@@ -39,28 +46,49 @@ public class JMain : MonoBehaviour
 
         Change_BlackBar();
         Rotate_light();
-        _Click();
+     
 
-        
 
-    }
-
-    void _Click()
-    {
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetKeyDown(KeyCode.F1))
         {
-            Click.transform.position = Input.mousePosition;
-            Click.SetActive(true);
-            StartCoroutine(Click_Delay(0.25f));
+            GameData.Instance.playerdata.Player_inventory.Add(GameData.Instance.playerdata.Itemdata[0]);
+            Debug.Log(GameData.Instance.playerdata.Itemdata[0].ItemName);
+        }
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            GameData.Instance.playerdata.Player_inventory.Add(GameData.Instance.playerdata.Itemdata[1]);
+            
+                Debug.Log(GameData.Instance.playerdata.Itemdata[1].ItemName);
+            
+        }
+        if (Input.GetKeyDown(KeyCode.F3))
+        {
+            GameData.Instance.playerdata.Player_inventory.Add(GameData.Instance.playerdata.Itemdata[2]);
+
+            Debug.Log(GameData.Instance.playerdata.Itemdata[2].ItemName);
 
         }
-    }   
+        if (Input.GetKeyDown(KeyCode.F4))
+        {
+            GameData.Instance.playerdata.Player_inventory.Add(GameData.Instance.playerdata.Itemdata[3]);
 
-    IEnumerator Click_Delay(float t)
-    {
-        yield return new WaitForSeconds(t);
-            Click.SetActive(false);
+            Debug.Log(GameData.Instance.playerdata.Itemdata[3].ItemName);
+
+        }
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+            GameData.Instance.playerdata.Gold += 50000;
+
+            Debug.Log(GameData.Instance.playerdata.Gold);
+        }
+
+
+
     }
+
+  
+
+
 
     void Change_BlackBar() // 상단바 text 바꾸는 함수
     {
