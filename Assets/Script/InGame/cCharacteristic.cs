@@ -53,14 +53,14 @@ public class cCharacteristic : MonoBehaviour
         }
     }
 
-    cAutoDetection _Detection = null;
-    protected cAutoDetection myDetection
+    cAutoDetectionMagic _Detection = null;
+    protected cAutoDetectionMagic myDetection
     {
         get // 사용할 때 바로 적용되도록 property 사용
         {
-            if (_Detection == null) _Detection = this.GetComponent<cAutoDetection>(); // _anim을 호출하면 항상 값을 가지고 있다는 확신이 생김 
+            if (_Detection == null) _Detection = this.GetComponent<cAutoDetectionMagic>(); // _anim을 호출하면 항상 값을 가지고 있다는 확신이 생김 
 
-            if (_Detection == null) _Detection = this.GetComponentInChildren<cAutoDetection>(); // 자식에 있을때도 호출
+            if (_Detection == null) _Detection = this.GetComponentInChildren<cAutoDetectionMagic>(); // 자식에 있을때도 호출
 
             return _Detection;
         }
