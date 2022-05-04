@@ -19,7 +19,7 @@ public class cAutoDetection : MonoBehaviour
         {
             if (this.transform.parent.GetComponent<cMonster>().myState == cMonster.STATE.ROAMING)
             {
-                Target = other.gameObject; // 리스트에 넣음
+                Target = other.gameObject;
                 this.transform.parent.GetComponent<cMonster>().OnBattle(); // 몬스터를 배틀상태로 변경
             }
         }
@@ -28,7 +28,7 @@ public class cAutoDetection : MonoBehaviour
         {
             if (this.transform.parent.GetComponent<cCharacter>().myState == cCharacter.STATE.PLAY)
             {
-                Target = other.gameObject; // 리스트에 넣음
+                Target = other.gameObject;
             }
         }
     }
