@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5054009156088749247
+--- !u!1 &133702
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,27 +8,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5054009156088431755}
-  - component: {fileID: 5054009156102469321}
-  - component: {fileID: 5054009156102592221}
-  - component: {fileID: 5054009156094240741}
-  - component: {fileID: 6309152802689629084}
-  - component: {fileID: 1467903124247397918}
-  - component: {fileID: 5858909954802959205}
-  m_Layer: 9
-  m_Name: Ice 1
+  - component: {fileID: 447090}
+  - component: {fileID: 19980336}
+  - component: {fileID: 19841060}
+  - component: {fileID: 11432220}
+  m_Layer: 0
+  m_Name: Combat_Attacks_Freeze_1_Real
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5054009156088431755
+--- !u!4 &447090
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5054009156088749247}
+  m_GameObject: {fileID: 133702}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -36,14 +33,14 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!199 &5054009156102469321
+--- !u!199 &19980336
 ParticleSystemRenderer:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5054009156088749247}
+  m_GameObject: {fileID: 133702}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -102,13 +99,13 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!198 &5054009156102592221
+--- !u!198 &19841060
 ParticleSystem:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5054009156088749247}
+  m_GameObject: {fileID: 133702}
   serializedVersion: 7
   lengthInSec: 1
   simulationSpeed: 1
@@ -4796,13 +4793,13 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!114 &5054009156094240741
+--- !u!114 &11432220
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5054009156088749247}
+  m_GameObject: {fileID: 133702}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16e87e80e381d1941ae7a99e6c1ab87e, type: 3}
@@ -4821,49 +4818,3 @@ MonoBehaviour:
   spawnSound: {fileID: 8300000, guid: 48c10ad689c30034f85c2165670c0a29, type: 3}
   haveHitSound: 1
   hitSound: {fileID: 8300000, guid: 1d7cbd978907e8f44ba06a8810214486, type: 3}
---- !u!135 &6309152802689629084
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5054009156088749247}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.89
-  m_Center: {x: -0.00099051, y: 0.000038981438, z: 0.000060081482}
---- !u!54 &1467903124247397918
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5054009156088749247}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &5858909954802959205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5054009156088749247}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f8e3395f4eb8444fa8eeb0dad529710, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CrashMask:
-    serializedVersion: 2
-    m_Bits: 64
-  Speed: 10
-  fx: {fileID: 0}

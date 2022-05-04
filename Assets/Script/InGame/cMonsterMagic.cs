@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class cMonsterMagic: cCharacteristic, BattleSystem
+public class cMonsterMagic: cCharacteristic, BattleSystem 
 {
     public enum STATE
     {
@@ -56,7 +56,16 @@ public class cMonsterMagic: cCharacteristic, BattleSystem
     public void OnAttack()
     {
         GameObject obj = Instantiate(Magic, ShootPosition.position,Quaternion.identity);
-        obj.GetComponent<PMagicIce>().Fire();
+        Rigidbody rigid = obj.GetComponent<Rigidbody>();
+        Transform T=null;
+
+        if (T == null)
+        {
+          T = GetComponent<cAutoDetectionMagic>().Target.transform;
+
+        }
+
+        rigid.velocity = T.up * 10f;
 
 
     }
