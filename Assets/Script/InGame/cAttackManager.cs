@@ -162,4 +162,5 @@ public class cAttackManager : cCharacteristic
             yield return null;
         }
     }
+
 }

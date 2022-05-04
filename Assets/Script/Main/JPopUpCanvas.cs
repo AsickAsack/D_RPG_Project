@@ -114,6 +114,7 @@ public class JPopUpCanvas : MonoBehaviour
                     popup = Popup.None;
                     Inventory_Canvas.enabled = false;
                     set_icon(false, true);
+                    BackGround_Canvas.enabled = false;
                 }
                 break;
             case Popup.Equip_Popup:
@@ -122,6 +123,7 @@ public class JPopUpCanvas : MonoBehaviour
                     Scroll_Canvas.enabled = false;
                     set_icon(false, true);
                     popup = Popup.None;
+                    BackGround_Canvas.enabled = false;
                 }
                 break;
             case Popup.Equip_detail:
@@ -156,6 +158,7 @@ public class JPopUpCanvas : MonoBehaviour
                     popup = Popup.None;
                     ShopCanvas.enabled = false;
                     set_icon(false, true);
+                    BackGround_Canvas.enabled = false;
                 }
                 break;
         }
@@ -163,7 +166,7 @@ public class JPopUpCanvas : MonoBehaviour
         audioSource.PlayOneShot(Ui_Click);
         IsUIopen = false;
        // mainCamera.enabled = true;
-        BackGround_Canvas.enabled = false;
+        
        
         
     }
@@ -552,7 +555,7 @@ public class JPopUpCanvas : MonoBehaviour
     IEnumerator Delay(float t)
     {
         yield return new WaitForSeconds(t);
-        UnityEngine.SceneManagement.SceneManager.LoadScene("SelecteDungeon");
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("GameScene");
     }
     #endregion
 
