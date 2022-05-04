@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
-public struct Stats
-{
-    public float HP; // 체력
+//[Serializable]
+//public struct Stats
+//{
+//    public float HP; // 체력
 
-    public float ATK; // 공격력 
-    public float DEF; // 방어력 
-}
+//    public float ATK; // 공격력 
+//    public float DEF; // 방어력 
+//}
 
 public interface BattleSystem
 {
@@ -81,24 +81,24 @@ public class cCharacteristic : MonoBehaviour
         }
     }
 
-    protected IEnumerator LookingTarget(Transform myTrans, Vector3 myDir)
-    {
-        while (true)
-        {
-            CalculateAngle(myTrans.forward, myDir, myTrans.right, out ROTDATA myRotData); // 각도 계산 -> 매번 해주어야 함
+    //protected IEnumerator LookingTarget(Transform myTrans, Vector3 myDir)
+    //{
+    //    while (true)
+    //    {
+    //        CalculateAngle(myTrans.forward, myDir, myTrans.right, out ROTDATA myRotData); // 각도 계산 -> 매번 해주어야 함
 
-            if (!Mathf.Approximately(myRotData.angle, 0.0f))
-            {
-                float delta = 360.0f * Time.deltaTime;
+    //        if (!Mathf.Approximately(myRotData.angle, 0.0f))
+    //        {
+    //            float delta = 360.0f * Time.deltaTime;
 
-                delta = delta > myRotData.angle ? myRotData.angle : delta;
+    //            delta = delta > myRotData.angle ? myRotData.angle : delta;
 
-                myTrans.Rotate(Vector3.up * delta * myRotData.rotDir);
-            }
+    //            myTrans.Rotate(Vector3.up * delta * myRotData.rotDir);
+    //        }
 
-            yield return null;
-        }
-    }
+    //        yield return null;
+    //    }
+    //}
 }
 
 

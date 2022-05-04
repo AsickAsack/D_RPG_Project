@@ -134,14 +134,1087 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: ToledoBoss_Whirlwind_compress_none
+      takeName: ToledoBoss_Whirlwind_compress_none
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 330
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ToledoBoss_Summon_On
+      takeName: ToledoBoss_Summon_On
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 540
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ToledoBoss_Stand_compress_none
+      takeName: ToledoBoss_Stand_compress_none
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 540
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ToledoBoss_Restoring_Fail_compress_none
+      takeName: ToledoBoss_Restoring_Fail_compress_none
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 540
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ToledoBoss_PowerSmash_compress_none
+      takeName: ToledoBoss_PowerSmash_compress_none
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 540
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ToledoBoss_PowerSlash_Start_compress_none
+      takeName: ToledoBoss_PowerSlash_Start_compress_none
+      internalID: 0
+      firstFrame: 16
+      lastFrame: 50
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ToledoBoss_PowerSlash_End_compress_none
+      takeName: ToledoBoss_PowerSlash_End_compress_none
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 540
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ToledoBoss_NormalAttack02_compress_none
+      takeName: ToledoBoss_NormalAttack02_compress_none
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 540
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ToledoBoss_NormalAttack01_Start_compress_none
+      takeName: ToledoBoss_NormalAttack01_Start_compress_none
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 540
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ToledoBoss_NormalAttack01_End_compress_none
+      takeName: ToledoBoss_NormalAttack01_End_compress_none
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 540
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ToledoBoss_MoveRight_Start_compress_none
+      takeName: ToledoBoss_MoveRight_Start_compress_none
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 540
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ToledoBoss_MoveRight_End_compress_none
+      takeName: ToledoBoss_MoveRight_End_compress_none
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 540
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ToledoBoss_MoveRight_compress_none
+      takeName: ToledoBoss_MoveRight_compress_none
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 540
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ToledoBoss_MoveLeft_Start_compress_none
+      takeName: ToledoBoss_MoveLeft_Start_compress_none
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 540
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ToledoBoss_MoveLeft_End_compress_none
+      takeName: ToledoBoss_MoveLeft_End_compress_none
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 540
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ToledoBoss_MoveLeft_compress_none
+      takeName: ToledoBoss_MoveLeft_compress_none
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 540
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ToledoBoss_MoveFront_Start_compress_none
+      takeName: ToledoBoss_MoveFront_Start_compress_none
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 540
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ToledoBoss_MoveFront_End_compress_none
+      takeName: ToledoBoss_MoveFront_End_compress_none
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 540
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ToledoBoss_MoveFront_compress_none
+      takeName: ToledoBoss_MoveFront_compress_none
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 540
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ToledoBoss_MoveBack_Start_compress_none
+      takeName: ToledoBoss_MoveBack_Start_compress_none
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 540
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ToledoBoss_MoveBack_compress_none
+      takeName: ToledoBoss_MoveBack_compress_none
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 540
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Toledo_boss_SwiftStrike_start_compress_none
+      takeName: Toledo_boss_SwiftStrike_start_compress_none
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 540
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Toledo_boss_SwiftStrike_compress_none
+      takeName: Toledo_boss_SwiftStrike_compress_none
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 540
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Toledo_boss_short_scene02
+      takeName: Toledo_boss_short_scene02
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 540
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Toledo_boss_Rampage_Stand_compress_none
+      takeName: Toledo_boss_Rampage_Stand_compress_none
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 540
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Toledo_boss_Rampage_Spinattack_Start_compress_none
+      takeName: Toledo_boss_Rampage_Spinattack_Start_compress_none
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 540
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Toledo_boss_Rampage_Spinattack_End_compress_none
+      takeName: Toledo_boss_Rampage_Spinattack_End_compress_none
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 540
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Toledo_boss_Rampage_Spinattack_compress_none
+      takeName: Toledo_boss_Rampage_Spinattack_compress_none
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 540
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Toledo_boss_Normal_Attack03_compress_none
+      takeName: Toledo_boss_Normal_Attack03_compress_none
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 540
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Toledo_boss_Normal_Attack02_compress_none
+      takeName: Toledo_boss_Normal_Attack02_compress_none
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 540
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Toledo_boss_Normal_Attack01_compress_none
+      takeName: Toledo_boss_Normal_Attack01_compress_none
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 540
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Toledo_boss_Hold_Hit_compress_none
+      takeName: Toledo_boss_Hold_Hit_compress_none
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 540
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Toledo_boss_Hold_compress_none
+      takeName: Toledo_boss_Hold_compress_none
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 540
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Toledo_boss_Hit_compress_none
+      takeName: Toledo_boss_Hit_compress_none
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 540
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Toledo_boss_Hit_Air_compress_none
+      takeName: Toledo_boss_Hit_Air_compress_none
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 540
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Toledo_boss_Die_loop_compress_none
+      takeName: Toledo_boss_Die_loop_compress_none
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 540
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Toledo_boss_Die_compress_none
+      takeName: Toledo_boss_Die_compress_none
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 540
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []
@@ -188,7 +1261,507 @@ ModelImporter:
   humanDescription:
     serializedVersion: 3
     human: []
-    skeleton: []
+    skeleton:
+    - name: Toledo_boss (merge)(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Toledo_boss (merge)
+      parentName: Toledo_boss (merge)(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.045417733, y: -0.2829578, z: -0.047902234, w: 0.95685816}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Toledo_boss
+      parentName: Toledo_boss (merge)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: MainDummy
+      parentName: Toledo_boss
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Dummy_catch
+      parentName: MainDummy
+      position: {x: 0.0000000019073485, y: 0.0017426565, z: 0.026811417}
+      rotation: {x: 0.00000018831393, y: 0.7071081, z: 0.7071055, w: -3.386765e-13}
+      scale: {x: 0.99999964, y: 0.99999994, z: 0.99999976}
+    - name: Dummy_Weapon_R
+      parentName: Dummy_catch
+      position: {x: -0.010515164, y: -0.0017058426, z: -0.00023080205}
+      rotation: {x: -0.105811335, y: -0.42516425, z: 0.40465772, w: 0.8026777}
+      scale: {x: 1, y: 1.0000001, z: 0.9999999}
+    - name: Toledo_boss_weapon
+      parentName: Dummy_Weapon_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bip001 L Foot
+      parentName: Dummy_catch
+      position: {x: 0.010653969, y: -0.02309769, z: -0.0058769723}
+      rotation: {x: 0.51663256, y: 0.5166282, z: -0.48279786, w: -0.48279637}
+      scale: {x: 1.0000006, y: 1.0000005, z: 1.0000004}
+    - name: Bip001 L Toe0
+      parentName: Bip001 L Foot
+      position: {x: -0.0036733642, y: 0.0033036887, z: -0.0000000022888182}
+      rotation: {x: 0.0000019907347, y: -0.00000015207947, z: -0.70710766, w: 0.7071059}
+      scale: {x: 0.9999996, y: 1, z: 0.9999997}
+    - name: b_F_FCloth01
+      parentName: Dummy_catch
+      position: {x: -0.0019748008, y: 0.00025812682, z: -0.0050366633}
+      rotation: {x: 0.675164, y: 0.5130586, z: 0.41164586, w: 0.3338745}
+      scale: {x: 1.0000005, y: 1.0000006, z: 1.0000005}
+    - name: b_F_FCloth02
+      parentName: b_F_FCloth01
+      position: {x: -0.0075941663, y: -0.000005030822, z: 0.000000015830993}
+      rotation: {x: 0.00054353895, y: 0.018576974, z: -0.11196406, w: 0.9935385}
+      scale: {x: 1.0000001, y: 1.0000002, z: 1}
+    - name: b_F_FCloth03
+      parentName: b_F_FCloth02
+      position: {x: -0.0064799637, y: -0.0000059322356, z: 4.053116e-10}
+      rotation: {x: -0.000000042093298, y: 0.00000016951158, z: -0.041104514, w: 0.99915487}
+      scale: {x: 0.9999998, y: 0.9999997, z: 1}
+    - name: b_L_BCloth01
+      parentName: Dummy_catch
+      position: {x: 0.0033228686, y: -0.000041171264, z: -0.0023239164}
+      rotation: {x: 0.5750774, y: 0.8027258, z: 0.08407356, w: 0.13360037}
+      scale: {x: 1.0000004, y: 1, z: 1.0000005}
+    - name: b_L_BCloth02
+      parentName: b_L_BCloth01
+      position: {x: -0.008022555, y: -0.0000062934873, z: 0.00000085096354}
+      rotation: {x: -0.067451045, y: -0.031690016, z: -0.014537081, w: 0.9971132}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1}
+    - name: b_L_BCloth03
+      parentName: b_L_BCloth02
+      position: {x: -0.007979819, y: -0.0000061920164, z: 0.00000014381408}
+      rotation: {x: -0.011869626, y: -0.011485771, z: -0.0317816, w: 0.99935836}
+      scale: {x: 0.99999976, y: 0.99999976, z: 0.99999994}
+    - name: b_R_BCloth01
+      parentName: Dummy_catch
+      position: {x: -0.002908328, y: 0.00027072447, z: 0.0008489627}
+      rotation: {x: 0.37855312, y: 0.4617524, z: 0.45895076, w: 0.65791076}
+      scale: {x: 1.0000004, y: 1, z: 1}
+    - name: b_R_BCloth02
+      parentName: b_R_BCloth01
+      position: {x: -0.008022581, y: -0.000006285095, z: -0.00000092506406}
+      rotation: {x: 0.07305117, y: 0.00024939148, z: -0.018642627, w: 0.99715394}
+      scale: {x: 0.9999999, y: 0.9999998, z: 1.0000002}
+    - name: b_R_BCloth03
+      parentName: b_R_BCloth02
+      position: {x: -0.007979821, y: -0.000006195068, z: -0.00000014343262}
+      rotation: {x: 0.011869656, y: 0.01148587, z: -0.031781502, w: 0.99935836}
+      scale: {x: 1, y: 1, z: 1}
+    - name: b_L_Cloth01
+      parentName: Dummy_catch
+      position: {x: 0.0055515408, y: 0.014648302, z: -0.0016863444}
+      rotation: {x: 0.5509616, y: 0.76873124, z: 0.22179955, w: 0.23727316}
+      scale: {x: 1.0000005, y: 1.0000001, z: 1.0000004}
+    - name: b_L_Cloth02
+      parentName: b_L_Cloth01
+      position: {x: -0.009509429, y: -0.0000065734857, z: 0.000000010681152}
+      rotation: {x: -0.0014257489, y: 0.010053003, z: 0.060898513, w: 0.99809235}
+      scale: {x: 0.9999998, y: 0.99999976, z: 1.0000001}
+    - name: b_L_Cloth03
+      parentName: b_L_Cloth02
+      position: {x: -0.008316225, y: -0.0000070327756, z: 0.0000004951477}
+      rotation: {x: -0.03542547, y: 0.014784131, z: 0.006949813, w: 0.9992388}
+      scale: {x: 1.0000005, y: 1.0000005, z: 1}
+    - name: b_L_Cloth04
+      parentName: b_L_Cloth03
+      position: {x: -0.008853244, y: -0.000006344604, z: -0.000000018310546}
+      rotation: {x: 0.0008734928, y: -0.013600105, z: -0.04304288, w: 0.9989803}
+      scale: {x: 0.99999964, y: 0.9999997, z: 0.9999999}
+    - name: b_L_Cloth07
+      parentName: b_L_Cloth04
+      position: {x: -0.002052726, y: -0.00023232038, z: 0.004523986}
+      rotation: {x: 0.00013170541, y: 0.3020051, z: -0.19876759, w: 0.9323542}
+      scale: {x: 0.9999994, y: 1, z: 1.0000001}
+    - name: b_L_Cloth05
+      parentName: b_L_Cloth04
+      position: {x: -0.007996128, y: -0.0000056930535, z: 0}
+      rotation: {x: -0.00010145115, y: 0.00036307602, z: -0.19551626, w: 0.98070043}
+      scale: {x: 1.0000002, y: 1.0000001, z: 1.0000004}
+    - name: b_L_Cloth06
+      parentName: b_L_Cloth05
+      position: {x: -0.0031134072, y: -0.00047890472, z: 0.0033076827}
+      rotation: {x: 0.094077624, y: 0.23203138, z: -0.16337787, w: 0.9542634}
+      scale: {x: 0.9999998, y: 1.0000002, z: 0.99999964}
+    - name: Bip001 R Foot
+      parentName: Dummy_catch
+      position: {x: -0.00812645, y: -0.023110526, z: 0.005491333}
+      rotation: {x: -0.23979115, y: -0.23978911, z: 0.66520774, w: 0.6652068}
+      scale: {x: 0.9999999, y: 1, z: 0.9999998}
+    - name: Bip001 R Toe0
+      parentName: Bip001 R Foot
+      position: {x: -0.0036733644, y: 0.0033036906, z: 0.0000000015258789}
+      rotation: {x: -0.000000627945, y: -0.00000021499119, z: -0.70710635, w: 0.7071072}
+      scale: {x: 1.0000002, y: 1.0000006, z: 1.0000004}
+    - name: b_R_Cloth01
+      parentName: Dummy_catch
+      position: {x: -0.0007401522, y: 0.015304836, z: 0.004202537}
+      rotation: {x: 0.4386334, y: 0.5837399, z: 0.3676236, w: 0.57593524}
+      scale: {x: 1.0000005, y: 1.0000001, z: 1.0000004}
+    - name: b_R_Cloth02
+      parentName: b_R_Cloth01
+      position: {x: -0.0095087765, y: -0.0000064620967, z: 0.0000000022888182}
+      rotation: {x: 0.00092137716, y: -0.010111983, z: 0.110701144, w: 0.9938019}
+      scale: {x: 0.99999994, y: 1.0000001, z: 0.99999994}
+    - name: b_R_Cloth03
+      parentName: b_R_Cloth02
+      position: {x: -0.008316229, y: -0.0000070312494, z: -0.0000004985809}
+      rotation: {x: 0.035425443, y: -0.014784178, z: 0.0069497474, w: 0.9992388}
+      scale: {x: 0.9999998, y: 1, z: 1.0000001}
+    - name: b_R_Cloth04
+      parentName: b_R_Cloth03
+      position: {x: -0.008852456, y: -0.000006361389, z: -0.0000000045776365}
+      rotation: {x: -0.000022801156, y: 0.013628171, z: 0.019399108, w: 0.99971896}
+      scale: {x: 0.99999994, y: 0.99999976, z: 1}
+    - name: b_R_Cloth07
+      parentName: b_R_Cloth04
+      position: {x: -0.0020529067, y: -0.00023220443, z: -0.004524117}
+      rotation: {x: 0.003728283, y: -0.3019816, z: -0.21139953, w: 0.9295717}
+      scale: {x: 1, y: 1.0000005, z: 1.0000001}
+    - name: b_R_Cloth05
+      parentName: b_R_Cloth04
+      position: {x: -0.007996838, y: -0.0000053421018, z: -0.000000004959106}
+      rotation: {x: 0.0001244418, y: -0.00035482613, z: -0.25799814, w: 0.96614534}
+      scale: {x: 0.99999994, y: 1.0000005, z: 1.0000001}
+    - name: b_R_Cloth06
+      parentName: b_R_Cloth05
+      position: {x: -0.0031145636, y: -0.00047819517, z: -0.0033067954}
+      rotation: {x: -0.17694232, y: -0.29652888, z: -0.2061546, w: 0.9155667}
+      scale: {x: 1.0000007, y: 1.0000006, z: 1.0000005}
+    - name: Bip001 L Clavicle
+      parentName: Dummy_catch
+      position: {x: 0.0018066365, y: 0.013338134, z: -0.0028432508}
+      rotation: {x: 0.22966547, y: 0.6833353, z: 0.6604563, w: -0.21001007}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000002}
+    - name: b_L_shoulder2
+      parentName: Bip001 L Clavicle
+      position: {x: -0.0018074642, y: -0.00019751833, z: 0.002396469}
+      rotation: {x: 0.6798413, y: -0.16975279, z: -0.00006397283, w: 0.71344227}
+      scale: {x: 0.99999994, y: 1.0000002, z: 1.0000002}
+    - name: b_L_shoulder1
+      parentName: Bip001 L Clavicle
+      position: {x: -0.0040941867, y: 0.00024145203, z: 0.0008906127}
+      rotation: {x: 0.86953837, y: -0.12592617, z: -0.47373387, w: -0.060182214}
+      scale: {x: 0.99999994, y: 1.0000001, z: 1}
+    - name: Bip001 LUpArmTwist
+      parentName: Bip001 L Clavicle
+      position: {x: -0.0045497096, y: 6.67572e-10, z: 0}
+      rotation: {x: 0.09666011, y: -0.04381244, z: -0.03229423, w: 0.9938282}
+      scale: {x: 0.99999994, y: 1, z: 1}
+    - name: Bip001 L UpperArm
+      parentName: Bip001 LUpArmTwist
+      position: {x: -0.0035453732, y: 0.0000000015258789, z: 0.0000000061035155}
+      rotation: {x: 0.0000000074505797, y: 0.000000029802315, z: 0.000000029802315, w: 1}
+      scale: {x: 1.0000002, y: 1, z: 1}
+    - name: Bip001 Neck
+      parentName: Dummy_catch
+      position: {x: 0.0006044769, y: 0.014607455, z: -0.0024207789}
+      rotation: {x: 0.59500325, y: -0.42758626, z: 0.5910182, w: -0.33739993}
+      scale: {x: 0.99999976, y: 0.9999997, z: 1.0000005}
+    - name: Bip001 Head
+      parentName: Bip001 Neck
+      position: {x: -0.001711499, y: 0.0000000015258789, z: 3.8146972e-10}
+      rotation: {x: 0.01943807, y: 0.016001143, z: -0.1859413, w: 0.98223823}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: Bip001 Eye_L
+      parentName: Bip001 Head
+      position: {x: -0.0023899998, y: 0.00236, z: 0.00057}
+      rotation: {x: 0.000000098329856, y: 0.000000029426872, z: 0.17364821, w: 0.9848078}
+      scale: {x: 1, y: 1, z: 1}
+    - name: FXc_Cs_Toledo_Eye02
+      parentName: Bip001 Eye_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bill
+      parentName: FXc_Cs_Toledo_Eye02
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.011075657, y: 0.9941437, z: 0.07716392, w: 0.07484241}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Line
+      parentName: Bill
+      position: {x: 0.000656, y: -0.00058, z: -0.000054999997}
+      rotation: {x: 0.2637866, y: -0.59335077, z: 0.38441274, w: 0.65618473}
+      scale: {x: 0.078715004, y: 0.2925128, z: 0.059445944}
+    - name: Line 1
+      parentName: Bill
+      position: {x: 0.000656, y: -0.00058, z: -0.000054999997}
+      rotation: {x: 0.2637866, y: -0.59335077, z: 0.38441274, w: 0.65618473}
+      scale: {x: 0.078715004, y: 0.2925128, z: 0.059445944}
+    - name: Flare
+      parentName: Bill
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1.0000004, z: 1.0000005}
+    - name: Flare 1
+      parentName: Bill
+      position: {x: -0, y: 0.0001, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1.0000004, z: 1.0000005}
+    - name: Bip001 Eye_R
+      parentName: Bip001 Head
+      position: {x: -0.002387, y: 0.002359, z: -0.00057}
+      rotation: {x: 0.00000002657935, y: 0.00000018094447, z: 0.17364821, w: 0.9848078}
+      scale: {x: 1, y: 1, z: 1}
+    - name: FXc_Cs_Toledo_Eye01
+      parentName: Bip001 Eye_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bill 1
+      parentName: FXc_Cs_Toledo_Eye01
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.011075657, y: 0.9941437, z: 0.07716392, w: 0.07484241}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Line 2
+      parentName: Bill 1
+      position: {x: -0.000657, y: -0.000572, z: -0.000114}
+      rotation: {x: 0.28074622, y: 0.585517, z: -0.365377, w: 0.6669716}
+      scale: {x: 0.078715004, y: 0.2925128, z: 0.059445944}
+    - name: Line 3
+      parentName: Bill 1
+      position: {x: -0.000657, y: -0.000572, z: -0.000114}
+      rotation: {x: 0.28074622, y: 0.585517, z: -0.365377, w: 0.6669716}
+      scale: {x: 0.078715004, y: 0.2925128, z: 0.059445944}
+    - name: Flare 2
+      parentName: Bill 1
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1.0000004, z: 1.0000005}
+    - name: Flare 3
+      parentName: Bill 1
+      position: {x: -0, y: 0.0001, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1.0000004, z: 1.0000005}
+    - name: Bip001 L Forearm
+      parentName: Dummy_catch
+      position: {x: 0.010826248, y: 0.008864007, z: -0.00696683}
+      rotation: {x: 0.7423242, y: 0.42930752, z: 0.45618933, w: -0.23778382}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000007}
+    - name: Bip001 L ForeTwist
+      parentName: Bip001 L Forearm
+      position: {x: -0.00392517, y: -0.0000000022888182, z: 0}
+      rotation: {x: 0.24054202, y: -0.000000090492435, z: 0.00000006848142, w: 0.97063875}
+      scale: {x: 1, y: 1.0000002, z: 1}
+    - name: Bip001 L Hand
+      parentName: Dummy_catch
+      position: {x: 0.009130622, y: 0.0055509703, z: -0.0139128715}
+      rotation: {x: 0.75532025, y: 0.34421304, z: 0.55600184, w: 0.043250922}
+      scale: {x: 1.0000006, y: 1.0000006, z: 1.0000007}
+    - name: Bip001 L Finger1
+      parentName: Bip001 L Hand
+      position: {x: -0.0036589887, y: -0.000040924067, z: -0.0011802551}
+      rotation: {x: 0.008782552, y: -0.030207919, z: -0.2911347, w: 0.9561647}
+      scale: {x: 0.9999997, y: 1.0000001, z: 0.9999993}
+    - name: Bip001 L Finger11
+      parentName: Bip001 L Finger1
+      position: {x: -0.0015132414, y: -0.0000000015258789, z: 0}
+      rotation: {x: -0.00000023750526, y: -0.000000088417536, z: -0.7105091, w: 0.70368797}
+      scale: {x: 0.99999994, y: 1, z: 0.99999994}
+    - name: Bip001 L Finger2
+      parentName: Bip001 L Hand
+      position: {x: -0.0036589897, y: -0.0000001800537, z: -0.00022870483}
+      rotation: {x: -0.025264956, y: -0.043887347, z: -0.49480486, w: 0.8675274}
+      scale: {x: 0.99999964, y: 1.0000002, z: 0.99999905}
+    - name: Bip001 L Finger21
+      parentName: Bip001 L Finger2
+      position: {x: -0.0016438934, y: -0.0000000022888182, z: -0.0000000015258789}
+      rotation: {x: 0.0000000979735, y: -0.00000015722902, z: -0.6809488, w: 0.73233104}
+      scale: {x: 1.0000001, y: 0.99999994, z: 1}
+    - name: Bip001 L Finger3
+      parentName: Bip001 L Hand
+      position: {x: -0.003774459, y: 0.0000005340576, z: 0.0006729812}
+      rotation: {x: -0.10919572, y: -0.0057938, z: -0.44513154, w: 0.88876355}
+      scale: {x: 0.99999964, y: 1.0000005, z: 0.9999991}
+    - name: Bip001 L Finger31
+      parentName: Bip001 L Finger3
+      position: {x: -0.0015498535, y: 0, z: 0}
+      rotation: {x: -0.00000007815015, y: -0.000000110000975, z: -0.6656481, w: 0.74626577}
+      scale: {x: 0.99999994, y: 1, z: 1}
+    - name: Bip001 L Finger4
+      parentName: Bip001 L Hand
+      position: {x: -0.003717066, y: 0.0000148071285, z: 0.0014058044}
+      rotation: {x: -0.15637577, y: 0.015848894, z: -0.26241028, w: 0.95206946}
+      scale: {x: 0.9999997, y: 1.0000004, z: 0.9999993}
+    - name: Bip001 L Finger41
+      parentName: Bip001 L Finger4
+      position: {x: -0.0014579574, y: 0, z: -0.0000000015258789}
+      rotation: {x: -0.00000005904538, y: -0.0000002257963, z: -0.6853745, w: 0.7281908}
+      scale: {x: 0.9999999, y: 0.9999999, z: 0.99999994}
+    - name: Bip001 L Finger0
+      parentName: Bip001 L Hand
+      position: {x: -0.0016183326, y: 0.0009688629, z: -0.0009211578}
+      rotation: {x: 0.7894195, y: -0.45162606, z: 0.04597984, w: 0.41320306}
+      scale: {x: 0.99999994, y: 0.99999964, z: 0.9999997}
+    - name: Bip001 L Finger01
+      parentName: Bip001 L Finger0
+      position: {x: -0.002037683, y: -0.0000000015258789, z: 0.0000000011444091}
+      rotation: {x: -0.00000014802694, y: 0.0000000628985, z: -0.5936119, w: 0.80475146}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
+    - name: Bip001 Spine
+      parentName: Dummy_catch
+      position: {x: -0.00021748466, y: 0.0010882171, z: -0.0016679505}
+      rotation: {x: -0.5699579, y: 0.6817803, z: -0.30258653, w: 0.34462303}
+      scale: {x: 1, y: 0.9999999, z: 1.0000001}
+    - name: Bip001 Spine1
+      parentName: Bip001 Spine
+      position: {x: -0.003343652, y: -0.0000034858701, z: 0.00000015797615}
+      rotation: {x: -0.02114315, y: 0.030354807, z: -0.046736747, w: 0.99822205}
+      scale: {x: 0.99999994, y: 1, z: 1}
+    - name: Bip001 Spine2
+      parentName: Bip001 Spine1
+      position: {x: -0.004399988, y: -0.0000048446655, z: 0.00000021972654}
+      rotation: {x: -0.021143137, y: 0.030354807, z: -0.046736814, w: 0.99822205}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: Bip001 Pelvis
+      parentName: Dummy_catch
+      position: {x: -0.00094634603, y: -0.002247943, z: -0.0027710395}
+      rotation: {x: -0.51622325, y: 0.67836726, z: -0.33696786, w: 0.39973003}
+      scale: {x: 1.0000001, y: 1.0000002, z: 1.0000005}
+    - name: b_L1_BCloth01
+      parentName: Bip001 Pelvis
+      position: {x: -0.004756248, y: 0.0008220565, z: 0.00401715}
+      rotation: {x: -0.1448012, y: 0.8017337, z: 0.5568946, w: 0.1616297}
+      scale: {x: 1.0000001, y: 1.0000004, z: 1.0000002}
+    - name: b_R1_BCloth01
+      parentName: Bip001 Pelvis
+      position: {x: -0.0047563366, y: 0.0008220413, z: -0.0040171053}
+      rotation: {x: -0.13621476, y: 0.80323774, z: -0.5585907, w: -0.15566349}
+      scale: {x: 1.0000002, y: 1.0000004, z: 0.9999998}
+    - name: Bip001 L Thigh
+      parentName: Dummy_catch
+      position: {x: 0.0011512298, y: -0.0023527388, z: -0.0038392069}
+      rotation: {x: -0.35065055, y: -0.520182, z: 0.5419423, w: 0.5592437}
+      scale: {x: 1.0000002, y: 1.0000004, z: 1.0000005}
+    - name: Bip001 L Calf
+      parentName: Bip001 L Thigh
+      position: {x: -0.00996047, y: 0.0000000022888182, z: -7.6293943e-10}
+      rotation: {x: -0.00000007521713, y: 0.00000007530024, z: 0.20983438, w: 0.97773695}
+      scale: {x: 0.99999994, y: 1.0000002, z: 1}
+    - name: Bip001 R Thigh
+      parentName: Dummy_catch
+      position: {x: -0.003043922, y: -0.0021431455, z: -0.0017028722}
+      rotation: {x: -0.33384946, y: -0.17825016, z: 0.53516287, w: 0.75522995}
+      scale: {x: 0.9999999, y: 0.99999976, z: 1.0000001}
+    - name: Bip001 R Calf
+      parentName: Bip001 R Thigh
+      position: {x: -0.009960474, y: 0.0000000022888182, z: 0.0000000030517577}
+      rotation: {x: -0.00000002873368, y: 0.0000001310491, z: 0.24121141, w: 0.9704726}
+      scale: {x: 0.99999994, y: 1.0000001, z: 1.0000001}
+    - name: Bip001 R Clavicle
+      parentName: Dummy_catch
+      position: {x: -0.00021097276, y: 0.013697961, z: -0.0011020864}
+      rotation: {x: 0.6546628, y: 0.23951651, z: -0.2570547, w: 0.66930664}
+      scale: {x: 1.0000002, y: 0.9999998, z: 0.9999999}
+    - name: b_R_shoulder2
+      parentName: Bip001 R Clavicle
+      position: {x: -0.0018069686, y: -0.00019666247, z: -0.00239664}
+      rotation: {x: -0.72896326, y: 0.09353399, z: 0.15202717, w: 0.6608719}
+      scale: {x: 1.0000005, y: 1.0000004, z: 0.99999994}
+    - name: b_R_shoulder1
+      parentName: Bip001 R Clavicle
+      position: {x: -0.0040978068, y: 0.00024153022, z: -0.00089100946}
+      rotation: {x: 0.85589963, y: 0.11085833, z: 0.50340915, w: -0.041539416}
+      scale: {x: 1, y: 1.0000001, z: 1.0000004}
+    - name: Bip001 RUpArmTwist
+      parentName: Bip001 R Clavicle
+      position: {x: -0.004549708, y: -1.4305114e-10, z: 0}
+      rotation: {x: 0.066641584, y: -0.0045421263, z: 0.069608666, w: 0.99533564}
+      scale: {x: 1, y: 1.0000004, z: 1.0000002}
+    - name: Bip001 R UpperArm
+      parentName: Bip001 RUpArmTwist
+      position: {x: -0.0035453674, y: 0.0000000036239622, z: -0.0000000061035155}
+      rotation: {x: -0.000000036787245, y: -0.000000059604645, z: -0.0000000037252925, w: 1}
+      scale: {x: 1, y: 0.9999998, z: 1}
+    - name: Bip001 R Forearm
+      parentName: Dummy_catch
+      position: {x: -0.005226742, y: 0.007073962, z: 0.0028887189}
+      rotation: {x: 0.78241533, y: 0.4441877, z: 0.2844717, w: 0.331058}
+      scale: {x: 1.0000004, y: 1.0000002, z: 0.99999994}
+    - name: Bip001 R ForeTwist
+      parentName: Bip001 R Forearm
+      position: {x: -0.003925172, y: -0.0000000015258789, z: 0.0000000015258789}
+      rotation: {x: 0.4250922, y: -0.00000002064121, z: 0.000000026156524, w: 0.9051501}
+      scale: {x: 1, y: 1.0000001, z: 0.99999976}
+    - name: Bip001 R Hand
+      parentName: Dummy_catch
+      position: {x: -0.008722013, y: 0.00011227111, z: 0.0016984291}
+      rotation: {x: -0.11817459, y: -0.4003452, z: 0.40122554, w: 0.8153383}
+      scale: {x: 1, y: 1.0000001, z: 0.9999999}
+    - name: Bip001 R Finger1
+      parentName: Bip001 R Hand
+      position: {x: -0.0036589934, y: -0.000040922547, z: 0.0011802551}
+      rotation: {x: -0.012547191, y: 0.028848184, z: -0.41020095, w: 0.9114525}
+      scale: {x: 1, y: 1.0000002, z: 1}
+    - name: Bip001 R Finger11
+      parentName: Bip001 R Finger1
+      position: {x: -0.00151324, y: 0.0000000030517577, z: 0}
+      rotation: {x: 0.000000051513773, y: -0.000000042216527, z: -0.7546543, w: 0.6561226}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000002}
+    - name: Bip001 R Finger2
+      parentName: Bip001 R Hand
+      position: {x: -0.003658992, y: -0.00000018157958, z: 0.00022870635}
+      rotation: {x: 0.021196315, y: 0.033141166, z: -0.5347363, w: 0.8441028}
+      scale: {x: 1, y: 1, z: 1.0000001}
+    - name: Bip001 R Finger21
+      parentName: Bip001 R Finger2
+      position: {x: -0.0016438995, y: -0.0000000015258789, z: 0}
+      rotation: {x: -0.00000011843405, y: 0.000000030097638, z: -0.78615177, w: 0.6180336}
+      scale: {x: 1.0000004, y: 1.0000002, z: 1.0000002}
+    - name: Bip001 R Finger3
+      parentName: Bip001 R Hand
+      position: {x: -0.003774463, y: 0.0000005386352, z: -0.000672979}
+      rotation: {x: 0.07760904, y: 0.016231112, z: -0.6095039, w: 0.78880817}
+      scale: {x: 0.9999999, y: 1.0000002, z: 1}
+    - name: Bip001 R Finger31
+      parentName: Bip001 R Finger3
+      position: {x: -0.0015498535, y: -0.0000000030517577, z: 7.6293943e-10}
+      rotation: {x: 0.00000002958537, y: -0.00000007087149, z: -0.7010114, w: 0.7131501}
+      scale: {x: 1, y: 0.9999998, z: 1.0000001}
+    - name: Bip001 R Finger4
+      parentName: Bip001 R Hand
+      position: {x: -0.0037170683, y: 0.00001481018, z: -0.0014058033}
+      rotation: {x: 0.124094926, y: 0.0031716859, z: -0.6299611, w: 0.7666417}
+      scale: {x: 1.0000001, y: 0.99999994, z: 1.0000001}
+    - name: Bip001 R Finger41
+      parentName: Bip001 R Finger4
+      position: {x: -0.0014579574, y: -0.0000000030517577, z: 0.0000000011444091}
+      rotation: {x: -0.0000000460951, y: -0.000000038515793, z: -0.681919, w: 0.7314277}
+      scale: {x: 1, y: 0.99999994, z: 0.99999976}
+    - name: Bip001 R Finger0
+      parentName: Bip001 R Hand
+      position: {x: -0.0016183334, y: 0.00096886593, z: 0.00092116086}
+      rotation: {x: -0.74811405, y: 0.41241392, z: -0.05194425, w: 0.5172446}
+      scale: {x: 1.0000001, y: 1, z: 1.0000001}
+    - name: Bip001 R Finger01
+      parentName: Bip001 R Finger0
+      position: {x: -0.002037686, y: 0, z: -0.0000000015258789}
+      rotation: {x: -0.0000000894293, y: 0.00000003954994, z: -0.66395223, w: 0.747775}
+      scale: {x: 0.9999999, y: 1, z: 0.99999976}
+    - name: Toleto_boss_body
+      parentName: Toledo_boss
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Toleto_boss_eye
+      parentName: Toledo_boss
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Toleto_boss_leg
+      parentName: Toledo_boss
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Toleto_boss_skin
+      parentName: Toledo_boss
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -197,9 +1770,9 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: 
+    rootMotionBoneName: Bip001 Spine
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1

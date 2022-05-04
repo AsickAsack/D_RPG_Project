@@ -10,6 +10,7 @@ public class cAttackManager : cCharacteristic
 
     public int Combo = 0;
     public float ComboLimitTime = 2.5f;
+    public float convertDamage = 0.1f; // 데미지 환산 비율 => 데미지 = 공격력(ATK) * 데미지비율(convertDamage)
 
     public Coroutine myCoroutine = null;
 
@@ -46,7 +47,7 @@ public class cAttackManager : cCharacteristic
 
                 if (bs != null)
                 {
-                    bs.OnDamage(35.0f);
+                    bs.OnDamage(this.GetComponent<cCharacter>().myStats.ATK * convertDamage);
                 }
             }
         }
@@ -72,6 +73,7 @@ public class cAttackManager : cCharacteristic
                     myAnim.SetFloat("Combo", Combo);
                     myAnim.SetTrigger("Attack");
                     Combo = (Combo++) % 3;
+                    StopAllCoroutines();
                 }
 
                 // 시간 초기화
@@ -91,12 +93,24 @@ public class cAttackManager : cCharacteristic
         }
     }
 
+    //IEnumerator BasicAttacking()
+    //{
+    //    yield return StartCoroutine(Dash(myDetection.Target.transform.position));
+
+    //    while (true)
+    //    {
+    //        float ComboDurationTime = Time.deltaTime; // 콤보 지속 시간
+
+    //        if(ComboDurationTime > )
+
+    //        yield return null;
+    //    }
+    //}
+
     public void Skill_1()
     {
         if (this.GetComponent<cCharacter>().myState == cCharacter.STATE.PLAY)
         {
-            //FindMonster(); // 스킬은 아예 논타겟?
-
             if (!myAnim.GetBool("IsDoing")) // 스킬이나 공격이나 구르기 중에 스킬x
             {
                 myAnim.SetTrigger("Skill");
@@ -112,14 +126,19 @@ public class cAttackManager : cCharacteristic
 
         // 몬스터의 움직임을 받아옴 
         dir = myDetection.Target.transform.position - this.transform.position; // 몬스터를 바라보는 방향
+        float dist = dir.magnitude; // 몬스터와 플레이어 사이의 거리
 
         if (myCoroutine != null)
         {
             StopCoroutine(myCoroutine);
         }
         myCoroutine = StartCoroutine(Targeting(myAnim.transform, dir)); // 몬스터를 바라보도록 함
-        //myCoroutine = StartCoroutine(LookingTarget(myAnim.transform, dir));
 
+        if (dist > 1.5f)
+        {
+            //OnDash(myDetection.Target.transform.position); // 공격 사정거리 내의 몬스터가 일정거리 밖에 멀리 있을경우 대쉬로 몬스터 앞으로 이동 후 공격
+            StartCoroutine(Dash(myDetection.Target.transform.position));
+        }
     }
 
     IEnumerator Targeting(Transform myTrans, Vector3 myDir)
@@ -129,11 +148,27 @@ public class cAttackManager : cCharacteristic
             CalculateAngle(myTrans.forward, myDir, myTrans.right, out ROTDATA myRotData); // 각도 계산 -> 매번 해주어야 함
 
             Quaternion dirQuat = Quaternion.LookRotation(myDir * 360.0f * Time.deltaTime); // 회전해야하는 값을 저장
-            Quaternion moveQuat = Quaternion.Slerp(myRigid.rotation, dirQuat, 360.0f); // 현재 회전값과 바뀔 회전값을 보간
-            myRigid.MoveRotation(moveQuat);
+            Quaternion moveQuat = Quaternion.Slerp(myRigid.rotation, dirQuat, 1.0f); // 현재 회전값과 바뀔 회전값을 보간
+            myRigid.MoveRotation(moveQuat); // 회전
 
             if (this.GetComponent<CPlayerMove>().isMove == true) break; // 플레이어 이동시 반복문 빠져나감
 
+            yield return null;
+        }
+    }
+
+    public void OnDash(Vector3 MonsterPos)
+    {
+        // 플레이어의 일정 범위내에 몬스터가 있으면 대쉬공격
+        StartCoroutine(Dash(MonsterPos));
+    }
+
+    IEnumerator Dash(Vector3 MonsterPos)
+    {
+        while (true)
+        {
+            this.transform.position = Vector3.Lerp(this.transform.position, MonsterPos, 0.1f);
+            if ((this.transform.position - MonsterPos).magnitude < 0.5f) break;
             yield return null;
         }
     }

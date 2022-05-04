@@ -9,6 +9,11 @@ public class cAutoDetection : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
         // 플레이어 감지
         if ((DetectLayer & (1 << other.gameObject.layer)) == 64)
         {
@@ -30,7 +35,10 @@ public class cAutoDetection : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        Target = null; // 타겟 해제
+        if((DetectLayer & (1 << other.gameObject.layer)) > 0)
+        {
+            Target = null; // 타겟 해제
+        }
     }
 }
 

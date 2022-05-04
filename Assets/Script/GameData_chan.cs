@@ -15,7 +15,21 @@ public partial class GameData //Chan
     //    public Monster monster;
     //}
 
+    public partial class PlayerData
+    {
+        [System.Serializable]
+        public struct Stats
+        {
+            public float HP; // 체력
+
+            public float ATK; // 공격력 
+            public float DEF; // 방어력 
+        }
+
+    }
+
 }
+
 
 //public struct Player
 //{
