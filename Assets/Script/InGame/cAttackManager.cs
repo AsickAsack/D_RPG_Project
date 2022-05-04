@@ -47,7 +47,7 @@ public class cAttackManager : cCharacteristic
 
                 if (bs != null)
                 {
-                   // bs.OnDamage(this.GetComponent<cCharacter>().myStats.ATK * convertDamage);
+                    bs.OnDamage(this.GetComponent<cCharacter>().myStats.ATK * convertDamage);
                 }
             }
         }
@@ -60,52 +60,49 @@ public class cAttackManager : cCharacteristic
         {
             FindMonster();
 
-            float ComboDurationTime = playTime - curTime; // 콤보지속시간
-            curTime = playTime;
-
-            if (ComboDurationTime > ComboLimitTime)
-            {
-                Combo = 0; // 콤보 초기화
-
-                // 처음 콤보 사용
-                if (!myAnim.GetBool("IsDoing")) // 스킬이나 공격 구르기 중에 공격x
-                {
-                    myAnim.SetFloat("Combo", Combo);
-                    myAnim.SetTrigger("Attack");
-                    Combo = (Combo++) % 3;
-                    StopAllCoroutines();
-                }
-
-                // 시간 초기화
-                playTime = 0.0f;
-                curTime = 0.0f;
-            }
-            else
-            {
-                // 다음 콤보 사용
-                if (!myAnim.GetBool("IsDoing")) // 스킬이나 공격 구르기 중에 공격x
-                {
-                    myAnim.SetFloat("Combo", Combo);
-                    myAnim.SetTrigger("Attack");
-                    Combo = (Combo + 1) % 3;
-                }
-            }
+            StartCoroutine(BasicAttacking());
         }
     }
 
-    //IEnumerator BasicAttacking()
-    //{
-    //    yield return StartCoroutine(Dash(myDetection.Target.transform.position));
+    IEnumerator BasicAttacking()
+    {
+        // 타겟을 찾은 경우에만 대쉬
+        if (myDetection.Target != null) 
+        {
+            // 대쉬가 끝난 이후에 공격을 하도록 함
+            yield return StartCoroutine(Dash(myDetection.Target.transform.position));
+        }
 
-    //    while (true)
-    //    {
-    //        float ComboDurationTime = Time.deltaTime; // 콤보 지속 시간
+        float ComboDurationTime = playTime - curTime; // 콤보지속시간
+        curTime = playTime;
 
-    //        if(ComboDurationTime > )
+        if (ComboDurationTime > ComboLimitTime)
+        {
+            Combo = 0; // 콤보 초기화
 
-    //        yield return null;
-    //    }
-    //}
+            // 처음 콤보 사용
+            if (!myAnim.GetBool("IsDoing")) // 스킬이나 공격 구르기 중에 공격x
+            {
+                myAnim.SetFloat("Combo", Combo);
+                myAnim.SetTrigger("Attack");
+                Combo = (Combo++) % 3;
+            }
+
+            // 시간 초기화
+            playTime = 0.0f;
+            curTime = 0.0f;
+        }
+        else
+        {
+            // 다음 콤보 사용
+            if (!myAnim.GetBool("IsDoing")) // 스킬이나 공격 구르기 중에 공격x
+            {
+                myAnim.SetFloat("Combo", Combo);
+                myAnim.SetTrigger("Attack");
+                Combo = (Combo + 1) % 3;
+            }
+        }
+    }
 
     public void Skill_1()
     {
@@ -126,19 +123,12 @@ public class cAttackManager : cCharacteristic
 
         // 몬스터의 움직임을 받아옴 
         dir = myDetection.Target.transform.position - this.transform.position; // 몬스터를 바라보는 방향
-        float dist = dir.magnitude; // 몬스터와 플레이어 사이의 거리
 
         if (myCoroutine != null)
         {
             StopCoroutine(myCoroutine);
         }
         myCoroutine = StartCoroutine(Targeting(myAnim.transform, dir)); // 몬스터를 바라보도록 함
-
-        if (dist > 1.5f)
-        {
-            //OnDash(myDetection.Target.transform.position); // 공격 사정거리 내의 몬스터가 일정거리 밖에 멀리 있을경우 대쉬로 몬스터 앞으로 이동 후 공격
-            StartCoroutine(Dash(myDetection.Target.transform.position));
-        }
     }
 
     IEnumerator Targeting(Transform myTrans, Vector3 myDir)
@@ -168,7 +158,7 @@ public class cAttackManager : cCharacteristic
         while (true)
         {
             this.transform.position = Vector3.Lerp(this.transform.position, MonsterPos, 0.1f);
-            if ((this.transform.position - MonsterPos).magnitude < 0.5f) break;
+            if ((this.transform.position - MonsterPos).magnitude < 1.5f) break;
             yield return null;
         }
     }
