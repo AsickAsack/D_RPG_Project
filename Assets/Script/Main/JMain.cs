@@ -36,6 +36,11 @@ public class JMain : MonoBehaviour
         GameData.Instance.playerdata.Player_inventory.Add(GameData.Instance.playerdata.Itemdata[0]);
     }
 
+    public void gotitle()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+
+    }
 
 
 
