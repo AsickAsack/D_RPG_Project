@@ -12,8 +12,7 @@ public class cMonster : cCharacteristic, BattleSystem
 
     public STATE myState = STATE.CREAT;
 
-    //public GameData.PlayerData.Stats myStats;
-    //public ROTDATA myRotData;
+    public MonsterStat myStats;
 
     public LayerMask AttackMask; // 공격목표
     public Transform mySword; // 검
@@ -35,21 +34,21 @@ public class cMonster : cCharacteristic, BattleSystem
     public float convertDamage = 0.1f; // 데미지 환산 비율 => 데미지 = 공격력(ATK) * 데미지비율(convertDamage)
 
     public bool isdying = false; // 몬스터의 죽는 애니메이션이 끝났는지 여부
-
+        
     public void OnDamage(float damage)
     {
         if (myState == STATE.BATTLE || myState == STATE.ROAMING)
         {
-            //myStats.HP -= damage;
+            myStats.HP -= damage;
 
-            //if (myStats.HP <= 0.0f)
-            //{
-            //    ChangeState(STATE.DEAD); // HP가 0이되면 사망
-            //}
-            //else
-            //{
-            //    myAnim.SetTrigger("OnDamage");
-            //}
+            if (myStats.HP <= 0.0f)
+            {
+                ChangeState(STATE.DEAD); // HP가 0이되면 사망
+            }
+            else
+            {
+                myAnim.SetTrigger("OnDamage");
+            }
         }
     }
 
@@ -63,14 +62,27 @@ public class cMonster : cCharacteristic, BattleSystem
 
             if (bs != null)
             {
-               // bs.OnDamage(myStats.ATK * convertDamage);
+                bs.OnDamage(myStats.ATK * convertDamage);
             }
         }
     }
 
+    private void Awake()
+    {
+        InitializeStats();
+    }
+
+    void InitializeStats()
+    {
+        // PlayerData의 정보를 가져옴
+        myStats.HP = GameData.Instance.playerdata.monsterStat.HP;
+        myStats.ATK = GameData.Instance.playerdata.monsterStat.ATK;
+        myStats.DEF = GameData.Instance.playerdata.monsterStat.DEF;
+    }
+
+
     void Start()
     {
-        //ChangeState(STATE.ROAMING); // 로밍상태로 변경
         this.GetComponentInChildren<cAnimEvent>().Attack += OnAttack;
     }
 

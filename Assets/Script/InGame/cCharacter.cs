@@ -11,33 +11,43 @@ public class cCharacter : cCharacteristic, BattleSystem
 
     public STATE myState = STATE.CREAT;
 
-    
-    
-        
+    public PlayerStat myStats;
+
     public void OnDamage(float damage)
     {
         if (myState == STATE.PLAY)
         {
-            //myStats.HP -= damage;
-            
-            //if (myStats.HP <= 0.0f)
-            //{
-            //    ChangeState(STATE.DEAD); // HP가 0이되면 사망
-            //}
-            //else
-            //{
-            //    myAnim.SetTrigger("OnDamage");
-                
-            //}
-        }
+            myStats.HP -= damage;
 
-        
+            if (myStats.HP <= 0.0f)
+            {
+                ChangeState(STATE.DEAD); // HP가 0이되면 사망
+            }
+            else
+            {
+                myAnim.SetTrigger("OnDamage");
+
+            }
+        }
     }
 
     void OnDie()
     {
         StopAllCoroutines();
         myAnim.SetTrigger("Die"); // 죽는 애니메이션 실행
+    }
+
+    private void Awake()
+    {
+        InitializeStats();
+    }
+
+    void InitializeStats()
+    {
+        // PlayerData의 정보를 가져옴
+        myStats.HP = GameData.Instance.playerdata.playerStat.HP;
+        myStats.ATK = GameData.Instance.playerdata.playerStat.ATK;
+        myStats.DEF = GameData.Instance.playerdata.playerStat.DEF;
     }
 
     // Start is called before the first frame update

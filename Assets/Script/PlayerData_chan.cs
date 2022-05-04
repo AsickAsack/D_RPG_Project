@@ -1,37 +1,30 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public partial class PlayerData //Chan
 {
-
-    public int aaa = 0;
-    //예시입니다
-    //public partial class playerdata
-    //{
-    //    public int HP = 0;
-    //    public int MP = 0;
-    //    public Player player;
-    //    public Monster monster;
-    //}
-
-
-
+    public PlayerStat playerStat;
+    public MonsterStat monsterStat;
 }
 
+[Serializable]
+public class PlayerStat
+{
+    // 기본 캐릭터 스탯
+    public float HP = 1000; // 체력
 
-//public struct Player
-//{
+    public float ATK = 500; // 공격력 
+    public float DEF = 500; // 방어력 
+}
 
-//    public string name;
-//    public int dex;
+[Serializable]
+public class MonsterStat
+{
+    // 기본 몬스터 스탯
+    public float HP = 1000; // 체력
 
-//}
-
-//public struct Monster
-//{
-
-//    public string name;
-//    public int dex;
-
-//}
+    public float ATK = 500; // 공격력 
+    public float DEF = 500; // 방어력 
+}
