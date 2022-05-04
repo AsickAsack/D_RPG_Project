@@ -15,7 +15,6 @@ public class PMonster : MonoBehaviour
     public float attackDist = 2.0f; //공격사거리
     Animator myAnim; //애니메이션 설정용
     private bool isDead = false; //죽음
-    public Stats Skel01Stat;
     
 
     void Start()
@@ -64,11 +63,8 @@ public class PMonster : MonoBehaviour
                 break;
             case STATE.attack:
                 myAnim.SetBool("IsMoving", false);
-                StartCoroutine(Attacking());
-
-                
-                
-
+              
+                myAnim.SetTrigger("Attack");
 
 
                 break;
@@ -77,29 +73,7 @@ public class PMonster : MonoBehaviour
                 break;
         }
     }
-    IEnumerator Attacking()
-    {
-       
-        while(true)
-        {
-            if(myState == STATE.attack)
-            {
-                if (myAnim.GetBool("IsAttack") == false)
-                {
-                    myAnim.SetTrigger("Attack");
-                }
-
-            }
-            else
-            {
-                StopCoroutine(Attacking());
-            }
-            yield return new WaitForSeconds(1.0f);
-
-        }
-
-    }
-   
+    
     void StateProcess()
     {
         switch (myState)
@@ -118,28 +92,11 @@ public class PMonster : MonoBehaviour
     {
         if(myState == STATE.trace)
         {
-            if (myAnim.GetBool("IsAttack") == false)
+            if (myAnim.GetBool("IsAttacking") == false)
             {
                 navAgent.SetDestination(Target.position);
             }
         }
     }
-   public void OnDamaged(float Damage)
-    {
-        if(myState!=STATE.dead)
-        {
-
-            Skel01Stat.HP -= Damage;
-            print("A");
-        }
-
-        if(Skel01Stat.HP <=0.0f)
-        {
-            ChangeState(STATE.dead);
-        }
-        else
-        {
-            myAnim.SetTrigger("Hit");
-        }
-    }
+   
 }
