@@ -33,7 +33,7 @@ public class JMain : MonoBehaviour
     void Start()
     {
         Sound.Instance.PlayBGM(mainBGM);
-
+        GameData.Instance.playerdata.Player_inventory.Add(GameData.Instance.playerdata.Itemdata[0]);
     }
 
 
