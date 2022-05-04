@@ -89,7 +89,7 @@ public partial class GameData : MonoBehaviour
     private void Awake()
     {
         playerdata.Itemdata_Initialize();
-
+        playerdata.Itemdata2_Initialize();
     }
 
     private void Start()
@@ -165,9 +165,47 @@ public partial class PlayerData
     public UnityEngine.U2D.SpriteAtlas ItemImage;
 
     public List<itemdata> Player_inventory = new List<itemdata>();
+    public List<itemdata2> Player_inventory2 = new List<itemdata2>();
     public itemdata[] Itemdata = new itemdata[4];
+    public itemdata2[] Itemdata2 = new itemdata2[4];
 
-    public void chanegeUpgrade(List<itemdata> itemdatas, int index, int value)
+    public void Itemdata2_Initialize()
+    {
+
+        Itemdata2[0] = new itemdata2
+        {
+            itemType2 = ItemType2.NonConsume,
+            ItemCode=000,
+            ItemName="",
+            Description="dd",
+            //MySprite=,
+
+
+
+};
+
+        Itemdata2[1] = new itemdata2
+        {
+
+        };
+
+        Itemdata2[2] = new itemdata2
+        {
+
+        };
+
+        Itemdata2[3] = new itemdata2
+        {
+
+        };
+
+
+
+
+
+    }
+
+        public void chanegeUpgrade(List<itemdata> itemdatas, int index, int value)
     {
         itemdata temp = itemdatas[index];
         temp.Upgrade += value;
@@ -262,6 +300,23 @@ public partial class PlayerData
 
 }
 
+[System.Serializable]
+public struct itemdata2
+{
+
+    public ItemType2 itemType2;
+    public int ItemCode;
+    public string ItemName;
+    public string Description;
+    public Sprite MySprite;
+
+}
+
+[System.Serializable]
+public enum ItemType2
+{
+    Consume=0,NonConsume
+}
 
 
 [System.Serializable]

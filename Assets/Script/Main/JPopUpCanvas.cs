@@ -18,6 +18,7 @@ public class JPopUpCanvas : MonoBehaviour
     public Canvas Detail_GameObjectCanvas;
     public Canvas Option_Canvas;
     public Canvas ShopCanvas;
+    public Canvas Inventory_Canvas;
     //public Canvas Equip_Canvas;
 
     [Header("[UI open 확인 변수]")]
@@ -111,6 +112,8 @@ public class JPopUpCanvas : MonoBehaviour
             case Popup.Iventory_Popup:
                 {
                     popup = Popup.None;
+                    Inventory_Canvas.enabled = false;
+                    set_icon(false, true);
                 }
                 break;
             case Popup.Equip_Popup:
@@ -179,6 +182,21 @@ public class JPopUpCanvas : MonoBehaviour
 
     }
 
+
+    #region 인벤토리창 함수들
+
+    public void Open_Inventory()
+    {
+        popup = Popup.Iventory_Popup;
+        Inventory_Canvas.enabled = true;
+        BackGround_Canvas.enabled = true;
+        Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = "소지품";
+        set_icon(true, false);
+        audioSource.PlayOneShot(Ui_Click);
+    }
+
+
+    #endregion
 
 
     #region 장비창 함수들
@@ -273,7 +291,7 @@ public class JPopUpCanvas : MonoBehaviour
         {
             upgradenotice[0].SetActive(true);
             upgradenotice[1].SetActive(true);
-            upgradenotice[1].GetComponentInChildren<TMPro.TMP_Text>().text = "잠시만 기다려 주세요...";
+            upgradenotice[1].GetComponentInChildren<TMPro.TMP_Text>().text = "강화중...";
             audioSource.PlayOneShot(Hammer);
             yield return new WaitForSeconds(1.5f);
             switch(GameData.Instance.playerdata.Player_inventory[CurNum].itemType)
