@@ -195,6 +195,8 @@ public class JPopUpCanvas : MonoBehaviour
         audioSource.PlayOneShot(Ui_Click);
     }
 
+   
+
 
     #endregion
 

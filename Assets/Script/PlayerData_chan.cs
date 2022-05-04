@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public partial class GameData //Chan
+public partial class PlayerData //Chan
 {
 
-
+    public int aaa = 0;
     //예시입니다
     //public partial class playerdata
     //{
@@ -15,18 +15,7 @@ public partial class GameData //Chan
     //    public Monster monster;
     //}
 
-    public partial class PlayerData
-    {
-        [System.Serializable]
-        public struct Stats
-        {
-            public float HP; // 체력
 
-            public float ATK; // 공격력 
-            public float DEF; // 방어력 
-        }
-
-    }
 
 }
 

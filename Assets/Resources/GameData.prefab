@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5041062525556924926}
-  - component: {fileID: 9066338968038327044}
+  - component: {fileID: 3383665265968107779}
   m_Layer: 0
   m_Name: GameData
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9066338968038327044
+--- !u!114 &3383665265968107779
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2268527e17bab14b92c3c61bd2a20c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  a: 0
   Upgrade_Money: 10000
   Upgrade_chance: 80
   playerdata:
@@ -53,6 +54,7 @@ MonoBehaviour:
     FirstGame: 1
     ItemImage: {fileID: 4343727234628468602, guid: 78198b0358b01d547b34e9defb1b2a50, type: 2}
     Player_inventory: []
+    Player_inventory2: []
     Itemdata:
     - ItemCode: 0
       itemType: 0
@@ -102,3 +104,25 @@ MonoBehaviour:
       Equipped: 0
       grade: 0
       Mysprite: {fileID: 0}
+    Itemdata2:
+    - itemType2: 0
+      ItemCode: 0
+      ItemName: 
+      Description: 
+      MySprite: {fileID: 0}
+    - itemType2: 0
+      ItemCode: 0
+      ItemName: 
+      Description: 
+      MySprite: {fileID: 0}
+    - itemType2: 0
+      ItemCode: 0
+      ItemName: 
+      Description: 
+      MySprite: {fileID: 0}
+    - itemType2: 0
+      ItemCode: 0
+      ItemName: 
+      Description: 
+      MySprite: {fileID: 0}
+    aaa: 0

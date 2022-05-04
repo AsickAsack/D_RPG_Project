@@ -13,7 +13,7 @@ public class JSetItemDetail : MonoBehaviour
 
     public void number(int index)
     {
-
+        
         num = index;
     }
 

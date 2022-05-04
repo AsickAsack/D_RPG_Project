@@ -47,7 +47,7 @@ public class cAttackManager : cCharacteristic
 
                 if (bs != null)
                 {
-                    bs.OnDamage(this.GetComponent<cCharacter>().myStats.ATK * convertDamage);
+                   // bs.OnDamage(this.GetComponent<cCharacter>().myStats.ATK * convertDamage);
                 }
             }
         }

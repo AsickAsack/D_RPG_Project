@@ -11,23 +11,27 @@ public class cCharacter : cCharacteristic, BattleSystem
 
     public STATE myState = STATE.CREAT;
 
-    public GameData.PlayerData.Stats myStats;
+    
+    
         
     public void OnDamage(float damage)
     {
         if (myState == STATE.PLAY)
         {
-            myStats.HP -= damage;
-
-            if (myStats.HP <= 0.0f)
-            {
-                ChangeState(STATE.DEAD); // HP가 0이되면 사망
-            }
-            else
-            {
-                myAnim.SetTrigger("OnDamage");
-            }
+            //myStats.HP -= damage;
+            
+            //if (myStats.HP <= 0.0f)
+            //{
+            //    ChangeState(STATE.DEAD); // HP가 0이되면 사망
+            //}
+            //else
+            //{
+            //    myAnim.SetTrigger("OnDamage");
+                
+            //}
         }
+
+        
     }
 
     void OnDie()

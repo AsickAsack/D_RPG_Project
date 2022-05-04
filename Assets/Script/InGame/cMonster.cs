@@ -12,7 +12,7 @@ public class cMonster : cCharacteristic, BattleSystem
 
     public STATE myState = STATE.CREAT;
 
-    public GameData.PlayerData.Stats myStats;
+    //public GameData.PlayerData.Stats myStats;
     //public ROTDATA myRotData;
 
     public LayerMask AttackMask; // 공격목표
@@ -40,16 +40,16 @@ public class cMonster : cCharacteristic, BattleSystem
     {
         if (myState == STATE.BATTLE || myState == STATE.ROAMING)
         {
-            myStats.HP -= damage;
+            //myStats.HP -= damage;
 
-            if (myStats.HP <= 0.0f)
-            {
-                ChangeState(STATE.DEAD); // HP가 0이되면 사망
-            }
-            else
-            {
-                myAnim.SetTrigger("OnDamage");
-            }
+            //if (myStats.HP <= 0.0f)
+            //{
+            //    ChangeState(STATE.DEAD); // HP가 0이되면 사망
+            //}
+            //else
+            //{
+            //    myAnim.SetTrigger("OnDamage");
+            //}
         }
     }
 
@@ -63,7 +63,7 @@ public class cMonster : cCharacteristic, BattleSystem
 
             if (bs != null)
             {
-                bs.OnDamage(myStats.ATK * convertDamage);
+               // bs.OnDamage(myStats.ATK * convertDamage);
             }
         }
     }
