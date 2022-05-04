@@ -184,16 +184,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 133793779}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 54078a32a4ecd9a49951440aec24aa61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   myState: 0
   myStats:
-    HP: 1000
+    HP: 10000
     ATK: 500
-    DEF: 0
+    DEF: 500
   AttackMask:
     serializedVersion: 2
     m_Bits: 64
@@ -3202,7 +3202,7 @@ MonoBehaviour:
   myStats:
     HP: 1000
     ATK: 500
-    DEF: 0
+    DEF: 500
 --- !u!114 &913885425 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8170153791668043265, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
