@@ -93,12 +93,24 @@ public class cAttackManager : cCharacteristic
         }
     }
 
+    //IEnumerator BasicAttacking()
+    //{
+    //    yield return StartCoroutine(Dash(myDetection.Target.transform.position));
+
+    //    while (true)
+    //    {
+    //        float ComboDurationTime = Time.deltaTime; // 콤보 지속 시간
+
+    //        if(ComboDurationTime > )
+
+    //        yield return null;
+    //    }
+    //}
+
     public void Skill_1()
     {
         if (this.GetComponent<cCharacter>().myState == cCharacter.STATE.PLAY)
         {
-            //FindMonster(); // 스킬은 아예 논타겟?
-
             if (!myAnim.GetBool("IsDoing")) // 스킬이나 공격이나 구르기 중에 스킬x
             {
                 myAnim.SetTrigger("Skill");
@@ -122,10 +134,10 @@ public class cAttackManager : cCharacteristic
         }
         myCoroutine = StartCoroutine(Targeting(myAnim.transform, dir)); // 몬스터를 바라보도록 함
 
-        print(dist);
         if (dist > 1.5f)
         {
-            OnDash(myDetection.Target.transform.position); // 공격 사정거리 내의 몬스터가 일정거리 밖에 멀리 있을경우 대쉬로 몬스터 앞으로 이동 후 공격
+            //OnDash(myDetection.Target.transform.position); // 공격 사정거리 내의 몬스터가 일정거리 밖에 멀리 있을경우 대쉬로 몬스터 앞으로 이동 후 공격
+            StartCoroutine(Dash(myDetection.Target.transform.position));
         }
     }
 
