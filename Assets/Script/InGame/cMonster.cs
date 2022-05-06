@@ -24,6 +24,8 @@ public class cMonster : cCharacteristic, BattleSystem
     Vector3 startPos = Vector3.zero; // 몬스터가 등장한 위치
     Vector3 dir = Vector3.zero; // 몬스터가 이동할 방향
     float dist = 0.0f; // 몬스터가 이동할 거리
+    float AttackTime = 0.0f; // 공격 시작 시간
+
 
     public float MoveSpeed = 3.0f; // 몬스터 이동 속도
     public float RotSpeed = 360.0f; // 몬스터 회전 속도
@@ -125,12 +127,11 @@ public class cMonster : cCharacteristic, BattleSystem
             case STATE.ROAMING:
                 break;
             case STATE.BATTLE:
-                //DetectMove();
-                if (myDetection.Target.GetComponent<cCharacter>().myState != cCharacter.STATE.PLAY)
-                {
-                    // 캐릭터가 죽으면 로밍상태로 바꿔줌
-                    ChangeState(STATE.ROAMING);
-                }
+                //if (myDetection.Target.GetComponent<cCharacter>().myState != cCharacter.STATE.PLAY)
+                //{
+                //    // 캐릭터가 죽으면 로밍상태로 바꿔줌
+                //    ChangeState(STATE.ROAMING);
+                //}
                 break;
             case STATE.DEAD:
                 //if (isdying)
@@ -189,84 +190,11 @@ public class cMonster : cCharacteristic, BattleSystem
         {
             StopCoroutine(moveRoutine);
         }
-        moveRoutine = StartCoroutine(Attacking());
-
-        // 회전 -> 공격에서 같이 구현
-        //if (rotRoutine != null)
-        //{
-        //    StopCoroutine(rotRoutine);
-        //}
-        //rotRoutine = StartCoroutine(LookingTarget(myAnim.transform, dir));
-
-        //Attacking();
-
+        moveRoutine = StartCoroutine(Targeting());
     }
 
-    //void Attacking()
-    //{
-    //    float AttackTime = ATK_WaitingTime; // 첫 공격시 딜레이 없이 바로 공격
-
-    //    if (myDetection.Target == null)
-    //    {
-    //        ChangeState(STATE.ROAMING);
-    //        return;
-    //    }
-
-    //    // 매번 타겟의 위치를 갱신 -> 플레이어의 움직임을 받아옴 
-    //    dir = myDetection.Target.transform.position - this.transform.position; // 이동 방향
-    //    dist = dir.magnitude; // 목표지점까지의 거리
-    //    dir.Normalize();
-
-    //    CalculateAngle(myAnim.transform.forward, dir, myAnim.transform.right, out ROTDATA myRotData); // 각도 계산 -> 매번 해주어야 함
-
-    //    if (Vector3.Dot(myAnim.transform.right, dir) < 0.0f)
-    //    {
-    //        myRotData.rotDir = -1.0f; // 왼쪽방향
-    //    }
-
-    //    // 회전
-    //    if (!Mathf.Approximately(myRotData.angle, 0.0f))
-    //    {
-    //        float delta = RotSpeed * Time.deltaTime;
-
-    //        delta = delta > myRotData.angle ? myRotData.angle : delta;
-
-    //        myAnim.transform.Rotate(Vector3.up * delta * myRotData.rotDir);
-    //    }
-
-    //    if (dist > ATK_Range) // 공격범위 밖에 있을 경우 따라감
-    //    {
-    //        myAnim.SetTrigger("IsWalk"); // idle -> walk_front 
-
-    //        float delta = MoveSpeed * Time.deltaTime; // 이동 거리
-
-    //        delta = delta > dist ? dist : delta; // 이동 거리가 남은 거리보다 클 경우 남은 거리 만큼만 이동
-
-    //        this.transform.Translate(dir * delta);
-    //    }
-    //    else // 공격범위 내에 있을 경우 공격
-    //    {
-    //        myAnim.SetBool("IsWalk", false); // walk_front -> idle
-
-    //        if (myAnim.GetBool("IsAttack") == false)
-    //        {
-    //            AttackTime += Time.deltaTime;
-
-    //            if (AttackTime >= ATK_WaitingTime)
-    //            {
-    //                // 공격
-    //                myAnim.SetTrigger("Attack");
-    //                myAnim.SetFloat("skill_num", Random.Range(0, 6));
-    //                AttackTime = 0.0f;
-    //            }
-    //        }
-    //    }
-    //}
-
-    IEnumerator Attacking()
+    IEnumerator Targeting()
     {
-        float AttackTime = ATK_WaitingTime; // 첫 공격시 딜레이 없이 바로 공격
-
         while (true)
         {
             if (myDetection.Target == null)
@@ -282,81 +210,81 @@ public class cMonster : cCharacteristic, BattleSystem
 
             CalculateAngle(myAnim.transform.forward, dir, myAnim.transform.right, out ROTDATA myRotData); // 각도 계산 -> 매번 해주어야 함
 
-            //if (Vector3.Dot(myAnim.transform.right, dir) < 0.0f)
-            //{
-            //    myRotData.rotDir = -1.0f; // 왼쪽방향
-            //}
-
             // 회전
             myAnim.transform.rotation = Quaternion.Slerp(myAnim.transform.rotation, Quaternion.LookRotation(dir),Time.deltaTime * 10.0f);
-            /*
-            if (myRotData.angle > Mathf.Epsilon && myAnim.GetBool("IsWalk") == true) // 이동중일 경우에만 회전
+
+            // 이동
+            myAnim.SetTrigger("IsWalk"); // idle -> walk_front 
+
+            float delta = MoveSpeed * Time.deltaTime; // 이동 거리
+
+            delta = delta > dist ? dist : delta; // 이동 거리가 남은 거리보다 클 경우 남은 거리 만큼만 이동
+
+            this.transform.Translate(dir * delta);
+
+            if (dist < ATK_Range)
             {
-                float delta = RotSpeed * Time.deltaTime;
-
-                delta = delta > myRotData.angle ? myRotData.angle : delta;
-
-                myAnim.transform.Rotate(Vector3.up * delta * myRotData.rotDir, Space.World);
+                // 공격범위 내에 플레이어가 들어온 경우 공격
+                yield return StartCoroutine(Attacking());
             }
-            */
 
-            if (dist > ATK_Range && myAnim.GetBool("IsAttack") == false) // 공격범위 밖에 있을 경우 따라감, 공격중일 경우 따라가지 않도록
-            {
-                myAnim.SetTrigger("IsWalk"); // idle -> walk_front 
+            //if (dist > ATK_Range && myAnim.GetBool("IsAttack") == false) // 공격범위 밖에 있을 경우 따라감, 공격중일 경우 따라가지 않도록
+            //{
+            //    myAnim.SetTrigger("IsWalk"); // idle -> walk_front 
 
-                float delta = MoveSpeed * Time.deltaTime; // 이동 거리
+            //    float delta = MoveSpeed * Time.deltaTime; // 이동 거리
 
-                delta = delta > dist ? dist : delta; // 이동 거리가 남은 거리보다 클 경우 남은 거리 만큼만 이동
+            //    delta = delta > dist ? dist : delta; // 이동 거리가 남은 거리보다 클 경우 남은 거리 만큼만 이동
 
-                this.transform.Translate(dir * delta);
-            }
-            else // 공격범위 내에 있을 경우 공격
-            {
-                myAnim.SetBool("IsWalk", false); // walk_front -> idle
+            //    this.transform.Translate(dir * delta);
+            //}
+            //else // 공격범위 내에 있을 경우 공격
+            //{
+            //    myAnim.SetBool("IsWalk", false); // walk_front -> idle
 
-                if (myAnim.GetBool("IsAttack") == false)
-                {
-                    AttackTime += Time.deltaTime;
+            //    if (myAnim.GetBool("IsAttack") == false)
+            //    {
+            //        AttackTime += Time.deltaTime;
 
-                    if (AttackTime >= ATK_WaitingTime)
-                    {
-                        // 공격
-                        int RandomSkill_num = Random.Range(0, 3);
-                        //int RandomSkill_num = 2;
-                        myAnim.SetInteger("Skill", RandomSkill_num);
-                        myAnim.SetTrigger("Attack");
-                        AttackTime = 0.0f;
-                    }
-                }
-            }
+            //        if (AttackTime >= ATK_WaitingTime)
+            //        {
+            //            // 공격
+            //            int RandomSkill_num = Random.Range(0, 3);
+            //            //int RandomSkill_num = 2;
+            //            myAnim.SetInteger("Skill", RandomSkill_num);
+            //            myAnim.SetTrigger("Attack");
+            //            AttackTime = 0.0f;
+            //        }
+            //    }
+            //}
             yield return new WaitForFixedUpdate();
         }
     }
 
-    // cCharacteristic으로 이동
-    //IEnumerator LookingTarget()
-    //{
-    //    while (true)
-    //    {
-    //        CalculateAngle(myAnim.transform.forward, dir, myAnim.transform.right, out ROTDATA myRotData); // 각도 계산 -> 매번 해주어야 함
+    IEnumerator Attacking()
+    {
+        AttackTime = ATK_WaitingTime; // 첫 공격시 딜레이 없이 바로 공격
 
-    //        if (Vector3.Dot(myAnim.transform.right, dir) < 0.0f)
-    //        {
-    //            myRotData.rotDir = -1.0f; // 왼쪽방향
-    //        }
+        while (true)
+        {
+            myAnim.SetBool("IsWalk", false); // walk_front -> idle
 
-    //        if (!Mathf.Approximately(myRotData.angle, 0.0f))
-    //        {
-    //            float delta = RotSpeed * Time.deltaTime;
+            if (myAnim.GetBool("IsAttack") == false)
+            {
+                AttackTime += Time.deltaTime;
 
-    //            delta = delta > myRotData.angle ? myRotData.angle : delta;
-
-    //            myAnim.transform.Rotate(Vector3.up * delta * myRotData.rotDir);
-    //        }
-
-    //        yield return null;
-    //    }
-    //}
+                if (AttackTime >= ATK_WaitingTime)
+                {
+                    // 공격
+                    int RandomSkill_num = Random.Range(0, 3);
+                    myAnim.SetInteger("Skill", RandomSkill_num);
+                    myAnim.SetTrigger("Attack");
+                    AttackTime = 0.0f;
+                }
+            }
+            yield return null;
+        }
+    }
 
     void MonsterMove()
     {
@@ -432,18 +360,4 @@ public class cMonster : cCharacteristic, BattleSystem
             yield return null;
         }
     }
-
-    // cCharacteristic으로 이동
-    //void CalculateAngle()
-    //{
-    //    // 각도 계산
-    //    float rad = Mathf.Acos(Vector3.Dot(myAnim.transform.forward, dir)); // 이동할 지점까지의 각도를 구함
-    //    myRotData.angle = 180 * (rad / Mathf.PI); // degree 각도로 바꿈
-    //    myRotData.rotDir = 1.0f; // 회전 방향값 => 오른쪽
-
-    //    if (Vector3.Dot(myAnim.transform.right, dir) < 0.0f)
-    //    {
-    //        myRotData.rotDir = -1.0f; // 왼쪽방향
-    //    }
-    //}
 }

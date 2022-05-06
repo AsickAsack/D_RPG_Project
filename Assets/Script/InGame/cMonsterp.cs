@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class cMonsterp : cCharacteristicp, BattleSystemp
+public class cMonsterp : cCharacteristicp, BattleSystem
 {
     public enum STATE
     {
