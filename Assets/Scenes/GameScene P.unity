@@ -573,7 +573,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   mySword: {fileID: 724199488}
-  HitEffect: {fileID: 7226583673155636401, guid: a2ab56839e1c9504ea9d141e95d0b16b, type: 3}
+  HitEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7, type: 3}
   HitPointPosition: {fileID: 700426203}
   myStats:
     HP: 1000
@@ -613,7 +613,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   mySword: {fileID: 1000816110}
-  HitEffect: {fileID: 7226583673155636401, guid: a2ab56839e1c9504ea9d141e95d0b16b, type: 3}
+  HitEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7, type: 3}
   HitPointPosition: {fileID: 1443330787}
   myStats:
     HP: 1000
@@ -3391,7 +3391,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1443330786}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.05, y: 1.29, z: 0}
+  m_LocalPosition: {x: -0.05, y: 0.93, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 293292319}
@@ -3836,6 +3836,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PSkel01
       objectReference: {fileID: 0}
+    - target: {fileID: 3487345315090459281, guid: debe079a0fdead540acf155735481aa5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3487345315090459286, guid: debe079a0fdead540acf155735481aa5, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -4169,7 +4173,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4905581995463138916, guid: 360b0fe4457108c40ad282cd4507b78e, type: 3}
+  - {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4310,7 +4314,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   mySword: {fileID: 28801402}
-  HitEffect: {fileID: 7226583673155636401, guid: a2ab56839e1c9504ea9d141e95d0b16b, type: 3}
+  HitEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7, type: 3}
   HitPointPosition: {fileID: 1002072404}
   myStats:
     HP: 1000
