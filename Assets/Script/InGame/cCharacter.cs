@@ -9,6 +9,7 @@ public class cCharacter : cCharacteristic, BattleSystem
         CREAT, PLAY, DEAD
     }
 
+ 
     public STATE myState = STATE.CREAT;
 
     public PlayerStat myStats;
@@ -26,7 +27,7 @@ public class cCharacter : cCharacteristic, BattleSystem
             else
             {
                 myAnim.SetTrigger("OnDamage");
-
+               
             }
         }
     }

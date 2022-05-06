@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class cMonsterp : cCharacteristicp, BattleSystemp
+public class cMonsterp : cCharacteristicp, BattleSystem
 {
     public enum STATE
     {
@@ -17,15 +17,15 @@ public class cMonsterp : cCharacteristicp, BattleSystemp
 
     public LayerMask AttackMask; // 공격목표
     public Transform mySword; // 검
-
+    public GameObject HitEffect;
     Coroutine moveRoutine = null;
     Coroutine rotRoutine = null;
-
+    public Transform HitPointPosition;
     Vector3 roamingArea = Vector3.zero; // 로밍할 구역
     Vector3 startPos = Vector3.zero; // 몬스터가 등장한 위치
     Vector3 dir = Vector3.zero; // 몬스터가 이동할 방향
     float dist = 0.0f; // 몬스터가 이동할 거리
-
+    public MonsterStat myStats;
     public float MoveSpeed = 3.0f; // 몬스터 이동 속도
     public float RotSpeed = 360.0f; // 몬스터 회전 속도
     public float RoamingWaitTime = 3.0f; // 몬스터 로밍간 대기시간
@@ -35,21 +35,22 @@ public class cMonsterp : cCharacteristicp, BattleSystemp
     public float convertDamage = 0.1f; // 데미지 환산 비율 => 데미지 = 공격력(ATK) * 데미지비율(convertDamage)
 
     public bool isdying = false; // 몬스터의 죽는 애니메이션이 끝났는지 여부
-
     public void OnDamage(float damage)
     {
         if (myState == STATE.BATTLE || myState == STATE.ROAMING)
         {
-            //myStats.HP -= damage;
+            myStats.HP -= damage;
 
-            //if (myStats.HP <= 0.0f)
-            //{
-            //    ChangeState(STATE.DEAD); // HP가 0이되면 사망
-            //}
-            //else
-            //{
-            //    myAnim.SetTrigger("OnDamage");
-            //}
+            if (myStats.HP <= 0.0f)
+            {
+                ChangeState(STATE.DEAD); // HP가 0이되면 사망
+            }
+            else
+            {
+                myAnim.SetTrigger("OnDamage");
+                GameObject Effect = Instantiate(HitEffect, HitPointPosition.position, HitPointPosition.rotation);
+                Destroy(Effect, 0.5f);
+            }
         }
     }
 
@@ -63,10 +64,11 @@ public class cMonsterp : cCharacteristicp, BattleSystemp
 
             if (bs != null)
             {
-               // bs.OnDamage(myStats.ATK * convertDamage);
+                bs.OnDamage(myStats.ATK * convertDamage);
             }
         }
     }
+    
 
     void Start()
     {
