@@ -52,7 +52,8 @@ MonoBehaviour:
     Gold: 0
     Emerald: 0
     FirstGame: 1
-    ItemImage: {fileID: 4343727234628468602, guid: 78198b0358b01d547b34e9defb1b2a50, type: 2}
+    ItemImage: {fileID: 4343727234628468602, guid: 68be51bd4c313854199a912cfce3392d, type: 2}
+    ItemImage2: {fileID: 4343727234628468602, guid: 78198b0358b01d547b34e9defb1b2a50, type: 2}
     Player_inventory: []
     Player_inventory2: []
     Itemdata:
@@ -109,20 +110,32 @@ MonoBehaviour:
       ItemCode: 0
       ItemName: 
       Description: 
-      MySprite: {fileID: 0}
+      Mysprite: {fileID: 0}
     - itemType2: 0
       ItemCode: 0
       ItemName: 
       Description: 
-      MySprite: {fileID: 0}
+      Mysprite: {fileID: 0}
     - itemType2: 0
       ItemCode: 0
       ItemName: 
       Description: 
-      MySprite: {fileID: 0}
+      Mysprite: {fileID: 0}
     - itemType2: 0
       ItemCode: 0
       ItemName: 
       Description: 
-      MySprite: {fileID: 0}
-    aaa: 0
+      Mysprite: {fileID: 0}
+    - itemType2: 0
+      ItemCode: 0
+      ItemName: 
+      Description: 
+      Mysprite: {fileID: 0}
+    playerStat:
+      HP: 1000
+      ATK: 500
+      DEF: 500
+    monsterStat:
+      HP: 1000
+      ATK: 500
+      DEF: 500

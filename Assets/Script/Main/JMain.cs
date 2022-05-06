@@ -33,7 +33,11 @@ public class JMain : MonoBehaviour
     void Start()
     {
         Sound.Instance.PlayBGM(mainBGM);
-        GameData.Instance.playerdata.Player_inventory.Add(GameData.Instance.playerdata.Itemdata[0]);
+       
+        for(int i=0;i< GameData.Instance.playerdata.Itemdata2.Length;i++)
+        GameData.Instance.playerdata.Player_inventory2.Add(GameData.Instance.playerdata.Itemdata2[i]);
+        
+
     }
 
     public void gotitle()
@@ -52,43 +56,6 @@ public class JMain : MonoBehaviour
         Change_BlackBar();
         Rotate_light();
      
-
-
-        if (Input.GetKeyDown(KeyCode.F1))
-        {
-            GameData.Instance.playerdata.Player_inventory.Add(GameData.Instance.playerdata.Itemdata[0]);
-            Debug.Log(GameData.Instance.playerdata.Itemdata[0].ItemName);
-        }
-        if (Input.GetKeyDown(KeyCode.F2))
-        {
-            GameData.Instance.playerdata.Player_inventory.Add(GameData.Instance.playerdata.Itemdata[1]);
-            
-                Debug.Log(GameData.Instance.playerdata.Itemdata[1].ItemName);
-            
-        }
-        if (Input.GetKeyDown(KeyCode.F3))
-        {
-            GameData.Instance.playerdata.Player_inventory.Add(GameData.Instance.playerdata.Itemdata[2]);
-
-            Debug.Log(GameData.Instance.playerdata.Itemdata[2].ItemName);
-
-        }
-        if (Input.GetKeyDown(KeyCode.F4))
-        {
-            GameData.Instance.playerdata.Player_inventory.Add(GameData.Instance.playerdata.Itemdata[3]);
-
-            Debug.Log(GameData.Instance.playerdata.Itemdata[3].ItemName);
-
-        }
-        if (Input.GetKeyDown(KeyCode.F5))
-        {
-            GameData.Instance.playerdata.Gold += 50000;
-
-            Debug.Log(GameData.Instance.playerdata.Gold);
-        }
-
-
-
     }
 
   

@@ -56,6 +56,12 @@ public class JPopUpCanvas : MonoBehaviour
     public GameObject Equip_Backbutton;
     public JEquipScroll Scroll_script;
 
+    [Header("[인벤토리]")]
+    public GameObject[] inven_Leftmenu;
+    public GameObject[] inven_item;
+    public InvenItemSetting invenItemSetting;
+    public GameObject inventory_okButton;
+    public GameObject Use_popup;
 
     [Header("[오디오 소스,클립]")]
     public AudioClip Ui_Click; // UI클릭했을때 재생할 효과음
@@ -172,6 +178,7 @@ public class JPopUpCanvas : MonoBehaviour
     }
     #endregion
 
+    #region 상점 함수
     public void ShopPopup_Open()
     {
         popup = Popup.Shop_Popup;
@@ -185,8 +192,120 @@ public class JPopUpCanvas : MonoBehaviour
 
     }
 
+    public void buy_item(int index)
+    {
+        switch(index)
+        {
+            case 1:
+                GameData.Instance.playerdata.Gold -= 50000;
+                GameData.Instance.playerdata.Player_inventory2.Add(GameData.Instance.playerdata.Itemdata2[2]);
+                break;
+            case 2:
+                GameData.Instance.playerdata.Gold -= 10000;
+                GameData.Instance.playerdata.Player_inventory.Add(GameData.Instance.playerdata.Itemdata[1]);
+                break;
+            case 3:
+                GameData.Instance.playerdata.Gold -= 10000;
+                GameData.Instance.playerdata.Player_inventory.Add(GameData.Instance.playerdata.Itemdata[3]);
+                break;
+            case 4:
+                GameData.Instance.playerdata.Gold -= 10000;
+                GameData.Instance.playerdata.Player_inventory.Add(GameData.Instance.playerdata.Itemdata[0]);
+                break;
+            case 5:
+                GameData.Instance.playerdata.Gold -= 10000;
+                GameData.Instance.playerdata.Player_inventory.Add(GameData.Instance.playerdata.Itemdata[2]);
+                break;
+
+
+
+
+        }
+
+        audioSource.PlayOneShot(Moneyclip);
+    }
+
+
+    #endregion
 
     #region 인벤토리창 함수들
+    [SerializeField]
+    InvenType invenType = InvenType.Total;
+
+
+    enum InvenType
+    {
+        Total = 0, Use, Material
+    }
+
+    private int Curitemnum = 0;
+
+    public void ClickInvenItem()
+    {
+        for(int i=0;i<inven_item.Length;i++)
+        {
+            inven_item[i].transform.GetChild(0).GetComponent<Image>().color = Color.white;
+        }
+
+        GameObject clickObject = EventSystem.current.currentSelectedGameObject;
+        clickObject.transform.GetChild(0).GetComponent<Image>().color = Color.yellow;
+        invenItemSetting.setItemdetail(clickObject.GetComponent<InvenItemSetting>().num);
+        Curitemnum = clickObject.GetComponent<InvenItemSetting>().num;
+        if(GameData.Instance.playerdata.Player_inventory2[Curitemnum].itemType2 == ItemType2.Use)
+        {
+            inventory_okButton.SetActive(true);
+        }
+        else
+        {
+            inventory_okButton.SetActive(false);
+        }
+    }
+
+    public void OpenPopup_use_item()
+    {   if(GameData.Instance.playerdata.Player_inventory2.Count!=0)
+        { 
+        if (GameData.Instance.playerdata.Player_inventory2[Curitemnum].ItemCode==002)
+        {
+            Use_popup.transform.GetChild(1).GetComponent<Image>().sprite = GameData.Instance.playerdata.Player_inventory2[Curitemnum].Mysprite;
+            Use_popup.transform.GetChild(2).GetComponent<TMPro.TMP_Text>().text = GameData.Instance.playerdata.Player_inventory2[Curitemnum].ItemName+"\n"+"정말 사용 하시겠습니까?";
+            Use_popup.transform.GetChild(3).gameObject.SetActive(true);
+            Use_popup.transform.GetChild(4).gameObject.SetActive(true);
+            Use_popup.transform.GetChild(5).gameObject.SetActive(false);
+            Use_popup.SetActive(true);
+        }
+        }
+    }
+
+    public void use_item()
+    {
+        Use_popup.transform.GetChild(2).GetComponent<TMPro.TMP_Text>().text = "\n  두루마리 사용중..";
+        Use_popup.transform.GetChild(3).gameObject.SetActive(false);
+        Use_popup.transform.GetChild(4).gameObject.SetActive(false);
+        StartCoroutine(use_sroll());
+    }
+
+    IEnumerator use_sroll()
+    {
+        int a = Random.Range(10000, 500001);
+        yield return new WaitForSeconds(1.5f);
+
+        Use_popup.transform.GetChild(2).GetComponent<TMPro.TMP_Text>().text = "\n   "+a.ToString("N0")+"    골드를\n얻었습니다!";
+        GameData.Instance.playerdata.Gold += a;
+        audioSource.PlayOneShot(Moneyclip);
+        Use_popup.transform.GetChild(5).gameObject.SetActive(true);
+        GameData.Instance.playerdata.Player_inventory2.Remove(GameData.Instance.playerdata.Player_inventory2[Curitemnum]);
+        inven_setting();
+        for (int i = 0; i < inven_item.Length; i++)
+        {
+            inven_item[i].transform.GetChild(0).GetComponent<Image>().color = Color.white;
+        }
+        if (GameData.Instance.playerdata.Player_inventory2.Count != 0)
+        {
+            invenItemSetting.setItemdetail(inven_item[0].GetComponent<InvenItemSetting>().num);
+            inven_item[0].transform.GetChild(0).GetComponent<Image>().color = Color.yellow;
+        }
+    }
+
 
     public void Open_Inventory()
     {
@@ -196,9 +315,109 @@ public class JPopUpCanvas : MonoBehaviour
         Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = "소지품";
         set_icon(true, false);
         audioSource.PlayOneShot(Ui_Click);
+        inven_setting();
+        for (int i = 0; i < inven_item.Length; i++)
+        {
+            inven_item[i].transform.GetChild(0).GetComponent<Image>().color = Color.white;
+        }
+        if (GameData.Instance.playerdata.Player_inventory2.Count != 0)
+        {
+            invenItemSetting.setItemdetail(inven_item[0].GetComponent<InvenItemSetting>().num);
+            inven_item[0].transform.GetChild(0).GetComponent<Image>().color = Color.yellow;
+        }
     }
 
+    public void hilight_invenMenu(int index)
+    {
+        for (int i = 0; i < inven_Leftmenu.Length; i++)
+        {
+            inven_Leftmenu[i].SetActive(i == index);
+            
+            switch(index)
+            {
+                case 0: 
+                    invenType = InvenType.Total;
+                    break;
+                case 1:
+                    invenType = InvenType.Use;
+                    break;
+                case 2:
+                    invenType = InvenType.Material;
+                    break;
+
+            }
+        }
+        inven_setting();
+        audioSource.PlayOneShot(Ui_Click);
+        for (int i = 0; i < inven_item.Length; i++)
+        {
+            inven_item[i].transform.GetChild(0).GetComponent<Image>().color = Color.white;
+        }
+        if (GameData.Instance.playerdata.Player_inventory2.Count != 0)
+        {
+            invenItemSetting.setItemdetail(inven_item[0].GetComponent<InvenItemSetting>().num);
+            inven_item[0].transform.GetChild(0).GetComponent<Image>().color = Color.yellow;
+        }
+    }
    
+    public void inven_setting()
+    {   if(GameData.Instance.playerdata.Player_inventory2.Count != 0)
+        { 
+        switch(invenType)
+        {
+            case InvenType.Total:
+                inven_initialize(ItemType2.Use, ItemType2.Material);
+                if(GameData.Instance.playerdata.Player_inventory2[inven_item[0].GetComponent<InvenItemSetting>().num].itemType2==ItemType2.Use)
+                    inventory_okButton.SetActive(true);
+                else
+                    inventory_okButton.SetActive(false);
+                break;
+            case InvenType.Use:
+                inven_initialize(ItemType2.Use, ItemType2.None);
+                inventory_okButton.SetActive(true);
+                break;
+            case InvenType.Material:
+                inven_initialize(ItemType2.Material, ItemType2.None);
+                inventory_okButton.SetActive(false);
+                break;
+
+        }
+        }
+        else
+        {
+            inven_initialize(ItemType2.Use, ItemType2.Material);
+        }
+    }
+
+    void inven_initialize(ItemType2 a, ItemType2 b)
+    {
+        for (int j = 0; j < inven_item.Length; j++)
+        {
+            inven_item[j].SetActive(false);
+
+        }
+            for (int i = 0; i < GameData.Instance.playerdata.Player_inventory2.Count; i++)
+        {
+            if (GameData.Instance.playerdata.Player_inventory2[i].itemType2 == a || GameData.Instance.playerdata.Player_inventory2[i].itemType2 == b)
+            {
+
+                for (int j = 0; j < GameData.Instance.playerdata.Player_inventory2.Count; j++)
+                {
+                    if (inven_item[j].activeSelf == false)
+                    {
+                        inven_item[j].SetActive(true);
+                        inven_item[j].transform.GetChild(1).GetComponent<Image>().sprite = GameData.Instance.playerdata.Player_inventory2[i].Mysprite;
+                        inven_item[j].GetComponent<InvenItemSetting>().setItemNum(i);
+                        inven_item[j].GetComponent<Button>().onClick.AddListener(()=>ClickInvenItem());
+
+
+                        break;
+                    }
+                }
+
+            }
+        }
+    }
 
 
     #endregion
@@ -467,6 +686,7 @@ public class JPopUpCanvas : MonoBehaviour
 
                         ITemUI_Panel[j].GetComponent<JSetItemDetail>().number(i);
 
+                        //나중에 아이콘누르면 들어가게 바꾸기
                         ITemUI_Panel[j].GetComponent<Button>().onClick.AddListener(() => ClickEquipItem());
                         break;
                     }
@@ -538,32 +758,6 @@ public class JPopUpCanvas : MonoBehaviour
 
 
     }
-    #endregion
-
-
-    #region 던전선택창 이동 함수
-
-    public void EnterDunGeon() // 던전선택 아이콘 눌렀을때 함수
-    {
-        Home.SetActive(true);
-        Message_Icon.SetActive(false);
-        Character_Icon.SetActive(false);
-        audioSource.PlayOneShot(DunGeon_Click);
-        StartCoroutine(Delay(1)); // 효과음 재생을 위한 1초 딜레이 코루틴 (안하면 효과음 소리가 안나고 씬이동함)
-    }
-
-    IEnumerator Delay(float t)
-    {
-        yield return new WaitForSeconds(t);
-        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("GameScene");
-    }
-    #endregion
-
-
-    #region 각종 메뉴들 눌렀을때 하이라이트 되는 함수들
-  
-
-
 
     public void hilight_option(int index) //옵션 상단 메뉴들 눌렀을때
     {
@@ -586,6 +780,27 @@ public class JPopUpCanvas : MonoBehaviour
         audioSource.PlayOneShot(Ui_Click);
     }
     #endregion
+
+
+    #region 던전선택창 이동 함수
+
+    public void EnterDunGeon() // 던전선택 아이콘 눌렀을때 함수
+    {
+        Home.SetActive(true);
+        Message_Icon.SetActive(false);
+        Character_Icon.SetActive(false);
+        audioSource.PlayOneShot(DunGeon_Click);
+        StartCoroutine(Delay(1)); // 효과음 재생을 위한 1초 딜레이 코루틴 (안하면 효과음 소리가 안나고 씬이동함)
+    }
+
+    IEnumerator Delay(float t)
+    {
+        yield return new WaitForSeconds(t);
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("GameScene");
+    }
+    #endregion
+
+
 
     
 

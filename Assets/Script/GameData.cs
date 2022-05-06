@@ -162,45 +162,60 @@ public partial class PlayerData
     public int Emerald = 0;
     public bool FirstGame = true;
     public UnityEngine.U2D.SpriteAtlas ItemImage;
+    public UnityEngine.U2D.SpriteAtlas ItemImage2;
 
     public List<itemdata> Player_inventory = new List<itemdata>();
     public List<itemdata2> Player_inventory2 = new List<itemdata2>();
     public itemdata[] Itemdata = new itemdata[4];
-    public itemdata2[] Itemdata2 = new itemdata2[4];
+    public itemdata2[] Itemdata2 = new itemdata2[5];
 
     public void Itemdata2_Initialize()
     {
 
         Itemdata2[0] = new itemdata2
         {
-            itemType2 = ItemType2.NonConsume,
-            ItemCode=000,
-            ItemName="",
-            Description="dd",
-            //MySprite=,
+            itemType2 = ItemType2.Use,
+            ItemCode = 000,
+            ItemName = "HP포션",
+            Description = "HP를 50 회복해준다.",
+            Mysprite = ItemImage2.GetSprite("hp"),
 
-
-
-};
+        };
 
         Itemdata2[1] = new itemdata2
         {
-
+            itemType2 = ItemType2.Use,
+            ItemCode = 001,
+            ItemName = "MP포션",
+            Description = "MP를 50 회복해준다.",
+            Mysprite = ItemImage2.GetSprite("mp"),
         };
 
         Itemdata2[2] = new itemdata2
         {
-
+            itemType2 = ItemType2.Use,
+            ItemCode = 002,
+            ItemName = "행운의 두루마리",
+            Description = "골드를 가져다주는 행운의 두루마리.",
+            Mysprite = ItemImage2.GetSprite("scroll"),
         };
 
         Itemdata2[3] = new itemdata2
         {
-
+            itemType2 = ItemType2.Material,
+            ItemCode = 003,
+            ItemName = "강철주괴",
+            Description = "강화에 필요한 강철주괴.",
+            Mysprite = ItemImage2.GetSprite("ingots"),
         };
-
-
-
-
+        Itemdata2[4] = new itemdata2
+        {
+            itemType2 = ItemType2.Material,
+            ItemCode = 004,
+            ItemName = "토레도의 벨트",
+            Description = "보스 토레도가 차고다니는 벨트.",
+            Mysprite = ItemImage2.GetSprite("belts"),
+        };
 
     }
 
@@ -307,14 +322,14 @@ public struct itemdata2
     public int ItemCode;
     public string ItemName;
     public string Description;
-    public Sprite MySprite;
+    public Sprite Mysprite;
 
 }
 
 [System.Serializable]
 public enum ItemType2
 {
-    Consume=0,NonConsume
+    None=0,Use,Material
 }
 
 
