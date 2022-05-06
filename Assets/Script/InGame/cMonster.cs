@@ -19,7 +19,7 @@ public class cMonster : cCharacteristic, BattleSystem
 
     Coroutine moveRoutine = null;
     Coroutine rotRoutine = null;
-
+   
     Vector3 roamingArea = Vector3.zero; // 로밍할 구역
     Vector3 startPos = Vector3.zero; // 몬스터가 등장한 위치
     Vector3 dir = Vector3.zero; // 몬스터가 이동할 방향
@@ -48,6 +48,7 @@ public class cMonster : cCharacteristic, BattleSystem
             else
             {
                 myAnim.SetTrigger("OnDamage");
+               
             }
         }
     }
