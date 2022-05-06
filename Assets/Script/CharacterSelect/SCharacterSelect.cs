@@ -26,7 +26,7 @@ public class SCharacterSelect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Move == false) // W버튼 클릭 후 캐릭터 등장시 true
+        if (Move == true)
         {
             transform.localPosition = Vector3.Lerp(transform.localPosition, new Vector3(0.0f, transform.localPosition.y, transform.localPosition.z), Time.deltaTime * 1.0f);
             transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0, 170, 0), Time.deltaTime * 5.0f);
