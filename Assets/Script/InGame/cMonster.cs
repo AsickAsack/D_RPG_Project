@@ -24,7 +24,6 @@ public class cMonster : cCharacteristic, BattleSystem
     Vector3 startPos = Vector3.zero; // 몬스터가 등장한 위치
     Vector3 dir = Vector3.zero; // 몬스터가 이동할 방향
     float dist = 0.0f; // 몬스터가 이동할 거리
-    float AttackTime = 0.0f; // 공격 시작 시간
 
 
     public float MoveSpeed = 3.0f; // 몬스터 이동 속도
@@ -35,8 +34,9 @@ public class cMonster : cCharacteristic, BattleSystem
     public float ATK_WaitingTime; // 공격 대기시간
     public float convertDamage = 0.1f; // 데미지 환산 비율 => 데미지 = 공격력(ATK) * 데미지비율(convertDamage)
 
-    public bool isdying = false; // 몬스터의 죽는 애니메이션이 끝났는지 여부
-        
+    //public bool isDying = false; // 몬스터의 죽는 애니메이션이 끝났는지 여부
+    public bool isAttacking = false; // 몬스터가 공격중인지 여부    
+
     public void OnDamage(float damage)
     {
         if (myState == STATE.BATTLE || myState == STATE.ROAMING)
@@ -50,7 +50,6 @@ public class cMonster : cCharacteristic, BattleSystem
             else
             {
                 myAnim.SetTrigger("OnDamage");
-               
             }
         }
     }
@@ -227,6 +226,10 @@ public class cMonster : cCharacteristic, BattleSystem
                 // 공격범위 내에 플레이어가 들어온 경우 공격
                 yield return StartCoroutine(Attacking());
             }
+            else
+            {
+                yield return new WaitForFixedUpdate();
+            }
 
             //if (dist > ATK_Range && myAnim.GetBool("IsAttack") == false) // 공격범위 밖에 있을 경우 따라감, 공격중일 경우 따라가지 않도록
             //{
@@ -257,31 +260,31 @@ public class cMonster : cCharacteristic, BattleSystem
             //        }
             //    }
             //}
-            yield return new WaitForFixedUpdate();
         }
     }
 
     IEnumerator Attacking()
     {
-        AttackTime = ATK_WaitingTime; // 첫 공격시 딜레이 없이 바로 공격
+        myAnim.SetBool("IsWalk", false); // walk_front -> idle
 
         while (true)
         {
-            myAnim.SetBool("IsWalk", false); // walk_front -> idle
+            if (isAttacking == false)
+            { 
+                // 공격
+                int RandomSkill_num = Random.Range(0, 3);
+                myAnim.SetInteger("Skill", RandomSkill_num);
+                myAnim.SetTrigger("Attack");
+                isAttacking = true;
+            }
 
+            // 공격애니메이션이 끝나면 코루틴 종료 
             if (myAnim.GetBool("IsAttack") == false)
             {
-                AttackTime += Time.deltaTime;
-
-                if (AttackTime >= ATK_WaitingTime)
-                {
-                    // 공격
-                    int RandomSkill_num = Random.Range(0, 3);
-                    myAnim.SetInteger("Skill", RandomSkill_num);
-                    myAnim.SetTrigger("Attack");
-                    AttackTime = 0.0f;
-                }
+                isAttacking = false;
+                break;
             }
+
             yield return null;
         }
     }
