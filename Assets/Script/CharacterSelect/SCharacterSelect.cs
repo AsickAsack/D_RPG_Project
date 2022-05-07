@@ -7,30 +7,68 @@ using UnityEngine.EventSystems;
 
 public class SCharacterSelect : MonoBehaviour
 {
-    public GameObject button;
-    public Vector3 Dir;
-    float Rot;
-    bool Move = false;
+    public RectTransform light;
+    public TMPro.TMP_Text inputText;
+    public GameObject[] popup;
+    public GameObject[] popup2;
 
-    public void ChangeWomen()
-    {
-        Move = true;
-    }
-    // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        if (Move == false) // W버튼 클릭 후 캐릭터 등장시 true
-        {
-            transform.localPosition = Vector3.Lerp(transform.localPosition, new Vector3(0.0f, transform.localPosition.y, transform.localPosition.z), Time.deltaTime * 1.0f);
-            transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0, 170, 0), Time.deltaTime * 5.0f);
-        }
+        light.Rotate(-Vector3.forward * Time.deltaTime * 50.0f);
+        transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0, 170, 0), Time.deltaTime * 5.0f);
     }
+
+    public void selectMan()
+    {
+        popup2[1].transform.GetChild(0).GetComponent<TMPro.TMP_Text>().text = "남자 캐릭터는 준비중입니다.";
+        popup2[0].SetActive(true);
+        popup2[1].SetActive(true);
+
+    }
+
+
+    public void inputNickname()
+    {
+       if(inputText.text.Length<=3)
+        {
+            popup[1].transform.GetChild(0).GetComponent<TMPro.TMP_Text>().text = "최소 2글자 이상 입력해주세요!";
+            popup[0].SetActive(true);
+            popup[1].SetActive(true);
+        }
+       else if(inputText.text.Length>11)
+        {
+            popup[1].transform.GetChild(0).GetComponent<TMPro.TMP_Text>().text = "10글자 이하로 입력해주세요!";
+            popup[0].SetActive(true);
+            popup[1].SetActive(true);
+        }
+        else
+        {
+            if(inputText.text.Contains(" "))
+            {
+                popup[1].transform.GetChild(0).GetComponent<TMPro.TMP_Text>().text = "공백 없이 입력해주세요!";
+                popup[0].SetActive(true);
+                popup[1].SetActive(true);
+            }
+            else 
+            { 
+            GameData.Instance.playerdata.Nickname = inputText.text;
+             //씬이동
+            }
+
+
+
+        }
+
+       
+    }
+
+   
 }
 
