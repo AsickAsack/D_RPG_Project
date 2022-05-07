@@ -609,6 +609,7 @@ public class JPopUpCanvas : MonoBehaviour
             ITemUI_Panel[j].SetActive(false);
             ITemUI_Panel[j].transform.GetChild(4).gameObject.SetActive(false);
             ITemUI_Panel[j].transform.GetChild(2).GetComponent<Image>().color = Color.white;
+            ITemUI_Panel[j].transform.GetChild(0).GetComponent<TMPro.TMP_Text>().color = Color.white;
         }
         switch (equipType)
         {
@@ -786,9 +787,7 @@ public class JPopUpCanvas : MonoBehaviour
 
     public void EnterDunGeon() // 던전선택 아이콘 눌렀을때 함수
     {
-        Home.SetActive(true);
-        Message_Icon.SetActive(false);
-        Character_Icon.SetActive(false);
+       
         audioSource.PlayOneShot(DunGeon_Click);
         StartCoroutine(Delay(1)); // 효과음 재생을 위한 1초 딜레이 코루틴 (안하면 효과음 소리가 안나고 씬이동함)
     }
@@ -796,7 +795,7 @@ public class JPopUpCanvas : MonoBehaviour
     IEnumerator Delay(float t)
     {
         yield return new WaitForSeconds(t);
-        ClickCanvas.Instance.Click_Canvas.enabled = false;
+        ClickCanvas.Instance.Click_Canvas.gameObject.SetActive(false);
         SceneLoader.Instance.LoadScene(4);
     }
     #endregion
