@@ -23,8 +23,8 @@ public class JMain : MonoBehaviour
 
     private void Awake()
     {
-
-        Debug.Log(ClickCanvas.Instance);
+       GameData.Instance._save();
+        
 
     }
 

@@ -28,10 +28,10 @@ public partial class GameData : MonoBehaviour
                     instance = obj.GetComponent<GameData>();
                     DontDestroyOnLoad(obj);
 
-                    //if (File.Exists(Application.dataPath + "/GameData.json"))
-                    //{ 
-                    //    instance._Load();
-                    //}
+                    if (File.Exists(Application.persistentDataPath + "/GameData.json"))
+                    { 
+                        instance._Load();
+                    }
 
                     
                     
@@ -42,48 +42,6 @@ public partial class GameData : MonoBehaviour
     }
     
 
-    //public static GameData Instance
-    //{
-    //    get
-    //    {
-    //        if (instance == null) // 인스턴스가 비어있는지 검사
-    //        {
-    //            var obj = FindObjectOfType<GameData>(); //씬안에 jGameManager 컴포넌트를 가지고있는 오브젝트가 있는지 검사
-    //            if (obj != null) //만약 jGameManager 컴포넌트를 가지고있는 오브젝트가 존재한다면
-    //            {
-    //                instance = obj; // 인스턴스에 그 객체를 넣어줌 
-    //            }
-    //            else //인스턴스가 존재하지 않는다면
-    //            {
-    //                var newObj = new GameObject().AddComponent<GameData>(); ; // 새 게임오브젝트 생성하고 jgamemanager를 붙여줌
-    //                newObj.name = "GameData";
-    //                instance = newObj; // 그 게임오브젝트를 인스턴스에 넣어줌
-
-    //            }
-
-    //        }
-    //        return instance;
-    //    }
-    //}
-
-    //private void Awake() //게임오브젝트가 생성되면 가장먼저 실행
-    //{
-    //    var objs = FindObjectsOfType<GameData>();//씬에 같은 컴포넌트를 가진 오브젝트가 몇개가 있는지 검사
-    //    if (objs.Length != 1) // 1개가 아니라면 = 다른 오브젝트가 있다는 의미 , 이 객체보다 먼저 생성된 객체일 확률이 높음
-    //    {
-    //        Destroy(gameObject); //방금 생성된 객체는 파괴
-    //        return;
-    //    }
-    //    DontDestroyOnLoad(gameObject); //씬이 바뀌어도 게임오브젝트가 파괴되지 않도록함
-
-
-    //if (File.Exists(Application.persistentDataPath + "/GameData.json"))
-    //{
-    //    _Load();
-    //}
-
-
-    //}
     #endregion
 
     private void Awake()
@@ -104,22 +62,23 @@ public partial class GameData : MonoBehaviour
         
     }
 
+    
     public int Upgrade_Money = 10000;
     public int Upgrade_chance = 80;
 
 
     public PlayerData playerdata;
-   
+    public Sprite[] mySprite;
 
     #region save and load
     public void _save() //저장 함수
     {
         string jdata = JsonConvert.SerializeObject(playerdata);
-        //byte[] bytes = System.Text.Encoding.UTF8.GetBytes(jdata);
-        //string format = System.Convert.ToBase64String(bytes);
+        byte[] bytes = System.Text.Encoding.UTF8.GetBytes(jdata);
+        string format = System.Convert.ToBase64String(bytes);
 
-       File.WriteAllText(Application.dataPath + "/GameData.json", jdata); //에디터 경로에 저장할때 //암호화 할거면 format
-        //File.WriteAllText(Application.persistentDataPath + "/GameData.json", jdata);  // 모바일에 저장할때
+       //File.WriteAllText(Application.dataPath + "/GameData.json", jdata); //에디터 경로에 저장할때 //암호화 할거면 format
+        File.WriteAllText(Application.persistentDataPath + "/GameData.json", format);  // 모바일에 저장할때
     }
 
     public void _Load() // 불러오기 함수
@@ -127,12 +86,12 @@ public partial class GameData : MonoBehaviour
         
         
         
-            //string jdata = File.ReadAllText(Application.persistentDataPath + "/GameData.json"); // 모바일에서 불러올때
-            string jdata = File.ReadAllText(Application.dataPath + "/GameData.json"); // 모바일에서 불러올때
-            //byte[] bytes = System.Convert.FromBase64String(jdata);
-            //string reformat = System.Text.Encoding.UTF8.GetString(bytes);
+            string jdata = File.ReadAllText(Application.persistentDataPath + "/GameData.json"); // 모바일에서 불러올때
+            //string jdata = File.ReadAllText(Application.dataPath + "/GameData.json");
+            byte[] bytes = System.Convert.FromBase64String(jdata);
+            string reformat = System.Text.Encoding.UTF8.GetString(bytes);
 
-             playerdata = JsonConvert.DeserializeObject<PlayerData>(jdata);
+             playerdata = JsonConvert.DeserializeObject<PlayerData>(reformat);
         
 
 
@@ -161,8 +120,6 @@ public partial class PlayerData
     public int Gold = 0;
     public int Emerald = 0;
     public bool FirstGame = true;
-    public UnityEngine.U2D.SpriteAtlas ItemImage;
-    public UnityEngine.U2D.SpriteAtlas ItemImage2;
 
     public List<itemdata> Player_inventory = new List<itemdata>();
     public List<itemdata2> Player_inventory2 = new List<itemdata2>();
@@ -178,7 +135,7 @@ public partial class PlayerData
             ItemCode = 000,
             ItemName = "HP포션",
             Description = "HP를 50 회복해준다.",
-            Mysprite = ItemImage2.GetSprite("hp"),
+            Mysprite = 4
 
         };
 
@@ -188,7 +145,7 @@ public partial class PlayerData
             ItemCode = 001,
             ItemName = "MP포션",
             Description = "MP를 50 회복해준다.",
-            Mysprite = ItemImage2.GetSprite("mp"),
+            Mysprite = 5
         };
 
         Itemdata2[2] = new itemdata2
@@ -197,7 +154,7 @@ public partial class PlayerData
             ItemCode = 002,
             ItemName = "행운의 두루마리",
             Description = "골드를 가져다주는 행운의 두루마리.",
-            Mysprite = ItemImage2.GetSprite("scroll"),
+            Mysprite = 6
         };
 
         Itemdata2[3] = new itemdata2
@@ -206,7 +163,7 @@ public partial class PlayerData
             ItemCode = 003,
             ItemName = "강철주괴",
             Description = "강화에 필요한 강철주괴.",
-            Mysprite = ItemImage2.GetSprite("ingots"),
+            Mysprite = 7
         };
         Itemdata2[4] = new itemdata2
         {
@@ -214,7 +171,7 @@ public partial class PlayerData
             ItemCode = 004,
             ItemName = "토레도의 벨트",
             Description = "보스 토레도가 차고다니는 벨트.",
-            Mysprite = ItemImage2.GetSprite("belts"),
+            Mysprite = 8
         };
 
     }
@@ -258,7 +215,7 @@ public partial class PlayerData
             Description = "수련자용 싸구려 건틀릿",
             Equipped = false,
             grade = Grade.common,
-            Mysprite = ItemImage.GetSprite("Iron Gauntlet")
+            Mysprite = 0
         };
 
         Itemdata[1] = new itemdata
@@ -274,7 +231,7 @@ public partial class PlayerData
             Description = "<#FFC0CB>귀여워지고 싶은가요?</color>",
             Equipped = false,
             grade = Grade.rare,
-            Mysprite = ItemImage.GetSprite("BunnyGauntlet")
+            Mysprite = 1
         };
 
         Itemdata[2] = new itemdata
@@ -290,7 +247,7 @@ public partial class PlayerData
             Description = "사자털과 <#489CF8>사파이어</color>를 박은 지갑전사의 필수품",
             Equipped = false,
             grade = Grade.legendary,
-            Mysprite = ItemImage.GetSprite("Armor1")
+            Mysprite = 2
         };
 
         Itemdata[3] = new itemdata
@@ -306,7 +263,7 @@ public partial class PlayerData
             Description = "여행을 하느라 좀 찢어져있다.",
             Equipped = false,
             grade = Grade.common,
-            Mysprite = ItemImage.GetSprite("Armor3")
+            Mysprite = 3
         };
 
 
@@ -322,7 +279,8 @@ public struct itemdata2
     public int ItemCode;
     public string ItemName;
     public string Description;
-    public Sprite Mysprite;
+    //public Sprite Mysprite;
+    public int Mysprite;
 
 }
 
@@ -347,7 +305,8 @@ public struct itemdata
     public string Description;
     public bool Equipped;
     public Grade grade;
-    public Sprite Mysprite;
+    //public Sprite Mysprite;
+    public int Mysprite;
 }
 
 [System.Serializable]

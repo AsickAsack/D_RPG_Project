@@ -139,3 +139,13 @@ MonoBehaviour:
       HP: 1000
       ATK: 500
       DEF: 500
+  mySprite:
+  - {fileID: 21300000, guid: 90dcaa73749f4f74794314e9b3f1e35d, type: 2}
+  - {fileID: 21300000, guid: 1cd4df02eeb80ab44aeb508efea5d066, type: 2}
+  - {fileID: 21300000, guid: 379142816cf3c95449e9da646a9dca52, type: 2}
+  - {fileID: 21300000, guid: 59472daee3289144c98be59b37802bb7, type: 2}
+  - {fileID: 21300000, guid: e52ea25af699fd445b7046374f81a5b9, type: 3}
+  - {fileID: 21300000, guid: 6592b916f86b19e428db6f6847c7b6dd, type: 3}
+  - {fileID: 21300000, guid: db427fab3e94daf4caa704d9314a77a1, type: 3}
+  - {fileID: 21300000, guid: 3e4fcc84a0ac95b429c56452575f6021, type: 3}
+  - {fileID: 21300000, guid: da09804303305f542a686824630e7269, type: 3}

@@ -7,21 +7,42 @@ using UnityEngine.EventSystems;
 
 public class SCharacterSelect : MonoBehaviour
 {
-    public RectTransform light;
+    
     public TMPro.TMP_Text inputText;
     public GameObject[] popup;
     public GameObject[] popup2;
+    public GameObject[] Costume_Selected;
+    public GameObject[] Costume;
 
     void Start()
     {
         
     }
 
+    public void Cos_Change(int index)
+    {
+        for (int i = 0; i < Costume.Length; i++)
+        {
+            Costume[i].SetActive(i == index);
+        }
 
-    // Update is called once per frame
+    }
+
+    public void Cos_Selected(int index)
+    {
+        for(int i=0;i< Costume_Selected.Length;i++)
+        {
+            Costume_Selected[i].SetActive(i == index);
+        }
+
+
+    }
+
+
+    
     void Update()
     {
-        light.Rotate(-Vector3.forward * Time.deltaTime * 50.0f);
+        
         transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0, 170, 0), Time.deltaTime * 5.0f);
     }
 
@@ -58,8 +79,8 @@ public class SCharacterSelect : MonoBehaviour
             }
             else 
             { 
-            GameData.Instance.playerdata.Nickname = inputText.text;
-             //¾ÀÀÌµ¿
+                GameData.Instance.playerdata.Nickname = inputText.text;
+                SceneLoader.Instance.LoadScene(2);
             }
 
 

@@ -40,7 +40,7 @@ public class jEquipPanelsetting : JPopUpCanvas
                 break;
         }
 
-        Icon.sprite = GameData.Instance.playerdata.Player_inventory[index].Mysprite;
+        Icon.sprite = GameData.Instance.mySprite[GameData.Instance.playerdata.Player_inventory[index].Mysprite];
 
 
         if (GameData.Instance.playerdata.Player_inventory[index].Equipped)

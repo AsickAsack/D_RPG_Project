@@ -32,7 +32,7 @@ public class ClickCanvas : MonoBehaviour
     [Header("[클릭 이미지 게임오브젝트]")]
     public GameObject Click;
     public Camera ClickUiCamera;
-
+    public Canvas Click_Canvas;
 
 
     void Update()

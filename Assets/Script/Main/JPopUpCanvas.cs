@@ -266,7 +266,7 @@ public class JPopUpCanvas : MonoBehaviour
         { 
         if (GameData.Instance.playerdata.Player_inventory2[Curitemnum].ItemCode==002)
         {
-            Use_popup.transform.GetChild(1).GetComponent<Image>().sprite = GameData.Instance.playerdata.Player_inventory2[Curitemnum].Mysprite;
+            Use_popup.transform.GetChild(1).GetComponent<Image>().sprite = GameData.Instance.mySprite[GameData.Instance.playerdata.Player_inventory2[Curitemnum].Mysprite];
             Use_popup.transform.GetChild(2).GetComponent<TMPro.TMP_Text>().text = GameData.Instance.playerdata.Player_inventory2[Curitemnum].ItemName+"\n"+"정말 사용 하시겠습니까?";
             Use_popup.transform.GetChild(3).gameObject.SetActive(true);
             Use_popup.transform.GetChild(4).gameObject.SetActive(true);
@@ -406,7 +406,7 @@ public class JPopUpCanvas : MonoBehaviour
                     if (inven_item[j].activeSelf == false)
                     {
                         inven_item[j].SetActive(true);
-                        inven_item[j].transform.GetChild(1).GetComponent<Image>().sprite = GameData.Instance.playerdata.Player_inventory2[i].Mysprite;
+                        inven_item[j].transform.GetChild(1).GetComponent<Image>().sprite = GameData.Instance.mySprite[GameData.Instance.playerdata.Player_inventory2[i].Mysprite]; 
                         inven_item[j].GetComponent<InvenItemSetting>().setItemNum(i);
                         inven_item[j].GetComponent<Button>().onClick.AddListener(()=>ClickInvenItem());
 
@@ -677,7 +677,7 @@ public class JPopUpCanvas : MonoBehaviour
                                      "\n<color=grey>체력</color> " + +GameData.Instance.playerdata.Player_inventory[i].HP;
                         }
 
-                        ITemUI_Panel[j].transform.GetChild(3).GetComponent<Image>().sprite = GameData.Instance.playerdata.Player_inventory[i].Mysprite;
+                        ITemUI_Panel[j].transform.GetChild(3).GetComponent<Image>().sprite = GameData.Instance.mySprite[GameData.Instance.playerdata.Player_inventory[i].Mysprite];
 
                         if (GameData.Instance.playerdata.Player_inventory[i].Equipped)
                         {
@@ -796,7 +796,8 @@ public class JPopUpCanvas : MonoBehaviour
     IEnumerator Delay(float t)
     {
         yield return new WaitForSeconds(t);
-        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("GameScene");
+        ClickCanvas.Instance.Click_Canvas.enabled = false;
+        SceneLoader.Instance.LoadScene(4);
     }
     #endregion
 

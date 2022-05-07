@@ -48,7 +48,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2134527207405251396}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 2753554658793503534}
@@ -116,6 +116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Click: {fileID: 6887737289980315799}
   ClickUiCamera: {fileID: 2753554658793503534}
+  Click_Canvas: {fileID: 2134527207405251392}
 --- !u!1 &6887737289980315795
 GameObject:
   m_ObjectHideFlags: 0

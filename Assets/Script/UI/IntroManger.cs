@@ -11,7 +11,7 @@ public class IntroManger : MonoBehaviour
  
     void Start()
     {
-        Debug.Log(ClickCanvas.Instance);
+        ClickCanvas.Instance.Click_Canvas.enabled = true;
         StartCoroutine(DeLayTime(3));
         
     }
@@ -31,16 +31,16 @@ public class IntroManger : MonoBehaviour
     }
     public void GoSelectScene()
     {
-        //if(StartPanel.activeSelf)
-        //{ 
-        //if (GameData.Instance.playerdata.FirstGame)
-        //{
-        //    SceneManager.LoadScene("CharacterSelectScene");
-        //    GameData.Instance.playerdata.FirstGame = false;
-        //}
-        //else
-            SceneManager.LoadScene("MainScene");
-        //}
+        if(StartPanel.activeSelf)
+        { 
+        if (GameData.Instance.playerdata.FirstGame)
+        {
+                SceneLoader.Instance.LoadScene(1);
+            GameData.Instance.playerdata.FirstGame = false;
+        }
+        else
+                SceneLoader.Instance.LoadScene(2);
+        }
     }
 
     
