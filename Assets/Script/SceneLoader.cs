@@ -53,22 +53,15 @@ public class SceneLoader : MonoBehaviour
 
         //isDone == false -> 로딩중 / true ->로딩이 끝
         while (!ao.isDone)
-        {
-            float v = Mathf.Clamp01(ao.progress / 0.9f);
+        {       
             if (loadingSlider != null)
-                loadingSlider.value = v;
+                loadingSlider.value = ao.progress+0.1f;
 
-            if (Mathf.Approximately(v, 1.0f))
+            if (Mathf.Approximately(ao.progress, 0.9f))
             {
                 ao.allowSceneActivation = true;
             }
-
             yield return null;
         }
-
-
-
     }
-
-
 }
