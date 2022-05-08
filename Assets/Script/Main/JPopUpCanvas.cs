@@ -796,7 +796,7 @@ public class JPopUpCanvas : MonoBehaviour
     {
         yield return new WaitForSeconds(t);
         ClickCanvas.Instance.Click_Canvas.gameObject.SetActive(false);
-        SceneLoader.Instance.LoadScene(4);
+        SceneLoader.Instance.LoadScene(3);
     }
     #endregion
 

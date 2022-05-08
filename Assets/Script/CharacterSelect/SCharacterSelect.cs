@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.Text.RegularExpressions;
 
 
 public class SCharacterSelect : MonoBehaviour
 {
-    
+
     public TMPro.TMP_Text inputText;
     public GameObject[] popup;
     public GameObject[] popup2;
     public GameObject[] Costume_Selected;
     public GameObject[] Costume;
-
+  
     void Start()
     {
         
@@ -57,39 +58,26 @@ public class SCharacterSelect : MonoBehaviour
 
     public void inputNickname()
     {
-       if(inputText.text.Length<=3)
-        {
-            popup[1].transform.GetChild(0).GetComponent<TMPro.TMP_Text>().text = "최소 2글자 이상 입력해주세요!";
+
+
             popup[0].SetActive(true);
             popup[1].SetActive(true);
-        }
-       else if(inputText.text.Length>11)
-        {
-            popup[1].transform.GetChild(0).GetComponent<TMPro.TMP_Text>().text = "10글자 이하로 입력해주세요!";
-            popup[0].SetActive(true);
-            popup[1].SetActive(true);
-        }
-        else
-        {
-            if(inputText.text.Contains(" "))
+
+            if(inputText.text.Length>=3)
             {
-                popup[1].transform.GetChild(0).GetComponent<TMPro.TMP_Text>().text = "공백 없이 입력해주세요!";
-                popup[0].SetActive(true);
-                popup[1].SetActive(true);
-            }
-            else 
-            { 
+                popup[0].SetActive(false);
+                popup[1].SetActive(false);
                 GameData.Instance.playerdata.Nickname = inputText.text;
                 SceneLoader.Instance.LoadScene(2);
             }
+            else
+            {
+                popup[1].transform.GetChild(0).GetComponent<TMPro.TMP_Text>().text = "닉네임을 2글자 이상 입력해 주세요.";
+            }
+    }
 
-
-
-        }
-
-       
     }
 
    
-}
+
 
