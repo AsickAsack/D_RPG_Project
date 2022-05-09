@@ -16,7 +16,7 @@ public class PUIPosition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.transform.position = Camera.main.WorldToScreenPoint(Desert01.position);
+       this.GetComponent<RectTransform>().anchoredPosition = Camera.main.WorldToScreenPoint(Desert01.position);
 
     }   
 }
