@@ -48,7 +48,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9004388352324295240
 Transform:
   m_ObjectHideFlags: 0
@@ -121,7 +121,8 @@ MonoBehaviour:
   RoamingWaitTime: 3
   ATK_Range: 1
   ATK_WaitingTime: 1
-  isdying: 0
+  convertDamage: 0.1
+  isAttacking: 0
 --- !u!1 &9004388352868266525
 GameObject:
   m_ObjectHideFlags: 0

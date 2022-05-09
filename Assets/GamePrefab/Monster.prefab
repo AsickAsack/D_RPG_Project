@@ -59,10 +59,10 @@ MonoBehaviour:
   MoveSpeed: 3
   RotSpeed: 180
   RoamingWaitTime: 3
-  ATK_Range: 1.5
+  ATK_Range: 3
   ATK_WaitingTime: 2
   convertDamage: 0.1
-  isdying: 0
+  isAttacking: 0
 --- !u!136 &5362178476333372455
 CapsuleCollider:
   m_ObjectHideFlags: 0

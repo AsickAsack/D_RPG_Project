@@ -49,6 +49,7 @@ public class cMonster : cCharacteristic, BattleSystem
             }
             else
             {
+                isAttacking = false;
                 myAnim.SetTrigger("OnDamage");
             }
         }
@@ -213,7 +214,7 @@ public class cMonster : cCharacteristic, BattleSystem
             myAnim.transform.rotation = Quaternion.Slerp(myAnim.transform.rotation, Quaternion.LookRotation(dir),Time.deltaTime * 10.0f);
 
             // 이동
-            myAnim.SetTrigger("IsWalk"); // idle -> walk_front 
+            myAnim.SetBool("IsWalk", true); // idle -> walk_front 
 
             float delta = MoveSpeed * Time.deltaTime; // 이동 거리
 

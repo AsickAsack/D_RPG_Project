@@ -35,6 +35,9 @@ TextureImporter:
   - first:
       213: -4372209329574296626
     second: HpBar
+  - first:
+      213: 2877471580529523173
+    second: 
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -224,7 +227,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 4
-        y: 429
+        y: 430
         width: 363
         height: 63
       alignment: 0
@@ -286,9 +289,9 @@ TextureImporter:
       name: pauseicon3
       rect:
         serializedVersion: 2
-        x: 519
+        x: 520
         y: 488
-        width: 56
+        width: 55
         height: 49
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -346,22 +349,22 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HpBar
+      name: 
       rect:
         serializedVersion: 2
-        x: 267
-        y: 581
-        width: 32
-        height: 12
+        x: 0
+        y: 0
+        width: 0
+        height: 0
       alignment: 0
       pivot: {x: 0, y: 0}
-      border: {x: 5, y: 2, z: 5, w: 2}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: ec3431b97cac253c0800000000000000
-      internalID: -4372209329574296626
+      spriteID: 5e97eb03825dee720800000000000000
+      internalID: 2877471580529523173
       vertices: []
       indices: 
       edges: []
@@ -369,7 +372,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 

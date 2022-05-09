@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class cCharacter : cCharacteristic, BattleSystem
 {
@@ -13,6 +14,9 @@ public class cCharacter : cCharacteristic, BattleSystem
     public STATE myState = STATE.CREAT;
 
     public PlayerStat myStats;
+    public Slider HPbar;
+
+    public float initialHP = 0.0f; // 풀 HP
 
     public void OnDamage(float damage)
     {
@@ -26,9 +30,10 @@ public class cCharacter : cCharacteristic, BattleSystem
             }
             else
             {
-                myAnim.SetTrigger("OnDamage");
-               
+                myAnim.SetTrigger("OnDamage");               
             }
+
+            DisplayHP(); 
         }
     }
 
@@ -36,6 +41,10 @@ public class cCharacter : cCharacteristic, BattleSystem
     {
         StopAllCoroutines();
         myAnim.SetTrigger("Die"); // 죽는 애니메이션 실행
+
+        // 플레이어 사망시 몬스터를 로밍상태로 바꿔줌
+        myDetection.GetComponent<cMonster>().StartRoaming();
+        myDetection.GetComponent<cMonsterp>().StartRoaming();
     }
 
     private void Awake()
@@ -49,6 +58,8 @@ public class cCharacter : cCharacteristic, BattleSystem
         myStats.HP = GameData.Instance.playerdata.playerStat.HP;
         myStats.ATK = GameData.Instance.playerdata.playerStat.ATK;
         myStats.DEF = GameData.Instance.playerdata.playerStat.DEF;
+
+        initialHP = myStats.HP;
     }
 
     // Start is called before the first frame update
@@ -87,10 +98,16 @@ public class cCharacter : cCharacteristic, BattleSystem
             case STATE.CREAT:
                 break;
             case STATE.PLAY:
-                this.GetComponentInParent<CPlayerMove>().OnPlayerMoveControl(); // 플레이 상태일 때만 움직일 수 있게함                
+                this.GetComponentInParent<CPlayerMove>().OnPlayerMoveControl(); // 플레이 상태일 때만 움직일 수 있게함         
                 break;
             case STATE.DEAD:
                 break;
         }
+    }
+
+    void DisplayHP()
+    {
+        // 현재 캐릭터의 HP상태를 UI로 표시
+        HPbar.value = myStats.HP / initialHP;
     }
 }

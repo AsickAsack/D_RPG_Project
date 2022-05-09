@@ -121,7 +121,8 @@ MonoBehaviour:
   RoamingWaitTime: 3
   ATK_Range: 1
   ATK_WaitingTime: 1
-  isdying: 0
+  convertDamage: 0.1
+  isAttacking: 0
 --- !u!1 &3487345315516908227
 GameObject:
   m_ObjectHideFlags: 0
