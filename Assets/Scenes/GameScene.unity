@@ -6590,7 +6590,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time_text: {fileID: 1814341192}
-  LimitTime: 1
+  LimitTime: 300
 --- !u!1001 &1391826388
 PrefabInstance:
   m_ObjectHideFlags: 0
