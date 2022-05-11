@@ -34,14 +34,14 @@ public class PMoveCamera : MonoBehaviour
                 float z = transform.position.z; //위치값 고정을위해 z선언
             transform.Translate(move); // 이동
                 transform.transform.position 
-                    = new Vector3(transform.position.x, y, transform.position.z); // 이동중에 y축고정을위해 
+                    = new Vector3(transform.position.x, transform.position.y, z); // 이동중에 y축고정을위해 
                 
-                if (this.transform.position.x <= 399 || this.transform.position.x >= 404  ) // x값이 399이하로내려가거나 404이상으로 올라가면 이동을맊기위한  코드
+                if (this.transform.position.x <= 257 || this.transform.position.x >= 269 ) // x값이동을맊기위한  코드
                 {
                     transform.transform.position
-                   = new Vector3(x, y, transform.position.z);
+                   = new Vector3(x, transform.position.y, z);
                 }
-                if(this.transform.position.z <= -2.3 || this.transform.position.z >= 2.7) // z값이 -2.3 이하로내려가거나 2.7 이상으로 올라가면 이동을맊기위한 코드
+                if(this.transform.position.y <= 175 || this.transform.position.y >= 186) // y값이동을맊기위한 코드
                 {
                     transform.transform.position
                   = new Vector3(transform.position.x, y, z);
