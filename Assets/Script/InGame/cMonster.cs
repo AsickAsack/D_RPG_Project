@@ -78,9 +78,9 @@ public class cMonster : cCharacteristic, BattleSystem
     void InitializeStats()
     {
         // PlayerData의 정보를 가져옴
-        myStats.HP = GameData.Instance.playerdata.monsterStat.HP;
-        myStats.ATK = GameData.Instance.playerdata.monsterStat.ATK;
-        myStats.DEF = GameData.Instance.playerdata.monsterStat.DEF;
+        myStats.HP = GameData.Instance.playerdata.monsterInitialStat.HP;
+        myStats.ATK = GameData.Instance.playerdata.monsterInitialStat.ATK;
+        myStats.DEF = GameData.Instance.playerdata.monsterInitialStat.DEF;
     }
 
 
@@ -152,31 +152,7 @@ public class cMonster : cCharacteristic, BattleSystem
         StopAllCoroutines();
         myAnim.SetTrigger("Die"); // 죽는 애니메이션 실행
     }
-
-    //void OnDisappear()
-    //{
-    //    StartCoroutine(Disappearing()); // 아래로 가라앉음
-    //}
-
-    //IEnumerator Disappearing()
-    //{
-    //    float dist = 2.0f; // 떨어질 거리
-
-    //    while (!Mathf.Approximately(dist, 0.0f))
-    //    {
-    //        float delta = Time.deltaTime * 0.5f;
-
-    //        delta = delta > dist ? dist : delta;
-
-    //        this.transform.Translate(Vector3.down * delta);
-    //        dist -= delta;
-
-    //        yield return null;
-    //    }
-
-    //    Destroy(this.gameObject); // 게임 오브젝트 삭제
-    //}
-
+        
     public void OnBattle()
     {
         StopAllCoroutines();

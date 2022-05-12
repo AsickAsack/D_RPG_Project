@@ -19,7 +19,8 @@ public class cMonsterDieState : StateMachineBehaviour
     //OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        //animator.GetComponentInParent<cMonster>().isDying = true; // 애니메이션이 끝나야 아래로 떨어질 수 있도록
+        //animator.GetComponentInParent<cMonsterp>().isDying = true; // 애니메이션이 끝나야 아래로 떨어질 수 있도록
+        //Debug.Log("a");
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
