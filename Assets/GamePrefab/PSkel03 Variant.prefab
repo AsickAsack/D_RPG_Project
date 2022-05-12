@@ -461,6 +461,10 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 9004388352868266525, guid: 3a86ebd60c384aa4bbee2a46926f989b, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9004388352324295244, guid: 3a86ebd60c384aa4bbee2a46926f989b, type: 3}
     - {fileID: 9004388352868266523, guid: 3a86ebd60c384aa4bbee2a46926f989b, type: 3}
@@ -485,22 +489,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 9004388352868266525, guid: 3a86ebd60c384aa4bbee2a46926f989b, type: 3}
   m_PrefabInstance: {fileID: 5192485253307364320}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1933979783
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3817199447628464637}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46c3e008bf5d9584f8a5254d86c2cf0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DetectLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  Target: {fileID: 0}
 --- !u!114 &2096947730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -531,3 +519,19 @@ MonoBehaviour:
   ATK_WaitingTime: 2
   convertDamage: 0.1
   isAttacking: 0
+--- !u!114 &1933979783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3817199447628464637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46c3e008bf5d9584f8a5254d86c2cf0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DetectLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  Target: {fileID: 0}

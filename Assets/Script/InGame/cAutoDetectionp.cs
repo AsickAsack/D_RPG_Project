@@ -19,6 +19,9 @@ public class cAutoDetectionp : MonoBehaviour
         {
             if (this.transform.parent.GetComponent<cMonsterp>().myState == cMonsterp.STATE.ROAMING)
             {
+                // 플레이어가 play상태가 아닌경우 감지x
+                if (other.GetComponent<cCharacter>().myState != cCharacter.STATE.PLAY) return;
+
                 Target = other.gameObject; // 리스트에 넣음
                 this.transform.parent.GetComponent<cMonsterp>().OnBattle(); // 몬스터를 배틀상태로 변경
             }
