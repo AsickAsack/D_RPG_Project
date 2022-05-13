@@ -40,9 +40,9 @@ public class cTimeManager : MonoBehaviour
         int sec = (int)(RemainTime % 60);
         int msec = (int)((RemainTime - (int)RemainTime) * 100);
 
-        string str_min = min.ToString(); ;
-        string str_sec = sec.ToString(); ;
-        string str_msec = msec.ToString(); ;
+        string str_min = min.ToString();
+        string str_sec = sec.ToString();
+        string str_msec = msec.ToString();
 
         if (min < 10)
         {
