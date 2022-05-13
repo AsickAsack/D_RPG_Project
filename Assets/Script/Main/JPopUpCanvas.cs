@@ -19,10 +19,11 @@ public class JPopUpCanvas : MonoBehaviour
     public Canvas Option_Canvas;
     public Canvas ShopCanvas;
     public Canvas Inventory_Canvas;
+    public Canvas Exit_Canvas;
     //public Canvas Equip_Canvas;
 
     [Header("[UI open 확인 변수]")]
-    public bool IsUIopen = false; // ui가 현재 열려있는지 아닌지 확인하는 불값
+    public static bool IsUIopen = false; // ui가 현재 열려있는지 아닌지 확인하는 불값
 
 
     //[Header("[장비창 장비 클릭 이미지 배열]")]
@@ -43,6 +44,9 @@ public class JPopUpCanvas : MonoBehaviour
     public RectTransform[] sliderMoveObjectLeft;
     public RectTransform[] sliderMoveObjectRight;
     public GameObject[] option_UIpanel;
+
+    [Header("[옵션 볼륨 기능]")]
+    public Slider[] VolumeSlider;
 
     [Header("[장비창]")]
     public TMPro.TMP_Text[] EquipOption_Text;
@@ -98,6 +102,30 @@ public class JPopUpCanvas : MonoBehaviour
        
     }
     #endregion
+
+    private void Update()
+    {
+        if(!IsUIopen && Input.GetKeyDown(KeyCode.Escape))
+        {
+            IsUIopen = true;
+            Exit_Canvas.enabled = true;
+        }
+    }
+
+    public void ExitPopup_NO()
+    {
+        IsUIopen = false;
+        Exit_Canvas.enabled = false;
+        audioSource.PlayOneShot(Ui_Click);
+
+    }
+
+    public void ExitPopup_YES()
+    {
+        audioSource.PlayOneShot(Ui_Click);
+        Application.Quit();
+    }
+
 
     #region 팝업창 끌때 함수
 
@@ -436,6 +464,7 @@ public class JPopUpCanvas : MonoBehaviour
 
     private int CurNum = 0;
 
+
     public void ClickEquipItem()
     {
         GameObject clickObject = EventSystem.current.currentSelectedGameObject;
@@ -703,11 +732,16 @@ public class JPopUpCanvas : MonoBehaviour
     #region 옵션창 기능들
     public void Exit_Option()
     {
-       Option_Canvas.enabled = false;
-       StopCoroutine(TimeText());
+        Option_Canvas.enabled = false;
+        StopCoroutine(TimeText());
         audioSource.PlayOneShot(Ui_Click);
         IsUIopen = false;
+        for (int i = 0; i < option_image.Length; i++)
+        {
 
+            option_image[i].enabled = false;
+
+        }
     }
 
 
@@ -760,6 +794,17 @@ public class JPopUpCanvas : MonoBehaviour
 
     }
 
+    public void Option_Volume()
+    {
+        Camera.main.GetComponent<AudioSource>().volume = VolumeSlider[0].value;
+        VolumeSlider[0].transform.GetChild(4).GetComponent<TMPro.TMP_Text>().text = Mathf.RoundToInt(VolumeSlider[0].value*100).ToString();
+
+
+        audioSource.volume = VolumeSlider[1].value;
+        VolumeSlider[1].transform.GetChild(4).GetComponent<TMPro.TMP_Text>().text = Mathf.RoundToInt(VolumeSlider[1].value * 100).ToString();
+    }
+
+
     public void hilight_option(int index) //옵션 상단 메뉴들 눌렀을때
     {
         for (int i = 0; i < option_image.Length; i++)
@@ -771,11 +816,19 @@ public class JPopUpCanvas : MonoBehaviour
             {
                 option_UIpanel[0].SetActive(true);
                 option_UIpanel[1].SetActive(false);
+                option_UIpanel[2].SetActive(false);
+            }
+            else if(index == 1)
+            {
+                option_UIpanel[0].SetActive(false);
+                option_UIpanel[1].SetActive(true);
+                option_UIpanel[2].SetActive(false);
             }
             else
             {
                 option_UIpanel[0].SetActive(false);
-                option_UIpanel[1].SetActive(true);
+                option_UIpanel[1].SetActive(false);
+                option_UIpanel[2].SetActive(true);
             }
         }
         audioSource.PlayOneShot(Ui_Click);
