@@ -7,6 +7,8 @@ public partial class PlayerData //Chan
 {
     public PlayerStat playerStat;
     public MonsterStat monsterInitialStat;
+
+    public ElapsedTime elapsedTime;
 }
 
 [Serializable]
@@ -27,4 +29,12 @@ public class MonsterStat
 
     public float ATK = 500; // 공격력 
     public float DEF = 500; // 방어력 
+}
+
+[Serializable]
+public struct ElapsedTime
+{
+    // 경과 시간
+    public float Minutes; // 분
+    public float Seconds; // 초
 }

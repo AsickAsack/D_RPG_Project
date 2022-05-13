@@ -114,6 +114,7 @@ public class cMonster : cCharacteristic, BattleSystem
                 break;
             case STATE.DEAD:
                 OnDie();
+                EndTimer();
                 break;
         }
     }
@@ -140,6 +141,12 @@ public class cMonster : cCharacteristic, BattleSystem
                 //}
                 break;
         }
+    }
+
+    void EndTimer()
+    {
+        FindObjectOfType<cTimeManager>().TimerAvailable = false; // Ω√∞£ ∏ÿ√„
+        FindObjectOfType<cTimeManager>().SaveTime(); // Ω√∞£ ¿˙¿Â
     }
 
     public void StartRoaming()
