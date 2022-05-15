@@ -144,7 +144,10 @@ public class cMonsterp : cCharacteristicp, BattleSystem
         }
     }
 
-    
+    public void OnDead()
+    {
+        ChangeState(STATE.DEAD);
+    }
 
     public void StartRoaming()
     {
