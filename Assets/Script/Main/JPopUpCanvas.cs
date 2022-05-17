@@ -133,8 +133,9 @@ public class JPopUpCanvas : MonoBehaviour
         }
 
         timeCheck();
+        
 
-        if(Allbuy.activeSelf)
+        if (Allbuy.activeSelf)
         {
             CheckPanel[0].SetActive(false);
             CheckPanel[1].SetActive(false);
@@ -259,6 +260,8 @@ public class JPopUpCanvas : MonoBehaviour
         Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = "  일반 상점";
         audioSource.PlayOneShot(Ui_Click);
         curShopitem = GameItemPanel[0];
+        curShopitemindex = GameItemPanel[0].GetComponent<CommonShopItem>().item_index;
+        buyCheck();
     }
 
     int curShopitemindex = 0;
@@ -301,40 +304,15 @@ public class JPopUpCanvas : MonoBehaviour
                 Buy_Text.text = "구매 완료!";
                 GameData.Instance.playerdata.Gold -= GameData.Instance.playerdata.Itemdata2[curShopitemindex].Price;
                 audioSource.PlayOneShot(Moneyclip);
-                if(NPC_A_anim.GetBool("IsEx")==false)
+                curShopitem.GetComponent<Image>().raycastTarget = false;
+                if (NPC_A_anim.GetBool("IsEx")==false)
                 NPC_A_anim.SetTrigger("Excited");
                 GameData.Instance.playerdata.Player_inventory2.Add(GameData.Instance.playerdata.Itemdata2[curShopitemindex]);
                 curShopitem.transform.GetChild(0).GetComponent<Image>().gameObject.SetActive(false);
                 curShopitem.transform.GetChild(6).GetComponent<Image>().gameObject.SetActive(true);
-                curShopitem.GetComponent<Image>().raycastTarget = false;
                 buyitemCount++;
+                buyCheck();
 
-
-
-                if (curShopitem.GetComponent<Image>().raycastTarget == false)
-                {
-                    for (int i = 0; i < GameItemPanel.Length; i++)
-                    {
-                        if(GameItemPanel[i].GetComponent<Image>().raycastTarget == true)
-                        {
-                            curShopitem = GameItemPanel[i];
-                            for (int j = 0; j < GameItemPanel.Length; j++)
-                            {
-                                GameItemPanel[j].transform.GetChild(0).gameObject.SetActive(false);
-                            }
-                            mainitemIcon.sprite = curShopitem.GetComponent<CommonShopItem>().icon.sprite;
-                            mainitem[0].text = curShopitem.GetComponent<CommonShopItem>().itemName.text;
-                            mainitem[1].text = GameData.Instance.playerdata.Itemdata2[curShopitem.GetComponent<CommonShopItem>().item_index].Description;
-                            mainitem[2].text = GameData.Instance.playerdata.Itemdata2[curShopitem.GetComponent<CommonShopItem>().item_index].Price.ToString("N0");
-                            curShopitem.transform.GetChild(0).GetComponent<Image>().gameObject.SetActive(true);
-                            break;
-                        }
-
-                    }
-
-                }
-
-                    
                 if (buyitemCount == 5)
                 {
                    
@@ -342,6 +320,34 @@ public class JPopUpCanvas : MonoBehaviour
                     
                 }
             }
+        }
+
+    }
+
+    public void buyCheck()
+    {
+        if (curShopitem.GetComponent<Image>().raycastTarget == false)
+        {
+            for (int i = 0; i < GameItemPanel.Length; i++)
+            {
+                if (GameItemPanel[i].GetComponent<Image>().raycastTarget == true)
+                {
+                    curShopitem = GameItemPanel[i];
+                    curShopitemindex = GameItemPanel[i].GetComponent<CommonShopItem>().item_index;
+                    for (int j = 0; j < GameItemPanel.Length; j++)
+                    {
+                        GameItemPanel[j].transform.GetChild(0).gameObject.SetActive(false);
+                    }
+                    mainitemIcon.sprite = curShopitem.GetComponent<CommonShopItem>().icon.sprite;
+                    mainitem[0].text = curShopitem.GetComponent<CommonShopItem>().itemName.text;
+                    mainitem[1].text = GameData.Instance.playerdata.Itemdata2[curShopitem.GetComponent<CommonShopItem>().item_index].Description;
+                    mainitem[2].text = GameData.Instance.playerdata.Itemdata2[curShopitem.GetComponent<CommonShopItem>().item_index].Price.ToString("N0");
+                    curShopitem.transform.GetChild(0).GetComponent<Image>().gameObject.SetActive(true);
+                    break;
+                }
+
+            }
+
         }
 
     }
