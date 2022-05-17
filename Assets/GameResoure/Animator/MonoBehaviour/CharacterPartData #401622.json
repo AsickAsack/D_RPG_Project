@@ -1,0 +1,17 @@
+{
+  "m_GameObject": {
+    "m_FileID": 0,
+    "m_PathID": -469486122377661456
+  },
+  "m_Enabled": 1,
+  "m_Script": {
+    "m_FileID": 0,
+    "m_PathID": 1832617014367299470
+  },
+  "m_Name": "",
+  "boneNames": [
+    "Dummy_book"
+  ],
+  "rootBoneName": "Dummy_book",
+  "attatchEffects": []
+}

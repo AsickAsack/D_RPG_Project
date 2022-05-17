@@ -46,8 +46,6 @@ public class JPopUpCanvas : MonoBehaviour
     [Header("[장비창]")]
     public TMPro.TMP_Text[] EquipOption_Text;
 
-
-
     [Header("[장비창 관련]")]
     public GameObject Home;
     public GameObject Character_Icon;
@@ -64,6 +62,9 @@ public class JPopUpCanvas : MonoBehaviour
     public InvenItemSetting invenItemSetting;
     public GameObject inventory_okButton;
     public GameObject Use_popup;
+
+    [Header("[상점]")]
+    public Animator NPC_A_anim;
 
     [Header("[오디오 소스,클립]")]
     public AudioClip Ui_Click; // UI클릭했을때 재생할 효과음
@@ -210,47 +211,21 @@ public class JPopUpCanvas : MonoBehaviour
     {
         popup = Popup.Shop_Popup;
         ShopCanvas.enabled = true;
-        //열때 백버튼 수정
         BackGround_Canvas.enabled = true;
         Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = "상점";
         set_icon(true, false);
         audioSource.PlayOneShot(Ui_Click);
-
+        NPC_A_anim.SetTrigger("Waving");
 
     }
 
-    public void buy_item(int index)
+    public void open_CommonShop()
     {
-        switch(index)
-        {
-            case 1:
-                GameData.Instance.playerdata.Gold -= 50000;
-                GameData.Instance.playerdata.Player_inventory2.Add(GameData.Instance.playerdata.Itemdata2[2]);
-                break;
-            case 2:
-                GameData.Instance.playerdata.Gold -= 10000;
-                GameData.Instance.playerdata.Player_inventory.Add(GameData.Instance.playerdata.Itemdata[1]);
-                break;
-            case 3:
-                GameData.Instance.playerdata.Gold -= 10000;
-                GameData.Instance.playerdata.Player_inventory.Add(GameData.Instance.playerdata.Itemdata[3]);
-                break;
-            case 4:
-                GameData.Instance.playerdata.Gold -= 10000;
-                GameData.Instance.playerdata.Player_inventory.Add(GameData.Instance.playerdata.Itemdata[0]);
-                break;
-            case 5:
-                GameData.Instance.playerdata.Gold -= 10000;
-                GameData.Instance.playerdata.Player_inventory.Add(GameData.Instance.playerdata.Itemdata[2]);
-                break;
-
-
-
-
-        }
-
-        audioSource.PlayOneShot(Moneyclip);
+        Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = "일반 상점";
+        audioSource.PlayOneShot(Ui_Click);
     }
+
+ 
 
 
     #endregion

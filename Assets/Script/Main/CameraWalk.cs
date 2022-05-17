@@ -25,18 +25,18 @@ public class CameraWalk : MonoBehaviour
     
     void Update()
     {
-        if (JPopUpCanvas.IsUIopen || Input.GetMouseButtonDown(0))
+        if (JPopUpCanvas.IsUIopen || Input.GetMouseButtonDown(0)|| Input.GetMouseButton(0))
         {
             NoTouchTime = 0.0f;
         }
 
-        if (!JPopUpCanvas.IsUIopen && NoTouchTime < 20.0f)
+        if (!JPopUpCanvas.IsUIopen && NoTouchTime < 35.0f)
         {
             NoTouchTime += Time.deltaTime;
           
-            if (NoTouchTime >= 15.0f)
+            if (NoTouchTime >= 30.0f)
             {
-                NoTouchTime = 20.0f;
+                NoTouchTime = 35.0f;
                 springarm.Rot = Vector3.zero;
                 pivot.transform.localRotation = Quaternion.Euler(0, 0, 0);
 
@@ -44,7 +44,7 @@ public class CameraWalk : MonoBehaviour
         }
 
 
-        if (!JPopUpCanvas.IsUIopen && NoTouchTime >= 15.0f)
+        if (!JPopUpCanvas.IsUIopen && NoTouchTime >= 30.0f)
         { 
             switch (CameraMoveindex)
             {
