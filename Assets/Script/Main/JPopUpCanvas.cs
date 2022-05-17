@@ -15,7 +15,6 @@ public class JPopUpCanvas : MonoBehaviour
     public Canvas Equip_Canvas;
     public Canvas Scroll_Canvas;
     public Canvas Equip_DetailCanvas;
-    public Canvas Detail_GameObjectCanvas;
     public Canvas Option_Canvas;
     public Canvas ShopCanvas;
     public Canvas Inventory_Canvas;
@@ -24,10 +23,6 @@ public class JPopUpCanvas : MonoBehaviour
 
     [Header("[UI open 확인 변수]")]
     public static bool IsUIopen = false; // ui가 현재 열려있는지 아닌지 확인하는 불값
-
-
-    //[Header("[장비창 장비 클릭 이미지 배열]")]
-    //public Image[] equip_image; // 클릭했을때 활성화 시킬 장비 이미지 배열
 
     [Header("[장비창 왼쪽 메뉴 이미지 배열]")]
     public GameObject[] Equip_Menu; // 클릭했을때 활성화 시킬 옵션 이미지 배열
@@ -59,6 +54,9 @@ public class JPopUpCanvas : MonoBehaviour
     public GameObject Message_Icon;
     public GameObject Equip_Backbutton;
     public JEquipScroll Scroll_script;
+    public GameObject[] EquipObject;
+    public int EquipIndex = 0;
+    public Vector3 EquipOrgPos;
 
     [Header("[인벤토리]")]
     public GameObject[] inven_Leftmenu;
@@ -98,7 +96,7 @@ public class JPopUpCanvas : MonoBehaviour
 
         }
 
-      
+       
        
     }
     #endregion
@@ -110,7 +108,21 @@ public class JPopUpCanvas : MonoBehaviour
             IsUIopen = true;
             Exit_Canvas.enabled = true;
         }
+
+
+        float y = Input.GetAxis("Mouse X")*Time.deltaTime*1000.0f;
+
+        if(Input.GetMouseButton(0))
+        {
+         
+            EquipObject[EquipIndex].transform.Rotate(0, 0, -y);
+        }
+
     }
+
+
+    
+
 
     public void ExitPopup_NO()
     {
@@ -165,25 +177,12 @@ public class JPopUpCanvas : MonoBehaviour
                     popup = Popup.Equip_Popup;
                     Main_Canvas.enabled = true;
                     Equip_DetailCanvas.enabled = false;
-                    Detail_GameObjectCanvas.enabled = false;
                     //Main_Canvas.enabled = true;
                     EquipMenu_Setting();
                     Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = "장비";
-                    switch(GameData.Instance.playerdata.Player_inventory[CurNum].ItemCode)
-                    {
-                        case 000:
-                            Detail_GameObjectCanvas.transform.GetChild(1).GetComponent<RectTransform>().gameObject.SetActive(false);
-                            break;
-                        case 001:
-                            Detail_GameObjectCanvas.transform.GetChild(2).GetComponent<RectTransform>().gameObject.SetActive(false);
-                            break;
-                        case 002:
-                            Detail_GameObjectCanvas.transform.GetChild(3).GetComponent<RectTransform>().gameObject.SetActive(false);
-                            break;
-                        case 003:
-                            Detail_GameObjectCanvas.transform.GetChild(4).GetComponent<RectTransform>().gameObject.SetActive(false);
-                            break;
-                    }
+                    EquipObject[EquipIndex].gameObject.SetActive(false);
+                    EquipObject[EquipIndex].transform.localRotation = Quaternion.Euler(EquipOrgPos);
+
                 }
                 break;
             case Popup.Shop_Popup:
@@ -471,7 +470,6 @@ public class JPopUpCanvas : MonoBehaviour
         popup = Popup.Equip_detail;
         //Main_Canvas.enabled = false;
         Equip_DetailCanvas.enabled = true;
-        Detail_GameObjectCanvas.enabled = true;
         Main_Canvas.enabled = false;
         Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = "    장비 정보";
         jSetItemDetail.setItem(clickObject.GetComponent<JSetItemDetail>().num);
