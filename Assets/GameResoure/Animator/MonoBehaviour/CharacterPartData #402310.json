@@ -1,0 +1,35 @@
+{
+  "m_GameObject": {
+    "m_FileID": 0,
+    "m_PathID": 5149955214917185606
+  },
+  "m_Enabled": 1,
+  "m_Script": {
+    "m_FileID": 0,
+    "m_PathID": 1832617014367299470
+  },
+  "m_Name": "",
+  "boneNames": [
+    "Bip001 Head",
+    "Bone_cap_R02",
+    "Bone_hairB1_01",
+    "Bone_hairB1_02",
+    "Bone_hairB1_03",
+    "Bip001 Pelvis",
+    "Bip001 R Thigh",
+    "Bip001 Spine",
+    "Bip001 R Calf",
+    "Bip001 L Thigh",
+    "Bip001 L Calf",
+    "Bip001 Spine2",
+    "Bone_breast_R01",
+    "Bip001 RUpArmTwist",
+    "Bip001 R Clavicle",
+    "Bone_breast_L01",
+    "Bip001 LUpArmTwist",
+    "Bip001 L Clavicle",
+    "Bone_cap_L02"
+  ],
+  "rootBoneName": "Bip001 Pelvis",
+  "attatchEffects": []
+}

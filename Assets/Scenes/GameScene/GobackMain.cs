@@ -8,7 +8,7 @@ public class GobackMain : MonoBehaviour
     {
         ClickCanvas.Instance.Click_Canvas.gameObject.SetActive(true);
         Time.timeScale = 1;
-        SceneLoader.Instance.LoadScene(2);
+        SceneLoader.Instance.Loading_LoadScene(2);
 
     }
 

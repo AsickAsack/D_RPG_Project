@@ -1,0 +1,31 @@
+{
+  "m_GameObject": {
+    "m_FileID": 0,
+    "m_PathID": -5439076440805783866
+  },
+  "m_Enabled": 1,
+  "m_Script": {
+    "m_FileID": 0,
+    "m_PathID": -255597554479379510
+  },
+  "m_Name": "",
+  "partsName": [
+    "parts_characters_npc/shop_npc_a_dne/parts/npc_a_dne(npc_a_dne_body1)",
+    "parts_characters_npc/shop_npc_a_dne/parts/npc_a_dne(npc_a_dne_body2)",
+    "parts_characters_npc/shop_npc_a_dne/parts/npc_a_dne(npc_a_dne_hair)",
+    "parts_characters_npc/shop_npc_a_dne/parts/npc_a_dne(npc_a_dne_underwear)",
+    "parts_characters_npc/shop_npc_a_dne/parts/npc_a_dne(npc_a_dne_hand)"
+  ],
+  "standName": [
+    "Stand",
+    "Stand2",
+    "Stand3",
+    "Stand4"
+  ],
+  "standProb": [
+    70,
+    10,
+    10,
+    10
+  ]
+}

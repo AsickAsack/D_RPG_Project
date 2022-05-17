@@ -1,0 +1,29 @@
+{
+  "m_GameObject": {
+    "m_FileID": 0,
+    "m_PathID": -6085602808606964444
+  },
+  "m_Enabled": 1,
+  "m_Script": {
+    "m_FileID": 0,
+    "m_PathID": -7377370866382260960
+  },
+  "m_Name": "",
+  "low_": {
+    "m_FileID": 0,
+    "m_PathID": -4241218521758296232
+  },
+  "high_": {
+    "m_FileID": 0,
+    "m_PathID": 5018041692299071134
+  },
+  "low2_": {
+    "m_FileID": 0,
+    "m_PathID": 0
+  },
+  "high2_": {
+    "m_FileID": 0,
+    "m_PathID": 0
+  },
+  "costumeMat_List": []
+}

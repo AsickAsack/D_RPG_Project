@@ -1,0 +1,64 @@
+{
+  "m_GameObject": {
+    "m_FileID": 0,
+    "m_PathID": -5439076440805783866
+  },
+  "m_Enabled": 1,
+  "m_Script": {
+    "m_FileID": 0,
+    "m_PathID": -6389618864878663690
+  },
+  "m_Name": "",
+  "enableRadialBlur": 1,
+  "enableDissolveMaterial": 0,
+  "enableMaterialAlpha": 0,
+  "deleteEffect_go": 0,
+  "modelTrailActive": 1,
+  "modelTrailName": "",
+  "parts_": [],
+  "goTransform_": {
+    "m_FileID": 0,
+    "m_PathID": 5663160983689966585
+  },
+  "animator_": {
+    "m_FileID": 0,
+    "m_PathID": 2967558924111640840
+  },
+  "animatorController_": {
+    "m_FileID": 0,
+    "m_PathID": -8729975380057382547
+  },
+  "magiMecanimEventData_": {
+    "m_FileID": 0,
+    "m_PathID": 0
+  },
+  "originalAnimatorController_": {
+    "m_FileID": 0,
+    "m_PathID": -7965997249835043054
+  },
+  "editorParentModel": {
+    "m_FileID": 0,
+    "m_PathID": 0
+  },
+  "nonAnimatorName_": [
+    "nonAnimator.one"
+  ],
+  "mdataFileName_": "characters_npc/shop_npc_a/npc_a_template",
+  "visibilityPath_": "",
+  "dynamicTargetAnimatorController_": "",
+  "nonAnimatorDurationTime_": [
+    0.0
+  ],
+  "nonAnimatorDuration_": 0.0,
+  "isNonAnimatorRealTimeDuration": 0,
+  "nonAnimatorNormalizedTime_": 0.0,
+  "nonAnimatorHash_": [
+    -999399045
+  ],
+  "nonAnimatorCount_": 1,
+  "nonAnimator_": 0,
+  "dynamicAnimator_": 0,
+  "enableOptimizeTransformHierarchy_": 1,
+  "touchMotionID_": 20,
+  "deltaPositionY": 0.0
+}

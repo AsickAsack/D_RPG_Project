@@ -6,7 +6,9 @@ using UnityEngine;
 public partial class PlayerData //Chan
 {
     public PlayerStat playerStat;
-    public MonsterStat monsterStat;
+    public MonsterStat monsterInitialStat;
+
+    public ElapsedTime elapsedTime;
 }
 
 [Serializable]
@@ -23,8 +25,16 @@ public class PlayerStat
 public class MonsterStat
 {
     // 기본 몬스터 스탯
-    public float HP = 1000; // 체력
+    public float HP = 100; // 체력
 
     public float ATK = 500; // 공격력 
     public float DEF = 500; // 방어력 
+}
+
+[Serializable]
+public struct ElapsedTime
+{
+    // 경과 시간
+    public float Minutes; // 분
+    public float Seconds; // 초
 }
