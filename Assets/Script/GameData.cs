@@ -30,7 +30,7 @@ public partial class GameData : MonoBehaviour
 
                     if (File.Exists(Application.persistentDataPath + "/GameData.json"))
                     { 
-                       // instance._Load();
+                        instance._Load();
                     }
 
                     

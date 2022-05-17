@@ -35,11 +35,11 @@ public class IntroManger : MonoBehaviour
         { 
         if (GameData.Instance.playerdata.FirstGame)
         {
-                SceneLoader.Instance.Loading_LoadScene(1);
+                SceneLoader.Instance.LoadScene(1);
             GameData.Instance.playerdata.FirstGame = false;
         }
         else
-                SceneLoader.Instance.Loading_LoadScene(2);
+                SceneLoader.Instance.LoadScene(2);
         }
     }
 

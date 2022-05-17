@@ -30,13 +30,14 @@ public class ClickCanvas : MonoBehaviour
 
 
     [Header("[클릭 이미지 게임오브젝트]")]
-   // public GameObject Click;
+    public GameObject Click;
+    public Camera ClickUiCamera;
     public Canvas Click_Canvas;
 
 
     void Update()
     {
-        //_Click();
+        _Click();
     }
 
 
@@ -45,9 +46,9 @@ public class ClickCanvas : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
 
-            //RectTransformUtility.ScreenPointToLocalPointInRectangle(this.GetComponent<RectTransform>(), Input.mousePosition, ClickUiCamera, out Vector2 anchoredpos);
-            //Click.GetComponent<RectTransform>().anchoredPosition = anchoredpos;
-            //Click.GetComponentInChildren<ParticleSystem>().Play();
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(this.GetComponent<RectTransform>(), Input.mousePosition, ClickUiCamera, out Vector2 anchoredpos);
+            Click.GetComponent<RectTransform>().anchoredPosition = anchoredpos;
+            Click.GetComponentInChildren<ParticleSystem>().Play();
 
 
         }

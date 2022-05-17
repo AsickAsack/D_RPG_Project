@@ -35,7 +35,7 @@ public class cMonsterp : cCharacteristicp, BattleSystem
     public float ATK_WaitingTime; // 공격 대기시간
     public float convertDamage = 0.1f; // 데미지 환산 비율 => 데미지 = 공격력(ATK) * 데미지비율(convertDamage)
 
-    //public bool isDying = false; // 몬스터의 죽는 애니메이션이 끝났는지 여부
+    //public bool isdying = false; // 몬스터의 죽는 애니메이션이 끝났는지 여부
     public bool isAttacking = false; // 몬스터가 공격중인지 여부    
 
     public void OnDamage(float damage)
@@ -71,19 +71,7 @@ public class cMonsterp : cCharacteristicp, BattleSystem
             }
         }
     }
-
-    private void Awake()
-    {
-        InitializeStats();
-    }
-
-    void InitializeStats()
-    {
-        // PlayerData의 정보를 가져옴
-        myStats.HP = GameData.Instance.playerdata.monsterInitialStat.HP;
-        myStats.ATK = GameData.Instance.playerdata.monsterInitialStat.ATK;
-        myStats.DEF = GameData.Instance.playerdata.monsterInitialStat.DEF;
-    }
+    
 
     void Start()
     {
@@ -115,7 +103,7 @@ public class cMonsterp : cCharacteristicp, BattleSystem
                 DetectMove();
                 break;
             case STATE.DEAD:
-                OnDie();                
+                OnDie();
                 break;
         }
     }
@@ -136,18 +124,15 @@ public class cMonsterp : cCharacteristicp, BattleSystem
                 //}
                 break;
             case STATE.DEAD:
-                //if (isDying)
+                //if (isdying)
                 //{
                 //    OnDisappear();
-                //}                
+                //}
                 break;
         }
     }
 
-    public void OnDead()
-    {
-        ChangeState(STATE.DEAD);
-    }
+    
 
     public void StartRoaming()
     {
@@ -158,31 +143,6 @@ public class cMonsterp : cCharacteristicp, BattleSystem
     {
         StopAllCoroutines();
         myAnim.SetTrigger("Die"); // 죽는 애니메이션 실행
-        OnDisappear(); // 5초 뒤에 사라짐
-    }
-
-    void OnDisappear()
-    {
-        StartCoroutine(Disappearing()); // 아래로 가라앉음
-    }
-
-    IEnumerator Disappearing()
-    {
-        //float dist = 2.0f; // 떨어질 거리
-
-        //while (!Mathf.Approximately(dist, 0.0f))
-        //{
-        //    float delta = Time.deltaTime * 0.5f;
-
-        //    delta = delta > dist ? dist : delta;
-
-        //    this.transform.Translate(Vector3.down * delta, Space.World);
-        //    dist -= delta;
-
-        //    yield return null;
-        //}
-        yield return new WaitForSeconds(5.0f);
-        Destroy(this.gameObject); // 게임 오브젝트 삭제
     }
 
     public void OnBattle()

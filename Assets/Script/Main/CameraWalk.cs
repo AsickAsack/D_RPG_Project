@@ -14,7 +14,6 @@ public class CameraWalk : MonoBehaviour
     public float RotSpeed=10.0f;
     public Transform pivot;
     public SpringArm springarm;
-    bool isCameraMove = false;
 
     private void Awake()
     {
@@ -25,18 +24,14 @@ public class CameraWalk : MonoBehaviour
     
     void Update()
     {
-        if (JPopUpCanvas.IsUIopen || Input.GetMouseButtonDown(0)|| Input.GetMouseButton(0))
-        {
-            NoTouchTime = 0.0f;
-        }
 
-        if (!JPopUpCanvas.IsUIopen && NoTouchTime < 35.0f)
+        if (NoTouchTime < 10.0f)
         {
             NoTouchTime += Time.deltaTime;
-          
-            if (NoTouchTime >= 30.0f)
+
+            if (NoTouchTime >= 5.0f)
             {
-                NoTouchTime = 35.0f;
+                NoTouchTime = 10.0f;
                 springarm.Rot = Vector3.zero;
                 pivot.transform.localRotation = Quaternion.Euler(0, 0, 0);
 
@@ -44,13 +39,12 @@ public class CameraWalk : MonoBehaviour
         }
 
 
-        if (!JPopUpCanvas.IsUIopen && NoTouchTime >= 30.0f)
+        if (NoTouchTime >=5.0f)
         { 
             switch (CameraMoveindex)
             {
                 case 0:
                     {
-                        isCameraMove = true;
                         Camera.main.transform.RotateAround(Player.transform.localPosition, Vector3.right, Time.deltaTime * RotSpeed);
                         if(Camera.main.transform.localRotation.eulerAngles.x > 42.0f)
                         {
@@ -94,13 +88,11 @@ public class CameraWalk : MonoBehaviour
                     }
                     break;
             }
-
         }
 
 
-        if (isCameraMove &&!JPopUpCanvas.IsUIopen && Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
-            isCameraMove = false;
             Camera.main.transform.localPosition = OriginPos;
             Camera.main.transform.localRotation = OriginRot;
             springarm.Rot = Vector3.zero;

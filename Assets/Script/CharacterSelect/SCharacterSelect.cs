@@ -68,7 +68,7 @@ public class SCharacterSelect : MonoBehaviour
                 popup[0].SetActive(false);
                 popup[1].SetActive(false);
                 GameData.Instance.playerdata.Nickname = inputText.text;
-                SceneLoader.Instance.Loading_LoadScene(2);
+                SceneLoader.Instance.LoadScene(2);
             }
             else
             {

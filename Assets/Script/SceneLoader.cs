@@ -28,11 +28,11 @@ public class SceneLoader : MonoBehaviour
         } 
     }
 
-
-    #region 로딩화면있는 로드씬(인덱스)
-    public void Loading_LoadScene(int i)
+    public void LoadScene(int i)
     {
         StartCoroutine(SceneLoading(i));
+
+
 
     }
 
@@ -64,55 +64,4 @@ public class SceneLoader : MonoBehaviour
             yield return null;
         }
     }
-    #endregion
-
-    #region 로딩화면있는 로드씬(스트링)
-    public void Loading_LoadScene(string Scene)
-    {
-        StartCoroutine(SceneLoading(Scene));
-
-    }
-
-    IEnumerator SceneLoading(string Scene)
-    {
-        yield return SceneManager.LoadSceneAsync("LoadingScene");
-        yield return StartCoroutine(Loading(Scene));
-
-    }
-
-    IEnumerator Loading(string Scene)
-    {
-
-        Slider loadingSlider = GameObject.Find("LoadingProgress")?.GetComponent<Slider>(); //LoadingProgress라는 이름을 가진 게임오브젝트를 찾아서 널이 아니라면?
-        AsyncOperation ao = SceneManager.LoadSceneAsync(Scene);
-        //씬로딩이 끝나기 전까진 씬을 활성화하지 않는다.
-        ao.allowSceneActivation = false;
-
-        //isDone == false -> 로딩중 / true ->로딩이 끝
-        while (!ao.isDone)
-        {
-            if (loadingSlider != null)
-                loadingSlider.value = ao.progress + 0.1f;
-
-            if (Mathf.Approximately(ao.progress, 0.9f))
-            {
-                ao.allowSceneActivation = true;
-            }
-            yield return null;
-        }
-    }
-    #endregion
-
-    //로딩화면 없는 로드씬(인덱스)
-    public void LoadScene(int index)
-    {
-        SceneManager.LoadSceneAsync(index);
-    }
-
-    //로딩화면 없는 로드씬(스트링)
-    public void LoadScene(string Scene)
-    {
-        SceneManager.LoadSceneAsync(Scene);
-    }
-
 }

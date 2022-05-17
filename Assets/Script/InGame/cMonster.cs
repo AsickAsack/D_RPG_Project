@@ -7,7 +7,7 @@ public class cMonster : cCharacteristic, BattleSystem
 {
     public enum STATE
     {
-        CREAT, ROAMING, BATTLE, DEAD, ENDGAME      
+        CREAT, ROAMING, BATTLE, DEAD        
     }
 
     public STATE myState = STATE.CREAT;
@@ -34,7 +34,7 @@ public class cMonster : cCharacteristic, BattleSystem
     public float ATK_WaitingTime; // 공격 대기시간
     public float convertDamage = 0.1f; // 데미지 환산 비율 => 데미지 = 공격력(ATK) * 데미지비율(convertDamage)
 
-    public bool isDying = false; // 몬스터의 죽는 애니메이션이 끝났는지 여부
+    //public bool isDying = false; // 몬스터의 죽는 애니메이션이 끝났는지 여부
     public bool isAttacking = false; // 몬스터가 공격중인지 여부    
 
     public void OnDamage(float damage)
@@ -78,9 +78,9 @@ public class cMonster : cCharacteristic, BattleSystem
     void InitializeStats()
     {
         // PlayerData의 정보를 가져옴
-        myStats.HP = GameData.Instance.playerdata.monsterInitialStat.HP;
-        myStats.ATK = GameData.Instance.playerdata.monsterInitialStat.ATK;
-        myStats.DEF = GameData.Instance.playerdata.monsterInitialStat.DEF;
+        myStats.HP = GameData.Instance.playerdata.monsterStat.HP;
+        myStats.ATK = GameData.Instance.playerdata.monsterStat.ATK;
+        myStats.DEF = GameData.Instance.playerdata.monsterStat.DEF;
     }
 
 
@@ -114,10 +114,6 @@ public class cMonster : cCharacteristic, BattleSystem
                 break;
             case STATE.DEAD:
                 OnDie();
-                EndTimer();
-                break;
-            case STATE.ENDGAME:
-                StartCoroutine(GotoResultScene());
                 break;
         }
     }
@@ -138,29 +134,12 @@ public class cMonster : cCharacteristic, BattleSystem
                 //}
                 break;
             case STATE.DEAD:
-                break;
-            case STATE.ENDGAME:
+                //if (isdying)
+                //{
+                //    OnDisappear();
+                //}
                 break;
         }
-    }
-
-    public void EndGame()
-    {
-        ChangeState(STATE.ENDGAME);
-    }
-
-    IEnumerator GotoResultScene()
-    {
-        // 3초 대기
-        yield return new WaitForSeconds(3.0f);
-        // 결과 씬을 불러옴
-        SceneLoader.Instance.LoadScene(6);
-    }
-
-    void EndTimer()
-    {
-        FindObjectOfType<cTimeManager>().TimerAvailable = false; // 시간 멈춤
-        FindObjectOfType<cTimeManager>().SaveTime(); // 시간 저장
     }
 
     public void StartRoaming()
@@ -172,13 +151,32 @@ public class cMonster : cCharacteristic, BattleSystem
     {
         StopAllCoroutines();
         myAnim.SetTrigger("Die"); // 죽는 애니메이션 실행
-
-        for (int i = 0; i < FindObjectsOfType<cMonsterp>().Length; i++)
-        {
-            FindObjectsOfType<cMonsterp>()[i].OnDead();
-        }
     }
-        
+
+    //void OnDisappear()
+    //{
+    //    StartCoroutine(Disappearing()); // 아래로 가라앉음
+    //}
+
+    //IEnumerator Disappearing()
+    //{
+    //    float dist = 2.0f; // 떨어질 거리
+
+    //    while (!Mathf.Approximately(dist, 0.0f))
+    //    {
+    //        float delta = Time.deltaTime * 0.5f;
+
+    //        delta = delta > dist ? dist : delta;
+
+    //        this.transform.Translate(Vector3.down * delta);
+    //        dist -= delta;
+
+    //        yield return null;
+    //    }
+
+    //    Destroy(this.gameObject); // 게임 오브젝트 삭제
+    //}
+
     public void OnBattle()
     {
         StopAllCoroutines();

@@ -10,7 +10,7 @@ public class SpringArm : MonoBehaviour
     public Vector2 VerticalRotRange;
     public float SmoothRotSpeed = 5.0f;
     public CharacterSpin characterspin;
-    
+    public JPopUpCanvas jpopupCanvas;
 
     void Start()
     {
@@ -22,7 +22,7 @@ public class SpringArm : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!JPopUpCanvas.IsUIopen)
+        if(!jpopupCanvas.IsUIopen)
         { 
         if (!characterspin.Is_Character_DragON && Input.GetMouseButton(0)) 
         { 

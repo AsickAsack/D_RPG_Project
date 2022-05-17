@@ -1,4 +1,0 @@
-characters_npc/shop_npc_a/npc_a_stand_compress_none.fbx#1328032045
-characters_npc/shop_npc_a/npc_a_stand2_compress_none.fbx#2052545612
-characters_npc/shop_npc_a/npc_a_select_compress_none.fbx#580681777
-characters_npc/shop_npc_a/npc_a_in_compress_none.fbx#3368398410

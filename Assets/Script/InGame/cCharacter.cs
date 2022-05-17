@@ -42,22 +42,9 @@ public class cCharacter : cCharacteristic, BattleSystem
         StopAllCoroutines();
         myAnim.SetTrigger("Die"); // 죽는 애니메이션 실행
 
-        List<GameObject> curDetected = myDetection.DetectedTargets;
-
         // 플레이어 사망시 몬스터를 로밍상태로 바꿔줌
-        for (int i = 0; i < curDetected.Count; i++)
-        {
-            if (curDetected[i].GetComponent<cMonster>() == null)
-            {
-                // 잡몹
-                curDetected[i].GetComponent<cMonsterp>().StartRoaming();
-            }
-            else
-            {
-                // Toledo
-                curDetected[i].GetComponent<cMonster>().StartRoaming();
-            }
-        }
+        myDetection.GetComponent<cMonster>().StartRoaming();
+        myDetection.GetComponent<cMonsterp>().StartRoaming();
     }
 
     private void Awake()

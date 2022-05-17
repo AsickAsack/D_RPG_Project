@@ -34,7 +34,7 @@ TextureImporter:
     second: hpbar
   - first:
       213: -4372209329574296626
-    second: HpBar
+    second: keyicon
   - first:
       213: 2877471580529523173
     second: 
@@ -349,7 +349,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 
+      name: Empty
       rect:
         serializedVersion: 2
         x: 0
@@ -357,7 +357,7 @@ TextureImporter:
         width: 0
         height: 0
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -369,10 +369,31 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: keyicon
+      rect:
+        serializedVersion: 2
+        x: 971
+        y: 630
+        width: 48
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec3431b97cac253c0800000000000000
+      internalID: -4372209329574296626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: a875a7b1f4db34a4ea0f806d3e6b3b14
     internalID: 0
     vertices: []
     indices: 
