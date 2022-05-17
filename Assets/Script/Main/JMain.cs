@@ -24,7 +24,7 @@ public class JMain : MonoBehaviour
     private void Awake()
     {
        GameData.Instance._save();
-        
+        GameData.Instance.playerdata.Player_inventory.Add(GameData.Instance.playerdata.Itemdata[0]);
 
     }
 
@@ -33,9 +33,9 @@ public class JMain : MonoBehaviour
     void Start()
     {
         Sound.Instance.PlayBGM(mainBGM);
-       
-        for(int i=0;i< GameData.Instance.playerdata.Itemdata2.Length;i++)
-        GameData.Instance.playerdata.Player_inventory2.Add(GameData.Instance.playerdata.Itemdata2[i]);
+
+
+        GameData.Instance.playerdata.Gold += 500000;
         
 
     }

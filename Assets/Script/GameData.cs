@@ -135,7 +135,8 @@ public partial class PlayerData
             ItemCode = 000,
             ItemName = "HP포션",
             Description = "HP를 50 회복해준다.",
-            Mysprite = 4
+            Mysprite = 4,
+            Price = 3500
 
         };
 
@@ -145,7 +146,8 @@ public partial class PlayerData
             ItemCode = 001,
             ItemName = "MP포션",
             Description = "MP를 50 회복해준다.",
-            Mysprite = 5
+            Mysprite = 5,
+            Price = 4000
         };
 
         Itemdata2[2] = new itemdata2
@@ -154,7 +156,8 @@ public partial class PlayerData
             ItemCode = 002,
             ItemName = "행운의 두루마리",
             Description = "골드를 가져다주는 행운의 두루마리.",
-            Mysprite = 6
+            Mysprite = 6,
+            Price = 50000
         };
 
         Itemdata2[3] = new itemdata2
@@ -163,7 +166,8 @@ public partial class PlayerData
             ItemCode = 003,
             ItemName = "강철주괴",
             Description = "강화에 필요한 강철주괴.",
-            Mysprite = 7
+            Mysprite = 7,
+            Price = 7000
         };
         Itemdata2[4] = new itemdata2
         {
@@ -171,7 +175,8 @@ public partial class PlayerData
             ItemCode = 004,
             ItemName = "토레도의 벨트",
             Description = "보스 토레도가 차고다니는 벨트.",
-            Mysprite = 8
+            Mysprite = 8,
+            Price = 8000
         };
 
     }
@@ -281,7 +286,7 @@ public struct itemdata2
     public string Description;
     //public Sprite Mysprite;
     public int Mysprite;
-
+    public int Price;
 }
 
 [System.Serializable]

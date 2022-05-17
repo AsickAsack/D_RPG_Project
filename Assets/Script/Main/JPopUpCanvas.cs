@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.U2D;
 using UnityEngine.EventSystems;
+using System;
+
 
 public class JPopUpCanvas : MonoBehaviour
 {
@@ -51,7 +53,6 @@ public class JPopUpCanvas : MonoBehaviour
     public GameObject Character_Icon;
     public GameObject Message_Icon;
     public GameObject Equip_Backbutton;
-    public JEquipScroll Scroll_script;
     public GameObject[] EquipObject;
     public int EquipIndex = 0;
     public Vector3 EquipOrgPos;
@@ -62,9 +63,18 @@ public class JPopUpCanvas : MonoBehaviour
     public InvenItemSetting invenItemSetting;
     public GameObject inventory_okButton;
     public GameObject Use_popup;
+    public GameObject inventory_Detail;
 
     [Header("[상점]")]
     public Animator NPC_A_anim;
+    public GameObject[] Shop_Panel;
+    public GameObject[] GameItemPanel;
+    public Image mainitemIcon;
+    public TMPro.TMP_Text[] mainitem;
+    public TMPro.TMP_Text Buy_Text;
+    public GameObject Allbuy;
+    public TMPro.TMP_Text Shoptime;
+    public GameObject[] CheckPanel;
 
     [Header("[오디오 소스,클립]")]
     public AudioClip Ui_Click; // UI클릭했을때 재생할 효과음
@@ -77,7 +87,7 @@ public class JPopUpCanvas : MonoBehaviour
     #region 옵션창 enum
     public enum Popup //어떤 팝업인지 알려줄 열거자 
     {
-        None=0,Iventory_Popup,Equip_Popup,Equip_detail,Shop_Popup
+        None=0,Iventory_Popup,Equip_Popup,Equip_detail,Shop_Popup,Common_Shop
     }
 
     public Popup popup=Popup.None;
@@ -96,11 +106,14 @@ public class JPopUpCanvas : MonoBehaviour
             leftIcon_orginpos[i] = sliderMoveObjectLeft[i].anchoredPosition;
 
         }
-
-       
-       
+        first_set();
     }
     #endregion
+
+    private void Start()
+    {
+        StartCoroutine(buyTime());
+    }
 
     private void Update()
     {
@@ -117,6 +130,14 @@ public class JPopUpCanvas : MonoBehaviour
         {
          
             EquipObject[EquipIndex].transform.Rotate(0, 0, -y);
+        }
+
+        timeCheck();
+
+        if(Allbuy.activeSelf)
+        {
+            CheckPanel[0].SetActive(false);
+            CheckPanel[1].SetActive(false);
         }
 
     }
@@ -162,6 +183,7 @@ public class JPopUpCanvas : MonoBehaviour
                     Inventory_Canvas.enabled = false;
                     set_icon(false, true);
                     BackGround_Canvas.enabled = false;
+                    IsUIopen = false;
                 }
                 break;
             case Popup.Equip_Popup:
@@ -171,6 +193,7 @@ public class JPopUpCanvas : MonoBehaviour
                     set_icon(false, true);
                     popup = Popup.None;
                     BackGround_Canvas.enabled = false;
+                    IsUIopen = false;
                 }
                 break;
             case Popup.Equip_detail:
@@ -193,12 +216,22 @@ public class JPopUpCanvas : MonoBehaviour
                     ShopCanvas.enabled = false;
                     set_icon(false, true);
                     BackGround_Canvas.enabled = false;
+                    IsUIopen = false;
+                }
+                break;
+            case Popup.Common_Shop:
+                {
+                    popup = Popup.Shop_Popup;
+                    //NPC_A_anim.SetTrigger("Waving");
+                    Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = " 상점";
+                    Shop_Panel[1].SetActive(false);
+                    Shop_Panel[0].SetActive(true);
                 }
                 break;
         }
 
         audioSource.PlayOneShot(Ui_Click);
-        IsUIopen = false;
+      
        // mainCamera.enabled = true;
         
        
@@ -209,10 +242,11 @@ public class JPopUpCanvas : MonoBehaviour
     #region 상점 함수
     public void ShopPopup_Open()
     {
+        IsUIopen = true;
         popup = Popup.Shop_Popup;
         ShopCanvas.enabled = true;
         BackGround_Canvas.enabled = true;
-        Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = "상점";
+        Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = " 상점";
         set_icon(true, false);
         audioSource.PlayOneShot(Ui_Click);
         NPC_A_anim.SetTrigger("Waving");
@@ -221,11 +255,145 @@ public class JPopUpCanvas : MonoBehaviour
 
     public void open_CommonShop()
     {
-        Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = "일반 상점";
+        popup = Popup.Common_Shop;
+        Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = "  일반 상점";
         audioSource.PlayOneShot(Ui_Click);
+        curShopitem = GameItemPanel[0];
     }
 
- 
+    int curShopitemindex = 0;
+    GameObject curShopitem = null;
+
+    public void click_Item()
+    {
+        for (int i = 0; i < GameItemPanel.Length; i++)
+        {
+            GameItemPanel[i].transform.GetChild(0).gameObject.SetActive(false);
+        }
+        GameObject clickObject = EventSystem.current.currentSelectedGameObject;
+        clickObject.transform.GetChild(0).gameObject.SetActive(true);
+        curShopitemindex = clickObject.GetComponent<CommonShopItem>().item_index;
+        curShopitem = clickObject;
+
+        mainitemIcon.sprite = clickObject.GetComponent<CommonShopItem>().icon.sprite;
+        mainitem[0].text = clickObject.GetComponent<CommonShopItem>().itemName.text;
+        mainitem[1].text = GameData.Instance.playerdata.Itemdata2[clickObject.GetComponent<CommonShopItem>().item_index].Description;
+        mainitem[2].text = GameData.Instance.playerdata.Itemdata2[clickObject.GetComponent<CommonShopItem>().item_index].Price.ToString("N0");
+       
+    }
+
+    int buyitemCount = 0;
+    public void buyitem()
+    {
+        if(curShopitem.GetComponent<Image>().raycastTarget ==false)
+        {
+            Buy_Text.text = "구매할 수 없습니다!";
+        }
+        else
+        { 
+            if(GameData.Instance.playerdata.Gold <GameData.Instance.playerdata.Itemdata2[curShopitemindex].Price)
+            {
+                Buy_Text.text = "골드가 부족합니다.\n\n";
+            }
+
+            if (GameData.Instance.playerdata.Gold >= GameData.Instance.playerdata.Itemdata2[curShopitemindex].Price)
+            {
+                Buy_Text.text = "구매 완료!";
+                GameData.Instance.playerdata.Gold -= GameData.Instance.playerdata.Itemdata2[curShopitemindex].Price;
+                audioSource.PlayOneShot(Moneyclip);
+                if(NPC_A_anim.GetBool("IsEx")==false)
+                NPC_A_anim.SetTrigger("Excited");
+                GameData.Instance.playerdata.Player_inventory2.Add(GameData.Instance.playerdata.Itemdata2[curShopitemindex]);
+                curShopitem.transform.GetChild(0).GetComponent<Image>().gameObject.SetActive(false);
+                curShopitem.transform.GetChild(6).GetComponent<Image>().gameObject.SetActive(true);
+                curShopitem.GetComponent<Image>().raycastTarget = false;
+                buyitemCount++;
+
+
+
+                if (curShopitem.GetComponent<Image>().raycastTarget == false)
+                {
+                    for (int i = 0; i < GameItemPanel.Length; i++)
+                    {
+                        if(GameItemPanel[i].GetComponent<Image>().raycastTarget == true)
+                        {
+                            curShopitem = GameItemPanel[i];
+                            for (int j = 0; j < GameItemPanel.Length; j++)
+                            {
+                                GameItemPanel[j].transform.GetChild(0).gameObject.SetActive(false);
+                            }
+                            mainitemIcon.sprite = curShopitem.GetComponent<CommonShopItem>().icon.sprite;
+                            mainitem[0].text = curShopitem.GetComponent<CommonShopItem>().itemName.text;
+                            mainitem[1].text = GameData.Instance.playerdata.Itemdata2[curShopitem.GetComponent<CommonShopItem>().item_index].Description;
+                            mainitem[2].text = GameData.Instance.playerdata.Itemdata2[curShopitem.GetComponent<CommonShopItem>().item_index].Price.ToString("N0");
+                            curShopitem.transform.GetChild(0).GetComponent<Image>().gameObject.SetActive(true);
+                            break;
+                        }
+
+                    }
+
+                }
+
+                    
+                if (buyitemCount == 5)
+                {
+                   
+                    Allbuy.SetActive(true);
+                    
+                }
+            }
+        }
+
+    }
+
+    public void first_set()
+    {
+        for (int i = 0; i < GameItemPanel.Length; i++)
+        {
+            GameItemPanel[i].GetComponent<CommonShopItem>().Setitem();
+        }
+        mainitemIcon.sprite = GameItemPanel[0].GetComponent<CommonShopItem>().icon.sprite;
+        mainitem[0].text = GameItemPanel[0].GetComponent<CommonShopItem>().itemName.text;
+        mainitem[1].text = GameData.Instance.playerdata.Itemdata2[GameItemPanel[0].GetComponent<CommonShopItem>().item_index].Description;
+        mainitem[2].text = GameData.Instance.playerdata.Itemdata2[GameItemPanel[0].GetComponent<CommonShopItem>().item_index].Price.ToString("N0");
+    }
+
+
+    TimeSpan min = TimeSpan.FromMinutes(5);
+    TimeSpan sec = TimeSpan.FromSeconds(1.0f);
+
+
+    IEnumerator buyTime()
+    {
+        while (true)
+        {
+            Shoptime.text = min.ToString(@"mm\:ss");
+            min -= sec;
+            yield return new WaitForSecondsRealtime(1.0f);
+        }
+    }
+
+    public void timeCheck()
+    {
+        if (min < TimeSpan.Zero)
+        {
+            min = TimeSpan.FromMinutes(5);
+            for(int i=0;i<GameItemPanel.Length;i++)
+            {
+                GameItemPanel[i].GetComponent<CommonShopItem>().Setitem();
+                GameItemPanel[i].GetComponent<Image>().raycastTarget = true;
+                GameItemPanel[i].transform.GetChild(6).GetComponent<Image>().gameObject.SetActive(false);
+                Allbuy.SetActive(false);
+            }
+            mainitemIcon.sprite = GameItemPanel[0].GetComponent<CommonShopItem>().icon.sprite;
+            mainitem[0].text = GameItemPanel[0].GetComponent<CommonShopItem>().itemName.text;
+            mainitem[1].text = GameData.Instance.playerdata.Itemdata2[GameItemPanel[0].GetComponent<CommonShopItem>().item_index].Description;
+            mainitem[2].text = GameData.Instance.playerdata.Itemdata2[GameItemPanel[0].GetComponent<CommonShopItem>().item_index].Price.ToString("N0");
+            buyitemCount = 0;
+            curShopitem = GameItemPanel[0];
+
+        }
+    }
 
 
     #endregion
@@ -288,7 +456,7 @@ public class JPopUpCanvas : MonoBehaviour
 
     IEnumerator use_sroll()
     {
-        int a = Random.Range(10000, 500001);
+        int a = UnityEngine.Random.Range(10000, 500001);
         yield return new WaitForSeconds(1.5f);
 
         Use_popup.transform.GetChild(2).GetComponent<TMPro.TMP_Text>().text = "\n   "+a.ToString("N0")+"    골드를\n얻었습니다!";
@@ -324,9 +492,13 @@ public class JPopUpCanvas : MonoBehaviour
         }
         if (GameData.Instance.playerdata.Player_inventory2.Count != 0)
         {
+            inventory_Detail.SetActive(true);
             invenItemSetting.setItemdetail(inven_item[0].GetComponent<InvenItemSetting>().num);
             inven_item[0].transform.GetChild(0).GetComponent<Image>().color = Color.yellow;
         }
+        
+            
+        
     }
 
     public void hilight_invenMenu(int index)
@@ -511,7 +683,7 @@ public class JPopUpCanvas : MonoBehaviour
     
     IEnumerator UpgradeProcess()
     {
-        int random = Random.Range(1, 101);
+        int random = UnityEngine.Random.Range(1, 101);
         GameData.Instance.playerdata.Gold -= GameData.Instance.Upgrade_Money * (GameData.Instance.playerdata.Player_inventory[CurNum].Upgrade + 1);
         if (random <= GameData.Instance.Upgrade_chance - (GameData.Instance.playerdata.Player_inventory[CurNum].Upgrade * 10))
         {
@@ -791,7 +963,7 @@ public class JPopUpCanvas : MonoBehaviour
                 option_UIpanel[1].SetActive(false);
                 option_UIpanel[2].SetActive(false);
             }
-            else if(index == 1)
+            else if(index == 2)
             {
                 option_UIpanel[0].SetActive(false);
                 option_UIpanel[1].SetActive(true);
