@@ -22,8 +22,8 @@ public class cMonsterp : cCharacteristicp, BattleSystem
     Coroutine moveRoutine = null;
     Coroutine rotRoutine = null;
 
-    Vector3 roamingArea = Vector3.zero; // 로밍할 구역
-    Vector3 startPos = Vector3.zero; // 몬스터가 등장한 위치
+    [SerializeField] Vector3 roamingArea = Vector3.zero; // 로밍할 구역
+    [SerializeField] Vector3 startPos = Vector3.zero; // 몬스터가 등장한 위치
     Vector3 dir = Vector3.zero; // 몬스터가 이동할 방향
     float dist = 0.0f; // 몬스터가 이동할 거리
 
@@ -87,8 +87,8 @@ public class cMonsterp : cCharacteristicp, BattleSystem
 
     void Start()
     {
-        //ChangeState(STATE.ROAMING); // 로밍상태로 변경
         this.GetComponentInChildren<cAnimEvent>().Attack += OnAttack;
+        startPos = this.transform.position; // 초기 위치 저장
     }
 
     void Update()
@@ -104,7 +104,6 @@ public class cMonsterp : cCharacteristicp, BattleSystem
         switch (myState)
         {
             case STATE.CREAT:
-                startPos = this.transform.position; // 초기 위치 저장
                 break;
             case STATE.ROAMING:
                 StopAllCoroutines();
