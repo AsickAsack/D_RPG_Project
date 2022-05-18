@@ -7,16 +7,22 @@ public class PUIPosition : MonoBehaviour
     public Transform Uipos;
     public GameObject Lock;
     public GameObject SelectImg;
-
-    
+    public Transform clicktr;
+    public Transform camtr;
+    public GameObject blackbar;
+    public GameObject clickbar;
+    public Transform backcampos;
+    public GameObject OptionPanel;
     public void OnClickButton()
     {
-        
-        
-        if(Lock.activeSelf == false )
+
+       
+        if (Lock.activeSelf == false && OptionPanel.activeSelf == false)
         {
-            Debug.Log("클릭가능");
-            SelectImg.SetActive(true);
+            PMoveCamera.Ins.Click = false;
+            StartCoroutine(click());
+           
+            SelectImg.SetActive(true);  
         }
         else
         {
@@ -26,7 +32,37 @@ public class PUIPosition : MonoBehaviour
 
         }
     }
+    public void BackButtonClick()
+    {
+        
+        StartCoroutine(back());
+        blackbar.SetActive(true);
+        clickbar.SetActive(false);
+        SelectImg.SetActive(false);
+    }
+    IEnumerator click()
+    {
 
+        
+        while (Vector3.Distance( camtr.position ,clicktr.position) > 0.1f)
+        {
+            camtr.position = Vector3.Lerp(camtr.position, clicktr.position, Time.deltaTime * 1.5f);
+            yield return null;
+        }
+        
+        blackbar.SetActive(false);
+        clickbar.SetActive(true);
+    }
+    IEnumerator back()
+    {
+        while(Vector3.Distance(camtr.position,backcampos.position)>0.1f)
+        {
+            camtr.position = Vector3.Lerp(camtr.position, backcampos.position, Time.deltaTime * 1.5f);
+            yield return null;
+        }
+        PMoveCamera.Ins.Click = true;
+    }
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +72,7 @@ public class PUIPosition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       this.GetComponent<RectTransform>().anchoredPosition = Camera.allCameras[0].WorldToScreenPoint(Uipos.position);
+       this.transform.position = Camera.allCameras[0].WorldToScreenPoint(Uipos.position);
 
     }   
 }
