@@ -283,7 +283,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3487345315516908230, guid: debe079a0fdead540acf155735481aa5, type: 3}
       propertyPath: m_Radius
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3636319088047993386, guid: debe079a0fdead540acf155735481aa5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

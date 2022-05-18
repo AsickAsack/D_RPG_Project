@@ -4,21 +4,24 @@ using UnityEngine;
 
 public class cMonsterSpawnArea : MonoBehaviour
 {
+    public cSpawnArea SpawnArea;
+
     public enum STATE
     {
-        WAIT, SPAWN
+        WAIT, SPAWN, END
     }
     public STATE myState = STATE.WAIT;
 
     public LayerMask PlayerMask;
+    public Transform MonsterParent; // 생성된 몬스터들의 인스턴스를 담을 부모
+
     public GameObject Boss = null; // 보스
     public GameObject[] Monsters; // 잡몹들
     public Transform[] SpawnPoints; // 몬스터가 스폰될 지점
-
-
-    private void Start()
+    
+    private void Awake()
     {
-        
+        SpawnArea = this.transform.parent.GetComponent<cSpawnArea>();
     }
 
     private void Update()
@@ -36,7 +39,12 @@ public class cMonsterSpawnArea : MonoBehaviour
             case STATE.WAIT:
                 break;
             case STATE.SPAWN:
+                SpawnArea.DeActiveArrow(); // 방향 표시 끔
                 MonsterSpawn();
+                break;
+            case STATE.END:
+                SpawnArea.nextArea.gameObject.SetActive(false);
+                SpawnArea.NextArea(SpawnArea.curAreaNum);                
                 break;
         }
     }
@@ -48,7 +56,35 @@ public class cMonsterSpawnArea : MonoBehaviour
             case STATE.WAIT:
                 break;
             case STATE.SPAWN:
+                AreaClear();
+                BossKill();
                 break;
+            case STATE.END:
+                break;
+        }
+    }
+
+    void BossKill()
+    {
+        if (Boss == null) return;
+
+        // 보스가 죽을 경우 나머지 몬스터들도 모두 죽도록 설정
+        if (Boss.GetComponent<cMonster>().myState == cMonster.STATE.DEAD)
+        {
+            print("end");
+            for (int i = 0; i < MonsterParent.childCount; i++)
+            {
+                MonsterParent.GetComponentsInChildren<cMonsterp>()[i]?.OnDead();
+            }
+        }
+    }
+
+    void AreaClear()
+    {
+        // Area가 스폰된 이후에 몬스터가 모두 처리되면 END 상태로 바꿈
+        if (MonsterParent.childCount == 0)
+        {
+            ChangeState(STATE.END);
         }
     }
 
@@ -65,11 +101,9 @@ public class cMonsterSpawnArea : MonoBehaviour
             }
 
             // 몬스터 생성
-            GameObject obj = Instantiate(spawnMonster, this.transform.parent);
+            GameObject obj = Instantiate(spawnMonster, MonsterParent);
             obj.transform.position = SpawnPoints[i].position;
-        }
-
-       
+        }       
     }
 
     private void OnTriggerEnter(Collider other)

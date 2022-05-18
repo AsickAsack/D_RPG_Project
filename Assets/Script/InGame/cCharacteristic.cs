@@ -66,7 +66,7 @@ public class cCharacteristic : MonoBehaviour
         }
     }
 
-    protected void CalculateAngle(Vector3 myForward, Vector3 myDir, Vector3 myRight, out ROTDATA myRotData)
+    public static void CalculateAngle(Vector3 myForward, Vector3 myDir, Vector3 myRight, out ROTDATA myRotData)
     {
         myRotData = new ROTDATA();
 

@@ -47,6 +47,9 @@ TextureImporter:
   - first:
       213: -8192343533533295459
     second: rewardbtn
+  - first:
+      213: 8254856465312387861
+    second: InGame_arrow
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -194,7 +197,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 154
-        y: 606
+        y: 609
         width: 152
         height: 151
       alignment: 9
@@ -437,6 +440,27 @@ TextureImporter:
       bones: []
       spriteID: d9c87cd06f2fe4e80800000000000000
       internalID: -8192343533533295459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: InGame_arrow
+      rect:
+        serializedVersion: 2
+        x: 718
+        y: 819
+        width: 22
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51318c618342f8270800000000000000
+      internalID: 8254856465312387861
       vertices: []
       indices: 
       edges: []

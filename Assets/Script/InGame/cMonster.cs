@@ -171,12 +171,7 @@ public class cMonster : cCharacteristic, BattleSystem
     void OnDie()
     {
         StopAllCoroutines();
-        myAnim.SetTrigger("Die"); // 죽는 애니메이션 실행
-
-        for (int i = 0; i < FindObjectsOfType<cMonsterp>().Length; i++)
-        {
-            FindObjectsOfType<cMonsterp>()[i].OnDead();
-        }
+        myAnim.SetTrigger("Die"); // 죽는 애니메이션 실행        
     }
         
     public void OnBattle()

@@ -7,7 +7,7 @@ public class cAutoDetection : MonoBehaviour
     public LayerMask DetectLayer;
     public GameObject Target;
     public List<GameObject> DetectedTargets;
-
+        
     private void OnTriggerEnter(Collider other)
     {
         // 몬스터 감지
@@ -63,6 +63,8 @@ public class cAutoDetection : MonoBehaviour
                 Target = other.gameObject;
             }
         }
+
+
     }
 
     private void OnTriggerExit(Collider other)
