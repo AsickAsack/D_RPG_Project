@@ -4,10 +4,21 @@ using UnityEngine;
 
 public class PMoveCamera : MonoBehaviour
 {
-    
-    Vector2 clickPoint; //클릭시 클릭포지션 저장을위해선언
+    static PMoveCamera _ins;
+    public static PMoveCamera Ins
+    {
+        get
+        {
+            if (_ins == null)
+            {
+                _ins = FindObjectOfType<PMoveCamera>();
+            }
+            return _ins;
+        }
+    }
+        Vector2 clickPoint; //클릭시 클릭포지션 저장을위해선언
     public float dragSpeed = 10.0f; //스피드
-
+    public bool Click= true;
     void Update()
     {
         
@@ -16,7 +27,7 @@ public class PMoveCamera : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0)) clickPoint = Input.mousePosition; // 클릭시 클릭포인트받기
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && Click==true)
         {
            
 
