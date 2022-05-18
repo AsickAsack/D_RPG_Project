@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Events;
 
 public class cMonsterp : cCharacteristicp, BattleSystem
@@ -19,11 +20,15 @@ public class cMonsterp : cCharacteristicp, BattleSystem
     public GameObject HitEffect;
     public Transform HitPointPosition;
 
+    public cMonsterHPBar HPBar_Prefab;
+    cMonsterHPBar myHPBar;
+    float initialHP;
+
     Coroutine moveRoutine = null;
     Coroutine rotRoutine = null;
 
-    [SerializeField] Vector3 roamingArea = Vector3.zero; // 로밍할 구역
-    [SerializeField] Vector3 startPos = Vector3.zero; // 몬스터가 등장한 위치
+    Vector3 roamingArea = Vector3.zero; // 로밍할 구역
+    Vector3 startPos = Vector3.zero; // 몬스터가 등장한 위치
     Vector3 dir = Vector3.zero; // 몬스터가 이동할 방향
     float dist = 0.0f; // 몬스터가 이동할 거리
 
@@ -47,6 +52,7 @@ public class cMonsterp : cCharacteristicp, BattleSystem
             if (myStats.HP <= 0.0f)
             {
                 ChangeState(STATE.DEAD); // HP가 0이되면 사망
+                Destroy(myHPBar.gameObject);
             }
             else
             {
@@ -83,17 +89,24 @@ public class cMonsterp : cCharacteristicp, BattleSystem
         myStats.HP = GameData.Instance.playerdata.monsterInitialStat.HP;
         myStats.ATK = GameData.Instance.playerdata.monsterInitialStat.ATK;
         myStats.DEF = GameData.Instance.playerdata.monsterInitialStat.DEF;
+
+        initialHP = myStats.HP;
     }
 
     void Start()
     {
         this.GetComponentInChildren<cAnimEvent>().Attack += OnAttack;
         startPos = this.transform.position; // 초기 위치 저장
+
+        // HP바를 불러옴
+        myHPBar = Instantiate(HPBar_Prefab, GameObject.Find("HPBarParent").transform);
+        myHPBar.Initialize(this.transform, 150.0f);        
     }
 
     void Update()
     {
         StateProcess();
+        DisplayHP();
     }
 
     void ChangeState(STATE s)
@@ -143,6 +156,14 @@ public class cMonsterp : cCharacteristicp, BattleSystem
         }
     }
 
+    void DisplayHP()
+    {
+        if (myHPBar == null) return;
+
+        // 현재 몬스터의 HP상태를 UI로 표시
+        myHPBar.GetComponent<Slider>().value = myStats.HP / initialHP;
+    }
+
     public void OnDead()
     {
         ChangeState(STATE.DEAD);
@@ -166,21 +187,8 @@ public class cMonsterp : cCharacteristicp, BattleSystem
     }
 
     IEnumerator Disappearing()
-    {
-        //float dist = 2.0f; // 떨어질 거리
-
-        //while (!Mathf.Approximately(dist, 0.0f))
-        //{
-        //    float delta = Time.deltaTime * 0.5f;
-
-        //    delta = delta > dist ? dist : delta;
-
-        //    this.transform.Translate(Vector3.down * delta, Space.World);
-        //    dist -= delta;
-
-        //    yield return null;
-        //}
-        yield return new WaitForSeconds(5.0f);
+    {        
+        yield return new WaitForSeconds(3.0f);
         Destroy(this.gameObject); // 게임 오브젝트 삭제
     }
 
