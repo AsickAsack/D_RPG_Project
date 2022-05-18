@@ -12,11 +12,12 @@ public class PUIPosition : MonoBehaviour
     public GameObject blackbar;
     public GameObject clickbar;
     public Transform backcampos;
+    public GameObject OptionPanel;
     public void OnClickButton()
     {
 
        
-        if (Lock.activeSelf == false )
+        if (Lock.activeSelf == false && OptionPanel.activeSelf == false)
         {
             PMoveCamera.Ins.Click = false;
             StartCoroutine(click());
