@@ -1,0 +1,20 @@
+{
+  "m_GameObject": {
+    "m_FileID": 0,
+    "m_PathID": -3136477834927321841
+  },
+  "m_Enabled": 1,
+  "m_Script": {
+    "m_FileID": 0,
+    "m_PathID": 1832617014367299470
+  },
+  "m_Name": "",
+  "boneNames": [
+    "Bip001 L Thigh",
+    "Bip001 Pelvis",
+    "Bip001 Spine",
+    "Bip001 R Thigh"
+  ],
+  "rootBoneName": "Bip001 Pelvis",
+  "attatchEffects": []
+}

@@ -1,0 +1,30 @@
+{
+  "m_GameObject": {
+    "m_FileID": 0,
+    "m_PathID": 8438411354223008131
+  },
+  "m_Enabled": 1,
+  "m_Script": {
+    "m_FileID": 0,
+    "m_PathID": -255597554479379510
+  },
+  "m_Name": "",
+  "partsName": [
+    "parts_characters_npc/shop_npc_a/parts/npc_a(body)",
+    "parts_characters_npc/shop_npc_a/parts/npc_a(book)",
+    "parts_characters_npc/shop_npc_a/parts/npc_a(hair)",
+    "parts_characters_npc/shop_npc_a/parts/npc_a(skin)"
+  ],
+  "standName": [
+    "Stand",
+    "Stand2",
+    "Stand3",
+    "Stand4"
+  ],
+  "standProb": [
+    70,
+    10,
+    10,
+    10
+  ]
+}
