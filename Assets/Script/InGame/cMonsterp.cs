@@ -141,17 +141,8 @@ public class cMonsterp : cCharacteristicp, BattleSystem
             case STATE.ROAMING:
                 break;
             case STATE.BATTLE:
-                //if (myDetection.Target.GetComponent<cCharacter>().myState != cCharacter.STATE.PLAY)
-                //{
-                //    // 캐릭터가 죽으면 로밍상태로 바꿔줌
-                //    ChangeState(STATE.ROAMING);
-                //}
                 break;
             case STATE.DEAD:
-                //if (isDying)
-                //{
-                //    OnDisappear();
-                //}                
                 break;
         }
     }

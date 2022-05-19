@@ -516,8 +516,7 @@ MonoBehaviour:
   mySword: {fileID: 109238433466732946}
   HitEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7, type: 3}
   HitPointPosition: {fileID: 1443330787}
-  HPBarParent: {fileID: 0}
-  HPBar: {fileID: 2124324334834051762, guid: 778d7b49266cbe8419ad7c5daa01ac88, type: 3}
+  HPBar_Prefab: {fileID: 2124324334834051762, guid: 778d7b49266cbe8419ad7c5daa01ac88, type: 3}
   MoveSpeed: 3
   RotSpeed: 360
   RoamingWaitTime: 3
