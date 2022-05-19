@@ -21,7 +21,7 @@ public class JPopUpCanvas : MonoBehaviour
     public Canvas ShopCanvas;
     public Canvas Inventory_Canvas;
     public Canvas Exit_Canvas;
-    //public Canvas Equip_Canvas;
+    public Canvas CashShop_Canvas;
 
     [Header("[UI open 확인 변수]")]
     public static bool IsUIopen = false; // ui가 현재 열려있는지 아닌지 확인하는 불값
@@ -76,6 +76,20 @@ public class JPopUpCanvas : MonoBehaviour
     public TMPro.TMP_Text Shoptime;
     public GameObject[] CheckPanel;
 
+    [Header("[캐시상점]")]
+    public GameObject[] CS_leftMenu;
+    public GameObject[] CS_Panel;
+    public TMPro.TMP_Text Exchange_Tx;
+    public TMPro.TMP_Text Emerald_tx;
+    public TMPro.TMP_InputField TMPInput;
+    public GameObject Check_Popup;
+    public TMPro.TMP_Text Check_Popuptx_gold;
+    public TMPro.TMP_Text Check_Popuptx_Emerald;
+    public GameObject Notice_Popup;
+    public TMPro.TMP_Text Notice_Popuptx;
+    
+
+
     [Header("[오디오 소스,클립]")]
     public AudioClip Ui_Click; // UI클릭했을때 재생할 효과음
     public AudioClip DunGeon_Click; // 던전 선택 클릭했을때 재생할 효과음
@@ -87,7 +101,7 @@ public class JPopUpCanvas : MonoBehaviour
     #region 옵션창 enum
     public enum Popup //어떤 팝업인지 알려줄 열거자 
     {
-        None=0,Iventory_Popup,Equip_Popup,Equip_detail,Shop_Popup,Common_Shop
+        None=0,Iventory_Popup,Equip_Popup,Equip_detail,Shop_Popup,Common_Shop,Cash_Shop
     }
 
     public Popup popup=Popup.None;
@@ -132,7 +146,7 @@ public class JPopUpCanvas : MonoBehaviour
             EquipObject[EquipIndex].transform.Rotate(0, 0, -y);
         }
 
-        timeCheck();
+        
         
 
         if (Allbuy.activeSelf)
@@ -144,8 +158,8 @@ public class JPopUpCanvas : MonoBehaviour
     }
 
 
-    
 
+    #region 게임종료 버튼
 
     public void ExitPopup_NO()
     {
@@ -161,6 +175,7 @@ public class JPopUpCanvas : MonoBehaviour
         Application.Quit();
     }
 
+    #endregion
 
     #region 팝업창 끌때 함수
 
@@ -229,6 +244,15 @@ public class JPopUpCanvas : MonoBehaviour
                     Shop_Panel[0].SetActive(true);
                 }
                 break;
+            case Popup.Cash_Shop:
+                {
+                    popup = Popup.None;
+                    CashShop_Canvas.enabled = false;
+                    set_icon(false, true);
+                    BackGround_Canvas.enabled = false;
+                    IsUIopen = false;
+                }
+                break;
         }
 
         audioSource.PlayOneShot(Ui_Click);
@@ -239,6 +263,122 @@ public class JPopUpCanvas : MonoBehaviour
         
     }
     #endregion
+
+    #region 캐시샵 함수
+
+    public void Open_CashShop()
+    {
+        IsUIopen = true;
+        popup = Popup.Cash_Shop;
+        CashShop_Canvas.enabled = true;
+        BackGround_Canvas.enabled = true;
+        Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = " 캐시 상점";
+        set_icon(true, false);
+        audioSource.PlayOneShot(Ui_Click);
+    }
+
+    public void CashShop_Click(int index)
+    {
+        for(int i=0;i< CS_leftMenu.Length;i++)
+        {
+            CS_leftMenu[i].SetActive(i == index);
+            CS_Panel[i].SetActive(i == index);
+        }
+
+    }
+
+    public void OpenExChange_panel()
+    {
+        StartCoroutine(Emerald());
+        
+
+    }
+ 
+    IEnumerator Emerald()
+    {
+        while(true)
+        {
+
+            if (TMPInput.text.Length >= 1)
+            {
+                Emerald_tx.text = (int.Parse(TMPInput.text)/10).ToString("N0");
+                if ((int.Parse(TMPInput.text) > GameData.Instance.playerdata.Gold))
+                {
+                    TMPInput.text = GameData.Instance.playerdata.Gold.ToString();
+                 
+                }
+            }
+            else
+            {
+                Emerald_tx.text = "0";
+            }
+
+            yield return null;
+        }
+
+    }
+
+    public void CheckPopup_set()
+    {
+        Check_Popup.SetActive(true);
+        Check_Popuptx_gold.text = int.Parse(TMPInput.text).ToString("N0");
+        Check_Popuptx_Emerald.text = (int.Parse(TMPInput.text) / 10).ToString("N0");
+    }
+
+    public void RealExchanege()
+    {
+        GameData.Instance.playerdata.Gold -= int.Parse(TMPInput.text);
+        GameData.Instance.playerdata.Emerald += (int.Parse(TMPInput.text) / 10);
+        audioSource.PlayOneShot(Moneyclip);
+        Check_Popup.SetActive(false);
+        TMPInput.text = "";
+        StopCoroutine(Emerald());
+    }
+    public void blank()
+    {
+        TMPInput.text = "";
+        StopCoroutine(Emerald());
+    }
+
+
+    public void ExChangeOK()
+    {
+
+
+        if (TMPInput.text.Length >= 1)
+        {
+            if(int.Parse(TMPInput.text)>=10)
+            { 
+
+                if ((int)(TMPInput.text[TMPInput.text.Length-1]) - 48 != 0)
+                {
+                    TMPInput.text = (int.Parse(TMPInput.text) - (int)(TMPInput.text[TMPInput.text.Length - 1] - 48)).ToString();
+                    CheckPopup_set();
+                }
+                else
+                    CheckPopup_set(); 
+
+
+            }
+            else
+            {
+                Notice_Popup.SetActive(true);
+                Notice_Popuptx.text = "10원 이상 입력해주세요.";
+            }
+        }
+        else
+        {
+            Notice_Popup.SetActive(true);
+            Notice_Popuptx.text = "골드를 입력해주세요.";
+        }
+       
+    }
+
+
+    #endregion
+
+
+
 
     #region 상점 함수
     public void ShopPopup_Open()
@@ -365,26 +505,32 @@ public class JPopUpCanvas : MonoBehaviour
     }
 
 
-    TimeSpan min = TimeSpan.FromMinutes(5);
-    TimeSpan sec = TimeSpan.FromSeconds(1.0f);
-
-
+    float Item_ResetTime = 300f;
+    
     IEnumerator buyTime()
     {
         while (true)
         {
-            Shoptime.text = min.ToString(@"mm\:ss");
-            min -= sec;
-            yield return new WaitForSecondsRealtime(1.0f);
+            Item_ResetTime -= Time.deltaTime;
+            int min = (int)Item_ResetTime / 60;
+            int sec = (int)Item_ResetTime % 60;
+            int ms = (int)((Item_ResetTime - (int)Item_ResetTime) * 100);
+
+            Shoptime.text = $"{min.ToString("D2")}:{sec.ToString("D2")}:{ms.ToString("D2")}";
+            
+            timeCheck();
+
+            yield return null;
         }
+       
     }
 
     public void timeCheck()
     {
-        if (min < TimeSpan.Zero)
+        if (Item_ResetTime < 0.0f)
         {
-            min = TimeSpan.FromMinutes(5);
-            for(int i=0;i<GameItemPanel.Length;i++)
+            Item_ResetTime = 300f;
+            for (int i=0;i<GameItemPanel.Length;i++)
             {
                 GameItemPanel[i].GetComponent<CommonShopItem>().Setitem();
                 GameItemPanel[i].GetComponent<Image>().raycastTarget = true;

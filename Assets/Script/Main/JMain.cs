@@ -28,11 +28,10 @@ public class JMain : MonoBehaviour
 
     }
 
-
-
     void Start()
     {
-        Sound.Instance.PlayBGM(mainBGM);
+        
+        //Sound.Instance.PlayBGM(mainBGM);
 
 
         GameData.Instance.playerdata.Gold += 500000;
@@ -45,9 +44,6 @@ public class JMain : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
 
     }
-
-
-
 
     // Update is called once per frame
     void Update()
@@ -77,3 +73,7 @@ public class JMain : MonoBehaviour
 
 
 }
+
+
+
+
