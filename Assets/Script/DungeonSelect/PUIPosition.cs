@@ -13,6 +13,7 @@ public class PUIPosition : MonoBehaviour
     public GameObject clickbar;
     public Transform backcampos;
     public GameObject OptionPanel;
+    public GameObject Selectcanvas;
     public void OnClickButton()
     {
 
@@ -39,6 +40,7 @@ public class PUIPosition : MonoBehaviour
         blackbar.SetActive(true);
         clickbar.SetActive(false);
         SelectImg.SetActive(false);
+        Selectcanvas.SetActive(false);
     }
     IEnumerator click()
     {
@@ -49,7 +51,7 @@ public class PUIPosition : MonoBehaviour
             camtr.position = Vector3.Lerp(camtr.position, clicktr.position, Time.deltaTime * 1.5f);
             yield return null;
         }
-        
+        Selectcanvas.SetActive(true);
         blackbar.SetActive(false);
         clickbar.SetActive(true);
     }
