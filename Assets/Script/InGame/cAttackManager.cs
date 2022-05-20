@@ -10,7 +10,6 @@ public class cAttackManager : cCharacteristic
 
     public int Combo = 0;
     public float ComboLimitTime = 2.5f;
-    public float convertDamage = 0.1f; // 데미지 환산 비율 => 데미지 = 공격력(ATK) * 데미지비율(convertDamage)
 
     public Coroutine myCoroutine = null;
 
@@ -47,7 +46,10 @@ public class cAttackManager : cCharacteristic
 
                 if (bs != null)
                 {
-                    bs.OnDamage(this.GetComponent<cCharacter>().myStats.ATK * convertDamage);
+                    float randomDamage = Random.Range(0.05f, 0.3f);
+                    print(this.GetComponent<cCharacter>().myStats.ATK * randomDamage);
+
+                    bs.OnDamage(this.GetComponent<cCharacter>().myStats.ATK * randomDamage);
                 }
             }
         }

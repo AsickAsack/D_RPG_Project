@@ -184,6 +184,7 @@ public class cMonster : cCharacteristic, BattleSystem
     void OnDie()
     {
         StopAllCoroutines();
+        myAnim.SetBool("IsAttack",false); // 사용중이던 스킬 해제
         myAnim.SetTrigger("Die"); // 죽는 애니메이션 실행
 
         Transform MonsterParent = GameObject.Find("MonsterParent").transform;
