@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -121.32422, y: -6.760498}
-  m_SizeDelta: {x: 241.85431, y: 52.403}
+  m_AnchoredPosition: {x: -120.92999, y: -10.712402}
+  m_SizeDelta: {x: 241.8543, y: 57.7258}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5768414137045100252
 CanvasRenderer:
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1655391542576165753, guid: a0648ca527560584d88cbfc29505614f, type: 3}
+  m_Sprite: {fileID: -5989772113962830212, guid: a0648ca527560584d88cbfc29505614f, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 4455471942879019626, guid: a0648ca527560584d88cbfc29505614f, type: 3}
+  m_Sprite: {fileID: 1655391542576165753, guid: a0648ca527560584d88cbfc29505614f, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -535,8 +535,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -19.553772, y: -6.760498}
-  m_SizeDelta: {x: 613.5383, y: 52.403}
+  m_AnchoredPosition: {x: -18.5568, y: -10.7123}
+  m_SizeDelta: {x: 615.5323, y: 57.7258}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7164030776736931605
 CanvasRenderer:
@@ -566,7 +566,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 5138160159605897745, guid: a0648ca527560584d88cbfc29505614f, type: 3}
+  m_Sprite: {fileID: -7684893525152029554, guid: a0648ca527560584d88cbfc29505614f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -612,6 +612,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 48.601, y: -100}
+  m_AnchoredPosition: {x: -3.5, y: -94.6}
   m_SizeDelta: {x: 947.2, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
