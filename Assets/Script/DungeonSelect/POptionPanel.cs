@@ -53,8 +53,9 @@ public class POptionPanel : MonoBehaviour
                 option_UIpanel[2].SetActive(true);
             }
         }
-        audioSource.PlayOneShot(Ui_Click);
+        //audioSource.PlayOneShot(Ui_Click);
     }
+    // Update is called once per frame
     IEnumerator TimeText()
     {
         while (true)
@@ -64,7 +65,6 @@ public class POptionPanel : MonoBehaviour
             yield return null;
         }
     }
-    // Update is called once per frame
     void Update()
     {
         

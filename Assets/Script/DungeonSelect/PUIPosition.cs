@@ -9,16 +9,18 @@ public class PUIPosition : MonoBehaviour
     public GameObject SelectImg;
     public Transform clicktr;
     public Transform camtr;
-    public GameObject blackbar;
-    public GameObject clickbar;
+    
+    public GameObject backbtn;
+    public GameObject character;
     public Transform backcampos;
     public GameObject OptionPanel;
     public GameObject Selectcanvas;
+    [SerializeField] bool clicktf = true;
     public void OnClickButton()
     {
 
        
-        if (Lock.activeSelf == false && OptionPanel.activeSelf == false)
+        if (Lock.activeSelf == false && OptionPanel.activeSelf == false && clicktf == true)
         {
             PMoveCamera.Ins.Click = false;
             StartCoroutine(click());
@@ -37,8 +39,8 @@ public class PUIPosition : MonoBehaviour
     {
         
         StartCoroutine(back());
-        blackbar.SetActive(true);
-        clickbar.SetActive(false);
+        backbtn.SetActive(false);
+        character.SetActive(true);
         SelectImg.SetActive(false);
         Selectcanvas.SetActive(false);
     }
@@ -48,29 +50,33 @@ public class PUIPosition : MonoBehaviour
         
         while (Vector3.Distance( camtr.position ,clicktr.position) > 0.1f)
         {
+            clicktf = false;
             camtr.position = Vector3.Lerp(camtr.position, clicktr.position, Time.deltaTime * 1.5f);
             yield return null;
+            
         }
         Selectcanvas.SetActive(true);
-        blackbar.SetActive(false);
-        clickbar.SetActive(true);
+
+        backbtn.SetActive(true);
+        character.SetActive(false);
+        clicktf = true;
     }
     IEnumerator back()
     {
         while(Vector3.Distance(camtr.position,backcampos.position)>0.1f)
         {
+            clicktf = false;
             camtr.position = Vector3.Lerp(camtr.position, backcampos.position, Time.deltaTime * 1.5f);
             yield return null;
         }
+
+        
         PMoveCamera.Ins.Click = true;
+        clicktf = true;
     }
     
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+ 
     // Update is called once per frame
     void Update()
     {

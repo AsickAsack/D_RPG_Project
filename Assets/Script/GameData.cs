@@ -119,6 +119,7 @@ public partial class PlayerData
     public int Level = 1;
     public int Gold = 0;
     public int Emerald = 0;
+    public int Key = 0;
     public bool FirstGame = true;
 
     public List<itemdata> Player_inventory = new List<itemdata>();
