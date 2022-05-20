@@ -34,22 +34,10 @@ TextureImporter:
     second: hpbar
   - first:
       213: -4372209329574296626
-    second: Boss_HP
+    second: keyicon
   - first:
       213: 2877471580529523173
     second: 
-  - first:
-      213: 1655391542576165753
-    second: Boss_HP_endq
-  - first:
-      213: -5989772113962830212
-    second: Boss_HP_Fill
-  - first:
-      213: 4455471942879019626
-    second: Boss_HP_start
-  - first:
-      213: 5138160159605897745
-    second: Boss_HP_middle
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -382,15 +370,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss_HP
+      name: keyicon
       rect:
         serializedVersion: 2
-        x: 79
-        y: 343
-        width: 168
-        height: 83
+        x: 971
+        y: 630
+        width: 48
+        height: 54
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -402,94 +390,10 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Boss_HP_endq
-      rect:
-        serializedVersion: 2
-        x: 507
-        y: 163
-        width: 93
-        height: 33
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 973307b56d129f610800000000000000
-      internalID: 1655391542576165753
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Boss_HP_Fill
-      rect:
-        serializedVersion: 2
-        x: 267
-        y: 580
-        width: 32
-        height: 13
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c7674bd5ffd00eca0800000000000000
-      internalID: -5989772113962830212
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Boss_HP_start
-      rect:
-        serializedVersion: 2
-        x: 79
-        y: 343
-        width: 86
-        height: 83
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a62060e302405dd30800000000000000
-      internalID: 4455471942879019626
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Boss_HP_middle
-      rect:
-        serializedVersion: 2
-        x: 517
-        y: 163
-        width: 37
-        height: 33
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 11abf5821796e4740800000000000000
-      internalID: 5138160159605897745
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5c526fd431bb21846a82a6e8e68cfa35
+    spriteID: a875a7b1f4db34a4ea0f806d3e6b3b14
     internalID: 0
     vertices: []
     indices: 
