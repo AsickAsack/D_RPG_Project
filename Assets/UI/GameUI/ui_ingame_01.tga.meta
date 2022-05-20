@@ -38,6 +38,15 @@ TextureImporter:
   - first:
       213: 2877471580529523173
     second: 
+  - first:
+      213: 1655391542576165753
+    second: Boss_HP_start
+  - first:
+      213: -5989772113962830212
+    second: ui_ingame_01_13
+  - first:
+      213: 4455471942879019626
+    second: ui_ingame_01_13
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -378,7 +387,7 @@ TextureImporter:
         width: 48
         height: 54
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -386,6 +395,69 @@ TextureImporter:
       bones: []
       spriteID: ec3431b97cac253c0800000000000000
       internalID: -4372209329574296626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_HP_start
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 344
+        width: 86
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 973307b56d129f610800000000000000
+      internalID: 1655391542576165753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_HP_middle
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 160
+        width: 41
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7674bd5ffd00eca0800000000000000
+      internalID: -5989772113962830212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_ingame_01_13
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 160
+        width: 88
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a62060e302405dd30800000000000000
+      internalID: 4455471942879019626
       vertices: []
       indices: 
       edges: []
