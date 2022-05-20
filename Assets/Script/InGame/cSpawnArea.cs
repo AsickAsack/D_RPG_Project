@@ -13,7 +13,7 @@ public class cSpawnArea : MonoBehaviour
     private void Start()
     {
         NextArea(curAreaNum);
-        ArrowSetting();        
+        ArrowSetting();
     }
 
     public void ActiveArrow()
@@ -50,23 +50,24 @@ public class cSpawnArea : MonoBehaviour
         while (true)
         {
             arrow.transform.position = playerPos.position; // 중심 = 플레이어 위치
+            arrow.transform.LookAt(nextArea); // 다음 지역을 가리킴
 
-            Vector3 dir = (nextArea.position - playerPos.position).normalized;
+            //Vector3 dir = (nextArea.position - playerPos.position).normalized;
 
-            // 플레이어와 다음지역 사이의 각도 계산
-            cCharacter.CalculateAngle(arrow.transform.forward, dir, arrow.transform.right, out ROTDATA myRotData);
+            //// 플레이어와 다음지역 사이의 각도 계산
+            //cCharacter.CalculateAngle(arrow.transform.forward, dir, arrow.transform.right, out ROTDATA myRotData);
 
-            while (!Mathf.Approximately(myRotData.angle, 0.0f))
-            {
-                float delta = 180.0f * Time.deltaTime;
+            //while (!Mathf.Approximately(myRotData.angle, 0.0f))
+            //{
+            //    float delta = 180.0f * Time.deltaTime;
 
-                delta = delta > myRotData.angle ? myRotData.angle : delta;
+            //    delta = delta > myRotData.angle ? myRotData.angle : delta;
 
-                arrow.transform.Rotate(Vector3.up * delta * myRotData.rotDir);
-                myRotData.angle -= delta;
+            //    arrow.transform.Rotate(Vector3.up * delta * myRotData.rotDir);
+            //    myRotData.angle -= delta;
 
-                yield return null;
-            }
+            //    yield return null;
+            //}
 
             yield return null;
         }

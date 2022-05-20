@@ -513,6 +513,22 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5956910704496673924, guid: 63ca590a9103f6b49b81e0c3f3f22851, type: 3}
   m_PrefabInstance: {fileID: 2890168319206508682}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1773678612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8840779921448717326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46c3e008bf5d9584f8a5254d86c2cf0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DetectLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  Target: {fileID: 0}
 --- !u!114 &277714139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -536,6 +552,7 @@ MonoBehaviour:
   mySword: {fileID: 8707459418939822509}
   HitEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7, type: 3}
   HitPointPosition: {fileID: 700426203}
+  HPBar_Prefab: {fileID: 2124324334834051762, guid: 778d7b49266cbe8419ad7c5daa01ac88, type: 3}
   MoveSpeed: 3
   RotSpeed: 360
   RoamingWaitTime: 3
@@ -543,19 +560,3 @@ MonoBehaviour:
   ATK_WaitingTime: 3
   convertDamage: 0.1
   isAttacking: 0
---- !u!114 &1773678612
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8840779921448717326}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46c3e008bf5d9584f8a5254d86c2cf0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DetectLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  Target: {fileID: 0}

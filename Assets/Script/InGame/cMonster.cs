@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Events;
 
 public class cMonster : cCharacteristic, BattleSystem
@@ -16,6 +17,10 @@ public class cMonster : cCharacteristic, BattleSystem
 
     public LayerMask AttackMask; // 공격목표
     public Transform mySword; // 검
+
+    public GameObject HP_Prefab;
+    GameObject myHPBar;
+    float initialHP;
 
     Coroutine moveRoutine = null;
     Coroutine rotRoutine = null;
@@ -81,6 +86,8 @@ public class cMonster : cCharacteristic, BattleSystem
         myStats.HP = GameData.Instance.playerdata.monsterInitialStat.HP;
         myStats.ATK = GameData.Instance.playerdata.monsterInitialStat.ATK;
         myStats.DEF = GameData.Instance.playerdata.monsterInitialStat.DEF;
+
+        initialHP = myStats.HP;
     }
 
 
@@ -88,11 +95,15 @@ public class cMonster : cCharacteristic, BattleSystem
     {
         this.GetComponentInChildren<cAnimEvent>().Attack += OnAttack;
         startPos = this.transform.position; // 초기 위치 저장
+
+        // 보스 HP바 
+        myHPBar = Instantiate(HP_Prefab, GameObject.Find("HPBarParent").transform);
     }
 
     void Update()
     {
         StateProcess();
+        DisplayHP();
     }
 
     void ChangeState(STATE s)
@@ -131,17 +142,19 @@ public class cMonster : cCharacteristic, BattleSystem
             case STATE.ROAMING:
                 break;
             case STATE.BATTLE:
-                //if (myDetection.Target.GetComponent<cCharacter>().myState != cCharacter.STATE.PLAY)
-                //{
-                //    // 캐릭터가 죽으면 로밍상태로 바꿔줌
-                //    ChangeState(STATE.ROAMING);
-                //}
                 break;
             case STATE.DEAD:
                 break;
             case STATE.ENDGAME:
                 break;
         }
+    }
+    void DisplayHP()
+    {
+        if (myHPBar == null) return;
+
+        // 현재 몬스터의 HP상태를 UI로 표시
+        myHPBar.GetComponentInChildren<Slider>().value = myStats.HP / initialHP;
     }
 
     public void EndGame()
@@ -171,7 +184,19 @@ public class cMonster : cCharacteristic, BattleSystem
     void OnDie()
     {
         StopAllCoroutines();
-        myAnim.SetTrigger("Die"); // 죽는 애니메이션 실행        
+        myAnim.SetBool("IsAttack",false); // 사용중이던 스킬 해제
+        myAnim.SetTrigger("Die"); // 죽는 애니메이션 실행
+
+        Transform MonsterParent = GameObject.Find("MonsterParent").transform;
+
+        // 보스가 죽을 경우 나머지 몬스터들도 모두 죽도록 설정
+        for (int i = 0; i < MonsterParent.childCount; i++)
+        {
+            if (MonsterParent.GetChild(i).GetComponent<cMonsterp>() == null) continue;
+
+            // 잡몹들만 죽음
+            MonsterParent.GetChild(i).GetComponent<cMonsterp>().OnDead();
+        }
     }
         
     public void OnBattle()
@@ -228,36 +253,6 @@ public class cMonster : cCharacteristic, BattleSystem
             {
                 yield return new WaitForFixedUpdate();
             }
-
-            //if (dist > ATK_Range && myAnim.GetBool("IsAttack") == false) // 공격범위 밖에 있을 경우 따라감, 공격중일 경우 따라가지 않도록
-            //{
-            //    myAnim.SetTrigger("IsWalk"); // idle -> walk_front 
-
-            //    float delta = MoveSpeed * Time.deltaTime; // 이동 거리
-
-            //    delta = delta > dist ? dist : delta; // 이동 거리가 남은 거리보다 클 경우 남은 거리 만큼만 이동
-
-            //    this.transform.Translate(dir * delta);
-            //}
-            //else // 공격범위 내에 있을 경우 공격
-            //{
-            //    myAnim.SetBool("IsWalk", false); // walk_front -> idle
-
-            //    if (myAnim.GetBool("IsAttack") == false)
-            //    {
-            //        AttackTime += Time.deltaTime;
-
-            //        if (AttackTime >= ATK_WaitingTime)
-            //        {
-            //            // 공격
-            //            int RandomSkill_num = Random.Range(0, 3);
-            //            //int RandomSkill_num = 2;
-            //            myAnim.SetInteger("Skill", RandomSkill_num);
-            //            myAnim.SetTrigger("Attack");
-            //            AttackTime = 0.0f;
-            //        }
-            //    }
-            //}
         }
     }
 

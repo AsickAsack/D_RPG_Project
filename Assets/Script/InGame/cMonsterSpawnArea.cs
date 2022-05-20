@@ -18,6 +18,8 @@ public class cMonsterSpawnArea : MonoBehaviour
     public GameObject Boss = null; // 보스
     public GameObject[] Monsters; // 잡몹들
     public Transform[] SpawnPoints; // 몬스터가 스폰될 지점
+
+    GameObject BossColne = null;
     
     private void Awake()
     {
@@ -57,7 +59,7 @@ public class cMonsterSpawnArea : MonoBehaviour
                 break;
             case STATE.SPAWN:
                 AreaClear();
-                BossKill();
+                //BossKill();
                 break;
             case STATE.END:
                 break;
@@ -67,14 +69,18 @@ public class cMonsterSpawnArea : MonoBehaviour
     void BossKill()
     {
         if (Boss == null) return;
-
+        
         // 보스가 죽을 경우 나머지 몬스터들도 모두 죽도록 설정
-        if (Boss.GetComponent<cMonster>().myState == cMonster.STATE.DEAD)
+        if (BossColne.GetComponent<cMonster>().myState == cMonster.STATE.DEAD)
         {
-            print("end");
+            print(MonsterParent.childCount);
             for (int i = 0; i < MonsterParent.childCount; i++)
             {
-                MonsterParent.GetComponentsInChildren<cMonsterp>()[i]?.OnDead();
+                if (MonsterParent.GetComponentsInChildren<cMonsterp>()[i] != null)
+                {
+                    // 잡몹들만 죽음
+                    MonsterParent.GetComponentsInChildren<cMonsterp>()[i].OnDead();
+                }
             }
         }
     }
@@ -103,6 +109,12 @@ public class cMonsterSpawnArea : MonoBehaviour
             // 몬스터 생성
             GameObject obj = Instantiate(spawnMonster, MonsterParent);
             obj.transform.position = SpawnPoints[i].position;
+
+            // 생성된 몬스터가 보스인 경우 저장
+            if (spawnMonster == Boss)
+            {
+                BossColne = obj;
+            }
         }       
     }
 
