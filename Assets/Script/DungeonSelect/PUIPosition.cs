@@ -51,7 +51,7 @@ public class PUIPosition : MonoBehaviour
         while (Vector3.Distance( camtr.position ,clicktr.position) > 0.1f)
         {
             clicktf = false;
-            camtr.position = Vector3.Lerp(camtr.position, clicktr.position, Time.deltaTime * 1.5f);
+            camtr.position = Vector3.Lerp(camtr.position, clicktr.position, Time.deltaTime * 2.3f);
             yield return null;
             
         }
@@ -66,7 +66,7 @@ public class PUIPosition : MonoBehaviour
         while(Vector3.Distance(camtr.position,backcampos.position)>0.1f)
         {
             clicktf = false;
-            camtr.position = Vector3.Lerp(camtr.position, backcampos.position, Time.deltaTime * 1.5f);
+            camtr.position = Vector3.Lerp(camtr.position, backcampos.position, Time.deltaTime * 2.3f);
             yield return null;
         }
 
