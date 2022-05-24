@@ -169,6 +169,7 @@ public class cMonsterp : cCharacteristicp, BattleSystem
     {
         StopAllCoroutines();
         myAnim.SetTrigger("Die"); // 죽는 애니메이션 실행
+        myAnim.SetBool("IsAttack", false); // 사용중이던 스킬 해제
         OnDisappear(); // 5초 뒤에 사라짐
     }
 

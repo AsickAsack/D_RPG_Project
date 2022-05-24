@@ -7,6 +7,8 @@ public class cAttackManager : cCharacteristic
     public LayerMask AttackMask;
     public Transform[] myAttackPoints; // 타격지점
     public Collider[] colPoints; // 부딫힌 지점
+    public GameObject damageText; // 데미지 텍스트
+    public Transform Canvas; // 캔버스위치
 
     public int Combo = 0;
     public float ComboLimitTime = 2.5f;
@@ -46,10 +48,19 @@ public class cAttackManager : cCharacteristic
 
                 if (bs != null)
                 {
-                    float randomDamage = Random.Range(0.05f, 0.3f);
-                    print(this.GetComponent<cCharacter>().myStats.ATK * randomDamage);
+                    float randomDamage = this.GetComponent<cCharacter>().myStats.ATK * Random.Range(0.05f, 0.3f);
+                    print((int)randomDamage);
 
-                    bs.OnDamage(this.GetComponent<cCharacter>().myStats.ATK * randomDamage);
+                    bs.OnDamage(randomDamage);
+
+                    // 데미지 텍스트 생성
+                    GameObject obj = Instantiate(damageText, Canvas); // 캔버스에 ui로 생성
+                    cDamageText curDamageText = obj.GetComponentInChildren<cDamageText>(); 
+
+                    curDamageText.Initialize(col.transform);
+                    curDamageText.GetComponent<TMPro.TMP_Text>().text = "" + (int)randomDamage;
+                    curDamageText.TextAnimation(obj.GetComponent<RectTransform>());
+
                 }
             }
         }
