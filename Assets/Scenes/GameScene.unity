@@ -2547,9 +2547,10 @@ MonoBehaviour:
   - {fileID: 1438180307}
   - {fileID: 1955317876}
   colPoints: []
+  damageText: {fileID: 762216345101178043, guid: 5e7306d355ce57647a9808459d79aa03, type: 3}
+  Canvas: {fileID: 1588428154}
   Combo: 0
   ComboLimitTime: 1.5
-  convertDamage: 0.1
 --- !u!114 &886271386
 MonoBehaviour:
   m_ObjectHideFlags: 0
