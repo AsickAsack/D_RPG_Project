@@ -28,7 +28,7 @@ public class cDamageText : MonoBehaviour
 
     IEnumerator TextUp(RectTransform rt)
     {
-        float dist = 400.0f;
+        float dist = 300.0f;
 
         while (!Mathf.Approximately(dist, 0.0f))
         {
@@ -39,11 +39,9 @@ public class cDamageText : MonoBehaviour
             rt.Translate(Vector3.up * delta);
 
             dist -= delta;
-            print(dist);
 
             if (dist <= 0.0f)
             {
-                print("b");
                 Destroy(this.transform.parent.gameObject);
             }
 

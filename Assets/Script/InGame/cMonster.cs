@@ -184,7 +184,7 @@ public class cMonster : cCharacteristic, BattleSystem
     void OnDie()
     {
         StopAllCoroutines();
-        myAnim.SetBool("IsAttack",false); // 사용중이던 스킬 해제
+        //myAnim.SetBool("IsAttack",false); // 사용중이던 스킬 해제
         myAnim.SetTrigger("Die"); // 죽는 애니메이션 실행
 
         Transform MonsterParent = GameObject.Find("MonsterParent").transform;
@@ -196,6 +196,10 @@ public class cMonster : cCharacteristic, BattleSystem
 
             // 잡몹들만 죽음
             MonsterParent.GetChild(i).GetComponent<cMonsterp>().OnDead();
+
+            // 잡몹들의 hp바 제거
+            //GameObject.Find("HPBarParent").SetActive(false);
+            Destroy(MonsterParent.GetChild(i).GetComponent<cMonsterp>().myHPBar.gameObject);
         }
     }
         

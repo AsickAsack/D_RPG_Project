@@ -21,7 +21,7 @@ public class cMonsterp : cCharacteristicp, BattleSystem
     public Transform HitPointPosition;
 
     public cMonsterHPBar HPBar_Prefab;
-    cMonsterHPBar myHPBar;
+    public cMonsterHPBar myHPBar;
     float initialHP;
 
     Coroutine moveRoutine = null;
@@ -169,7 +169,8 @@ public class cMonsterp : cCharacteristicp, BattleSystem
     {
         StopAllCoroutines();
         myAnim.SetTrigger("Die"); // 죽는 애니메이션 실행
-        myAnim.SetBool("IsAttack", false); // 사용중이던 스킬 해제
+        StopCoroutine(Attacking());
+        //myAnim.SetBool("IsAttack", false); // 사용중이던 스킬 해제
         OnDisappear(); // 5초 뒤에 사라짐
     }
 
@@ -238,36 +239,6 @@ public class cMonsterp : cCharacteristicp, BattleSystem
             {
                 yield return new WaitForFixedUpdate();
             }
-
-            //if (dist > ATK_Range && myAnim.GetBool("IsAttack") == false) // 공격범위 밖에 있을 경우 따라감, 공격중일 경우 따라가지 않도록
-            //{
-            //    myAnim.SetTrigger("IsWalk"); // idle -> walk_front 
-
-            //    float delta = MoveSpeed * Time.deltaTime; // 이동 거리
-
-            //    delta = delta > dist ? dist : delta; // 이동 거리가 남은 거리보다 클 경우 남은 거리 만큼만 이동
-
-            //    this.transform.Translate(dir * delta);
-            //}
-            //else // 공격범위 내에 있을 경우 공격
-            //{
-            //    myAnim.SetBool("IsWalk", false); // walk_front -> idle
-
-            //    if (myAnim.GetBool("IsAttack") == false)
-            //    {
-            //        AttackTime += Time.deltaTime;
-
-            //        if (AttackTime >= ATK_WaitingTime)
-            //        {
-            //            // 공격
-            //            int RandomSkill_num = Random.Range(0, 3);
-            //            //int RandomSkill_num = 2;
-            //            myAnim.SetInteger("Skill", RandomSkill_num);
-            //            myAnim.SetTrigger("Attack");
-            //            AttackTime = 0.0f;
-            //        }
-            //    }
-            //}
         }
     }
 
@@ -277,12 +248,14 @@ public class cMonsterp : cCharacteristicp, BattleSystem
 
         while (true)
         {
+            if (myState == STATE.DEAD) break;
+
             if (isAttacking == false)
             {
                 myAnim.SetTrigger("Attack");
                 isAttacking = true;
             }
-
+            
             // 공격애니메이션이 끝나면 코루틴 종료 
             if (myAnim.GetBool("IsAttack") == false)
             {

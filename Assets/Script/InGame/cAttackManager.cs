@@ -49,7 +49,6 @@ public class cAttackManager : cCharacteristic
                 if (bs != null)
                 {
                     float randomDamage = this.GetComponent<cCharacter>().myStats.ATK * Random.Range(0.05f, 0.3f);
-                    print((int)randomDamage);
 
                     bs.OnDamage(randomDamage);
 
