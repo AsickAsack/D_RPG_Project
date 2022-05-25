@@ -33,8 +33,8 @@ public class POnclickbtn : MonoBehaviour
 
         while (color.a < 1.0f)
         {
-            color.a += 0.05f;
-            textcolor.a += 0.05f;
+            color.a += 0.03f;
+            textcolor.a += 0.03f;
             errorimg.color = color;
             error.color = textcolor;
             yield return null;
@@ -44,8 +44,8 @@ public class POnclickbtn : MonoBehaviour
        
         while (color.a >= 0f)
         {
-            color.a -= 0.05f;
-            textcolor.a -= 0.05f;
+            color.a -= 0.03f;
+            textcolor.a -= 0.03f;
             errorimg.color = color;
             error.color = textcolor;
             yield return null;
