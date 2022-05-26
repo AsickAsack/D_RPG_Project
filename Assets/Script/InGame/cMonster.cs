@@ -270,7 +270,8 @@ public class cMonster : cCharacteristic, BattleSystem
             { 
                 // АјАн
                 int RandomSkill_num = Random.Range(0, 3);
-                myAnim.SetInteger("Skill", RandomSkill_num);
+                //myAnim.SetInteger("Skill", RandomSkill_num);
+                myAnim.SetInteger("Skill", 2);
                 myAnim.SetTrigger("Attack");
                 isAttacking = true;
             }
