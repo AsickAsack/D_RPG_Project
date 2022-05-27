@@ -117,10 +117,31 @@ public partial class PlayerData
 {
     public string Nickname = "";
     public int Level = 1;
-    public int Gold = 0;
+    public int _gold = 0;
+    public int Gold
+    {
+        get => _gold;
+        set
+        {
+            int OrgGold = _gold;                 
+            _gold = value;
+
+            if (OrgGold < _gold) // µ∑ π˙æ˙¿ª∂ß 
+                EarnMoney += ( _gold - OrgGold );
+            else if (OrgGold > _gold) // µ∑ ΩË¿ª∂ß
+                SpendMoney += ( OrgGold - _gold );
+
+
+        }
+    }
     public int Emerald = 0;
     public int Key = 0;
     public bool FirstGame = true;
+
+    public int EarnMoney = 0;
+    public int SpendMoney = 0;
+    public int FirstExchange = 0;
+    public int BuyShop = 0;
 
     public List<itemdata> Player_inventory = new List<itemdata>();
     public List<itemdata2> Player_inventory2 = new List<itemdata2>();

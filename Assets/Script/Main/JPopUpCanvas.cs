@@ -22,6 +22,7 @@ public class JPopUpCanvas : MonoBehaviour
     public Canvas Inventory_Canvas;
     public Canvas Exit_Canvas;
     public Canvas CashShop_Canvas;
+    public Canvas Mission_Canvas;
 
     [Header("[UI open 확인 변수]")]
     public static bool IsUIopen = false; // ui가 현재 열려있는지 아닌지 확인하는 불값
@@ -87,6 +88,9 @@ public class JPopUpCanvas : MonoBehaviour
     public TMPro.TMP_Text Check_Popuptx_Emerald;
     public GameObject Notice_Popup;
     public TMPro.TMP_Text Notice_Popuptx;
+
+    [Header("[업적기능 구현]")]
+
     
 
 
@@ -101,7 +105,7 @@ public class JPopUpCanvas : MonoBehaviour
     #region 옵션창 enum
     public enum Popup //어떤 팝업인지 알려줄 열거자 
     {
-        None=0,Iventory_Popup,Equip_Popup,Equip_detail,Shop_Popup,Common_Shop,Cash_Shop
+        None=0,Iventory_Popup,Equip_Popup,Equip_detail,Shop_Popup,Common_Shop,Cash_Shop,Mission_Popup
     }
 
     public Popup popup=Popup.None;
@@ -253,14 +257,64 @@ public class JPopUpCanvas : MonoBehaviour
                     IsUIopen = false;
                 }
                 break;
+            case Popup.Mission_Popup:
+                {   
+                    switch(TempPopup)
+                    {
+                        case Popup.Cash_Shop:
+                            popup = Popup.Cash_Shop;
+                            Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = " 캐시 상점";
+                            break;
+                        case Popup.Common_Shop:
+                            popup = Popup.Common_Shop;
+                            Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = "  일반 상점";
+                            break;
+                        case Popup.Shop_Popup:
+                            popup = Popup.Shop_Popup;
+                            Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = " 상점";
+                            break;
+                        case Popup.None:
+                            set_icon(false, true);
+                            BackGround_Canvas.enabled = false;
+                            IsUIopen = false;
+                            break;
+                    }
+                   Mission_Canvas.enabled = false;
+                }
+                break;
         }
-
+        Mission_Canvas.enabled = false;
         audioSource.PlayOneShot(Ui_Click);
-      
-       // mainCamera.enabled = true;
-        
-       
-        
+
+    }
+    #endregion
+
+    #region 임무 함수
+
+    public void UIClickAuidio()
+    {
+        audioSource.PlayOneShot(Ui_Click);
+    }
+
+    public void UI_Check(bool check)
+    {
+        IsUIopen = check;
+        audioSource.PlayOneShot(Ui_Click);
+    }
+
+    Popup TempPopup;
+
+    public void Open_MissionCanvas()
+    {
+        TempPopup = popup;
+        IsUIopen = true;
+        popup = Popup.Mission_Popup;
+        Mission_Canvas.enabled = true;
+        BackGround_Canvas.enabled = true;
+        Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = " 임무";
+        set_icon(true, false);
+        audioSource.PlayOneShot(Ui_Click);
+            
     }
     #endregion
 
@@ -333,6 +387,7 @@ public class JPopUpCanvas : MonoBehaviour
         Check_Popup.SetActive(false);
         TMPInput.text = "";
         StopCoroutine(Emerald());
+        GameData.Instance.playerdata.FirstExchange = 1;
     }
     public void blank()
     {
@@ -376,9 +431,6 @@ public class JPopUpCanvas : MonoBehaviour
 
 
     #endregion
-
-
-
 
     #region 상점 함수
     public void ShopPopup_Open()
@@ -452,6 +504,8 @@ public class JPopUpCanvas : MonoBehaviour
                 curShopitem.transform.GetChild(6).GetComponent<Image>().gameObject.SetActive(true);
                 buyitemCount++;
                 buyCheck();
+                if (GameData.Instance.playerdata.BuyShop <= 3)
+                    GameData.Instance.playerdata.BuyShop += 1;
 
                 if (buyitemCount == 5)
                 {
@@ -747,7 +801,6 @@ public class JPopUpCanvas : MonoBehaviour
 
 
     #endregion
-
 
     #region 장비창 함수들
 
@@ -1131,7 +1184,6 @@ public class JPopUpCanvas : MonoBehaviour
         audioSource.PlayOneShot(Ui_Click);
     }
     #endregion
-
 
     #region 던전선택창 이동 함수
 
