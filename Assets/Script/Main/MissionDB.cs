@@ -68,7 +68,7 @@ public class MissionDB : MonoBehaviour
                 GameData.Instance.playerdata.Player_inventory2.Add(GameData.Instance.playerdata.Itemdata2[2]);
                 GameData.Instance.playerdata.CurEXP += 1500;
             },
-            reward_tx1 = 50000,
+            reward_tx1 = 1,
             reward_tx2 = 1500,
         };
         myData[3] = new MissionData

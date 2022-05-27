@@ -76,6 +76,7 @@ public class JPopUpCanvas : MonoBehaviour
     public GameObject Allbuy;
     public TMPro.TMP_Text Shoptime;
     public GameObject[] CheckPanel;
+    public GameObject NPC_A;
 
     [Header("[캐시상점]")]
     public GameObject[] CS_leftMenu;
@@ -91,7 +92,7 @@ public class JPopUpCanvas : MonoBehaviour
 
     [Header("[업적기능 구현]")]
     public bool Ar_on = false;
-    
+    public GameObject phillipa_Bunny;
 
 
     [Header("[오디오 소스,클립]")]
@@ -249,6 +250,7 @@ public class JPopUpCanvas : MonoBehaviour
                     set_icon(false, true);
                     BackGround_Canvas.enabled = false;
                     IsUIopen = false;
+                    NPC_A.gameObject.SetActive(false);
                 }
                 break;  
             case Popup.Common_Shop:
@@ -260,6 +262,7 @@ public class JPopUpCanvas : MonoBehaviour
                         set_icon(false, true);
                         BackGround_Canvas.enabled = false;
                         IsUIopen = false;
+                        NPC_A.gameObject.SetActive(false);
                     }
                     else
                     {
@@ -326,7 +329,7 @@ public class JPopUpCanvas : MonoBehaviour
                     set_icon(false, true);
                     BackGround_Canvas.enabled = false;
                     IsUIopen = false;
-                    
+                    phillipa_Bunny.SetActive(false);
                     
                 }
                 break;
@@ -363,13 +366,14 @@ public class JPopUpCanvas : MonoBehaviour
         //TempPopup = popup;
         IsUIopen = true;
         popup = Popup.Mission_Popup;
+        phillipa_Bunny.SetActive(true);
         Mission_Canvas.enabled = true;
         BackGround_Canvas.enabled = true;
         Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = " 임무";
         set_icon(true, false);
         if(!Ar_on)
         audioSource.PlayOneShot(Ui_Click);
-            
+        phillipa_Bunny.GetComponent<Animator>().SetTrigger("Waving");
     }
     #endregion
 
@@ -381,7 +385,7 @@ public class JPopUpCanvas : MonoBehaviour
         popup = Popup.Cash_Shop;
         CashShop_Canvas.enabled = true;
         BackGround_Canvas.enabled = true;
-        Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = " 캐시 상점";
+        Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = "   캐시 상점";
         set_icon(true, false);
         audioSource.PlayOneShot(Ui_Click);
     }
@@ -492,6 +496,7 @@ public class JPopUpCanvas : MonoBehaviour
     {
         IsUIopen = true;
         popup = Popup.Shop_Popup;
+        NPC_A.gameObject.SetActive(true);
         ShopCanvas.enabled = true;
         BackGround_Canvas.enabled = true;
         Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = " 상점";
