@@ -238,7 +238,7 @@ public class JPopUpCanvas : MonoBehaviour
                     BackGround_Canvas.enabled = false;
                     IsUIopen = false;
                 }
-                break;
+                break;  
             case Popup.Common_Shop:
                 {
                     popup = Popup.Shop_Popup;
@@ -261,6 +261,18 @@ public class JPopUpCanvas : MonoBehaviour
                 {   
                     switch(TempPopup)
                     {
+                        case Popup.Equip_Popup:
+                            popup = Popup.Equip_Popup;
+                            Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = "    장비";
+                            break;
+                        case Popup.Equip_detail:
+                            popup = Popup.Equip_detail;
+                            Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = "    장비 정보";
+                            break;
+                        case Popup.Iventory_Popup:
+                            popup = Popup.Iventory_Popup;
+                            Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = "소지품";
+                            break;
                         case Popup.Cash_Shop:
                             popup = Popup.Cash_Shop;
                             Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = " 캐시 상점";
@@ -272,6 +284,11 @@ public class JPopUpCanvas : MonoBehaviour
                         case Popup.Shop_Popup:
                             popup = Popup.Shop_Popup;
                             Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = " 상점";
+                            break;
+                        case Popup.Mission_Popup:
+                            set_icon(false, true);
+                            BackGround_Canvas.enabled = false;
+                            IsUIopen = false;
                             break;
                         case Popup.None:
                             set_icon(false, true);
@@ -938,6 +955,7 @@ public class JPopUpCanvas : MonoBehaviour
         popup = Popup.Equip_Popup; 
         audioSource.PlayOneShot(Ui_Click); 
         IsUIopen = true;
+        Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = "    장비;";
         BackGround_Canvas.enabled = true; // 화면을 가리기위해 백그라운드 캔버스 켜줌(검은화면)
         //mainCamera.enabled = false; // 메인카메라 꺼줌(ui가 켜지면 볼 필요없는 카메라를 꺼줘서 자원을 아낌)
         Equip_Canvas.enabled = true; // 인벤토리 캔버스 켜줌

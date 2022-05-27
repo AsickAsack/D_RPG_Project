@@ -9,7 +9,6 @@ using UnityEngine.UI;
 [System.Serializable]
 public partial class GameData : MonoBehaviour
 {
-    public int a = 0;
   
     #region Singleton Pattern 
     private static GameData instance = null; //스태틱은 1개 // 모든 싱글톤 개체들이 공유됨 // 외부에서 수정X 유일성확보
@@ -133,6 +132,28 @@ public partial class PlayerData
 
 
         }
+    }
+    private int _curEXP = 0;
+    public int CurEXP
+    {
+        get { return _curEXP; }
+        set 
+        {
+            _curEXP = value;
+            if (_curEXP >= MaxEXP)
+            {
+                Level += 1;
+                _curEXP = 0;
+                MaxEXP *= Level;
+            }
+        }
+         
+    }
+    private int _MaxEXP = 1000;
+    public int MaxEXP
+    {
+        get { return _MaxEXP; }
+        set {_MaxEXP = value;}
     }
     public int Emerald = 0;
     public int Key = 0;

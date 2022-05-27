@@ -12,7 +12,8 @@ public struct MissionData
     public int Mission_Goal;
     public UnityAction rewardBt1;
     public UnityAction rewardBt2;
-    public string reward_tx;
+    public int reward_tx1;
+    public int reward_tx2;
 
 }
 [System.Serializable]
@@ -31,8 +32,13 @@ public class MissionDB : MonoBehaviour
             Mission_GoalProcess = GameData.Instance.playerdata.SpendMoney,
             Mission_Goal = 50000,
             rewardBt1 = () => myUI.ShopPopup_Open(),
-            rewardBt2 = () => GameData.Instance.playerdata.Gold += 50000,
-            reward_tx = "5만 골드 획득 완료!"
+            rewardBt2 = () =>
+            {
+                GameData.Instance.playerdata.Gold += 50000;
+                GameData.Instance.playerdata.CurEXP += 500;
+            },
+            reward_tx1 = 50000,
+            reward_tx2 = 500,
         };
         myData[1] = new MissionData
         {
@@ -40,8 +46,13 @@ public class MissionDB : MonoBehaviour
             Mission_GoalProcess = GameData.Instance.playerdata.EarnMoney,
             Mission_Goal = 100000,
             rewardBt1 = () => SceneLoader.Instance.Loading_LoadScene("pSelecteDungeon"),
-            rewardBt2 = () => GameData.Instance.playerdata.Gold += 50000,
-            reward_tx = "5만 골드 획득 완료!"
+            rewardBt2 = () =>
+            {
+                GameData.Instance.playerdata.Gold += 50000;
+                GameData.Instance.playerdata.CurEXP += 500;
+            },
+            reward_tx1 = 50000,
+            reward_tx2 = 500,
         };
         myData[2] = new MissionData
         {
@@ -49,8 +60,13 @@ public class MissionDB : MonoBehaviour
             Mission_GoalProcess = 0,//횟수 연동해야함
             Mission_Goal = 1,
             rewardBt1 = () => SceneLoader.Instance.Loading_LoadScene("pSelecteDungeon"),
-            rewardBt2 = () => {/*보상 정해야함 ㅋㅋ*/},
-            reward_tx = ""//보상팝업설명
+            rewardBt2 = () =>
+            {
+                GameData.Instance.playerdata.Player_inventory2.Add(GameData.Instance.playerdata.Itemdata2[2]);
+                GameData.Instance.playerdata.CurEXP += 1500;
+            },
+            reward_tx1 = 50000,
+            reward_tx2 = 1500,
         };
         myData[3] = new MissionData
         {
@@ -58,17 +74,27 @@ public class MissionDB : MonoBehaviour
             Mission_GoalProcess = GameData.Instance.playerdata.FirstExchange,//횟수 연동해야함
             Mission_Goal = 1,
             rewardBt1 = () => myUI.Open_CashShop(),
-            rewardBt2 = () => {/*보상 정해야함 ㅋㅋ*/},
-            reward_tx = ""//보상팝업설명
+            rewardBt2 = () =>
+            {
+                GameData.Instance.playerdata.Emerald += 5000;
+                GameData.Instance.playerdata.CurEXP += 500;
+            },
+            reward_tx1 = 5000,
+            reward_tx2 = 500,
         };
         myData[4] = new MissionData
         {
-            Mission_Name = "상점에서 아이템 3개 사보기",
+            Mission_Name = "상점아이템 3개 구매",
             Mission_GoalProcess = GameData.Instance.playerdata.BuyShop,//횟수 연동해야함
             Mission_Goal = 3,
             rewardBt1 = () => myUI.ShopPopup_Open(),
-            rewardBt2 = () => {/*보상 정해야함 ㅋㅋ*/},
-            reward_tx = ""//보상팝업설명
+            rewardBt2 = () =>
+            {
+                GameData.Instance.playerdata.Gold += 70000;
+                GameData.Instance.playerdata.CurEXP += 900;
+            },
+            reward_tx1 = 70000,
+            reward_tx2 = 900,
         };
     }
 
