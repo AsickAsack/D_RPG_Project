@@ -90,7 +90,7 @@ public class JPopUpCanvas : MonoBehaviour
     public TMPro.TMP_Text Notice_Popuptx;
 
     [Header("[업적기능 구현]")]
-
+    public bool Ar_on = false;
     
 
 
@@ -191,7 +191,7 @@ public class JPopUpCanvas : MonoBehaviour
         Character_Icon.SetActive(check2);
     }
 
-    public void ExitPopUp()
+    public void ExitPopUp(bool check = false)
     {
         switch(popup)
         {
@@ -218,15 +218,27 @@ public class JPopUpCanvas : MonoBehaviour
                 break;
             case Popup.Equip_detail:
                 {
-                    popup = Popup.Equip_Popup;
-                    Main_Canvas.enabled = true;
-                    Equip_DetailCanvas.enabled = false;
-                    //Main_Canvas.enabled = true;
-                    EquipMenu_Setting();
-                    Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = "장비";
+                    if(Ar_on)
+                    {
+                        set_icon(false, true);
+                        popup = Popup.None;
+                        BackGround_Canvas.enabled = false;
+                        IsUIopen = false;
+                        popup = Popup.None;
+                        Scroll_Canvas.enabled = false;
+                        Equip_DetailCanvas.enabled = false;
+                        Equip_Canvas.enabled = false;
+                    }
+                    else { 
+                        popup = Popup.Equip_Popup;
+                        //Main_Canvas.enabled = true;
+                        Equip_DetailCanvas.enabled = false;
+                        //Main_Canvas.enabled = true;
+                        EquipMenu_Setting();
+                        Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = "장비";
+                    }
                     EquipObject[EquipIndex].gameObject.SetActive(false);
                     EquipObject[EquipIndex].transform.localRotation = Quaternion.Euler(EquipOrgPos);
-
                 }
                 break;
             case Popup.Shop_Popup:
@@ -241,9 +253,20 @@ public class JPopUpCanvas : MonoBehaviour
                 break;  
             case Popup.Common_Shop:
                 {
-                    popup = Popup.Shop_Popup;
-                    //NPC_A_anim.SetTrigger("Waving");
-                    Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = " 상점";
+                    if (Ar_on)
+                    {
+                        popup = Popup.None;
+                        ShopCanvas.enabled = false;
+                        set_icon(false, true);
+                        BackGround_Canvas.enabled = false;
+                        IsUIopen = false;
+                    }
+                    else
+                    {
+                        popup = Popup.Shop_Popup;
+                        //NPC_A_anim.SetTrigger("Waving");
+                        Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = " 상점";
+                    }
                     Shop_Panel[1].SetActive(false);
                     Shop_Panel[0].SetActive(true);
                 }
@@ -258,7 +281,9 @@ public class JPopUpCanvas : MonoBehaviour
                 }
                 break;
             case Popup.Mission_Popup:
-                {   
+                {
+
+                    /*
                     switch(TempPopup)
                     {
                         case Popup.Equip_Popup:
@@ -286,6 +311,7 @@ public class JPopUpCanvas : MonoBehaviour
                             Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = " 상점";
                             break;
                         case Popup.Mission_Popup:
+                            popup = Popup.None;
                             set_icon(false, true);
                             BackGround_Canvas.enabled = false;
                             IsUIopen = false;
@@ -295,12 +321,18 @@ public class JPopUpCanvas : MonoBehaviour
                             BackGround_Canvas.enabled = false;
                             IsUIopen = false;
                             break;
-                    }
-                   Mission_Canvas.enabled = false;
+                    }*/
+                    Mission_Canvas.enabled = false;
+                    set_icon(false, true);
+                    BackGround_Canvas.enabled = false;
+                    IsUIopen = false;
+                    
+                    
                 }
                 break;
         }
-        Mission_Canvas.enabled = false;
+        //Mission_Canvas.enabled = false;
+        if(!(bool)check)
         audioSource.PlayOneShot(Ui_Click);
 
     }
@@ -313,6 +345,11 @@ public class JPopUpCanvas : MonoBehaviour
         audioSource.PlayOneShot(Ui_Click);
     }
 
+    public void CheckAr(bool check)
+    {
+        Ar_on = check;
+    }
+
     public void UI_Check(bool check)
     {
         IsUIopen = check;
@@ -323,13 +360,14 @@ public class JPopUpCanvas : MonoBehaviour
 
     public void Open_MissionCanvas()
     {
-        TempPopup = popup;
+        //TempPopup = popup;
         IsUIopen = true;
         popup = Popup.Mission_Popup;
         Mission_Canvas.enabled = true;
         BackGround_Canvas.enabled = true;
         Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = " 임무";
         set_icon(true, false);
+        if(!Ar_on)
         audioSource.PlayOneShot(Ui_Click);
             
     }
@@ -458,8 +496,9 @@ public class JPopUpCanvas : MonoBehaviour
         BackGround_Canvas.enabled = true;
         Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = " 상점";
         set_icon(true, false);
-        audioSource.PlayOneShot(Ui_Click);
         NPC_A_anim.SetTrigger("Waving");
+        audioSource.PlayOneShot(Ui_Click);
+        
 
     }
 
@@ -837,9 +876,9 @@ public class JPopUpCanvas : MonoBehaviour
     {
         GameObject clickObject = EventSystem.current.currentSelectedGameObject;
         popup = Popup.Equip_detail;
-        //Main_Canvas.enabled = false;
+        
         Equip_DetailCanvas.enabled = true;
-        Main_Canvas.enabled = false;
+        
         Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = "    장비 정보";
         jSetItemDetail.setItem(clickObject.GetComponent<JSetItemDetail>().num);
         CurNum = clickObject.GetComponent<JSetItemDetail>().num;

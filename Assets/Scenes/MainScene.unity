@@ -19565,7 +19565,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4008609818178152056, guid: fc41f8565b7bab14da55f742dfd6f08a, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4008609818178152056, guid: fc41f8565b7bab14da55f742dfd6f08a, type: 3}
       propertyPath: m_AnchorMin.x
@@ -19573,7 +19573,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4008609818178152056, guid: fc41f8565b7bab14da55f742dfd6f08a, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4008609818178152056, guid: fc41f8565b7bab14da55f742dfd6f08a, type: 3}
       propertyPath: m_SizeDelta.x
@@ -19625,11 +19625,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4008609818178152056, guid: fc41f8565b7bab14da55f742dfd6f08a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 350
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4008609818178152056, guid: fc41f8565b7bab14da55f742dfd6f08a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -350
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4008609818178152056, guid: fc41f8565b7bab14da55f742dfd6f08a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -20414,7 +20414,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4008609818178152056, guid: fc41f8565b7bab14da55f742dfd6f08a, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4008609818178152056, guid: fc41f8565b7bab14da55f742dfd6f08a, type: 3}
       propertyPath: m_AnchorMin.x
@@ -20422,7 +20422,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4008609818178152056, guid: fc41f8565b7bab14da55f742dfd6f08a, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4008609818178152056, guid: fc41f8565b7bab14da55f742dfd6f08a, type: 3}
       propertyPath: m_SizeDelta.x
@@ -20474,11 +20474,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4008609818178152056, guid: fc41f8565b7bab14da55f742dfd6f08a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 350
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4008609818178152056, guid: fc41f8565b7bab14da55f742dfd6f08a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -450
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4008609818178152056, guid: fc41f8565b7bab14da55f742dfd6f08a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -25445,7 +25445,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4008609818178152056, guid: fc41f8565b7bab14da55f742dfd6f08a, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4008609818178152056, guid: fc41f8565b7bab14da55f742dfd6f08a, type: 3}
       propertyPath: m_AnchorMin.x
@@ -25453,7 +25453,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4008609818178152056, guid: fc41f8565b7bab14da55f742dfd6f08a, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4008609818178152056, guid: fc41f8565b7bab14da55f742dfd6f08a, type: 3}
       propertyPath: m_SizeDelta.x
@@ -25505,11 +25505,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4008609818178152056, guid: fc41f8565b7bab14da55f742dfd6f08a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 350
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4008609818178152056, guid: fc41f8565b7bab14da55f742dfd6f08a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -250
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4008609818178152056, guid: fc41f8565b7bab14da55f742dfd6f08a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -31010,6 +31010,7 @@ MonoBehaviour:
   Check_Popuptx_Emerald: {fileID: 425238875}
   Notice_Popup: {fileID: 679909089}
   Notice_Popuptx: {fileID: 2069003173}
+  Ar_on: 0
   Ui_Click: {fileID: 8300000, guid: b3b52ebd1b98d214aa98d88dfba6e925, type: 3}
   DunGeon_Click: {fileID: 8300000, guid: 6d6b99fcc3d0a794b982f6e5d89e33fb, type: 3}
   Moneyclip: {fileID: 8300000, guid: 10428f000068f854cb5f1e6eda5237a0, type: 3}
@@ -35526,6 +35527,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1377299968}
         m_TargetAssemblyTypeName: JPopUpCanvas, Assembly-CSharp
         m_MethodName: UI_Check
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1377299968}
+        m_TargetAssemblyTypeName: JPopUpCanvas, Assembly-CSharp
+        m_MethodName: CheckAr
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -43370,8 +43383,32 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1377299968}
         m_TargetAssemblyTypeName: JPopUpCanvas, Assembly-CSharp
+        m_MethodName: ExitPopUp
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1377299968}
+        m_TargetAssemblyTypeName: JPopUpCanvas, Assembly-CSharp
         m_MethodName: Open_MissionCanvas
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1377299968}
+        m_TargetAssemblyTypeName: JPopUpCanvas, Assembly-CSharp
+        m_MethodName: CheckAr
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -43672,7 +43709,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4008609818178152056, guid: fc41f8565b7bab14da55f742dfd6f08a, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4008609818178152056, guid: fc41f8565b7bab14da55f742dfd6f08a, type: 3}
       propertyPath: m_AnchorMin.x
@@ -43680,7 +43717,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4008609818178152056, guid: fc41f8565b7bab14da55f742dfd6f08a, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4008609818178152056, guid: fc41f8565b7bab14da55f742dfd6f08a, type: 3}
       propertyPath: m_SizeDelta.x
@@ -43732,11 +43769,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4008609818178152056, guid: fc41f8565b7bab14da55f742dfd6f08a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 350
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4008609818178152056, guid: fc41f8565b7bab14da55f742dfd6f08a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -150
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4008609818178152056, guid: fc41f8565b7bab14da55f742dfd6f08a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -43953,7 +43990,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1377299968}
         m_TargetAssemblyTypeName: JPopUpCanvas, Assembly-CSharp
         m_MethodName: ExitPopUp
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -48971,6 +49008,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1377299968}
+        m_TargetAssemblyTypeName: JPopUpCanvas, Assembly-CSharp
+        m_MethodName: CheckAr
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2097521279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53042,7 +53091,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1377299968}
         m_TargetAssemblyTypeName: JPopUpCanvas, Assembly-CSharp
         m_MethodName: ExitPopUp
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -54030,7 +54079,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4008609818178152056, guid: fc41f8565b7bab14da55f742dfd6f08a, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4008609818178152056, guid: fc41f8565b7bab14da55f742dfd6f08a, type: 3}
       propertyPath: m_AnchorMin.x
@@ -54038,7 +54087,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4008609818178152056, guid: fc41f8565b7bab14da55f742dfd6f08a, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4008609818178152056, guid: fc41f8565b7bab14da55f742dfd6f08a, type: 3}
       propertyPath: m_SizeDelta.x
@@ -54090,11 +54139,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4008609818178152056, guid: fc41f8565b7bab14da55f742dfd6f08a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 350
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4008609818178152056, guid: fc41f8565b7bab14da55f742dfd6f08a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4008609818178152056, guid: fc41f8565b7bab14da55f742dfd6f08a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

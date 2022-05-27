@@ -31,7 +31,10 @@ public class MissionDB : MonoBehaviour
             Mission_Name = "50,000 골드 사용하기",
             Mission_GoalProcess = GameData.Instance.playerdata.SpendMoney,
             Mission_Goal = 50000,
-            rewardBt1 = () => myUI.ShopPopup_Open(),
+            rewardBt1 = () => {
+                myUI.ExitPopUp(true);
+                myUI.ShopPopup_Open();
+            },
             rewardBt2 = () =>
             {
                 GameData.Instance.playerdata.Gold += 50000;
@@ -73,7 +76,10 @@ public class MissionDB : MonoBehaviour
             Mission_Name = "에메랄드 환전해보기",
             Mission_GoalProcess = GameData.Instance.playerdata.FirstExchange,//횟수 연동해야함
             Mission_Goal = 1,
-            rewardBt1 = () => myUI.Open_CashShop(),
+            rewardBt1 = () => {
+                myUI.ExitPopUp(true);
+                myUI.Open_CashShop();
+            },
             rewardBt2 = () =>
             {
                 GameData.Instance.playerdata.Emerald += 5000;
@@ -87,7 +93,9 @@ public class MissionDB : MonoBehaviour
             Mission_Name = "상점아이템 3개 구매",
             Mission_GoalProcess = GameData.Instance.playerdata.BuyShop,//횟수 연동해야함
             Mission_Goal = 3,
-            rewardBt1 = () => myUI.ShopPopup_Open(),
+            rewardBt1 = () => {
+                myUI.ExitPopUp(true);
+                myUI.ShopPopup_Open(); },
             rewardBt2 = () =>
             {
                 GameData.Instance.playerdata.Gold += 70000;
