@@ -9,7 +9,6 @@ using UnityEngine.UI;
 [System.Serializable]
 public partial class GameData : MonoBehaviour
 {
-    public int a = 0;
   
     #region Singleton Pattern 
     private static GameData instance = null; //½ºÅÂÆ½Àº 1°³ // ¸ðµç ½Ì±ÛÅæ °³Ã¼µéÀÌ °øÀ¯µÊ // ¿ÜºÎ¿¡¼­ ¼öÁ¤X À¯ÀÏ¼ºÈ®º¸
@@ -117,10 +116,53 @@ public partial class PlayerData
 {
     public string Nickname = "";
     public int Level = 1;
-    public int Gold = 0;
+    public int _gold = 0;
+    public int Gold
+    {
+        get => _gold;
+        set
+        {
+            int OrgGold = _gold;                 
+            _gold = value;
+
+            if (OrgGold < _gold) // µ· ¹ú¾úÀ»¶§ 
+                EarnMoney += ( _gold - OrgGold );
+            else if (OrgGold > _gold) // µ· ½èÀ»¶§
+                SpendMoney += ( OrgGold - _gold );
+
+
+        }
+    }
+    private int _curEXP = 0;
+    public int CurEXP
+    {
+        get { return _curEXP; }
+        set 
+        {
+            _curEXP = value;
+            if (_curEXP >= MaxEXP)
+            {
+                Level += 1;
+                _curEXP = 0;
+                MaxEXP *= Level;
+            }
+        }
+         
+    }
+    private int _MaxEXP = 1000;
+    public int MaxEXP
+    {
+        get { return _MaxEXP; }
+        set {_MaxEXP = value;}
+    }
     public int Emerald = 0;
     public int Key = 0;
     public bool FirstGame = true;
+
+    public int EarnMoney = 0;
+    public int SpendMoney = 0;
+    public int FirstExchange = 0;
+    public int BuyShop = 0;
 
     public List<itemdata> Player_inventory = new List<itemdata>();
     public List<itemdata2> Player_inventory2 = new List<itemdata2>();

@@ -22,6 +22,7 @@ public class JPopUpCanvas : MonoBehaviour
     public Canvas Inventory_Canvas;
     public Canvas Exit_Canvas;
     public Canvas CashShop_Canvas;
+    public Canvas Mission_Canvas;
 
     [Header("[UI open 확인 변수]")]
     public static bool IsUIopen = false; // ui가 현재 열려있는지 아닌지 확인하는 불값
@@ -75,6 +76,7 @@ public class JPopUpCanvas : MonoBehaviour
     public GameObject Allbuy;
     public TMPro.TMP_Text Shoptime;
     public GameObject[] CheckPanel;
+    public GameObject NPC_A;
 
     [Header("[캐시상점]")]
     public GameObject[] CS_leftMenu;
@@ -87,7 +89,10 @@ public class JPopUpCanvas : MonoBehaviour
     public TMPro.TMP_Text Check_Popuptx_Emerald;
     public GameObject Notice_Popup;
     public TMPro.TMP_Text Notice_Popuptx;
-    
+
+    [Header("[업적기능 구현]")]
+    public bool Ar_on = false;
+    public GameObject phillipa_Bunny;
 
 
     [Header("[오디오 소스,클립]")]
@@ -101,7 +106,7 @@ public class JPopUpCanvas : MonoBehaviour
     #region 옵션창 enum
     public enum Popup //어떤 팝업인지 알려줄 열거자 
     {
-        None=0,Iventory_Popup,Equip_Popup,Equip_detail,Shop_Popup,Common_Shop,Cash_Shop
+        None=0,Iventory_Popup,Equip_Popup,Equip_detail,Shop_Popup,Common_Shop,Cash_Shop,Mission_Popup
     }
 
     public Popup popup=Popup.None;
@@ -187,7 +192,7 @@ public class JPopUpCanvas : MonoBehaviour
         Character_Icon.SetActive(check2);
     }
 
-    public void ExitPopUp()
+    public void ExitPopUp(bool check = false)
     {
         switch(popup)
         {
@@ -214,15 +219,27 @@ public class JPopUpCanvas : MonoBehaviour
                 break;
             case Popup.Equip_detail:
                 {
-                    popup = Popup.Equip_Popup;
-                    Main_Canvas.enabled = true;
-                    Equip_DetailCanvas.enabled = false;
-                    //Main_Canvas.enabled = true;
-                    EquipMenu_Setting();
-                    Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = "장비";
+                    if(Ar_on)
+                    {
+                        set_icon(false, true);
+                        popup = Popup.None;
+                        BackGround_Canvas.enabled = false;
+                        IsUIopen = false;
+                        popup = Popup.None;
+                        Scroll_Canvas.enabled = false;
+                        Equip_DetailCanvas.enabled = false;
+                        Equip_Canvas.enabled = false;
+                    }
+                    else { 
+                        popup = Popup.Equip_Popup;
+                        //Main_Canvas.enabled = true;
+                        Equip_DetailCanvas.enabled = false;
+                        //Main_Canvas.enabled = true;
+                        EquipMenu_Setting();
+                        Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = "장비";
+                    }
                     EquipObject[EquipIndex].gameObject.SetActive(false);
                     EquipObject[EquipIndex].transform.localRotation = Quaternion.Euler(EquipOrgPos);
-
                 }
                 break;
             case Popup.Shop_Popup:
@@ -233,13 +250,26 @@ public class JPopUpCanvas : MonoBehaviour
                     set_icon(false, true);
                     BackGround_Canvas.enabled = false;
                     IsUIopen = false;
+                    NPC_A.gameObject.SetActive(false);
                 }
-                break;
+                break;  
             case Popup.Common_Shop:
                 {
-                    popup = Popup.Shop_Popup;
-                    //NPC_A_anim.SetTrigger("Waving");
-                    Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = " 상점";
+                    if (Ar_on)
+                    {
+                        popup = Popup.None;
+                        ShopCanvas.enabled = false;
+                        set_icon(false, true);
+                        BackGround_Canvas.enabled = false;
+                        IsUIopen = false;
+                        NPC_A.gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        popup = Popup.Shop_Popup;
+                        //NPC_A_anim.SetTrigger("Waving");
+                        Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = " 상점";
+                    }
                     Shop_Panel[1].SetActive(false);
                     Shop_Panel[0].SetActive(true);
                 }
@@ -253,14 +283,97 @@ public class JPopUpCanvas : MonoBehaviour
                     IsUIopen = false;
                 }
                 break;
-        }
+            case Popup.Mission_Popup:
+                {
 
+                    /*
+                    switch(TempPopup)
+                    {
+                        case Popup.Equip_Popup:
+                            popup = Popup.Equip_Popup;
+                            Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = "    장비";
+                            break;
+                        case Popup.Equip_detail:
+                            popup = Popup.Equip_detail;
+                            Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = "    장비 정보";
+                            break;
+                        case Popup.Iventory_Popup:
+                            popup = Popup.Iventory_Popup;
+                            Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = "소지품";
+                            break;
+                        case Popup.Cash_Shop:
+                            popup = Popup.Cash_Shop;
+                            Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = " 캐시 상점";
+                            break;
+                        case Popup.Common_Shop:
+                            popup = Popup.Common_Shop;
+                            Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = "  일반 상점";
+                            break;
+                        case Popup.Shop_Popup:
+                            popup = Popup.Shop_Popup;
+                            Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = " 상점";
+                            break;
+                        case Popup.Mission_Popup:
+                            popup = Popup.None;
+                            set_icon(false, true);
+                            BackGround_Canvas.enabled = false;
+                            IsUIopen = false;
+                            break;
+                        case Popup.None:
+                            set_icon(false, true);
+                            BackGround_Canvas.enabled = false;
+                            IsUIopen = false;
+                            break;
+                    }*/
+                    Mission_Canvas.enabled = false;
+                    set_icon(false, true);
+                    BackGround_Canvas.enabled = false;
+                    IsUIopen = false;
+                    phillipa_Bunny.SetActive(false);
+                    
+                }
+                break;
+        }
+        //Mission_Canvas.enabled = false;
+        if(!(bool)check)
         audioSource.PlayOneShot(Ui_Click);
-      
-       // mainCamera.enabled = true;
-        
-       
-        
+
+    }
+    #endregion
+
+    #region 임무 함수
+
+    public void UIClickAuidio()
+    {
+        audioSource.PlayOneShot(Ui_Click);
+    }
+
+    public void CheckAr(bool check)
+    {
+        Ar_on = check;
+    }
+
+    public void UI_Check(bool check)
+    {
+        IsUIopen = check;
+        audioSource.PlayOneShot(Ui_Click);
+    }
+
+    Popup TempPopup;
+
+    public void Open_MissionCanvas()
+    {
+        //TempPopup = popup;
+        IsUIopen = true;
+        popup = Popup.Mission_Popup;
+        phillipa_Bunny.SetActive(true);
+        Mission_Canvas.enabled = true;
+        BackGround_Canvas.enabled = true;
+        Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = " 임무";
+        set_icon(true, false);
+        if(!Ar_on)
+        audioSource.PlayOneShot(Ui_Click);
+        phillipa_Bunny.GetComponent<Animator>().SetTrigger("Waving");
     }
     #endregion
 
@@ -272,7 +385,7 @@ public class JPopUpCanvas : MonoBehaviour
         popup = Popup.Cash_Shop;
         CashShop_Canvas.enabled = true;
         BackGround_Canvas.enabled = true;
-        Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = " 캐시 상점";
+        Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = "   캐시 상점";
         set_icon(true, false);
         audioSource.PlayOneShot(Ui_Click);
     }
@@ -333,6 +446,7 @@ public class JPopUpCanvas : MonoBehaviour
         Check_Popup.SetActive(false);
         TMPInput.text = "";
         StopCoroutine(Emerald());
+        GameData.Instance.playerdata.FirstExchange = 1;
     }
     public void blank()
     {
@@ -377,20 +491,19 @@ public class JPopUpCanvas : MonoBehaviour
 
     #endregion
 
-
-
-
     #region 상점 함수
     public void ShopPopup_Open()
     {
         IsUIopen = true;
         popup = Popup.Shop_Popup;
+        NPC_A.gameObject.SetActive(true);
         ShopCanvas.enabled = true;
         BackGround_Canvas.enabled = true;
         Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = " 상점";
         set_icon(true, false);
-        audioSource.PlayOneShot(Ui_Click);
         NPC_A_anim.SetTrigger("Waving");
+        audioSource.PlayOneShot(Ui_Click);
+        
 
     }
 
@@ -452,6 +565,8 @@ public class JPopUpCanvas : MonoBehaviour
                 curShopitem.transform.GetChild(6).GetComponent<Image>().gameObject.SetActive(true);
                 buyitemCount++;
                 buyCheck();
+                if (GameData.Instance.playerdata.BuyShop <= 3)
+                    GameData.Instance.playerdata.BuyShop += 1;
 
                 if (buyitemCount == 5)
                 {
@@ -748,7 +863,6 @@ public class JPopUpCanvas : MonoBehaviour
 
     #endregion
 
-
     #region 장비창 함수들
 
     [SerializeField]
@@ -767,9 +881,9 @@ public class JPopUpCanvas : MonoBehaviour
     {
         GameObject clickObject = EventSystem.current.currentSelectedGameObject;
         popup = Popup.Equip_detail;
-        //Main_Canvas.enabled = false;
+        
         Equip_DetailCanvas.enabled = true;
-        Main_Canvas.enabled = false;
+        
         Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = "    장비 정보";
         jSetItemDetail.setItem(clickObject.GetComponent<JSetItemDetail>().num);
         CurNum = clickObject.GetComponent<JSetItemDetail>().num;
@@ -885,6 +999,7 @@ public class JPopUpCanvas : MonoBehaviour
         popup = Popup.Equip_Popup; 
         audioSource.PlayOneShot(Ui_Click); 
         IsUIopen = true;
+        Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = "    장비;";
         BackGround_Canvas.enabled = true; // 화면을 가리기위해 백그라운드 캔버스 켜줌(검은화면)
         //mainCamera.enabled = false; // 메인카메라 꺼줌(ui가 켜지면 볼 필요없는 카메라를 꺼줘서 자원을 아낌)
         Equip_Canvas.enabled = true; // 인벤토리 캔버스 켜줌
@@ -1131,7 +1246,6 @@ public class JPopUpCanvas : MonoBehaviour
         audioSource.PlayOneShot(Ui_Click);
     }
     #endregion
-
 
     #region 던전선택창 이동 함수
 

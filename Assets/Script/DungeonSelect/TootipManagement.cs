@@ -15,20 +15,20 @@ public class TootipManagement : MonoBehaviour ,IPointerEnterHandler,IPointerExit
         string name = img.sprite.name;
        switch(name)
         {
-            case  "desertov":
-                tooltip.SetupTooltip(itemdata.itemDB[0].itemname, itemdata.itemDB[0].des);
+            case  "belts":
+                tooltip.SetupTooltip(GameData.Instance.playerdata.Itemdata2[4].ItemName, GameData.Instance.playerdata.Itemdata2[4].Description);
                 break;
             case "ui_icon_01_29":
-                tooltip.SetupTooltip(itemdata.itemDB[1].itemname, itemdata.itemDB[1].des);
+                tooltip.SetupTooltip(itemdata.itemDB[0].itemname, itemdata.itemDB[0].des);
+                break;
+            case "ingots":
+                tooltip.SetupTooltip(GameData.Instance.playerdata.Itemdata2[3].ItemName, GameData.Instance.playerdata.Itemdata2[3].Description);
+                break;
+            case "BunnyGauntlet":
+                tooltip.SetupTooltip(GameData.Instance.playerdata.Itemdata[1].ItemName, GameData.Instance.playerdata.Itemdata[1].Description);
                 break;
             case "012":
-                tooltip.SetupTooltip(itemdata.itemDB[2].itemname, itemdata.itemDB[2].des);
-                break;
-            case "013":
-                tooltip.SetupTooltip(itemdata.itemDB[3].itemname, itemdata.itemDB[3].des);
-                break;
-            case "014":
-                tooltip.SetupTooltip(itemdata.itemDB[4].itemname, itemdata.itemDB[4].des);
+                tooltip.SetupTooltip(itemdata.itemDB[1].itemname, itemdata.itemDB[1].des);
                 break;
           
         
