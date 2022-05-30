@@ -18,44 +18,49 @@ public class cMonster : cCharacteristic, BattleSystem
     public LayerMask AttackMask; // 공격목표
     public Transform mySword; // 검
 
+    // HP바
     public GameObject HP_Prefab;
-    GameObject myHPBar;
+    public GameObject myHPBar;
     float initialHP;
 
-    Coroutine moveRoutine = null;
-    Coroutine rotRoutine = null;
-   
-    [SerializeField]Vector3 roamingArea = Vector3.zero; // 로밍할 구역
-    [SerializeField] Vector3 startPos = Vector3.zero; // 몬스터가 등장한 위치
-    Vector3 dir = Vector3.zero; // 몬스터가 이동할 방향
-    float dist = 0.0f; // 몬스터가 이동할 거리
+    public GameObject damageText; // 데미지 텍스트
 
+    protected Coroutine moveRoutine = null;
+    protected Coroutine rotRoutine = null;
 
-    public float MoveSpeed = 3.0f; // 몬스터 이동 속도
-    public float RotSpeed = 360.0f; // 몬스터 회전 속도
-    public float RoamingWaitTime = 3.0f; // 몬스터 로밍간 대기시간
+    protected Vector3 RoamingArea = Vector3.zero; // 로밍할 구역
+    protected Vector3 StartPos = Vector3.zero; // 몬스터가 등장한 위치
+    protected Vector3 Dir = Vector3.zero; // 몬스터가 이동할 방향
+    protected float Dist = 0.0f; // 몬스터가 이동할 거리
 
-    public float ATK_Range; // 공격범위
-    public float ATK_WaitingTime; // 공격 대기시간
-    public float convertDamage = 0.1f; // 데미지 환산 비율 => 데미지 = 공격력(ATK) * 데미지비율(convertDamage)
+    protected float MoveSpeed = 3.0f; // 몬스터 이동 속도
+    protected float RotSpeed = 360.0f; // 몬스터 회전 속도
+    protected float RoamingWaitTime = 3.0f; // 몬스터 로밍간 대기시간
 
-    public bool isDying = false; // 몬스터의 죽는 애니메이션이 끝났는지 여부
-    public bool isAttacking = false; // 몬스터가 공격중인지 여부    
+    protected float ATK_Range = 1.0f; // 공격범위
+    //protected float ATK_WaitingTime; // 공격 대기시간
+    protected float convertDamage = 0.1f; // 데미지 환산 비율 => 데미지 = 공격력(ATK) * 데미지비율(convertDamage)
+
+    //public bool isDying = false; // 몬스터의 죽는 애니메이션이 끝났는지 여부
+    protected bool isAttacking = false; // 몬스터가 공격중인지 여부    
 
     public void OnDamage(float damage)
     {
         if (myState == STATE.BATTLE || myState == STATE.ROAMING)
         {
             myStats.HP -= damage;
+            CreateDamageText(this.transform, damage); // 데미지 텍스트 생성
 
             if (myStats.HP <= 0.0f)
             {
                 ChangeState(STATE.DEAD); // HP가 0이되면 사망
+                Destroy(myHPBar.gameObject);
             }
             else
             {
                 isAttacking = false;
                 myAnim.SetTrigger("OnDamage");
+
             }
         }
     }
@@ -75,12 +80,12 @@ public class cMonster : cCharacteristic, BattleSystem
         }
     }
 
-    private void Awake()
+    void Awake()
     {
         InitializeStats();
     }
 
-    void InitializeStats()
+    protected void InitializeStats()
     {
         // PlayerData의 정보를 가져옴
         myStats.HP = GameData.Instance.playerdata.monsterInitialStat.HP;
@@ -90,14 +95,19 @@ public class cMonster : cCharacteristic, BattleSystem
         initialHP = myStats.HP;
     }
 
-
     void Start()
     {
         this.GetComponentInChildren<cAnimEvent>().Attack += OnAttack;
-        startPos = this.transform.position; // 초기 위치 저장
+        StartPos = this.transform.position; // 초기 위치 저장
 
-        // 보스 HP바 
+        // HP바 
         myHPBar = Instantiate(HP_Prefab, GameObject.Find("HPBarParent").transform);
+
+        // 잡몹인 경우
+        if (this.GetComponent<cNormalMonster>() != null)
+        {
+            myHPBar.GetComponent<cMonsterHPBar>().Initialize(this.transform, 150.0f);
+        }
     }
 
     void Update()
@@ -117,15 +127,18 @@ public class cMonster : cCharacteristic, BattleSystem
                 break;
             case STATE.ROAMING:
                 StopAllCoroutines();
-                MonsterMove();
+                MonsterMove(StartPos, RoamingArea, Dir, Dist);
                 break;
             case STATE.BATTLE:
                 StopAllCoroutines();
-                DetectMove();
+                DetectMove(Dir, Dist);
                 break;
             case STATE.DEAD:
                 OnDie();
-                EndTimer();
+                if (this.GetComponent<cNormalMonster>() == null)
+                {
+                    EndTimer(); // 보스가 죽었을 경우에만 타이머 중지
+                }
                 break;
             case STATE.ENDGAME:
                 StartCoroutine(GotoResultScene());
@@ -133,7 +146,7 @@ public class cMonster : cCharacteristic, BattleSystem
         }
     }
        
-    void StateProcess()
+    protected void StateProcess()
     {
         switch (myState)
         {
@@ -149,12 +162,21 @@ public class cMonster : cCharacteristic, BattleSystem
                 break;
         }
     }
-    void DisplayHP()
-    {
-        if (myHPBar == null) return;
 
-        // 현재 몬스터의 HP상태를 UI로 표시
-        myHPBar.GetComponentInChildren<Slider>().value = myStats.HP / initialHP;
+    public void StartRoaming()
+    {
+        ChangeState(STATE.ROAMING);
+    }
+
+    public void OnBattle()
+    {
+        StopAllCoroutines();
+        ChangeState(STATE.BATTLE);
+    }
+
+    public void OnDead()
+    {
+        ChangeState(STATE.DEAD);
     }
 
     public void EndGame()
@@ -162,6 +184,27 @@ public class cMonster : cCharacteristic, BattleSystem
         ChangeState(STATE.ENDGAME);
     }
 
+    void CreateDamageText(Transform tr, float damage)
+    {
+        Transform spawnPos = GameObject.Find("InGame_Canvas").GetComponent<Transform>();  // 캔버스의 위치를 찾음
+
+        // 데미지 텍스트 생성
+        GameObject obj = Instantiate(damageText, spawnPos); // 캔버스에 ui로 생성
+        cDamageText curDamageText = obj.GetComponentInChildren<cDamageText>();
+
+        curDamageText.Initialize(tr);
+        curDamageText.GetComponent<TMPro.TMP_Text>().text = "" + (int)damage;
+        curDamageText.TextAnimation(obj.GetComponent<RectTransform>());
+    }
+
+    protected void DisplayHP()
+    {
+        if (myHPBar == null) return;
+
+        // 현재 몬스터의 HP상태를 UI로 표시
+        myHPBar.GetComponentInChildren<Slider>().value = myStats.HP / initialHP;
+    }
+        
     IEnumerator GotoResultScene()
     {
         // 3초 대기
@@ -170,56 +213,66 @@ public class cMonster : cCharacteristic, BattleSystem
         SceneLoader.Instance.LoadScene(6);
     }
 
-    void EndTimer()
+    public void EndTimer()
     {
         FindObjectOfType<cTimeManager>().TimerAvailable = false; // 시간 멈춤
         FindObjectOfType<cTimeManager>().SaveTime(); // 시간 저장
-    }
-
-    public void StartRoaming()
-    {
-        ChangeState(STATE.ROAMING);
-    }
+    }     
 
     void OnDie()
     {
-        StopAllCoroutines();
-        //myAnim.SetBool("IsAttack",false); // 사용중이던 스킬 해제
+        StopAllCoroutines(); 
         myAnim.SetTrigger("Die"); // 죽는 애니메이션 실행
+
+        StopCoroutine(Attacking());
+        //myAnim.SetBool("IsAttack",false); // 사용중이던 스킬 해제
+
+
+        // 잡몹이 죽는 경우
+        if (this.GetComponent<cNormalMonster>() != null)
+        {
+            OnDisappear(); // 5초 뒤에 사라짐
+            return;
+        }
 
         Transform MonsterParent = GameObject.Find("MonsterParent").transform;
 
         // 보스가 죽을 경우 나머지 몬스터들도 모두 죽도록 설정
         for (int i = 0; i < MonsterParent.childCount; i++)
         {
-            if (MonsterParent.GetChild(i).GetComponent<cMonsterp>() == null) continue;
+            if (MonsterParent.GetChild(i).GetComponent<cNormalMonster>() == null) continue;
 
             // 잡몹들만 죽음
-            MonsterParent.GetChild(i).GetComponent<cMonsterp>().OnDead();
+            MonsterParent.GetChild(i).GetComponent<cNormalMonster>().OnDead();
 
             // 잡몹들의 hp바 제거
             //GameObject.Find("HPBarParent").SetActive(false);
-            Destroy(MonsterParent.GetChild(i).GetComponent<cMonsterp>().myHPBar.gameObject);
+            Destroy(MonsterParent.GetChild(i).GetComponent<cNormalMonster>().myHPBar.gameObject);
         }
     }
-        
-    public void OnBattle()
+
+    void OnDisappear()
     {
-        StopAllCoroutines();
-        ChangeState(STATE.BATTLE);
+        StartCoroutine(Disappearing()); // 아래로 가라앉음
     }
 
-    void DetectMove()
+    IEnumerator Disappearing()
+    {
+        yield return new WaitForSeconds(3.0f);
+        Destroy(this.gameObject); // 게임 오브젝트 삭제
+    }
+
+    protected void DetectMove(Vector3 dir, float dist)
     {
         // 이동 - 대상을 따라다니도록
         if (moveRoutine != null)
         {
             StopCoroutine(moveRoutine);
         }
-        moveRoutine = StartCoroutine(Targeting());
+        moveRoutine = StartCoroutine(Targeting(dir, dist));
     }
 
-    IEnumerator Targeting()
+    IEnumerator Targeting(Vector3 dir2, float dist2)
     {
         while (true)
         {
@@ -230,9 +283,10 @@ public class cMonster : cCharacteristic, BattleSystem
             }
 
             // 매번 타겟의 위치를 갱신 -> 플레이어의 움직임을 받아옴 
-            dir = myDetection.Target.transform.position - this.transform.position; // 이동 방향
-            dist = dir.magnitude; // 목표지점까지의 거리
+            Vector3 dir = myDetection.Target.transform.position - this.transform.position; // 이동 방향
+            float dist = dir.magnitude; // 목표지점까지의 거리
             dir.Normalize();
+
 
             CalculateAngle(myAnim.transform.forward, dir, myAnim.transform.right, out ROTDATA myRotData); // 각도 계산 -> 매번 해주어야 함
 
@@ -248,10 +302,12 @@ public class cMonster : cCharacteristic, BattleSystem
 
             this.transform.Translate(dir * delta);
 
-            if (dist < ATK_Range)
+            if (dist < 1.0f)
             {
                 // 공격범위 내에 플레이어가 들어온 경우 공격
                 yield return StartCoroutine(Attacking());
+                //attack?.Invoke();
+                //yield return attack;
             }
             else
             {
@@ -266,12 +322,19 @@ public class cMonster : cCharacteristic, BattleSystem
 
         while (true)
         {
+            if (myState == STATE.DEAD) break;
+
             if (isAttacking == false)
-            { 
-                // 공격
-                int RandomSkill_num = Random.Range(0, 3);
-                //myAnim.SetInteger("Skill", RandomSkill_num);
-                myAnim.SetInteger("Skill", 2);
+            {
+                // 보스만 실행
+                if (this.GetComponent<cNormalMonster>() == null)
+                {
+                    // 공격
+                    int RandomSkill_num = Random.Range(0, 3);
+                    //myAnim.SetInteger("Skill", RandomSkill_num);
+                    myAnim.SetInteger("Skill", 2);
+                }
+
                 myAnim.SetTrigger("Attack");
                 isAttacking = true;
             }
@@ -287,28 +350,28 @@ public class cMonster : cCharacteristic, BattleSystem
         }
     }
 
-    void MonsterMove()
+    protected void MonsterMove(Vector3 startPos, Vector3 roamingArea, Vector3 dir, float dist)
     {
         // 이동방향 설정
-        DirectionSetting(); 
+        DirectionSetting(ref startPos, ref roamingArea, ref dir, ref dist); 
 
         // 회전
         if (rotRoutine != null)
         {
             StopCoroutine(rotRoutine);
         }
-        rotRoutine = StartCoroutine(Rotate());
+        rotRoutine = StartCoroutine(Rotate(dir));
 
         // 이동
         if (moveRoutine != null)
         {
             StopCoroutine(moveRoutine);
         }
-        moveRoutine = StartCoroutine(Roaming());
+        moveRoutine = StartCoroutine(Roaming(startPos, roamingArea, dir, dist));
 
     }   
 
-    void DirectionSetting()
+    void DirectionSetting(ref Vector3 startPos, ref Vector3 roamingArea, ref Vector3 dir, ref float dist)
     {
         // 이동할 지점을 랜덤으로 설정
         roamingArea.x = startPos.x + Random.Range(-5.0f, 5.0f);
@@ -326,7 +389,7 @@ public class cMonster : cCharacteristic, BattleSystem
         done?.Invoke(); // delegate에 저장된 함수 실행
     }
 
-    IEnumerator Roaming()
+    IEnumerator Roaming(Vector3 startPos, Vector3 roamingArea, Vector3 dir, float dist)
     {
         myAnim.SetBool("IsWalk", true); // idle -> walk_front                
 
@@ -342,10 +405,10 @@ public class cMonster : cCharacteristic, BattleSystem
             yield return null;
         }
 
-        StartCoroutine(RoamingWait(RoamingWaitTime, () => MonsterMove())); // 다시 다른곳으로 로밍시작        
+        StartCoroutine(RoamingWait(RoamingWaitTime, () => MonsterMove(startPos, roamingArea, dir, dist))); // 다시 다른곳으로 로밍시작        
     }
 
-    IEnumerator Rotate()
+    IEnumerator Rotate(Vector3 dir)
     {
         CalculateAngle(myAnim.transform.forward, dir, myAnim.transform.right, out ROTDATA myRotData); // 각도 계산
 

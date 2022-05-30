@@ -76,10 +76,10 @@ public class cMonsterSpawnArea : MonoBehaviour
             print(MonsterParent.childCount);
             for (int i = 0; i < MonsterParent.childCount; i++)
             {
-                if (MonsterParent.GetComponentsInChildren<cMonsterp>()[i] != null)
+                if (MonsterParent.GetComponentsInChildren<cNormalMonster>()[i] != null)
                 {
                     // Àâ¸÷µé¸¸ Á×À½
-                    MonsterParent.GetComponentsInChildren<cMonsterp>()[i].OnDead();
+                    MonsterParent.GetComponentsInChildren<cNormalMonster>()[i].OnDead();
                 }
             }
         }

@@ -50,7 +50,7 @@ public class cCharacter : cCharacteristic, BattleSystem
             if (curDetected[i].GetComponent<cMonster>() == null)
             {
                 // Àâ¸÷
-                curDetected[i].GetComponent<cMonsterp>().StartRoaming();
+                curDetected[i].GetComponent<cNormalMonster>().StartRoaming();
             }
             else
             {

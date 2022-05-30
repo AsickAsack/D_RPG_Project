@@ -229,6 +229,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0.000022183065
       objectReference: {fileID: 0}
+    - target: {fileID: 3487345313693911243, guid: debe079a0fdead540acf155735481aa5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.008
+      objectReference: {fileID: 0}
     - target: {fileID: 3487345315090459281, guid: debe079a0fdead540acf155735481aa5, type: 3}
       propertyPath: m_Name
       value: PSkel01 Variant
@@ -514,17 +518,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   mySword: {fileID: 109238433466732946}
+  HP_Prefab: {fileID: 1910392811915677517, guid: 778d7b49266cbe8419ad7c5daa01ac88, type: 3}
+  myHPBar: {fileID: 0}
+  damageText: {fileID: 762216345101178043, guid: 5e7306d355ce57647a9808459d79aa03, type: 3}
   HitEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7, type: 3}
   HitPointPosition: {fileID: 1443330787}
-  HPBar_Prefab: {fileID: 2124324334834051762, guid: 778d7b49266cbe8419ad7c5daa01ac88, type: 3}
-  MoveSpeed: 3
-  RotSpeed: 360
-  RoamingWaitTime: 3
-  ATK_Range: 1
-  ATK_WaitingTime: 1
-  convertDamage: 0.1
-  isAttacking: 0
---- !u!114 &593516241
+--- !u!114 &8489135728370876527
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -533,10 +532,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 109238433184062362}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46c3e008bf5d9584f8a5254d86c2cf0a, type: 3}
+  m_Script: {fileID: 11500000, guid: 52bd3e552e55e5a42a539ff908f63b33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   DetectLayer:
     serializedVersion: 2
     m_Bits: 64
   Target: {fileID: 0}
+  DetectedTargets: []

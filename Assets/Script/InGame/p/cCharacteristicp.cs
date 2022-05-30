@@ -3,20 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//[Serializable]
-//public struct Stats
-//{
-//    public float HP; // 체력
-
-//    public float ATK; // 공격력 
-//    public float DEF; // 방어력 
-//}
-
-public interface BattleSystemp
-{
-    void OnDamage(float damage);    
-}
-
 public struct ROTDATAp
 {
     // 회전 데이터
@@ -80,25 +66,6 @@ public class cCharacteristicp : MonoBehaviour
             myRotData.rotDir = -1.0f; // 왼쪽방향
         }
     }
-
-    //protected IEnumerator LookingTarget(Transform myTrans, Vector3 myDir)
-    //{
-    //    while (true)
-    //    {
-    //        CalculateAngle(myTrans.forward, myDir, myTrans.right, out ROTDATA myRotData); // 각도 계산 -> 매번 해주어야 함
-
-    //        if (!Mathf.Approximately(myRotData.angle, 0.0f))
-    //        {
-    //            float delta = 360.0f * Time.deltaTime;
-
-    //            delta = delta > myRotData.angle ? myRotData.angle : delta;
-
-    //            myTrans.Rotate(Vector3.up * delta * myRotData.rotDir);
-    //        }
-
-    //        yield return null;
-    //    }
-    //}
 }
 
 

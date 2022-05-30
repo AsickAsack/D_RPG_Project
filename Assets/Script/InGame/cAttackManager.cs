@@ -40,8 +40,6 @@ public class cAttackManager : cCharacteristic
                 colPoints = Physics.OverlapSphere(trans.position, 1.0f, AttackMask);
             }
 
-            //Collider[] list = Physics.OverlapSphere(myAttackPoints[0].position, 1.0f, AttackMask); 
-
             foreach (Collider col in colPoints)
             {
                 BattleSystem bs = col.gameObject.GetComponent<BattleSystem>();
@@ -52,18 +50,54 @@ public class cAttackManager : cCharacteristic
 
                     bs.OnDamage(randomDamage);
 
-                    // 데미지 텍스트 생성
-                    GameObject obj = Instantiate(damageText, Canvas); // 캔버스에 ui로 생성
-                    cDamageText curDamageText = obj.GetComponentInChildren<cDamageText>(); 
+                    // 보스
+                    if (col.GetComponent<cMonster>() != null)
+                    {
+                        cMonster boss = col.GetComponent<cMonster>();
 
-                    curDamageText.Initialize(col.transform);
-                    curDamageText.GetComponent<TMPro.TMP_Text>().text = "" + (int)randomDamage;
-                    curDamageText.TextAnimation(obj.GetComponent<RectTransform>());
+                        // 로밍상태 혹은 배틀상태인 경우에만 데미지 텍스트 생성
+                        if (boss.myState == cMonster.STATE.ROAMING || boss.myState == cMonster.STATE.BATTLE)
+                        {
+                            // 데미지 텍스트 생성
+                            //CreateDamageText(col, randomDamage);
+                        }
+                    }
+
+                    // 잡몹
+                    if (col.GetComponent<cNormalMonster>() != null)
+                    {
+                        cNormalMonster monster = col.GetComponent<cNormalMonster>();
+
+                        // 로밍상태 혹은 배틀상태인 경우에만 데미지 텍스트 생성
+                        if (monster.myState == cNormalMonster.STATE.ROAMING || monster.myState == cNormalMonster.STATE.BATTLE)
+                        {
+                            // 데미지 텍스트 생성
+                            //CreateDamageText(col, randomDamage);
+                        }
+                    }
+
+                    // 보스나 잡몬스터들이 로밍이나 배틀 상태인 경우에만 실행
+                    //if (boss.myState == cMonster.STATE.ROAMING || boss.myState == cMonster.STATE.BATTLE || monster.myState == cNormalMonster.STATE.ROAMING || monster.myState == cNormalMonster.STATE.BATTLE)
+                    //{
+                    //    
+                    //    CreateDamageText(col, randomDamage);
+                    //}
 
                 }
             }
         }
 
+    }
+
+    void CreateDamageText(Collider col, float damage)
+    {
+        // 데미지 텍스트 생성
+        GameObject obj = Instantiate(damageText, Canvas); // 캔버스에 ui로 생성
+        cDamageText curDamageText = obj.GetComponentInChildren<cDamageText>();
+
+        curDamageText.Initialize(col.transform);
+        curDamageText.GetComponent<TMPro.TMP_Text>().text = "" + (int)damage;
+        curDamageText.TextAnimation(obj.GetComponent<RectTransform>());
     }
 
     public void BasicAttack()

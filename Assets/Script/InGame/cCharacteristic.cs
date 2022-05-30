@@ -3,15 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//[Serializable]
-//public struct Stats
-//{
-//    public float HP; // 체력
-
-//    public float ATK; // 공격력 
-//    public float DEF; // 방어력 
-//}
-
 public interface BattleSystem
 {
     void OnDamage(float damage);    

@@ -52,7 +52,7 @@ public class cAutoDetection : MonoBehaviour
                 else // 잡몹
                 {
                     // 몬스터가 dead상태인 경우 타겟 해제
-                    if (other.GetComponent<cMonsterp>().myState == cMonsterp.STATE.DEAD)
+                    if (other.GetComponent<cNormalMonster>().myState == cNormalMonster.STATE.DEAD)
                     {
                         Target = null;
                         DetectedTargets.Remove(other.gameObject);
