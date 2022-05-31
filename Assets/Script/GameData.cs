@@ -117,6 +117,8 @@ public partial class PlayerData
     public string Nickname = "";
     public int Level = 1;
     public int _gold = 0;
+
+    public bool desertclear = false;
     public int Gold
     {
         get => _gold;
