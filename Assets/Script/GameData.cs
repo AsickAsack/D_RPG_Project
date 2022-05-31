@@ -118,7 +118,7 @@ public partial class PlayerData
     public int Level = 1;
     public int _gold = 0;
 
-    public bool desertclear = false;
+    public bool desertclear = true;
     public int Gold
     {
         get => _gold;

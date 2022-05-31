@@ -3,19 +3,67 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-
+using TMPro;
 public class TootipManagement : MonoBehaviour ,IPointerEnterHandler,IPointerExitHandler
 {
     public PitemData itemdata;
     
     public ItemTooltip tooltip;
     public Image img;
+    public TextMeshProUGUI itemvalue;
+
+
+
+    private void Start()
+    {
+        
+        if (GameData.Instance.playerdata.desertclear == true)
+        {
+            string name = img.sprite.name;
+            switch (name)
+            {
+                case "belts":
+                    Destroy(this.gameObject);
+                    break;
+                case "ui_icon_01_29":
+                    string b = itemvalue.text;
+                    int a = int.Parse(b) / 2;
+                    itemvalue.text = a.ToString();
+
+                    tooltip.SetupTooltip(itemdata.itemDB[0].itemname, itemdata.itemDB[0].des);
+                    break;
+                case "ingots":
+                    tooltip.SetupTooltip(GameData.Instance.playerdata.Itemdata2[3].ItemName, GameData.Instance.playerdata.Itemdata2[3].Description);
+                    break;
+                case "BunnyGauntlet":
+                    Destroy(this.gameObject);
+                    break;
+                case "012":
+                    tooltip.SetupTooltip(itemdata.itemDB[1].itemname, itemdata.itemDB[1].des);
+                    break;
+
+
+            }
+
+
+        }
+     
+    }
+
+    
+       
+    
     public void OnPointerEnter(PointerEventData eventData)
     {
+
         string name = img.sprite.name;
-       switch(name)
+
+
+
+
+        switch (name)
         {
-            case  "belts":
+            case "belts":
                 tooltip.SetupTooltip(GameData.Instance.playerdata.Itemdata2[4].ItemName, GameData.Instance.playerdata.Itemdata2[4].Description);
                 break;
             case "ui_icon_01_29":
@@ -30,9 +78,9 @@ public class TootipManagement : MonoBehaviour ,IPointerEnterHandler,IPointerExit
             case "012":
                 tooltip.SetupTooltip(itemdata.itemDB[1].itemname, itemdata.itemDB[1].des);
                 break;
-          
-        
+
         }
+        
         tooltip.gameObject.SetActive(true);
     }
 
