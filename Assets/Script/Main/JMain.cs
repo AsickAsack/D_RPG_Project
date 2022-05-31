@@ -32,11 +32,6 @@ public class JMain : MonoBehaviour
     void Start()
     {
         
-        //Sound.Instance.PlayBGM(mainBGM);
-
-
-       // GameData.Instance.playerdata.Gold += 500000;
-        
         
 
     }
@@ -53,6 +48,7 @@ public class JMain : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             GameData.Instance.playerdata.Gold += 500000;
+            GameData.Instance.playerdata.Emerald += 500000;
             Debug.Log("¹øµ·:"+GameData.Instance.playerdata.EarnMoney);
             Debug.Log("¾´µ·:"+GameData.Instance.playerdata.SpendMoney);
         }

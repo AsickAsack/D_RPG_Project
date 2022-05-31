@@ -166,6 +166,7 @@ public partial class PlayerData
     public int FirstExchange = 0;
     public int BuyShop = 0;
 
+    public List<GameObject> PetList = new List<GameObject>();
     public List<itemdata> Player_inventory = new List<itemdata>();
     public List<itemdata2> Player_inventory2 = new List<itemdata2>();
     public itemdata[] Itemdata = new itemdata[4];
