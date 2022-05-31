@@ -60,7 +60,6 @@ public class cMonster : cCharacteristic, BattleSystem
             {
                 isAttacking = false;
                 myAnim.SetTrigger("OnDamage");
-
             }
         }
     }
@@ -223,10 +222,10 @@ public class cMonster : cCharacteristic, BattleSystem
     {
         StopAllCoroutines(); 
         myAnim.SetTrigger("Die"); // 죽는 애니메이션 실행
+        myAnim.SetBool("OnDie", true);
 
         StopCoroutine(Attacking());
         //myAnim.SetBool("IsAttack",false); // 사용중이던 스킬 해제
-
 
         // 잡몹이 죽는 경우
         if (this.GetComponent<cNormalMonster>() != null)
@@ -287,7 +286,6 @@ public class cMonster : cCharacteristic, BattleSystem
             float dist = dir.magnitude; // 목표지점까지의 거리
             dir.Normalize();
 
-
             CalculateAngle(myAnim.transform.forward, dir, myAnim.transform.right, out ROTDATA myRotData); // 각도 계산 -> 매번 해주어야 함
 
             // 회전
@@ -302,12 +300,10 @@ public class cMonster : cCharacteristic, BattleSystem
 
             this.transform.Translate(dir * delta);
 
-            if (dist < 1.0f)
+            if (dist < 1.0f && myState != STATE.DEAD)
             {
                 // 공격범위 내에 플레이어가 들어온 경우 공격
                 yield return StartCoroutine(Attacking());
-                //attack?.Invoke();
-                //yield return attack;
             }
             else
             {
@@ -320,25 +316,20 @@ public class cMonster : cCharacteristic, BattleSystem
     {
         myAnim.SetBool("IsWalk", false); // walk_front -> idle
 
-        while (true)
+        // 보스인 경우
+        if (this.GetComponent<cNormalMonster>() == null)
         {
-            if (myState == STATE.DEAD) break;
+            // 스킬번호 랜덤 설정
+            int RandomSkill_num = Random.Range(0, 3);
+            myAnim.SetInteger("Skill", RandomSkill_num);
+        }
 
-            if (isAttacking == false)
-            {
-                // 보스만 실행
-                if (this.GetComponent<cNormalMonster>() == null)
-                {
-                    // 공격
-                    int RandomSkill_num = Random.Range(0, 3);
-                    //myAnim.SetInteger("Skill", RandomSkill_num);
-                    myAnim.SetInteger("Skill", 2);
-                }
+        myAnim.SetTrigger("Attack");
 
-                myAnim.SetTrigger("Attack");
-                isAttacking = true;
-            }
+        isAttacking = true;
 
+        while (isAttacking && myState != STATE.DEAD)
+        {
             // 공격애니메이션이 끝나면 코루틴 종료 
             if (myAnim.GetBool("IsAttack") == false)
             {

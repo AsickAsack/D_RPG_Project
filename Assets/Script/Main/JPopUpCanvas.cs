@@ -999,7 +999,7 @@ public class JPopUpCanvas : MonoBehaviour
         popup = Popup.Equip_Popup; 
         audioSource.PlayOneShot(Ui_Click); 
         IsUIopen = true;
-        Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = "    장비;";
+        Equip_Backbutton.GetComponentInChildren<TMPro.TMP_Text>().text = "    장비";
         BackGround_Canvas.enabled = true; // 화면을 가리기위해 백그라운드 캔버스 켜줌(검은화면)
         //mainCamera.enabled = false; // 메인카메라 꺼줌(ui가 켜지면 볼 필요없는 카메라를 꺼줘서 자원을 아낌)
         Equip_Canvas.enabled = true; // 인벤토리 캔버스 켜줌
