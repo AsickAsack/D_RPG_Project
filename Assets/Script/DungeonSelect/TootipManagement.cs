@@ -7,7 +7,7 @@ using TMPro;
 public class TootipManagement : MonoBehaviour ,IPointerEnterHandler,IPointerExitHandler
 {
     public PitemData itemdata;
-    
+    bool clear = false;
     public ItemTooltip tooltip;
     public Image img;
     public TextMeshProUGUI itemvalue;
@@ -17,9 +17,21 @@ public class TootipManagement : MonoBehaviour ,IPointerEnterHandler,IPointerExit
     private void Start()
     {
         
-        if (GameData.Instance.playerdata.desertclear == true)
+
+    }
+
+    
+       
+    
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+
+        string name = img.sprite.name;
+
+        clear = GameData.Instance.playerdata.desertclear;
+        if (clear == true)
         {
-            string name = img.sprite.name;
+            
             switch (name)
             {
                 case "belts":
@@ -47,39 +59,31 @@ public class TootipManagement : MonoBehaviour ,IPointerEnterHandler,IPointerExit
 
 
         }
-     
-    }
-
-    
-       
-    
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-
-        string name = img.sprite.name;
 
 
-
-
-        switch (name)
+        else
         {
-            case "belts":
-                tooltip.SetupTooltip(GameData.Instance.playerdata.Itemdata2[4].ItemName, GameData.Instance.playerdata.Itemdata2[4].Description);
-                break;
-            case "ui_icon_01_29":
-                tooltip.SetupTooltip(itemdata.itemDB[0].itemname, itemdata.itemDB[0].des);
-                break;
-            case "ingots":
-                tooltip.SetupTooltip(GameData.Instance.playerdata.Itemdata2[3].ItemName, GameData.Instance.playerdata.Itemdata2[3].Description);
-                break;
-            case "BunnyGauntlet":
-                tooltip.SetupTooltip(GameData.Instance.playerdata.Itemdata[1].ItemName, GameData.Instance.playerdata.Itemdata[1].Description);
-                break;
-            case "012":
-                tooltip.SetupTooltip(itemdata.itemDB[1].itemname, itemdata.itemDB[1].des);
-                break;
+            switch (name)
+            {
+                case "belts":
+                    tooltip.SetupTooltip(GameData.Instance.playerdata.Itemdata2[4].ItemName, GameData.Instance.playerdata.Itemdata2[4].Description);
+                    break;
+                case "ui_icon_01_29":
+                    tooltip.SetupTooltip(itemdata.itemDB[0].itemname, itemdata.itemDB[0].des);
+                    break;
+                case "ingots":
+                    tooltip.SetupTooltip(GameData.Instance.playerdata.Itemdata2[3].ItemName, GameData.Instance.playerdata.Itemdata2[3].Description);
+                    break;
+                case "BunnyGauntlet":
+                    tooltip.SetupTooltip(GameData.Instance.playerdata.Itemdata[1].ItemName, GameData.Instance.playerdata.Itemdata[1].Description);
+                    break;
+                case "012":
+                    tooltip.SetupTooltip(itemdata.itemDB[1].itemname, itemdata.itemDB[1].des);
+                    break;
 
+            }
         }
+        
         
         tooltip.gameObject.SetActive(true);
     }
