@@ -6,7 +6,9 @@ public class cDamageText : MonoBehaviour
 {
     public void Initialize(Transform Root)
     {
-        StartCoroutine(Following(Root));
+        Vector3 pos = Camera.main.WorldToScreenPoint(Root.position); // 타겟의 위치를 스크린상의 좌표로 어디인지 알려줌
+        this.transform.position = pos;
+        //StartCoroutine(Following(Root));
     }
 
     IEnumerator Following(Transform Root)
@@ -14,8 +16,8 @@ public class cDamageText : MonoBehaviour
         while (Root != null)
         {
             Vector3 pos = Camera.main.WorldToScreenPoint(Root.position); // 타겟의 위치를 스크린상의 좌표로 어디인지 알려줌
-            pos.y += 50.0f;
-            this.GetComponent<RectTransform>().anchoredPosition = pos; // UI는 RectTransform으로 접근해야함
+            this.transform.position = pos;
+            
 
             yield return null;
         }
@@ -28,15 +30,18 @@ public class cDamageText : MonoBehaviour
 
     IEnumerator TextUp(RectTransform rt)
     {
-        float dist = 300.0f;
+        float dist = 100.0f;
 
         while (!Mathf.Approximately(dist, 0.0f))
         {
+            Debug.Log(rt.position);
             // 데미지 텍스트 위로 상승
             float delta = Time.deltaTime * 100.0f;
 
             delta = delta > dist ? dist : delta;
-            rt.Translate(Vector3.up * delta);
+            rt.transform.Translate(Vector3.up * delta);
+
+
 
             dist -= delta;
 

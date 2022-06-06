@@ -105,7 +105,7 @@ public class cMonster : cCharacteristic, BattleSystem
         // 잡몹인 경우
         if (this.GetComponent<cNormalMonster>() != null)
         {
-            myHPBar.GetComponent<cMonsterHPBar>().Initialize(this.transform, 150.0f);
+            myHPBar.GetComponent<cMonsterHPBar>().Initialize(this.transform);
         }
     }
 

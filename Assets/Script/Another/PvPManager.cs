@@ -26,7 +26,7 @@ public class PvPManager : MonoBehaviourPunCallbacks
     IEnumerator Start()
     {
 
-        PhotonNetwork.NickName = "∫Ú¡“Ω∫";//GameData.Instance.playerdata.Nickname;
+        PhotonNetwork.NickName = GameData.Instance.playerdata.Nickname;
         yield return PhotonNetwork.ConnectUsingSettings();
         if (PhotonNetwork.IsConnected)
         {
