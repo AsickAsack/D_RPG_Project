@@ -60,7 +60,7 @@ public class MissionDB : MonoBehaviour
         myData[2] = new MissionData
         {
             Mission_Name = "Stage 1-1 깨기",
-            Mission_GoalProcess = 0,//횟수 연동해야함
+            Mission_GoalProcess = 0,
             Mission_Goal = 1,
             rewardBt1 = () => SceneLoader.Instance.Loading_LoadScene("pSelecteDungeon"),
             rewardBt2 = () =>
@@ -74,7 +74,7 @@ public class MissionDB : MonoBehaviour
         myData[3] = new MissionData
         {
             Mission_Name = "에메랄드 환전해보기",
-            Mission_GoalProcess = GameData.Instance.playerdata.FirstExchange,//횟수 연동해야함
+            Mission_GoalProcess = GameData.Instance.playerdata.FirstExchange,
             Mission_Goal = 1,
             rewardBt1 = () => {
                 myUI.ExitPopUp(true);
@@ -109,9 +109,15 @@ public class MissionDB : MonoBehaviour
     
     private void Update()
     {
+        if(GameData.Instance.playerdata.desertclear)
+        {
+            myData[2].Mission_GoalProcess = 1;
+        }
+
+
         myData[0].Mission_GoalProcess = GameData.Instance.playerdata.SpendMoney;
         myData[1].Mission_GoalProcess = GameData.Instance.playerdata.EarnMoney;
-        //myData[2].Mission_GoalProcess = GameData.Instance.playerdata.SpendMoney;
+        
         myData[3].Mission_GoalProcess = GameData.Instance.playerdata.FirstExchange;
         myData[4].Mission_GoalProcess = GameData.Instance.playerdata.BuyShop;
 

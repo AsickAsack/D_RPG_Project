@@ -38,7 +38,7 @@ public class JMain : MonoBehaviour
 
     public void gotitle()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        SceneLoader.Instance.Loading_LoadScene("Practice");
 
     }
 

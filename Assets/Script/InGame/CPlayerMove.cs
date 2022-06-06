@@ -21,8 +21,10 @@ public class CPlayerMove : cCharacteristic
         JoystickMove();
         myAnim.SetFloat("x", joystick.Horizontal);
         myAnim.SetFloat("y", joystick.Vertical);
-    }
 
+        
+    }
+    
     void JoystickMove()
     {
         // 조이스틱 입력값
