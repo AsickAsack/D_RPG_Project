@@ -43,4 +43,9 @@ public class DataManger : MonoBehaviour
         }
         
     }
+
+    public void Gomn()
+    {
+        SceneLoader.Instance.Loading_LoadScene(2);
+    }
 }

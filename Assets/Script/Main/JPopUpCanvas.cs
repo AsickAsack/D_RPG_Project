@@ -1260,7 +1260,7 @@ public class JPopUpCanvas : MonoBehaviour
     IEnumerator Delay(float t)
     {
         yield return new WaitForSeconds(t);
-        ClickCanvas.Instance.Click_Canvas.gameObject.SetActive(false);
+        
         SceneLoader.Instance.LoadScene(3);
     }
     #endregion
