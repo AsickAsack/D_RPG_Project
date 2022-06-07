@@ -151,8 +151,9 @@ public class JPopUpCanvas : MonoBehaviour
             EquipObject[EquipIndex].transform.Rotate(0, 0, -y);
         }
 
-        
-        
+        Option_Volume();
+
+
 
         if (Allbuy.activeSelf)
         {
@@ -397,7 +398,7 @@ public class JPopUpCanvas : MonoBehaviour
             CS_leftMenu[i].SetActive(i == index);
             CS_Panel[i].SetActive(i == index);
         }
-
+        audioSource.PlayOneShot(Ui_Click);
     }
 
     public void OpenExChange_panel()

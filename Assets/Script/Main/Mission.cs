@@ -65,9 +65,9 @@ public class Mission : MonoBehaviour
 
         
         if(missionIndex == 0 || missionIndex == 1)
-            MissionGoal.text = myDB.myData[index].Mission_GoalProcess.ToString() + " /\n" + myDB.myData[index].Mission_Goal.ToString(); 
+            MissionGoal.text = myDB.myData[index].Mission_GoalProcess.ToString("n0") + " /\n" + myDB.myData[index].Mission_Goal.ToString("n0"); 
         else
-            MissionGoal.text = myDB.myData[index].Mission_GoalProcess.ToString() + " / " + myDB.myData[index].Mission_Goal.ToString();
+            MissionGoal.text = myDB.myData[index].Mission_GoalProcess.ToString("n0") + " / " + myDB.myData[index].Mission_Goal.ToString("n0");
         if (myDB.myData[index].Mission_GoalProcess >= myDB.myData[index].Mission_Goal && !updateCheck)
         {
             CurClearMission++;

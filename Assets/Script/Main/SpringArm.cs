@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpringArm : MonoBehaviour
 {
@@ -10,7 +11,8 @@ public class SpringArm : MonoBehaviour
     public Vector2 VerticalRotRange;
     public float SmoothRotSpeed = 5.0f;
     public CharacterSpin characterspin;
-    
+    public TMPro.TMP_Text rotateText;
+    public Slider RotateSlider;
 
     void Start()
     {
@@ -22,26 +24,33 @@ public class SpringArm : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        RotSpeed = RotateSlider.value * 10;
+        rotateText.text = Mathf.RoundToInt(RotSpeed).ToString();
+
+
         if(!JPopUpCanvas.IsUIopen)
         { 
-        if (!characterspin.Is_Character_DragON && Input.GetMouseButton(0)) 
-        { 
+            if (!characterspin.Is_Character_DragON && Input.GetMouseButton(0)) 
+            { 
         
-            float X = Input.GetAxis("Mouse X");
-            float Y = Input.GetAxis("Mouse Y");
-            Rot.y += X * RotSpeed;
-            Rot.x += Y * RotSpeed;
+                float X = Input.GetAxis("Mouse X");
+                float Y = Input.GetAxis("Mouse Y");
+                Rot.y += X * RotSpeed;
+                Rot.x += Y * RotSpeed;
 
            
-            Rot.y = Mathf.Clamp(Rot.y, HorizontalRotRange.x, HorizontalRotRange.y);
-            Rot.x = Mathf.Clamp(Rot.x, VerticalRotRange.x, VerticalRotRange.y);
+                Rot.y = Mathf.Clamp(Rot.y, HorizontalRotRange.x, HorizontalRotRange.y);
+                Rot.x = Mathf.Clamp(Rot.x, VerticalRotRange.x, VerticalRotRange.y);
 
             
           
-        }
+            }
         }
         this.transform.localRotation = Quaternion.Slerp(this.transform.localRotation, Quaternion.Euler(Rot), Time.deltaTime * SmoothRotSpeed);
         
+
+
 
     }
 }
