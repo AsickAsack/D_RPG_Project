@@ -14,7 +14,9 @@ public class POnclickbtn : MonoBehaviour
     {
         if(GameData.Instance.playerdata.Key>0 && GameData.Instance.playerdata.Key !=1 && isPlaying == false)
         {
-            SceneManager.LoadScene(4);
+            ClickCanvas.Instance.Click_Canvas.enabled = false;
+            SceneLoader.Instance.Loading_LoadScene(4);
+            
         }
         else if(isPlaying==false)
         {

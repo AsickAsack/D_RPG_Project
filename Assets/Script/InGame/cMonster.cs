@@ -210,6 +210,7 @@ public class cMonster : cCharacteristic, BattleSystem
         yield return new WaitForSeconds(3.0f);
         // °á°ú ¾ÀÀ» ºÒ·¯¿È
         GameData.Instance.playerdata.desertclear = true;
+        ClickCanvas.Instance.Click_Canvas.enabled = true;
         SceneLoader.Instance.LoadScene(6);
     }
 

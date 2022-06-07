@@ -6,6 +6,7 @@ public class PitemData : MonoBehaviour
 
 {
     public static PitemData instance;
+
     private void Awake()
     {
         instance = this;

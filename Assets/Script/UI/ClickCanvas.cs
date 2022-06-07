@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ClickCanvas : MonoBehaviour
 {
@@ -28,29 +29,44 @@ public class ClickCanvas : MonoBehaviour
 
     }
 
-
-    [Header("[클릭 이미지 게임오브젝트]")]
-   // public GameObject Click;
     public Canvas Click_Canvas;
+    public Image clickimg;
+    public float timer = 0.0f;
+    float waitingtime = 0.3f;
+   
 
 
     void Update()
     {
-        //_Click();
+        if (Input.GetMouseButtonUp(0))
+        {
+            _Click();
+        }
+
+        if (clickimg.gameObject.activeSelf == true)
+        { 
+            timer += Time.deltaTime;
+        }
+        if (timer > waitingtime)
+        {
+            timer = 0.0f;
+            clickimg.gameObject.SetActive(false);
+        }
     }
 
 
     void _Click()
     {
-        if (Input.GetMouseButtonUp(0))
-        {
+        
+            clickimg.transform.position = Input.mousePosition;
+            clickimg.gameObject.SetActive(true);
 
             //RectTransformUtility.ScreenPointToLocalPointInRectangle(this.GetComponent<RectTransform>(), Input.mousePosition, ClickUiCamera, out Vector2 anchoredpos);
             //Click.GetComponent<RectTransform>().anchoredPosition = anchoredpos;
             //Click.GetComponentInChildren<ParticleSystem>().Play();
 
 
-        }
+        
     }
 }
 

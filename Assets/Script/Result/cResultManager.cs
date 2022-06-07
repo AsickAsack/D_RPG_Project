@@ -8,6 +8,12 @@ public class cResultManager : MonoBehaviour
 
     private void Start()
     {
+
+        GameData.Instance.playerdata.Gold += 500;
+        GameData.Instance.playerdata.Player_inventory.Add(GameData.Instance.playerdata.Itemdata[1]);
+        GameData.Instance.playerdata.Player_inventory2.Add(GameData.Instance.playerdata.Itemdata2[3]);
+        GameData.Instance.playerdata.Player_inventory2.Add(GameData.Instance.playerdata.Itemdata2[4]);
+
         ShowElapsedTime(); // 경과시간을 보여줌
     }
 
@@ -22,5 +28,11 @@ public class cResultManager : MonoBehaviour
         }
 
         elapsedTime.text = "경과시간  " + min + " : " + sec;
+    }
+
+    public void ExitGame()
+    {
+        
+        SceneLoader.Instance.Loading_LoadScene(3);
     }
 }
