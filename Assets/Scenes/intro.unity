@@ -5968,8 +5968,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "D\uC870 - \uBAA8\uBC14\uC77C RPG\n\n\uAE40\uC900\uC6B0 \uC774\uC740\uCC2C
-    \uBC15\uC2DC\uD604 \uAE40\uC11C\uC724 \uC774\uC6B0\uD604"
+  m_text: "D\uC870 - \uBAA8\uBC14\uC77C RPG\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 21785e5f9c978204fa7a0a9f24a24bea, type: 2}
   m_sharedMaterial: {fileID: 480350695808681653, guid: 21785e5f9c978204fa7a0a9f24a24bea, type: 2}

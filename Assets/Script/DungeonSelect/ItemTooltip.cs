@@ -16,7 +16,8 @@ public class ItemTooltip : MonoBehaviour
 
     private void Update()
     {
-       // transform.GetComponent<RectTransform>().anchoredPosition = Input.mousePosition;   
+       // transform.GetComponent<RectTransform>().anchoredPosition = Input.mousePosition;  
+
         transform.position = Input.mousePosition;
     }
 }
