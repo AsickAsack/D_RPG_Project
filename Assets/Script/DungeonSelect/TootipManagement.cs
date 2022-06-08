@@ -16,22 +16,13 @@ public class TootipManagement : MonoBehaviour ,IPointerEnterHandler,IPointerExit
 
     private void Start()
     {
-        
-
-    }
-
-    
-       
-    
-    public void OnPointerEnter(PointerEventData eventData)
-    {
 
         string name = img.sprite.name;
 
         clear = GameData.Instance.playerdata.desertclear;
         if (clear == true)
         {
-            
+
             switch (name)
             {
                 case "belts":
@@ -83,7 +74,16 @@ public class TootipManagement : MonoBehaviour ,IPointerEnterHandler,IPointerExit
 
             }
         }
-        
+
+
+    }
+
+
+
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+
         
         tooltip.gameObject.SetActive(true);
     }
