@@ -209,7 +209,7 @@ public class cMonster : cCharacteristic, BattleSystem
         // 3초 대기
         yield return new WaitForSeconds(3.0f);
         // 결과 씬을 불러옴
-        GameData.Instance.playerdata.desertclear = true;
+        
         ClickCanvas.Instance.Click_Canvas.enabled = true;
         SceneLoader.Instance.LoadScene(6);
     }
