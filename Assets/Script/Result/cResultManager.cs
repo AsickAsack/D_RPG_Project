@@ -8,11 +8,25 @@ public class cResultManager : MonoBehaviour
 
     private void Start()
     {
+        
 
-        GameData.Instance.playerdata.Gold += 500;
-        GameData.Instance.playerdata.Player_inventory.Add(GameData.Instance.playerdata.Itemdata[1]);
-        GameData.Instance.playerdata.Player_inventory2.Add(GameData.Instance.playerdata.Itemdata2[3]);
-        GameData.Instance.playerdata.Player_inventory2.Add(GameData.Instance.playerdata.Itemdata2[4]);
+        if (!GameData.Instance.playerdata.desertclear)
+        { 
+            GameData.Instance.playerdata.Gold += 10000;
+            GameData.Instance.playerdata.CurEXP += 1000;
+            GameData.Instance.playerdata.Player_inventory.Add(GameData.Instance.playerdata.Itemdata[1]);
+            GameData.Instance.playerdata.Player_inventory2.Add(GameData.Instance.playerdata.Itemdata2[3]);
+            GameData.Instance.playerdata.Player_inventory2.Add(GameData.Instance.playerdata.Itemdata2[4]);
+        }
+        else
+        {
+            GameData.Instance.playerdata.Gold += 5000;
+            GameData.Instance.playerdata.CurEXP += 500;
+            GameData.Instance.playerdata.Player_inventory2.Add(GameData.Instance.playerdata.Itemdata2[3]);
+        }
+
+        if (!GameData.Instance.playerdata.desertclear)
+            GameData.Instance.playerdata.desertclear = true;
 
         ShowElapsedTime(); // 경과시간을 보여줌
     }
