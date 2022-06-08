@@ -14,7 +14,8 @@ public class TootipManagement : MonoBehaviour ,IPointerEnterHandler,IPointerExit
 
 
 
-    private void Start()
+    private void Awake()
+
     {
 
         string name = img.sprite.name;
