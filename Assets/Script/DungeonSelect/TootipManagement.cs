@@ -11,45 +11,50 @@ public class TootipManagement : MonoBehaviour ,IPointerEnterHandler,IPointerExit
     public ItemTooltip tooltip;
     public Image img;
     public TextMeshProUGUI itemvalue;
-
+    int b = 0;
 
 
     private void Awake()
 
     {
-
+      
         string name = img.sprite.name;
 
         clear = GameData.Instance.playerdata.desertclear;
-        if (clear == true)
+        if (b == 0)
         {
 
-            switch (name)
+            if (clear == true)
             {
-                case "belts":
-                    Destroy(this.gameObject);
-                    break;
-                case "ui_icon_01_29":
-                    string b = itemvalue.text;
-                    int a = int.Parse(b) / 2;
-                    itemvalue.text = a.ToString();
 
-                    tooltip.SetupTooltip(itemdata.itemDB[0].itemname, itemdata.itemDB[0].des);
-                    break;
-                case "ingots":
-                    tooltip.SetupTooltip(GameData.Instance.playerdata.Itemdata2[3].ItemName, GameData.Instance.playerdata.Itemdata2[3].Description);
-                    break;
-                case "BunnyGauntlet":
-                    Destroy(this.gameObject);
-                    break;
-                case "012":
-                    tooltip.SetupTooltip(itemdata.itemDB[1].itemname, itemdata.itemDB[1].des);
-                    break;
+                switch (name)
+                {
+                    case "belts":
+                        Destroy(this.gameObject);
+                        break;
+                    case "ui_icon_01_29":
+
+                        string a = "5000";
+                        itemvalue.text = a.ToString();
+
+                        tooltip.SetupTooltip(itemdata.itemDB[0].itemname, itemdata.itemDB[0].des);
+                        break;
+                    case "ingots":
+                        tooltip.SetupTooltip(GameData.Instance.playerdata.Itemdata2[3].ItemName, GameData.Instance.playerdata.Itemdata2[3].Description);
+                        break;
+                    case "BunnyGauntlet":
+                        Destroy(this.gameObject);
+                        break;
+                    case "012":
+                        tooltip.SetupTooltip(itemdata.itemDB[1].itemname, itemdata.itemDB[1].des);
+                        break;
+
+
+                }
 
 
             }
-
-
+            b = 1;
         }
 
 
@@ -87,36 +92,42 @@ public class TootipManagement : MonoBehaviour ,IPointerEnterHandler,IPointerExit
     {
         string name = img.sprite.name;
 
+
         clear = GameData.Instance.playerdata.desertclear;
-        if (clear == true)
+        if (b == 0)
         {
 
-            switch (name)
+            if (clear == true)
             {
-                case "belts":
-                    Destroy(this.gameObject);
-                    break;
-                case "ui_icon_01_29":
-                    string b = itemvalue.text;
-                    int a = int.Parse(b) / 2;
-                    itemvalue.text = a.ToString();
 
-                    tooltip.SetupTooltip(itemdata.itemDB[0].itemname, itemdata.itemDB[0].des);
-                    break;
-                case "ingots":
-                    tooltip.SetupTooltip(GameData.Instance.playerdata.Itemdata2[3].ItemName, GameData.Instance.playerdata.Itemdata2[3].Description);
-                    break;
-                case "BunnyGauntlet":
-                    Destroy(this.gameObject);
-                    break;
-                case "012":
-                    tooltip.SetupTooltip(itemdata.itemDB[1].itemname, itemdata.itemDB[1].des);
-                    break;
+                switch (name)
+                {
+                    case "belts":
+                        Destroy(this.gameObject);
+                        break;
+                    case "ui_icon_01_29":
+
+                        string a = "5000";
+                        itemvalue.text = a.ToString();
+
+                        tooltip.SetupTooltip(itemdata.itemDB[0].itemname, itemdata.itemDB[0].des);
+                        break;
+                    case "ingots":
+                        tooltip.SetupTooltip(GameData.Instance.playerdata.Itemdata2[3].ItemName, GameData.Instance.playerdata.Itemdata2[3].Description);
+                        break;
+                    case "BunnyGauntlet":
+                        Destroy(this.gameObject);
+                        break;
+                    case "012":
+                        tooltip.SetupTooltip(itemdata.itemDB[1].itemname, itemdata.itemDB[1].des);
+                        break;
+
+
+                }
 
 
             }
-
-
+            b = 1;
         }
 
 

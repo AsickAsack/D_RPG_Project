@@ -25,8 +25,7 @@ public class cResultManager : MonoBehaviour
             GameData.Instance.playerdata.Player_inventory2.Add(GameData.Instance.playerdata.Itemdata2[3]);
         }
 
-        if (!GameData.Instance.playerdata.desertclear)
-            GameData.Instance.playerdata.desertclear = true;
+       
 
         ShowElapsedTime(); // 경과시간을 보여줌
     }
@@ -46,7 +45,9 @@ public class cResultManager : MonoBehaviour
 
     public void ExitGame()
     {
-        
+       
         SceneLoader.Instance.Loading_LoadScene(3);
+        if (!GameData.Instance.playerdata.desertclear)
+            GameData.Instance.playerdata.desertclear = true;
     }
 }
