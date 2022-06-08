@@ -80,6 +80,7 @@ public class PvPManager : MonoBehaviourPunCallbacks
         ResultCanvas.enabled = false;
         LobbyCanvas.enabled = true;
         PhotonNetwork.LeaveRoom();
+        PhotonNetwork.JoinLobby();
     }
 
    
