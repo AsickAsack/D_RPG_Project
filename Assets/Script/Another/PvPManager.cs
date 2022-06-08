@@ -14,6 +14,7 @@ public class PvPManager : MonoBehaviourPunCallbacks
     public Canvas LobbyCanvas = null;
     public Canvas RoomCanvas = null;
     public Canvas MainCanvas = null;
+    public Canvas ResultCanvas = null;
     int currentRoomIndex = -1;
     public Button CreateButton;
     public GameObject NoticePanel;
@@ -22,6 +23,7 @@ public class PvPManager : MonoBehaviourPunCallbacks
     public GameObject[] RoomPlayerReady;
     public PhotonView myphotonview;
     public GameObject ReadyButton;
+   
     
     IEnumerator Start()
     {
@@ -72,6 +74,15 @@ public class PvPManager : MonoBehaviourPunCallbacks
         }
     }
 
+    public void ClickLeave()
+    {
+        MainCanvas.enabled = false;
+        ResultCanvas.enabled = false;
+        LobbyCanvas.enabled = true;
+        PhotonNetwork.LeaveRoom();
+    }
+
+   
     public void joinRoom(int index)
     {
         PhotonNetwork.JoinRoom(myRoomList[index].Name);

@@ -2870,6 +2870,9 @@ MonoBehaviour:
   - {fileID: 921759173021421599}
   RollSpeed: 0.045
   RightHand: {fileID: 3817492484078939647}
+  ResultCanvas: {fileID: 0}
+  ResultTx: {fileID: 0}
+  WinnerNameTx: {fileID: 0}
   _HP: 100
   Damage: 10
 --- !u!95 &4652982898645211286

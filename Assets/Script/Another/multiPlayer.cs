@@ -27,6 +27,12 @@ public class multiPlayer : MonoBehaviourPunCallbacks, IPunObservable
     public GameObject[] HP_Bar = null;
     public float RollSpeed=0.01f;
     public Transform RightHand;
+    public GameObject ResultCanvas;
+    public Text ResultTx;
+    public Text WinnerNameTx;
+    private string WinnerName;
+    
+
 
     [Header("플레이어 스텟")]
     public float _HP = 100.0f;
@@ -47,6 +53,18 @@ public class multiPlayer : MonoBehaviourPunCallbacks, IPunObservable
                 SkillButton.interactable = false;
                 AttackButton.interactable = false;
                 RollButton.interactable = false;
+                if(PV1.IsMine)
+                {
+                    ResultTx.text = "패배 ㅋ";
+                    PV1.RPC("openResult", RpcTarget.All);
+
+                   // WinnerName = PhotonNetwork.NickName;
+                    
+                   
+                }
+                
+               // WinnerNameTx.text = PhotonNetwork == WinnerName? ;
+               
                 // 이동막기
                 // 승리자/패배자 띄우기
                 // 메인으로 돌아가기
@@ -54,6 +72,11 @@ public class multiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
+    [PunRPC]
+    public void openResult()
+    {
+        ResultCanvas.GetComponent<Canvas>().enabled = true;
+    }
 
 
     // Start is called before the first frame update
@@ -85,7 +108,9 @@ public class multiPlayer : MonoBehaviourPunCallbacks, IPunObservable
             StartCoroutine(FakeMove());
         });
 
-
+        ResultCanvas = GameObject.Find("ResultCanavs");
+        ResultTx = ResultCanvas.transform.GetChild(2).GetComponent<Text>();
+        WinnerNameTx = ResultCanvas.transform.GetChild(3).GetComponent<Text>();
     }
 
     IEnumerator FakeMove()
@@ -119,9 +144,13 @@ public class multiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         Collider[] myCollider = Physics.OverlapSphere(RightHand.position, 0.125f);
         foreach(Collider col in myCollider)
         {
-            col.GetComponent<multiPlayer>()?.hitProcess(20.0f);
+             col.GetComponent<multiPlayer>()?.hitProcess(20.0f);
+             
+
         }
     }
+
+
 
 
     // Update is called once per frame
@@ -197,11 +226,13 @@ public class multiPlayer : MonoBehaviourPunCallbacks, IPunObservable
         {
             stream.SendNext(HP);
             stream.SendNext(HP_Bar[1].GetComponent<Image>().fillAmount);
+            stream.SendNext(WinnerNameTx.text);
         }
         else
         {
             HP = (float)stream.ReceiveNext();
             HP_Bar[1].GetComponent<Image>().fillAmount = (float)stream.ReceiveNext();
+            WinnerNameTx.text = (string)stream.ReceiveNext();
         }
         
     }
