@@ -2727,11 +2727,11 @@ GameObject:
   - component: {fileID: 7449031341340624163}
   - component: {fileID: -2888801790752655879}
   - component: {fileID: 5446401314336717999}
+  - component: {fileID: 7783547861557356278}
   - component: {fileID: 1908354261994875585}
   - component: {fileID: 4652982898645211286}
   - component: {fileID: 2213569079844838166}
   - component: {fileID: 7472012249190917125}
-  - component: {fileID: 7783547861557356278}
   - component: {fileID: 2752142564927246758}
   m_Layer: 0
   m_Name: MTPlayer
@@ -2823,8 +2823,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 7449031341340624163}
   - {fileID: 5446401314336717999}
-  - {fileID: 1908354261994875585}
   - {fileID: 7783547861557356278}
+  - {fileID: 1908354261994875585}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -2844,6 +2844,22 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &7783547861557356278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3817492484078939483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 1
+  m_TeleportEnabled: 0
+  m_TeleportIfDistanceGreaterThan: 3
 --- !u!114 &1908354261994875585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2926,22 +2942,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &7783547861557356278
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3817492484078939483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizeVelocity: 1
-  m_SynchronizeAngularVelocity: 0
-  m_TeleportEnabled: 0
-  m_TeleportIfDistanceGreaterThan: 3
 --- !u!136 &2752142564927246758
 CapsuleCollider:
   m_ObjectHideFlags: 0

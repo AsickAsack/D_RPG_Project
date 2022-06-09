@@ -16,12 +16,26 @@ public class Mission : MonoBehaviour
     public TMPro.TMP_Text MissionGoal;
     public bool updateCheck = false;
     string curProcess;
-    public TMPro.TMP_Text[] reward_count; 
+    public TMPro.TMP_Text[] reward_count;
+
 
     private UnityAction[] result = new UnityAction[2];
-    // Start is called before the first frame update
+
+    private void Awake()
+    {
+      if(GameData.Instance.playerdata.MissionClear[missionIndex]==1)
+        {
+            MissionGoal.gameObject.SetActive(false);
+            mybutton.interactable = false;
+            mybutton.GetComponentInChildren<TMPro.TMP_Text>().text = "미션완료";
+        }
+
+     
+    }
+
     void Start()
     {
+       
         startSettig(missionIndex);
         
     }
@@ -29,8 +43,8 @@ public class Mission : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        UpdateSettig(missionIndex);
+        if(GameData.Instance.playerdata.MissionClear[missionIndex] == 0)
+            UpdateSettig(missionIndex);
     }
 
 
@@ -50,10 +64,11 @@ public class Mission : MonoBehaviour
             Reward_frame[1].transform.GetChild(0).GetComponent<Image>().sprite = Reward_Icon[1];
             reward_count[1].text = myDB.myData[index].reward_tx2.ToString("n0");
         }
-        if (myDB.myData[index].Mission_GoalProcess < myDB.myData[index].Mission_Goal)
+        if (myDB.myData[index].Mission_GoalProcess < myDB.myData[index].Mission_Goal&& GameData.Instance.playerdata.MissionClear[index]==0)
         {
             mybutton.GetComponentInChildren<TMPro.TMP_Text>().text = "바로가기";
             mybutton.onClick.AddListener(myDB.myData[index].rewardBt1);
+            
             
         }
 
@@ -69,11 +84,14 @@ public class Mission : MonoBehaviour
         else
             MissionGoal.text = myDB.myData[index].Mission_GoalProcess.ToString("n0") + " / " + myDB.myData[index].Mission_Goal.ToString("n0");
         if (myDB.myData[index].Mission_GoalProcess >= myDB.myData[index].Mission_Goal && !updateCheck)
-        {
+        {   
+            if(GameData.Instance.playerdata.SecondSet[index] ==0)
             CurClearMission++;
+
+            GameData.Instance.playerdata.SecondSet[index] = 1;
             mybutton.onClick.RemoveAllListeners();
             mybutton.GetComponentInChildren<TMPro.TMP_Text>().text = "보상받기";
-
+           
             mybutton.onClick.AddListener(myDB.myData[index].rewardBt2);
             mybutton.onClick.AddListener(() =>
             {
@@ -82,9 +100,11 @@ public class Mission : MonoBehaviour
                 mybutton.interactable = false;
                 mybutton.GetComponentInChildren<TMPro.TMP_Text>().text = "미션완료";
                 CurClearMission--;
+                GameData.Instance.playerdata.MissionClear[missionIndex] = 1;
             });
-               
+ 
             
+
             updateCheck = true;
         }
         

@@ -69,7 +69,20 @@ public class JMain : MonoBehaviour
      
     }
 
-  
+    public void PlusGold(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                GameData.Instance.playerdata.Gold += 10000;
+                break;
+            case 1:
+                GameData.Instance.playerdata.Emerald += 10000;
+                break;
+
+        }
+        
+    }
 
 
 

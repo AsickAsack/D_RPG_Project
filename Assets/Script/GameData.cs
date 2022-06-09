@@ -29,7 +29,7 @@ public partial class GameData : MonoBehaviour
 
                     if (File.Exists(Application.persistentDataPath + "/GameData.json"))
                     { 
-                       // instance._Load();
+                       instance._Load();
                     }
 
                     
@@ -76,8 +76,8 @@ public partial class GameData : MonoBehaviour
         byte[] bytes = System.Text.Encoding.UTF8.GetBytes(jdata);
         string format = System.Convert.ToBase64String(bytes);
 
-       //File.WriteAllText(Application.dataPath + "/GameData.json", jdata); //에디터 경로에 저장할때 //암호화 할거면 format
-        File.WriteAllText(Application.persistentDataPath + "/GameData.json", format);  // 모바일에 저장할때
+       File.WriteAllText(Application.persistentDataPath + "/GameData.json", format); //에디터 경로에 저장할때 //암호화 할거면 format
+        //File.WriteAllText(Application.persistentDataPath + "/GameData.json", format);  // 모바일에 저장할때
     }
 
     public void _Load() // 불러오기 함수
@@ -124,13 +124,13 @@ public partial class PlayerData
         get => _gold;
         set
         {
-            int OrgGold = _gold;                 
+            int OrgGold = _gold;
             _gold = value;
 
             if (OrgGold < _gold) // 돈 벌었을때 
-                EarnMoney += ( _gold - OrgGold );
+                EarnMoney += (_gold - OrgGold);
             else if (OrgGold > _gold) // 돈 썼을때
-                SpendMoney += ( OrgGold - _gold );
+                SpendMoney += (OrgGold - _gold);
 
 
         }
@@ -139,7 +139,7 @@ public partial class PlayerData
     public int CurEXP
     {
         get { return _curEXP; }
-        set 
+        set
         {
             _curEXP = value;
             if (_curEXP >= MaxEXP)
@@ -149,13 +149,13 @@ public partial class PlayerData
                 MaxEXP *= Level;
             }
         }
-         
+
     }
     private int _MaxEXP = 1000;
     public int MaxEXP
     {
         get { return _MaxEXP; }
-        set {_MaxEXP = value;}
+        set { _MaxEXP = value; }
     }
     public int Emerald = 0;
     public int Key = 0;
@@ -165,6 +165,9 @@ public partial class PlayerData
     public int SpendMoney = 0;
     public int FirstExchange = 0;
     public int BuyShop = 0;
+  
+    public int[] SecondSet= new int[5] { 0, 0, 0, 0, 0 };
+    public int[] MissionClear = new int[5] { 0, 0, 0, 0, 0 };
 
     public List<GameObject> PetList = new List<GameObject>();
     public List<itemdata> Player_inventory = new List<itemdata>();

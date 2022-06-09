@@ -74,6 +74,13 @@ public class PvPManager : MonoBehaviourPunCallbacks
         }
     }
 
+    public void BackToMain()
+    {
+        PhotonNetwork.Disconnect();
+        SceneLoader.Instance.Loading_LoadScene(2);
+    }
+
+
     public void ClickLeave()
     {
         MainCanvas.enabled = false;
@@ -123,6 +130,7 @@ public class PvPManager : MonoBehaviourPunCallbacks
     [PunRPC]
     public void ActiveStartbutton(bool check)
     {
+        if(PhotonNetwork.IsMasterClient)
         ReadyButton.SetActive(check);
     }
 

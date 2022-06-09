@@ -55,7 +55,7 @@ public class multiPlayer : MonoBehaviourPunCallbacks, IPunObservable
                 RollButton.interactable = false;
                 if(PV1.IsMine)
                 {
-                    ResultTx.text = "패배 ㅋ";
+                    ResultTx.text = "패배 !";
                     PV1.RPC("openResult", RpcTarget.All);
 
                    // WinnerName = PhotonNetwork.NickName;
@@ -156,8 +156,11 @@ public class multiPlayer : MonoBehaviourPunCallbacks, IPunObservable
     // Update is called once per frame
     void Update()
     {
-        
+        if(this.transform.position.y < 0.0f)
+        this.transform.position = new Vector3(-0.7f, 10.6f, -67.1f);
        
+
+
 
         if (Myname != null)
         {

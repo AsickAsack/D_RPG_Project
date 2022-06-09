@@ -32,8 +32,8 @@ public class SceneLoader : MonoBehaviour
     #region 로딩화면있는 로드씬(인덱스)
     public void Loading_LoadScene(int i)
     {
+        GameData.Instance._save();
         StartCoroutine(SceneLoading(i));
-
     }
 
     IEnumerator SceneLoading(int i)
@@ -69,6 +69,7 @@ public class SceneLoader : MonoBehaviour
     #region 로딩화면있는 로드씬(스트링)
     public void Loading_LoadScene(string Scene)
     {
+        GameData.Instance._save();
         StartCoroutine(SceneLoading(Scene));
 
     }
@@ -106,12 +107,15 @@ public class SceneLoader : MonoBehaviour
     //로딩화면 없는 로드씬(인덱스)
     public void LoadScene(int index)
     {
+        GameData.Instance._save();
         SceneManager.LoadSceneAsync(index);
+
     }
 
     //로딩화면 없는 로드씬(스트링)
     public void LoadScene(string Scene)
     {
+        GameData.Instance._save();
         SceneManager.LoadSceneAsync(Scene);
     }
 
