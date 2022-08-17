@@ -5,4 +5,6 @@
 
 #### 🛠️ HOUND13에 Hundred Soul을 모작하여 구현한 프로젝트 입니다. 🛠️
 
+
+#### 🎥 빌드 영상 : https://www.youtube.com/watch?v=OQTxkkJIrrA
 </div>
